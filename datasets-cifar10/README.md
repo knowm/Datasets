@@ -14,6 +14,6 @@
 
 1. Manually copy the `DB_CIFAR.*` files into the `src/main/resources` folder. There should be three files. 
 
-## How to build jar containing Data
+## Build jar containing Data
 
 1. using Maven, run `mvn clean install`

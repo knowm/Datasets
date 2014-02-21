@@ -51,8 +51,8 @@ public class CifarDAO extends DatasetsDAO {
 
   public static int createTable() {
 
-    String CENSUS_INCOME_CREATE = "CREATE CACHED TABLE CIFAR (id INTEGER NOT NULL, label INTEGER NOT NULL, imagedata VARCHAR(30000) NOT NULL, PRIMARY KEY (id))";
-    return DBProxy.executeSQL("cifardatapool", CENSUS_INCOME_CREATE, null);
+    String CIFAR_CREATE = "CREATE CACHED TABLE CIFAR (id INTEGER NOT NULL, label INTEGER NOT NULL, imagedata VARCHAR(30000) NOT NULL, PRIMARY KEY (id))";
+    return DBProxy.executeSQL("cifardatapool", CIFAR_CREATE, null);
   }
 
   public static int insert(Cifar CIFAR) {
@@ -65,8 +65,8 @@ public class CifarDAO extends DatasetsDAO {
         CIFAR.getImagedata()
     // @formatter:on
         };
-    String CENSUS_INCOME_INSERT = "INSERT INTO CIFAR (id, label, imagedata) VALUES (?, ?, ?)";
-    return DBProxy.executeSQL("cifardatapool", CENSUS_INCOME_INSERT, params);
+    String CIFAR_INSERT = "INSERT INTO CIFAR (id, label, imagedata) VALUES (?, ?, ?)";
+    return DBProxy.executeSQL("cifardatapool", CIFAR_INSERT, params);
 
   }
 
@@ -88,14 +88,14 @@ public class CifarDAO extends DatasetsDAO {
 
   public static List<Cifar> selectTrainData() {
 
-    String SELECT_TRAIN = "SELECT * FROM CIFAR LIMIT 1, 50000";
+    String SELECT_TRAIN = "SELECT * FROM CIFAR LIMIT 0, 50000";
 
     return DBProxy.queryObjectListSQL("cifardatapool", SELECT_TRAIN, Cifar.class, null);
   }
 
   public static List<Cifar> selectTestData() {
 
-    String SELECT_TRAIN = "SELECT * FROM CIFAR LIMIT 50001, 60000";
+    String SELECT_TRAIN = "SELECT * FROM CIFAR LIMIT 50000, 60000";
 
     return DBProxy.queryObjectListSQL("cifardatapool", SELECT_TRAIN, Cifar.class, null);
   }

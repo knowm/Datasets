@@ -30,8 +30,6 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
 import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.List;
@@ -123,43 +121,6 @@ public final class FileUtils {
     // show file contents here
     return sb.toString();
 
-  }
-
-  public static Object deserialize(File file) {
-
-    // Read from disk using FileInputStream
-    Object obj = null;
-    try {
-      FileInputStream f_in = new FileInputStream(file.getAbsoluteFile());
-
-      // Read object using ObjectInputStream
-      ObjectInputStream obj_in = new ObjectInputStream(f_in);
-
-      // Read an object
-      obj = obj_in.readObject();
-
-      return obj;
-    } catch (Exception e) {
-      logger.error("Error deserializing " + file.getAbsolutePath(), e);
-    }
-
-    return null;
-  }
-
-  public static void serialize(Object object, String path) {
-
-    // Write to disk with FileOutputStream
-    try {
-      FileOutputStream f_out = new FileOutputStream(path);
-
-      // Write object with ObjectOutputStream
-      ObjectOutputStream obj_out = new ObjectOutputStream(f_out);
-
-      // Write object out to disk
-      obj_out.writeObject(object);
-    } catch (Exception e) {
-      logger.error("Error serializing object.", e);
-    }
   }
 
   /**
