@@ -19,61 +19,58 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package com.xeiam.datasets.lshtc4;
+package com.xeiam.datasets.lshtc4.unit;
+
+import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.MatcherAssert.assertThat;
+
+import java.util.List;
+
+import org.junit.AfterClass;
+import org.junit.BeforeClass;
+import org.junit.Test;
+
+import com.xeiam.datasets.lshtc4.LSHTC4Hierarchy;
+import com.xeiam.datasets.lshtc4.LSHTC4HierarchyDAO;
 
 /**
  * @author timmolter
  */
-public class LSHTC4 {
+// @Ignore
+public class TestLSHTC4HierarchyDAO {
 
-  private int id;
-  private String labels;
-  private String features;
+  @BeforeClass
+  public static void setUpDB() {
 
-  public int getId() {
+    LSHTC4HierarchyDAO.initTest();
 
-    return id;
   }
 
-  public void setId(int id) {
+  @AfterClass
+  public static void tearDownDB() {
 
-    this.id = id;
+    LSHTC4HierarchyDAO.testRelease();
   }
 
-  public String getLabels() {
+  @Test
+  public void testSelectCount() {
 
-    return labels;
+    long count = LSHTC4HierarchyDAO.selectCount();
+    assertThat(count, equalTo(863261L));
+
   }
 
-  public String[] getLabelsAsArray() {
+  @Test
+  public void test() {
 
-    return labels.split(",");
-  }
+    List<LSHTC4Hierarchy> all = LSHTC4HierarchyDAO.selectAll();
+    assertThat(all.size(), equalTo(863261));
 
-  public void setLabels(String labels) {
+    // System.out.println(all.get(0));
+    LSHTC4Hierarchy lSHTC4Hierarchy = LSHTC4HierarchyDAO.selectSingle(2214730);
+    int parentID = lSHTC4Hierarchy.getParentid();
+    assertThat(parentID, equalTo(2244783));
 
-    this.labels = labels;
-  }
-
-  public String getFeatures() {
-
-    return features;
-  }
-
-  public String[] getFeaturesAsArray() {
-
-    return features.split(",");
-  }
-
-  public void setFeatures(String features) {
-
-    this.features = features;
-  }
-
-  @Override
-  public String toString() {
-
-    return "LSHTC4 [id=" + id + ", labels=" + labels + ", features=" + features + "]";
   }
 
 }

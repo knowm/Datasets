@@ -6,9 +6,9 @@
 
 1. Download raw data from here: http://www.kaggle.com/c/lshtc/data
 
-1. put all files in `raw` folder in project root
+1. put all files (hierarchy.zip, test-remapped and train-remapped) in `raw` folder in project root
 
-1. Run `RawData2DB.java`. 
+1. Run `RawData2DB.java` and `RawData2DBHierarchy.java`.
 
 1. The database containing the data will appear in `db`.
 
@@ -37,8 +37,12 @@ longestLabelsStringLength: 1344
 longestFeaturesStringLength: 47449
 highestFeatureID: 1617899
 highestFeatureValue: 1700
-highestLabelID: 2817604
+highestLabelID: 445729
+Number parsed: 2817603
 
 Train entries: 2,365,437
 Test entries: 452,167
-Total Entries: 2,817,604
+Total Entries: 2,817,603
+
+Total Hierarchy Entries: 863261
+

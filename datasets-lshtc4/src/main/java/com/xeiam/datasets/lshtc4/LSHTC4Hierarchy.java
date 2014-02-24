@@ -24,56 +24,35 @@ package com.xeiam.datasets.lshtc4;
 /**
  * @author timmolter
  */
-public class LSHTC4 {
+public class LSHTC4Hierarchy {
 
-  private int id;
-  private String labels;
-  private String features;
+  int parentid;
+  int nodeid;
 
-  public int getId() {
+  public int getParentid() {
 
-    return id;
+    return parentid;
   }
 
-  public void setId(int id) {
+  public void setParentid(int parentid) {
 
-    this.id = id;
+    this.parentid = parentid;
   }
 
-  public String getLabels() {
+  public int getNodeid() {
 
-    return labels;
+    return nodeid;
   }
 
-  public String[] getLabelsAsArray() {
+  public void setNodeid(int nodeid) {
 
-    return labels.split(",");
-  }
-
-  public void setLabels(String labels) {
-
-    this.labels = labels;
-  }
-
-  public String getFeatures() {
-
-    return features;
-  }
-
-  public String[] getFeaturesAsArray() {
-
-    return features.split(",");
-  }
-
-  public void setFeatures(String features) {
-
-    this.features = features;
+    this.nodeid = nodeid;
   }
 
   @Override
   public String toString() {
 
-    return "LSHTC4 [id=" + id + ", labels=" + labels + ", features=" + features + "]";
+    return "LSHTC4Hierarchy [parentid=" + parentid + ", nodeid=" + nodeid + "]";
   }
 
 }

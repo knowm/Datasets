@@ -32,7 +32,7 @@ import com.xeiam.yank.PropertiesUtils;
 /**
  * @author timmolter
  */
-public class LSHTC4DAO extends DatasetsDAO {
+public class LSHTC4HierarchyDAO extends DatasetsDAO {
 
   public static File init() {
 
@@ -46,49 +46,48 @@ public class LSHTC4DAO extends DatasetsDAO {
 
   public static int dropTable() {
 
-    return DBProxy.executeSQL("lshtc4datapool", "DROP TABLE IF EXISTS LSHTC4", null);
+    return DBProxy.executeSQL("lshtc4datapool", "DROP TABLE IF EXISTS LSHTC4Hierarchy", null);
   }
 
   public static int createTable() {
 
-    String LSHTC4_CREATE = "CREATE CACHED TABLE LSHTC4 (id INTEGER NOT NULL, labels VARCHAR(1344) NOT NULL, features VARCHAR(47449) NOT NULL, PRIMARY KEY (id))";
-    return DBProxy.executeSQL("lshtc4datapool", LSHTC4_CREATE, null);
+    String LSHTC4Hierarchy_CREATE = "CREATE CACHED TABLE LSHTC4Hierarchy (parentid INTEGER NOT NULL, nodeid INTEGER NOT NULL)";
+    return DBProxy.executeSQL("lshtc4datapool", LSHTC4Hierarchy_CREATE, null);
   }
 
-  public static int insert(LSHTC4 lSHTC4) {
+  public static int insert(LSHTC4Hierarchy lSHTC4Hierarchy) {
 
     Object[] params = new Object[] {
 
     // @formatter:off
-        lSHTC4.getId(),
-        lSHTC4.getLabels(),
-        lSHTC4.getFeatures()
+        lSHTC4Hierarchy.getParentid(),
+        lSHTC4Hierarchy.getNodeid()
     // @formatter:on
         };
-    String LSHTC4_INSERT = "INSERT INTO LSHTC4 (id, labels, features) VALUES (?, ?, ?)";
-    return DBProxy.executeSQL("lshtc4datapool", LSHTC4_INSERT, params);
+    String LSHTC4Hierarchy_INSERT = "INSERT INTO LSHTC4Hierarchy (parentid, nodeid) VALUES (?, ?)";
+    return DBProxy.executeSQL("lshtc4datapool", LSHTC4Hierarchy_INSERT, params);
 
   }
 
-  public static List<LSHTC4> selectAll() {
+  public static List<LSHTC4Hierarchy> selectAll() {
 
-    String SELECT_ALL = "SELECT * FROM LSHTC4";
+    String SELECT_ALL = "SELECT * FROM LSHTC4Hierarchy";
 
-    return DBProxy.queryObjectListSQL("lshtc4datapool", SELECT_ALL, LSHTC4.class, null);
+    return DBProxy.queryObjectListSQL("lshtc4datapool", SELECT_ALL, LSHTC4Hierarchy.class, null);
   }
 
-  public static LSHTC4 selectSingle(int id) {
+  public static LSHTC4Hierarchy selectSingle(int id) {
 
     Object[] params = new Object[] { id };
 
-    String SELECT_SINGLE = "SELECT * FROM LSHTC4 WHERE id = ?";
+    String SELECT_SINGLE = "SELECT * FROM LSHTC4Hierarchy WHERE nodeid = ?";
 
-    return DBProxy.querySingleObjectSQL("lshtc4datapool", SELECT_SINGLE, LSHTC4.class, params);
+    return DBProxy.querySingleObjectSQL("lshtc4datapool", SELECT_SINGLE, LSHTC4Hierarchy.class, params);
   }
 
   public static long selectCount() {
 
-    String SELECT_COUNT = "SELECT COUNT(*) FROM LSHTC4";
+    String SELECT_COUNT = "SELECT COUNT(*) FROM LSHTC4Hierarchy";
 
     return DBProxy.querySingleScalarSQL("lshtc4datapool", SELECT_COUNT, Long.class, null);
   }
