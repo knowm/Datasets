@@ -21,7 +21,6 @@
  */
 package com.xeiam.datasets.samples;
 
-import java.io.File;
 import java.util.Arrays;
 
 import com.xeiam.datasets.lshtc4.LSHTC4;
@@ -38,14 +37,14 @@ public class LSHTC4Demo {
 
   public static void main(String[] args) {
 
-    File tempDBFile = LSHTC4DAO.init(); // setup data
     try {
+      LSHTC4DAO.init("/Users/timmolter/Documents/Datasets"); // setup data
       LSHTC4Demo lSHTC4Demo = new LSHTC4Demo();
       lSHTC4Demo.go();
     } catch (Exception e) {
       e.printStackTrace();
     } finally {
-      LSHTC4DAO.release(tempDBFile); // release data resources
+      LSHTC4DAO.release(); // release data resources
     }
   }
 

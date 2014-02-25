@@ -330,14 +330,15 @@ public final class FileUtils {
   /**
    * Makes a dir, if it doesn't already exist
    * 
-   * @param pFilePath
+   * @param filePath
    */
-  public static void mkDirIfNotExists(String pFilePath) {
+  public static File mkDirIfNotExists(String filePath) {
 
-    File f = new File(pFilePath);
+    File f = new File(filePath);
     if (!f.exists()) {
       f.mkdir();
     }
+    return f;
   }
 
   /**
@@ -387,7 +388,7 @@ public final class FileUtils {
     throw new IllegalStateException("Failed to create directory within " + TEMP_DIR_ATTEMPTS + " attempts (tried " + baseName + "0 to " + baseName + (TEMP_DIR_ATTEMPTS - 1) + ')');
   }
 
-  public static boolean deleteDirectoryRecuresively(File file) {
+  public static boolean deleteDirectoryRecursively(File file) {
 
     boolean success = true;
     try {

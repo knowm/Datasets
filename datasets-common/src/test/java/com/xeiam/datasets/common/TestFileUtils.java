@@ -44,7 +44,7 @@ public class TestFileUtils {
     boolean success = FileUtils.copyFileFromClasspathToFile(file.getPath(), "DB_CENSUS_INCOME.properties");
     System.out.println(success);
 
-    success = FileUtils.deleteDirectoryRecuresively(file);
+    success = FileUtils.deleteDirectoryRecursively(file);
     System.out.println(success);
 
   }

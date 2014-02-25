@@ -38,7 +38,6 @@ longestFeaturesStringLength: 47449
 highestFeatureID: 1617899
 highestFeatureValue: 1700
 highestLabelID: 445729
-Number parsed: 2817603
 
 Train entries: 2,365,437
 Test entries: 452,167

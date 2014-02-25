@@ -39,6 +39,11 @@ public class LSHTC4DAO extends DatasetsDAO {
     return init("lshtc4datapool", "DB_LSHTC4");
   }
 
+  public static File init(String dataFilesDir) {
+
+    return init("lshtc4datapool", "DB_LSHTC4", dataFilesDir);
+  }
+
   public static void initTest() {
 
     DBConnectionManager.INSTANCE.init(PropertiesUtils.getPropertiesFromClasspath("DB_TEST.properties"));
