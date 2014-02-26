@@ -42,7 +42,7 @@ Output:
     LSHTC4 [id=9, labels=, features=24:1,41:1,81:1,122:2,131:2,196:1,197:1,199:2,219:1,230:3,310:1,318:2,328:1,346:2,354:2,375:1,378:1,395:1,400:1,415:1,430:1,464:1,501:1,559:3,561:3,567:2,570:4,576:1,589:1,601:1,605:1,633:1,692:3,717:1,721:3,765:1,773:1,791:3,818:1,841:1,903:1,916:1,977:1,1000:1,1019:1,1046:1,1078:1,1106:1,1109:1,1163:1,1249:2,1266:1,1413:1,1556:1,1563:1,1664:1,1716:1,1742:2,1756:1,1782:1,1793:1,1915:1,1966:1,2032:1,2369:1,2687:2,2695:1,2957:1,3365:1,3519:1,3581:1,3698:1,4548:1,4570:1,5126:3,5526:3,5954:2,6014:1,7104:1,7124:1,7652:1,8532:1,10305:1,10637:1,10774:1,11256:2,11892:1,12116:1,14386:1,14732:1,17880:5,19492:4,23460:1,23618:1,30520:2,33822:1,42461:1,57833:1,386140:1,691708:1,1558913:1,]
     LSHTC4 [id=10, labels=, features=40:1,41:1,44:1,48:2,49:1,68:1,95:1,111:1,153:4,162:1,196:1,219:1,228:1,229:1,232:1,238:1,239:2,242:2,247:2,276:1,297:2,306:1,307:1,316:1,317:1,375:1,430:1,510:1,516:1,582:1,612:1,717:1,728:2,761:1,764:1,776:1,783:1,797:1,815:1,915:1,1116:1,1337:1,1441:1,1680:1,2116:2,2118:1,2119:1,2192:1,2194:1,2322:1,2347:1,2354:1,2613:1,2636:1,2748:1,2930:1,3048:1,3057:1,3140:1,3229:1,3893:1,4030:1,4252:1,4984:1,5068:1,6599:1,7108:1,8540:1,10639:1,10666:1,10670:2,10676:1,14070:5,14321:1,14364:2,24700:1,26766:1,27895:1,63406:1,166985:1,601892:1,]
 
-The first time, the DAO class is used, it attempts to download the database files from Google Drive. If there are problems, like when the file is too bug, a messasge is printed 
+The first time the DAO class is used, it attempts to download the database files from Google Drive. If there are problems, like when the file is too big, a messasge is printed 
 directing you to download the files manually.
 
 If you prefer to build the project yourself, note that the actual data is not hosted in the repo with the code, but must be downloaded separately first. Each module in this 
@@ -65,7 +65,7 @@ projects has its own README file with instructions on where to get the data and 
 
 ### Include Jar in Your Project
 
-for example: `datasets-breast-cancer-wisconsin-orginal-1.2.0-SNAPSHOT.jar`
+for example: `datasets-breast-cancer-wisconsin-orginal-2.0.0-SNAPSHOT.jar`
 
 ### Via Maven
 
@@ -87,7 +87,7 @@ Add to your pom file:
     <dependency>
         <groupId>com.xeiam.datasets</groupId>
         <artifactId>datasets-breast-cancer-wisconsin-orginal</artifactId>
-        <version>1.2.0-SNAPSHOT</version>
+        <version>2.0.0-SNAPSHOT</version>
     </dependency>
     
 ### Manual Download
