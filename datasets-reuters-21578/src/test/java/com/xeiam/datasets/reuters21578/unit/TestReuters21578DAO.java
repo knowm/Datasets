@@ -49,7 +49,7 @@ public class TestReuters21578DAO {
   @AfterClass
   public static void tearDownDB() {
 
-    Reuters21578DAO.testRelease();
+    Reuters21578DAO.release();
   }
 
   @Test

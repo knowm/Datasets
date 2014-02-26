@@ -21,6 +21,7 @@
  */
 package com.xeiam.datasets.cifar10;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -128,47 +129,13 @@ public class Cifar {
       blueChannel[x][y] = Integer.parseInt(rgb[2]);
     }
 
-    // /**
-    // * Given the String encoded channel, generate and return a int[][]
-    // *
-    // * @param channel
-    // * @return
-    // */
-    // public int[][] getImageMatrix(String channel) {
-    //
-    // int[][] imageMatrix = new int[32][32];
-    // String[] nonZeroPixels = channel.split(",");
-    // for (int i = 0; i < nonZeroPixels.length; i++) {
-    // String[] info = nonZeroPixels[i].split(":");
-    // int x = Integer.parseInt(info[0]);
-    // int y = Integer.parseInt(info[1]);
-    // int magnitude = Integer.parseInt(info[2]);
-    // imageMatrix[x][y] = magnitude;
-    // }
-    //
-    // return imageMatrix;
-    // }
-
-    // public void generateGrayChannel() {
-    //
-    // int[][] redChannelMatrix = getImageMatrix(redChannel);
-    // int[][] greenChannelMatrix = getImageMatrix(greenChannel);
-    // int[][] blueChannelMatrix = getImageMatrix(blueChannel);
-    // int[][] grayChannelMatrix = new int[32][32];
-    //
-    // StringBuilder sb = new StringBuilder();
-    //
-    // for (int i = 0; i < grayChannelMatrix[0].length; i++) {
-    // for (int j = 0; j < grayChannelMatrix.length; j++) {
-    // sb.append(i);
-    // sb.append(":");
-    // sb.append(j);
-    // sb.append(":");
-    // sb.append((redChannelMatrix[i][j] + greenChannelMatrix[i][j] + blueChannelMatrix[i][j]) / 3);
-    // sb.append(",");
-    // }
-    // }
-    // grayChannel = sb.toString();
-    // }
   }
+
+  @Override
+  public String toString() {
+
+    return "Cifar [id=" + id + ", label=" + label + ", imagedata=" + imagedata + ", redChannel=" + Arrays.toString(redChannel) + ", greenChannel=" + Arrays.toString(greenChannel) + ", blueChannel="
+        + Arrays.toString(blueChannel) + "]";
+  }
+
 }

@@ -53,7 +53,7 @@ public class RawData2DBHierarchy {
 
     System.out.println("done.");
 
-    LSHTC4HierarchyDAO.testRelease();
+    LSHTC4HierarchyDAO.release();
   }
 
   private void go(String dataFile) throws IOException {

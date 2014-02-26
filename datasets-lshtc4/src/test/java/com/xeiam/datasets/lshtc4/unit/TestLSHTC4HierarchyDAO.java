@@ -49,7 +49,7 @@ public class TestLSHTC4HierarchyDAO {
   @AfterClass
   public static void tearDownDB() {
 
-    LSHTC4HierarchyDAO.testRelease();
+    LSHTC4HierarchyDAO.release();
   }
 
   @Test

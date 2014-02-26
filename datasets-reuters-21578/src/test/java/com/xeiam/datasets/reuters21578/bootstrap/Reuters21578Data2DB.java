@@ -51,7 +51,7 @@ public class Reuters21578Data2DB {
     Reuters21578Data2DB dp = new Reuters21578Data2DB();
     dp.go();
 
-    Reuters21578DAO.testRelease();
+    Reuters21578DAO.release();
   }
 
   private void go() {

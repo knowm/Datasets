@@ -21,9 +21,6 @@
  */
 package com.xeiam.datasets.censusincome.bootstrap;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import com.xeiam.datasets.censusincome.CensusIncome;
 import com.xeiam.datasets.censusincome.CensusIncomeDAO;
 import com.xeiam.datasets.common.utils.FileUtils;
@@ -36,6 +33,7 @@ import com.xeiam.datasets.common.utils.FileUtils;
 public class RawData2DB {
 
   int maxBodyLength = 0;
+  int idx = 0;
 
   public static void main(String[] args) {
 
@@ -45,45 +43,26 @@ public class RawData2DB {
     CensusIncomeDAO.createTable();
 
     RawData2DB dp = new RawData2DB();
-    dp.go();
+    dp.go("./raw/adult.data");
+    dp.go("./raw/adult.test");
 
-    CensusIncomeDAO.testRelease();
+    CensusIncomeDAO.release();
   }
 
-  private void go() {
-
-    List<CensusIncome> trainData = parseData("./raw/adult.data");
-    System.out.println("trainData.size()= " + trainData.size());
-    for (CensusIncome censusIncome : trainData) {
-      CensusIncomeDAO.insert(censusIncome);
-    }
-    List<CensusIncome> testData = parseData("./raw/adult.test");
-    System.out.println("testData.size()= " + testData.size());
-    for (CensusIncome censusIncome : testData) {
-      CensusIncomeDAO.insert(censusIncome);
-    }
-  }
-
-  private static List<CensusIncome> parseData(String file) {
+  private void go(String file) {
 
     String data = FileUtils.readFileToString(file);
     System.out.println("loading data from " + file);
+
     String[] lines = data.split("\\r?\\n");
-    ArrayList<CensusIncome> censusIncomeData = new ArrayList<CensusIncome>();
+
     for (int i = 0; i < lines.length; i++) {
       try {
-
-        // if (!lines[i].contains("?")) { // remove unknowns to compare with published benchmarks
-
-        // if (lines[i].contains("?")) {
-        // // System.out.println(lines[i]);
-        // lines[i] = lines[i].replaceAll("\\?", "");
-        // // System.out.println(lines[i]);
-        // }
 
         String[] entry = lines[i].split(",");
         CensusIncome censusIncome = new CensusIncome();
 
+        censusIncome.setId(idx++);
         censusIncome.setAge(Integer.parseInt(entry[0].trim()));
         censusIncome.setWorkclass(entry[1].trim());
         censusIncome.setFnlwgt(Integer.parseInt(entry[2].trim()));
@@ -107,10 +86,8 @@ public class RawData2DB {
         }
 
         // System.out.println(censusIncome.isIncomeLessThan50k());
-        censusIncomeData.add(censusIncome);
-        // } else {
-        // // System.out.println("Skipping: " + lines[i]);
-        // }
+        CensusIncomeDAO.insert(censusIncome);
+        System.out.println(censusIncome.getId());
 
       } catch (Exception e) {
         // eat it. Will throw exception on the first line of the test dataset.
@@ -118,7 +95,6 @@ public class RawData2DB {
       }
     }
 
-    return censusIncomeData;
   }
 
 }

@@ -19,49 +19,47 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package com.xeiam.datasets.mnist.unit;
+package com.xeiam.datasets.samples;
 
-import static org.hamcrest.CoreMatchers.equalTo;
-import static org.hamcrest.CoreMatchers.not;
-import static org.hamcrest.MatcherAssert.assertThat;
-
-import org.junit.AfterClass;
-import org.junit.BeforeClass;
-import org.junit.Test;
-
-import com.xeiam.datasets.mnist.Mnist;
-import com.xeiam.datasets.mnist.MnistDAO;
+import com.xeiam.datasets.censusincome.CensusIncome;
+import com.xeiam.datasets.censusincome.CensusIncomeDAO;
 
 /**
  * @author timmolter
  */
-// @Ignore
-public class TestMnistDAO {
+public class CensusIncomeDemo {
 
-  @BeforeClass
-  public static void setUpDB() {
+  public static void main(String[] args) {
 
-    MnistDAO.initTest();
+    try {
+      CensusIncomeDAO.init("/Users/timmolter/Documents/Datasets"); // setup data
+      CensusIncomeDemo demo = new CensusIncomeDemo();
+      demo.go();
+    } catch (Exception e) {
+      e.printStackTrace();
+    } finally {
+      CensusIncomeDAO.release(); // release data resources
+    }
   }
 
-  @AfterClass
-  public static void tearDownDB() {
+  private void go() {
 
-    MnistDAO.release();
-  }
+    // print number of objects
+    long count = CensusIncomeDAO.selectCount();
+    System.out.println("count= " + count);
 
-  @Test
-  public void testSelectCount() {
+    // loop through train objects
+    for (int i = 0; i < CensusIncomeDAO.getTrainTestSplit(); i++) {
+      CensusIncome censusIncome = CensusIncomeDAO.selectSingle(i);
+      System.out.println(censusIncome.toString());
+    }
 
-    long count = MnistDAO.selectCount();
-    assertThat(count, equalTo(70000L));
-  }
+    // loop through test objects
+    for (int i = CensusIncomeDAO.getTrainTestSplit(); i < count; i++) {
+      CensusIncome censusIncome = CensusIncomeDAO.selectSingle(i);
+      System.out.println(censusIncome);
+    }
 
-  @Test
-  public void testSelectSingle() {
-
-    Mnist mnist = MnistDAO.selectSingle(2);
-    assertThat(mnist, not(equalTo(null)));
   }
 
 }

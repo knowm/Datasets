@@ -25,34 +25,31 @@ import java.io.File;
 import java.util.List;
 
 import com.xeiam.datasets.common.business.DatasetsDAO;
-import com.xeiam.yank.DBConnectionManager;
 import com.xeiam.yank.DBProxy;
-import com.xeiam.yank.PropertiesUtils;
 
 /**
  * @author timmolter
  */
 public class LSHTC4HierarchyDAO extends DatasetsDAO {
 
-  public static File init() {
+  public static File init(String dataFilesDir) {
 
-    return init("lshtc4datapool", "DB_LSHTC4");
-  }
+    String dataFileID = "0ByP7_A9vXm17UUdES3N6YjJsS3M";
+    String propsFileID = "0ByP7_A9vXm17bFE3VmxGTEVTeEU";
+    String scriptFileID = "0ByP7_A9vXm17TDRUMEhvWi1fbUk";
 
-  public static void initTest() {
-
-    DBConnectionManager.INSTANCE.init(PropertiesUtils.getPropertiesFromClasspath("DB_TEST.properties"));
+    return init("lshtc4connectionpool", "DB_LSHTC4", dataFilesDir, dataFileID, propsFileID, scriptFileID, false);
   }
 
   public static int dropTable() {
 
-    return DBProxy.executeSQL("lshtc4datapool", "DROP TABLE IF EXISTS LSHTC4Hierarchy", null);
+    return DBProxy.executeSQL("lshtc4connectionpool", "DROP TABLE IF EXISTS LSHTC4Hierarchy", null);
   }
 
   public static int createTable() {
 
     String LSHTC4Hierarchy_CREATE = "CREATE CACHED TABLE LSHTC4Hierarchy (parentid INTEGER NOT NULL, nodeid INTEGER NOT NULL)";
-    return DBProxy.executeSQL("lshtc4datapool", LSHTC4Hierarchy_CREATE, null);
+    return DBProxy.executeSQL("lshtc4connectionpool", LSHTC4Hierarchy_CREATE, null);
   }
 
   public static int insert(LSHTC4Hierarchy lSHTC4Hierarchy) {
@@ -65,7 +62,7 @@ public class LSHTC4HierarchyDAO extends DatasetsDAO {
     // @formatter:on
         };
     String LSHTC4Hierarchy_INSERT = "INSERT INTO LSHTC4Hierarchy (parentid, nodeid) VALUES (?, ?)";
-    return DBProxy.executeSQL("lshtc4datapool", LSHTC4Hierarchy_INSERT, params);
+    return DBProxy.executeSQL("lshtc4connectionpool", LSHTC4Hierarchy_INSERT, params);
 
   }
 
@@ -73,7 +70,7 @@ public class LSHTC4HierarchyDAO extends DatasetsDAO {
 
     String SELECT_ALL = "SELECT * FROM LSHTC4Hierarchy";
 
-    return DBProxy.queryObjectListSQL("lshtc4datapool", SELECT_ALL, LSHTC4Hierarchy.class, null);
+    return DBProxy.queryObjectListSQL("lshtc4connectionpool", SELECT_ALL, LSHTC4Hierarchy.class, null);
   }
 
   public static LSHTC4Hierarchy selectSingle(int id) {
@@ -82,13 +79,13 @@ public class LSHTC4HierarchyDAO extends DatasetsDAO {
 
     String SELECT_SINGLE = "SELECT * FROM LSHTC4Hierarchy WHERE nodeid = ?";
 
-    return DBProxy.querySingleObjectSQL("lshtc4datapool", SELECT_SINGLE, LSHTC4Hierarchy.class, params);
+    return DBProxy.querySingleObjectSQL("lshtc4connectionpool", SELECT_SINGLE, LSHTC4Hierarchy.class, params);
   }
 
   public static long selectCount() {
 
     String SELECT_COUNT = "SELECT COUNT(*) FROM LSHTC4Hierarchy";
 
-    return DBProxy.querySingleScalarSQL("lshtc4datapool", SELECT_COUNT, Long.class, null);
+    return DBProxy.querySingleScalarSQL("lshtc4connectionpool", SELECT_COUNT, Long.class, null);
   }
 }

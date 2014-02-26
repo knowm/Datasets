@@ -19,49 +19,40 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package com.xeiam.datasets.mnist.unit;
+package com.xeiam.datasets.cifar10.unit;
 
 import static org.hamcrest.CoreMatchers.equalTo;
-import static org.hamcrest.CoreMatchers.not;
 import static org.hamcrest.MatcherAssert.assertThat;
 
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import com.xeiam.datasets.mnist.Mnist;
-import com.xeiam.datasets.mnist.MnistDAO;
+import com.xeiam.datasets.cifar10.CifarDAO;
 
 /**
  * @author timmolter
  */
 // @Ignore
-public class TestMnistDAO {
+public class TestCifarDAO {
 
   @BeforeClass
   public static void setUpDB() {
 
-    MnistDAO.initTest();
+    CifarDAO.initTest();
   }
 
   @AfterClass
   public static void tearDownDB() {
 
-    MnistDAO.release();
+    CifarDAO.release();
   }
 
   @Test
   public void testSelectCount() {
 
-    long count = MnistDAO.selectCount();
-    assertThat(count, equalTo(70000L));
-  }
-
-  @Test
-  public void testSelectSingle() {
-
-    Mnist mnist = MnistDAO.selectSingle(2);
-    assertThat(mnist, not(equalTo(null)));
+    long count = CifarDAO.selectCount();
+    assertThat(count, equalTo(60000L));
   }
 
 }

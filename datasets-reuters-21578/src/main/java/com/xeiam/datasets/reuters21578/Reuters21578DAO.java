@@ -25,35 +25,32 @@ import java.io.File;
 import java.util.List;
 
 import com.xeiam.datasets.common.business.DatasetsDAO;
-import com.xeiam.yank.DBConnectionManager;
 import com.xeiam.yank.DBProxy;
-import com.xeiam.yank.PropertiesUtils;
 
 /**
  * @author timmolter
  */
 public class Reuters21578DAO extends DatasetsDAO {
 
-  public static File init() {
+  public static File init(String dataFilesDir) {
 
-    return init("reuters21578datapool", "DB_REUTERS_21578");
-  }
+    String dataFileID = "0ByP7_A9vXm17aTU1VzdCNFhRVEk";
+    String propsFileID = "0ByP7_A9vXm17c1hwbTNFdVBwX0k";
+    String scriptFileID = "0ByP7_A9vXm17Q3Q5ejFrNFlGOTA";
 
-  public static void initTest() {
-
-    DBConnectionManager.INSTANCE.init(PropertiesUtils.getPropertiesFromClasspath("DB_TEST.properties"));
+    return init("reuters21578connectionpool", "DB_REUTERS_21578", dataFilesDir, dataFileID, propsFileID, scriptFileID, true);
   }
 
   public static int dropTable() {
 
-    return DBProxy.executeSQL("reuters21578datapool", "DROP TABLE IF EXISTS REUTERS_21578", null);
+    return DBProxy.executeSQL("reuters21578connectionpool", "DROP TABLE IF EXISTS REUTERS_21578", null);
   }
 
   public static int createTable() {
 
     String REUTERS_21578_CREATE =
         "CREATE CACHED TABLE REUTERS_21578 (NEWID INTEGER NOT NULL, OLDID INTEGER NOT NULL, TOPICSBOOL TINYINT NULL, LEWISSPLIT VARCHAR(256) NULL, CGISPLIT VARCHAR(256) NULL, DATE TIME NULL, TOPICS VARCHAR(256) NULL, PLACES VARCHAR(256) NULL, PEOPLE VARCHAR(256) NULL, ORGS VARCHAR(256) NULL, EXCHANGES VARCHAR(256) NULL, COMPANIES VARCHAR(256) NULL, TITLE VARCHAR(256) NULL, DATELINE VARCHAR(256) NULL, BODY VARCHAR(13500) NULL, PRIMARY KEY (NEWID))";
-    return DBProxy.executeSQL("reuters21578datapool", REUTERS_21578_CREATE, null);
+    return DBProxy.executeSQL("reuters21578connectionpool", REUTERS_21578_CREATE, null);
   }
 
   public static int insert(Reuters21578 reuters21578) {
@@ -80,21 +77,21 @@ public class Reuters21578DAO extends DatasetsDAO {
         };
     String REUTERS_21578_INSERT =
         "INSERT INTO REUTERS_21578 (NEWID, OLDID, TOPICSBOOL, LEWISSPLIT, CGISPLIT, DATE, TOPICS, PLACES, PEOPLE, ORGS, EXCHANGES, COMPANIES, TITLE, DATELINE, BODY ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-    return DBProxy.executeSQL("reuters21578datapool", REUTERS_21578_INSERT, params);
+    return DBProxy.executeSQL("reuters21578connectionpool", REUTERS_21578_INSERT, params);
   }
 
   public static List<Reuters21578> selectAll() {
 
     String SELECT_ALL = "SELECT * FROM REUTERS_21578";
 
-    return DBProxy.queryObjectListSQL("reuters21578datapool", SELECT_ALL, Reuters21578.class, null);
+    return DBProxy.queryObjectListSQL("reuters21578connectionpool", SELECT_ALL, Reuters21578.class, null);
   }
 
   public static List<Reuters21578> selectRange(int startIdx, int size) {
 
     Object[] params = new Object[] { startIdx, size };
     String SELECT = "SELECT * FROM REUTERS_21578 LIMIT ?, ?";
-    List<Reuters21578> reuters21578s = DBProxy.queryObjectListSQL("reuters21578datapool", SELECT, Reuters21578.class, params);
+    List<Reuters21578> reuters21578s = DBProxy.queryObjectListSQL("reuters21578connectionpool", SELECT, Reuters21578.class, params);
 
     return reuters21578s;
   }
@@ -103,7 +100,7 @@ public class Reuters21578DAO extends DatasetsDAO {
 
     Object[] params = new Object[] { size };
     String SELECT = "SELECT * FROM REUTERS_21578 ORDER BY RAND() LIMIT 0, ?";
-    List<Reuters21578> reuters21578s = DBProxy.queryObjectListSQL("reuters21578datapool", SELECT, Reuters21578.class, params);
+    List<Reuters21578> reuters21578s = DBProxy.queryObjectListSQL("reuters21578connectionpool", SELECT, Reuters21578.class, params);
 
     return reuters21578s;
   }
@@ -117,9 +114,15 @@ public class Reuters21578DAO extends DatasetsDAO {
 
     Object[] params = new Object[] { lewisSplit, topics };
     String SELECT = "SELECT * FROM REUTERS_21578 WHERE LEWISSPLIT = ? and TOPICSBOOL = ?";
-    List<Reuters21578> reuters21578s = DBProxy.queryObjectListSQL("reuters21578datapool", SELECT, Reuters21578.class, params);
+    List<Reuters21578> reuters21578s = DBProxy.queryObjectListSQL("reuters21578connectionpool", SELECT, Reuters21578.class, params);
 
     return reuters21578s;
   }
 
+  public static long selectCount() {
+
+    String SELECT_COUNT = "SELECT COUNT(*) FROM REUTERS_21578";
+
+    return DBProxy.querySingleScalarSQL("reuters21578connectionpool", SELECT_COUNT, Long.class, null);
+  }
 }

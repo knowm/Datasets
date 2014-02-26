@@ -19,49 +19,46 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package com.xeiam.datasets.mnist.unit;
+package com.xeiam.datasets.samples;
 
-import static org.hamcrest.CoreMatchers.equalTo;
-import static org.hamcrest.CoreMatchers.not;
-import static org.hamcrest.MatcherAssert.assertThat;
-
-import org.junit.AfterClass;
-import org.junit.BeforeClass;
-import org.junit.Test;
-
-import com.xeiam.datasets.mnist.Mnist;
-import com.xeiam.datasets.mnist.MnistDAO;
+import com.xeiam.datasets.breastcancerwisconsinorginal.BreastCancer;
+import com.xeiam.datasets.breastcancerwisconsinorginal.BreastCancerDAO;
 
 /**
  * @author timmolter
  */
-// @Ignore
-public class TestMnistDAO {
+public class BreastCancerDemo {
 
-  @BeforeClass
-  public static void setUpDB() {
+  public static void main(String[] args) {
 
-    MnistDAO.initTest();
+    try {
+      BreastCancerDAO.init("/Users/timmolter/Documents/Datasets/"); // setup data
+      BreastCancerDemo demo = new BreastCancerDemo();
+      demo.go();
+    } catch (Exception e) {
+      e.printStackTrace();
+    } finally {
+      BreastCancerDAO.release(); // release data resources
+    }
   }
 
-  @AfterClass
-  public static void tearDownDB() {
+  private void go() {
 
-    MnistDAO.release();
+    // print number of objects
+    long count = BreastCancerDAO.selectCount();
+    System.out.println("count= " + count);
+
+    // loop through train objects
+    for (int i = 0; i < BreastCancerDAO.getTrainTestSplit(); i++) {
+      BreastCancer breastCancer = BreastCancerDAO.selectSingle(i);
+      System.out.println(breastCancer.toString());
+    }
+
+    // loop through test objects
+    for (int i = BreastCancerDAO.getTrainTestSplit(); i < count; i++) {
+      BreastCancer breastCancer = BreastCancerDAO.selectSingle(i);
+      System.out.println(breastCancer.toString());
+    }
+
   }
-
-  @Test
-  public void testSelectCount() {
-
-    long count = MnistDAO.selectCount();
-    assertThat(count, equalTo(70000L));
-  }
-
-  @Test
-  public void testSelectSingle() {
-
-    Mnist mnist = MnistDAO.selectSingle(2);
-    assertThat(mnist, not(equalTo(null)));
-  }
-
 }

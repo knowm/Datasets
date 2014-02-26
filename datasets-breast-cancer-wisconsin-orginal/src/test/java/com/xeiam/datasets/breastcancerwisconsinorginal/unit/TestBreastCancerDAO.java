@@ -24,13 +24,10 @@ package com.xeiam.datasets.breastcancerwisconsinorginal.unit;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
 
-import java.util.List;
-
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import com.xeiam.datasets.breastcancerwisconsinorginal.BreastCancer;
 import com.xeiam.datasets.breastcancerwisconsinorginal.BreastCancerDAO;
 
 /**
@@ -49,28 +46,14 @@ public class TestBreastCancerDAO {
   @AfterClass
   public static void tearDownDB() {
 
-    BreastCancerDAO.testRelease();
+    BreastCancerDAO.release();
   }
 
   @Test
-  public void testSelectAll() {
+  public void testSelectCount() {
 
-    List<BreastCancer> allData = BreastCancerDAO.selectAll();
-    assertThat(allData.size(), equalTo(683));
-  }
-
-  @Test
-  public void testTrainData() {
-
-    List<BreastCancer> data = BreastCancerDAO.selectTrainData();
-    assertThat(data.size(), equalTo(500));
-  }
-
-  @Test
-  public void testTestData() {
-
-    List<BreastCancer> data = BreastCancerDAO.selectTestData();
-    assertThat(data.size(), equalTo(183));
+    long count = BreastCancerDAO.selectCount();
+    assertThat(count, equalTo(683L));
   }
 
 }

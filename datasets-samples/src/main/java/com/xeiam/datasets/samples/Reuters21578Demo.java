@@ -19,49 +19,48 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package com.xeiam.datasets.mnist.unit;
+package com.xeiam.datasets.samples;
 
-import static org.hamcrest.CoreMatchers.equalTo;
-import static org.hamcrest.CoreMatchers.not;
-import static org.hamcrest.MatcherAssert.assertThat;
+import java.util.List;
 
-import org.junit.AfterClass;
-import org.junit.BeforeClass;
-import org.junit.Test;
-
-import com.xeiam.datasets.mnist.Mnist;
-import com.xeiam.datasets.mnist.MnistDAO;
+import com.xeiam.datasets.reuters21578.Reuters21578;
+import com.xeiam.datasets.reuters21578.Reuters21578DAO;
 
 /**
  * @author timmolter
  */
-// @Ignore
-public class TestMnistDAO {
+public class Reuters21578Demo {
 
-  @BeforeClass
-  public static void setUpDB() {
+  public static void main(String[] args) {
 
-    MnistDAO.initTest();
+    try {
+      Reuters21578DAO.init("/Users/timmolter/Documents/Datasets"); // setup data
+      Reuters21578Demo demo = new Reuters21578Demo();
+      demo.go();
+    } catch (Exception e) {
+      e.printStackTrace();
+    } finally {
+      Reuters21578DAO.release(); // release data resources
+    }
   }
 
-  @AfterClass
-  public static void tearDownDB() {
+  private void go() {
 
-    MnistDAO.release();
-  }
+    // print number of objects
+    long count = Reuters21578DAO.selectCount();
+    System.out.println("count= " + count);
 
-  @Test
-  public void testSelectCount() {
+    // loop through train objects
+    List<Reuters21578> trainSet = Reuters21578DAO.selectModApte("TRAIN", true);
+    for (Reuters21578 reuters21578 : trainSet) {
+      System.out.println(reuters21578.toString());
+    }
 
-    long count = MnistDAO.selectCount();
-    assertThat(count, equalTo(70000L));
-  }
-
-  @Test
-  public void testSelectSingle() {
-
-    Mnist mnist = MnistDAO.selectSingle(2);
-    assertThat(mnist, not(equalTo(null)));
+    // loop through test objects
+    List<Reuters21578> testSet = Reuters21578DAO.selectModApte("TEST", true);
+    for (Reuters21578 reuters21578 : testSet) {
+      System.out.println(reuters21578.toString());
+    }
   }
 
 }

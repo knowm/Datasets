@@ -19,33 +19,46 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package com.xeiam.datasets.common;
+package com.xeiam.datasets.samples;
 
-import java.io.File;
-
-import org.junit.Ignore;
-import org.junit.Test;
-
-import com.xeiam.datasets.common.utils.FileUtils;
+import com.xeiam.datasets.cifar10.Cifar;
+import com.xeiam.datasets.cifar10.CifarDAO;
 
 /**
  * @author timmolter
  */
-@Ignore
-public class TestFileUtils {
+public class Cifar10Demo {
 
-  @Test
-  public void test0() {
+  public static void main(String[] args) {
 
-    File file = FileUtils.createTempDir();
-    System.out.println(file.getName());
-    System.out.println(file.getPath());
-
-    boolean success = FileUtils.copyFileFromClasspathToFile(file.getPath(), "DB_CENSUS_INCOME.properties");
-    System.out.println(success);
-
-    success = FileUtils.deleteDirectoryRecursively(file);
-    System.out.println(success);
-
+    try {
+      CifarDAO.init("/Users/timmolter/Documents/Datasets"); // setup data
+      Cifar10Demo demo = new Cifar10Demo();
+      demo.go();
+    } catch (Exception e) {
+      e.printStackTrace();
+    } finally {
+      CifarDAO.release(); // release data resources
+    }
   }
+
+  private void go() {
+
+    // print number of objects
+    long count = CifarDAO.selectCount();
+    System.out.println("count= " + count);
+
+    // loop through train objects
+    for (int i = 0; i < CifarDAO.getTrainTestSplit(); i++) {
+      Cifar cifar = CifarDAO.selectSingle(i);
+      System.out.println(cifar.toString());
+    }
+
+    // loop through test objects
+    for (int i = CifarDAO.getTrainTestSplit(); i < count; i++) {
+      Cifar cifar = CifarDAO.selectSingle(i);
+      System.out.println(cifar.toString());
+    }
+  }
+
 }

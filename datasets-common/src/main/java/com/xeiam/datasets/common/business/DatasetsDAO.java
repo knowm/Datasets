@@ -22,6 +22,7 @@
 package com.xeiam.datasets.common.business;
 
 import java.io.File;
+import java.net.URL;
 import java.util.Properties;
 
 import org.slf4j.Logger;
@@ -29,77 +30,97 @@ import org.slf4j.LoggerFactory;
 
 import com.xeiam.datasets.common.utils.FileUtils;
 import com.xeiam.yank.DBConnectionManager;
+import com.xeiam.yank.PropertiesUtils;
 
 /**
  * @author timmolter
  */
-public class DatasetsDAO {
+public abstract class DatasetsDAO {
 
   private final static Logger logger = LoggerFactory.getLogger(DatasetsDAO.class);
+
+  private final static String GoogleDriveURLPart1 = "https://docs.google.com/uc?export=download&id=";
+
+  public static void initTest() {
+
+    DBConnectionManager.INSTANCE.init(PropertiesUtils.getPropertiesFromClasspath("DB_TEST.properties"));
+  }
 
   public static void release() {
 
     DBConnectionManager.INSTANCE.release();
   }
 
-  public static void release(File file) {
+  public static File init(String poolName, String dbName, String dataFilesDir, String dataFileURL, String propsFileURL, String scriptFileURL, boolean requiresManualDownload) {
 
-    DBConnectionManager.INSTANCE.release();
-    logger.info("Deleting temporary DB in: " + file.getPath());
-    FileUtils.deleteDirectoryRecursively(file);
-  }
-
-  public static void testRelease() {
-
-    DBConnectionManager.INSTANCE.release();
-  }
-
-  public static File init(String poolName, String dbName) {
-
-    // 1. create temp dir
-    File file = FileUtils.createTempDir();
-    logger.info("Saving temporary DB in: " + file.getPath());
-
-    // 2. move files from jar to temp dir
-    FileUtils.copyFileFromClasspathToFile(file.getPath(), dbName + ".data");
-    FileUtils.copyFileFromClasspathToFile(file.getPath(), dbName + ".properties");
-    FileUtils.copyFileFromClasspathToFile(file.getPath(), dbName + ".script");
-
-    // 3. setup HSQLDB
-    Properties dbProps = new Properties();
-    dbProps.setProperty("driverclassname", "org.hsqldb.jdbcDriver");
-    dbProps.setProperty(poolName + ".url", "jdbc:hsqldb:file:" + file.getPath() + File.separatorChar + dbName + ";shutdown=true");
-    dbProps.setProperty(poolName + ".user", "sa");
-    dbProps.setProperty(poolName + ".password", "");
-    dbProps.setProperty(poolName + ".maxconn", "10");
-
-    DBConnectionManager.INSTANCE.init(dbProps);
-
-    return file;
-  }
-
-  public static File init(String poolName, String dbName, String dataFilesDir) {
-
-    // 1. create temp dir
+    // 1. create data dir
     File file = FileUtils.mkDirIfNotExists(dataFilesDir);
-    logger.info("Saving  DB in: " + file.getPath());
 
-    // 2. move files from jar to given dir
-    String dataPath = dbName + ".data";
-    String propsPath = dbName + ".properties";
-    String scriptPath = dbName + ".script";
+    // 1b. Clean up any stragglers
+    FileUtils.deleteDirectoryRecursively(file.getPath() + "/" + dbName + ".tmp");
+    FileUtils.deleteFile(file.getPath() + "/" + dbName + ".lck");
+    FileUtils.deleteFile(file.getPath() + "/" + dbName + ".log");
 
-    // if the files don't yet exist, then unpack them from the jar
-    if (!FileUtils.fileExists(file.getPath() + "/" + dataPath) || !FileUtils.fileExists(file.getPath() + "/" + propsPath) || !FileUtils.fileExists(file.getPath() + "/" + scriptPath)) {
-      FileUtils.copyFileFromClasspathToFile(file.getPath(), dataPath);
-      FileUtils.copyFileFromClasspathToFile(file.getPath(), propsPath);
-      FileUtils.copyFileFromClasspathToFile(file.getPath(), scriptPath);
+    // 2. check if files are already available
+    String dataPath = file.getPath() + "/" + dbName + ".data";
+    String propsPath = file.getPath() + "/" + dbName + ".properties";
+    String scriptPath = file.getPath() + "/" + dbName + ".script";
+
+    // if the files don't yet exist, then download them
+    if (!FileUtils.fileExists(dataPath) || !FileUtils.fileExists(propsPath) || !FileUtils.fileExists(scriptPath)) {
+
+      logger.info("Saving DB files in: " + file.getPath());
+      URL url;
+      try {
+
+        // props
+        logger.info("Downloading props file...");
+        url = new URL(GoogleDriveURLPart1 + propsFileURL);
+        File propsFile = new File(propsPath);
+        org.apache.commons.io.FileUtils.copyURLToFile(url, propsFile, 5000, 10000);
+      } catch (Exception e) {
+        throw new RuntimeException(
+            "Something went wrong while downloading the database files. Perhaps try again and if all else fails, download the files manually (https://drive.google.com/folderview?id=0ByP7_A9vXm17VXhuZzBrcnNubEE&usp=sharing) and place in the directory you specified.",
+            e);
+      }
+      try {
+        // script
+        logger.info("Downloading script file...");
+        url = new URL(GoogleDriveURLPart1 + scriptFileURL);
+        File scriptFile = new File(scriptPath);
+        org.apache.commons.io.FileUtils.copyURLToFile(url, scriptFile, 5000, 10000);
+      } catch (Exception e) {
+        throw new RuntimeException(
+            "Something went wrong while downloading the database files. Perhaps try again and if all else fails, download the files manually (https://drive.google.com/folderview?id=0ByP7_A9vXm17VXhuZzBrcnNubEE&usp=sharing) and place in the directory you specified.",
+            e);
+      }
+      // data
+      if (!requiresManualDownload) {
+        try {
+          logger.info("Downloading data file... (this could take a while so be patient!)");
+          url = new URL(GoogleDriveURLPart1 + dataFileURL);
+          File dataFile = new File(dataPath);
+          org.apache.commons.io.FileUtils.copyURLToFile(url, dataFile, 5000, 10000);
+        } catch (Exception e) {
+          throw new RuntimeException(
+              "Something went wrong while downloading the database files. Perhaps try again and if all else fails, download the files manually (https://drive.google.com/folderview?id=0ByP7_A9vXm17VXhuZzBrcnNubEE&usp=sharing) and place in the directory you specified.",
+              e);
+        }
+      }
+      else {
+        throw new RuntimeException("The data file is too big to download automatically! Please manually download it from: " + (GoogleDriveURLPart1 + dataFileURL) + " and place it in: "
+            + file.getPath());
+      }
+
+    }
+    else {
+      logger.info("Database files already exist in local directory. Skipping download.");
     }
 
     // 3. setup HSQLDB
     Properties dbProps = new Properties();
     dbProps.setProperty("driverclassname", "org.hsqldb.jdbcDriver");
-    dbProps.setProperty(poolName + ".url", "jdbc:hsqldb:file:" + file.getPath() + File.separatorChar + dbName + ";shutdown=true");
+    dbProps.setProperty(poolName + ".url", "jdbc:hsqldb:file:" + file.getPath() + File.separatorChar + dbName + ";shutdown=true;readonly=true");
     dbProps.setProperty(poolName + ".user", "sa");
     dbProps.setProperty(poolName + ".password", "");
     dbProps.setProperty(poolName + ".maxconn", "10");
@@ -108,4 +129,5 @@ public class DatasetsDAO {
 
     return file;
   }
+
 }

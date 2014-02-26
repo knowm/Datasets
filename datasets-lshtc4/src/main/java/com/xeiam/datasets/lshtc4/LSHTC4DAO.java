@@ -22,42 +22,38 @@
 package com.xeiam.datasets.lshtc4;
 
 import java.io.File;
-import java.util.List;
 
 import com.xeiam.datasets.common.business.DatasetsDAO;
-import com.xeiam.yank.DBConnectionManager;
 import com.xeiam.yank.DBProxy;
-import com.xeiam.yank.PropertiesUtils;
 
 /**
  * @author timmolter
  */
 public class LSHTC4DAO extends DatasetsDAO {
 
-  public static File init() {
-
-    return init("lshtc4datapool", "DB_LSHTC4");
-  }
-
   public static File init(String dataFilesDir) {
 
-    return init("lshtc4datapool", "DB_LSHTC4", dataFilesDir);
-  }
+    String dataFileID = "0ByP7_A9vXm17bFdZVzEyMWhsVFk";
+    String propsFileID = "0ByP7_A9vXm17Zkl0ajF6LXlrYUE";
+    String scriptFileID = "0ByP7_A9vXm17ZnljLU1ybS16c2c";
 
-  public static void initTest() {
-
-    DBConnectionManager.INSTANCE.init(PropertiesUtils.getPropertiesFromClasspath("DB_TEST.properties"));
+    return init("lshtc4connectionpool", "DB_LSHTC4", dataFilesDir, dataFileID, propsFileID, scriptFileID, true);
   }
 
   public static int dropTable() {
 
-    return DBProxy.executeSQL("lshtc4datapool", "DROP TABLE IF EXISTS LSHTC4", null);
+    return DBProxy.executeSQL("lshtc4connectionpool", "DROP TABLE IF EXISTS LSHTC4", null);
+  }
+
+  public static int getTrainTestSplit() {
+
+    return 452167;
   }
 
   public static int createTable() {
 
     String LSHTC4_CREATE = "CREATE CACHED TABLE LSHTC4 (id INTEGER NOT NULL, labels VARCHAR(1344) NOT NULL, features VARCHAR(47449) NOT NULL, PRIMARY KEY (id))";
-    return DBProxy.executeSQL("lshtc4datapool", LSHTC4_CREATE, null);
+    return DBProxy.executeSQL("lshtc4connectionpool", LSHTC4_CREATE, null);
   }
 
   public static int insert(LSHTC4 lSHTC4) {
@@ -71,15 +67,8 @@ public class LSHTC4DAO extends DatasetsDAO {
     // @formatter:on
         };
     String LSHTC4_INSERT = "INSERT INTO LSHTC4 (id, labels, features) VALUES (?, ?, ?)";
-    return DBProxy.executeSQL("lshtc4datapool", LSHTC4_INSERT, params);
+    return DBProxy.executeSQL("lshtc4connectionpool", LSHTC4_INSERT, params);
 
-  }
-
-  public static List<LSHTC4> selectAll() {
-
-    String SELECT_ALL = "SELECT * FROM LSHTC4";
-
-    return DBProxy.queryObjectListSQL("lshtc4datapool", SELECT_ALL, LSHTC4.class, null);
   }
 
   public static LSHTC4 selectSingle(int id) {
@@ -88,13 +77,13 @@ public class LSHTC4DAO extends DatasetsDAO {
 
     String SELECT_SINGLE = "SELECT * FROM LSHTC4 WHERE id = ?";
 
-    return DBProxy.querySingleObjectSQL("lshtc4datapool", SELECT_SINGLE, LSHTC4.class, params);
+    return DBProxy.querySingleObjectSQL("lshtc4connectionpool", SELECT_SINGLE, LSHTC4.class, params);
   }
 
   public static long selectCount() {
 
     String SELECT_COUNT = "SELECT COUNT(*) FROM LSHTC4";
 
-    return DBProxy.querySingleScalarSQL("lshtc4datapool", SELECT_COUNT, Long.class, null);
+    return DBProxy.querySingleScalarSQL("lshtc4connectionpool", SELECT_COUNT, Long.class, null);
   }
 }

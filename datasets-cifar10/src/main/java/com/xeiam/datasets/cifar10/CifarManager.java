@@ -23,24 +23,6 @@ package com.xeiam.datasets.cifar10;
 
 import java.io.IOException;
 
-/**
- * <p>
- * Utility class for working with the MNIST database.
- * <p>
- * Provides methods for traversing the images and labels data files separately, as well as simultaneously.
- * <p>
- * Provides also method for exporting an image by writing it as a PPM file.
- * <p>
- * Example usage:
- * 
- * <pre>
- * MnistManager m = new MnistManager(&quot;t10k-images.idx3-ubyte&quot;, &quot;t10k-labels.idx1-ubyte&quot;);
- * m.setCurrent(10); // index of the image that we are interested in
- * int[][] image = m.readImage();
- * System.out.println(&quot;Label:&quot; + m.readLabel());
- * MnistManager.writeImageToPpm(image, &quot;10.ppm&quot;);
- * </pre>
- */
 public class CifarManager {
 
   private CifarImageFile images;

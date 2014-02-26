@@ -33,6 +33,8 @@ import com.xeiam.datasets.cifar10.CifarRaw;
  */
 public class RawData2DB {
 
+  private static final int NumEntriesPerFile = 10000;
+
   int idx = 0;
 
   public static void main(String[] args) throws IOException {
@@ -44,28 +46,28 @@ public class RawData2DB {
 
     RawData2DB dp = new RawData2DB();
     System.out.println("processing Cifar training images 1...");
-    dp.go("./raw/data_batch_1.bin", 1, 10000);
+    dp.go("./raw/data_batch_1.bin");
     System.out.println("processing Cifar training images 2...");
-    dp.go("./raw/data_batch_2.bin", 1, 10000);
+    dp.go("./raw/data_batch_2.bin");
     System.out.println("processing Cifar training images 3...");
-    dp.go("./raw/data_batch_3.bin", 1, 10000);
+    dp.go("./raw/data_batch_3.bin");
     System.out.println("processing Cifar training images 4...");
-    dp.go("./raw/data_batch_4.bin", 1, 10000);
+    dp.go("./raw/data_batch_4.bin");
     System.out.println("processing Cifar training images 5...");
-    dp.go("./raw/data_batch_5.bin", 1, 10000);
+    dp.go("./raw/data_batch_5.bin");
     // System.out.println("processing Cifar test images...");
-    dp.go("./raw/test_batch.bin", 1, 10000);
+    dp.go("./raw/test_batch.bin");
     System.out.println("done.");
 
-    CifarDAO.testRelease();
+    CifarDAO.release();
   }
 
-  private void go(String imageDataFile, int startIdx, int endIdx) throws IOException {
+  private void go(String imageDataFile) throws IOException {
 
     int longestStringLength = 0;
 
     CifarManager cifarManager = new CifarManager(imageDataFile);
-    for (int n = startIdx; n <= endIdx; n++) {
+    for (int n = 1; n <= NumEntriesPerFile; n++) {
 
       cifarManager.setCurrent(n); // index of the image that we are interested in
       CifarRaw cifarRaw = cifarManager.readImage();

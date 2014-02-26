@@ -21,9 +21,6 @@
  */
 package com.xeiam.datasets.breastcancerwisconsinorginal.bootstrap;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.junit.Ignore;
 
 import com.xeiam.datasets.breastcancerwisconsinorginal.BreastCancer;
@@ -39,6 +36,7 @@ import com.xeiam.datasets.common.utils.FileUtils;
 public class RawData2DB {
 
   int maxBodyLength = 0;
+  int idx = 0;
 
   public static void main(String[] args) {
 
@@ -48,27 +46,20 @@ public class RawData2DB {
     BreastCancerDAO.createTable();
 
     RawData2DB dp = new RawData2DB();
-    dp.go();
+    dp.go("./raw/breast-cancer-wisconsin.data");
 
-    BreastCancerDAO.testRelease();
+    BreastCancerDAO.release();
 
   }
 
-  private void go() {
-
-    List<BreastCancer> breastCancerList = parseData("./raw/breast-cancer-wisconsin.data");
-
-    for (BreastCancer breastCancer : breastCancerList) {
-      BreastCancerDAO.insert(breastCancer);
-    }
-  }
-
-  private List<BreastCancer> parseData(String file) {
+  private void go(String file) {
 
     String data = FileUtils.readFileToString(file);
+
     System.out.println("loading data from " + file);
+
     String[] lines = data.split("\\r?\\n");
-    ArrayList<BreastCancer> breastCancerData = new ArrayList<BreastCancer>();
+
     for (int i = 0; i < lines.length; i++) {
       try {
         if (!lines[i].contains("?")) { // remove unknowns to compare with published benchmarks
@@ -76,6 +67,7 @@ public class RawData2DB {
           String[] entry = lines[i].split(",");
           BreastCancer breastCancer = new BreastCancer();
 
+          breastCancer.setId(idx++);
           breastCancer.setSampleCodeNumber(Integer.parseInt(entry[0]));
           breastCancer.setClumpThickness(Integer.parseInt(entry[1]));
           breastCancer.setUniformityOfCellSize(Integer.parseInt(entry[2]));
@@ -88,7 +80,7 @@ public class RawData2DB {
           breastCancer.setMitoses(Integer.parseInt(entry[9]));
           breastCancer.setCellClass(Integer.parseInt(entry[10]));
 
-          breastCancerData.add(breastCancer);
+          BreastCancerDAO.insert(breastCancer);
         }
         else {
           System.out.println("Skipping: " + lines[i]);
@@ -100,7 +92,6 @@ public class RawData2DB {
       }
     }
 
-    return breastCancerData;
   }
 
 }

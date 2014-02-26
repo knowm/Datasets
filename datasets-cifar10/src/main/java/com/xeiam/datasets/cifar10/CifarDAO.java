@@ -22,37 +22,38 @@
 package com.xeiam.datasets.cifar10;
 
 import java.io.File;
-import java.util.List;
 
 import com.xeiam.datasets.common.business.DatasetsDAO;
-import com.xeiam.yank.DBConnectionManager;
 import com.xeiam.yank.DBProxy;
-import com.xeiam.yank.PropertiesUtils;
 
 /**
  * @author timmolter
  */
 public class CifarDAO extends DatasetsDAO {
 
-  public static File init() {
+  public static File init(String dataFilesDir) {
 
-    return init("cifardatapool", "DB_CIFAR");
-  }
+    String dataFileID = "0ByP7_A9vXm17VERJam9EMm5sTkU";
+    String propsFileID = "0ByP7_A9vXm17VHIzd1hSNW4zUXc";
+    String scriptFileID = "0ByP7_A9vXm17eHlzcDJfalNoYkk";
 
-  public static void initTest() {
-
-    DBConnectionManager.INSTANCE.init(PropertiesUtils.getPropertiesFromClasspath("DB_TEST.properties"));
+    return init("cifarconnectionpool", "DB_CIFAR", dataFilesDir, dataFileID, propsFileID, scriptFileID, true);
   }
 
   public static int dropTable() {
 
-    return DBProxy.executeSQL("cifardatapool", "DROP TABLE IF EXISTS CIFAR", null);
+    return DBProxy.executeSQL("cifarconnectionpool", "DROP TABLE IF EXISTS CIFAR", null);
+  }
+
+  public static int getTrainTestSplit() {
+
+    return 50000;
   }
 
   public static int createTable() {
 
     String CIFAR_CREATE = "CREATE CACHED TABLE CIFAR (id INTEGER NOT NULL, label INTEGER NOT NULL, imagedata VARCHAR(30000) NOT NULL, PRIMARY KEY (id))";
-    return DBProxy.executeSQL("cifardatapool", CIFAR_CREATE, null);
+    return DBProxy.executeSQL("cifarconnectionpool", CIFAR_CREATE, null);
   }
 
   public static int insert(Cifar CIFAR) {
@@ -66,15 +67,8 @@ public class CifarDAO extends DatasetsDAO {
     // @formatter:on
         };
     String CIFAR_INSERT = "INSERT INTO CIFAR (id, label, imagedata) VALUES (?, ?, ?)";
-    return DBProxy.executeSQL("cifardatapool", CIFAR_INSERT, params);
+    return DBProxy.executeSQL("cifarconnectionpool", CIFAR_INSERT, params);
 
-  }
-
-  public static List<Cifar> selectAll() {
-
-    String SELECT_ALL = "SELECT * FROM CIFAR";
-
-    return DBProxy.queryObjectListSQL("cifardatapool", SELECT_ALL, Cifar.class, null);
   }
 
   public static Cifar selectSingle(int id) {
@@ -83,21 +77,13 @@ public class CifarDAO extends DatasetsDAO {
 
     String SELECT_SINGLE = "SELECT * FROM CIFAR WHERE id = ?";
 
-    return DBProxy.querySingleObjectSQL("cifardatapool", SELECT_SINGLE, Cifar.class, params);
+    return DBProxy.querySingleObjectSQL("cifarconnectionpool", SELECT_SINGLE, Cifar.class, params);
   }
 
-  public static List<Cifar> selectTrainData() {
+  public static long selectCount() {
 
-    String SELECT_TRAIN = "SELECT * FROM CIFAR LIMIT 0, 50000";
+    String SELECT_COUNT = "SELECT COUNT(*) FROM CIFAR";
 
-    return DBProxy.queryObjectListSQL("cifardatapool", SELECT_TRAIN, Cifar.class, null);
+    return DBProxy.querySingleScalarSQL("cifarconnectionpool", SELECT_COUNT, Long.class, null);
   }
-
-  public static List<Cifar> selectTestData() {
-
-    String SELECT_TRAIN = "SELECT * FROM CIFAR LIMIT 50000, 60000";
-
-    return DBProxy.queryObjectListSQL("cifardatapool", SELECT_TRAIN, Cifar.class, null);
-  }
-
 }

@@ -26,6 +26,7 @@ package com.xeiam.datasets.breastcancerwisconsinorginal;
  */
 public class BreastCancer {
 
+  private int id;
   private int sampleCodeNumber;
   private int clumpThickness;
   private int uniformityOfCellSize;
@@ -37,6 +38,16 @@ public class BreastCancer {
   private int normalNucleoli;
   private int mitoses;
   private int cellClass;
+
+  public int getId() {
+
+    return id;
+  }
+
+  public void setId(int id) {
+
+    this.id = id;
+  }
 
   public int getSampleCodeNumber() {
 
@@ -151,7 +162,7 @@ public class BreastCancer {
   @Override
   public String toString() {
 
-    return "BreastCancer [sampleCodeNumber=" + sampleCodeNumber + ", clumpThickness=" + clumpThickness + ", uniformityOfCellSize=" + uniformityOfCellSize + ", uniformityOfCellShape="
+    return "BreastCancer [id=" + id + ", sampleCodeNumber=" + sampleCodeNumber + ", clumpThickness=" + clumpThickness + ", uniformityOfCellSize=" + uniformityOfCellSize + ", uniformityOfCellShape="
         + uniformityOfCellShape + ", marginalAdhesion=" + marginalAdhesion + ", singleEpithelialCellSize=" + singleEpithelialCellSize + ", bareNuclei=" + bareNuclei + ", blandChromatin="
         + blandChromatin + ", normalNucleoli=" + normalNucleoli + ", mitoses=" + mitoses + ", cellClass=" + cellClass + "]";
   }

@@ -388,14 +388,16 @@ public final class FileUtils {
     throw new IllegalStateException("Failed to create directory within " + TEMP_DIR_ATTEMPTS + " attempts (tried " + baseName + "0 to " + baseName + (TEMP_DIR_ATTEMPTS - 1) + ')');
   }
 
-  public static boolean deleteDirectoryRecursively(File file) {
+  public static boolean deleteDirectoryRecursively(String dir) {
+
+    File file = new File(dir);
 
     boolean success = true;
     try {
       org.apache.commons.io.FileUtils.deleteDirectory(file);
     } catch (IOException e) {
       success = false;
-      logger.error("ERROR DELETING DIRECTORY RECURESIVELY!!!", e);
+      logger.error("ERROR DELETING DIRECTORY RECURSIVELY!!!", e);
     }
     return success;
   }

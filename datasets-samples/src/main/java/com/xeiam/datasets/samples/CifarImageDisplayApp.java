@@ -19,21 +19,19 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package com.xeiam.datasets.mnist.bootstrap;
-
-import java.io.File;
+package com.xeiam.datasets.samples;
 
 import javax.swing.JPanel;
 
-import com.xeiam.datasets.mnist.Mnist;
-import com.xeiam.datasets.mnist.MnistDAO;
-import com.xeiam.datasets.mnist.tools.MnistDigitViewer;
-import com.xeiam.datasets.mnist.tools.MnistImagePanel;
+import com.xeiam.datasets.cifar10.Cifar;
+import com.xeiam.datasets.cifar10.CifarDAO;
+import com.xeiam.datasets.cifar10.CifarImagePanel;
+import com.xeiam.datasets.cifar10.CifarViewer;
 
 /**
  * @author alexnugent
  */
-public class MnistImageDisplayApp {
+public class CifarImageDisplayApp {
 
   /**
    * This app takes the following arguments:
@@ -44,16 +42,20 @@ public class MnistImageDisplayApp {
    */
   public static void main(String[] args) {
 
-    File tempDBFile = MnistDAO.init(); // setup data
-    MnistImageDisplayApp mnistImageDisplayApp = new MnistImageDisplayApp();
-    mnistImageDisplayApp.go(args);
-    MnistDAO.release(tempDBFile); // release data resources
-
+    CifarDAO.initTest();// setup data
+    try {
+      CifarImageDisplayApp cifarImageDisplayApp = new CifarImageDisplayApp();
+      cifarImageDisplayApp.go(args);
+    } catch (Exception e) {
+      // eat it.
+    } finally {
+      CifarDAO.release();// release data resources
+    }
   }
 
   public void go(String[] args) {
 
-    int imageIndex = 0;
+    int imageIndex = 836;
 
     try {
       imageIndex = Integer.parseInt(args[0]);
@@ -62,13 +64,13 @@ public class MnistImageDisplayApp {
       // just ignore
     }
 
-    Mnist mnistData = MnistDAO.selectSingle(imageIndex);
+    Cifar cifar = CifarDAO.selectSingle(imageIndex);
 
-    int[][] img = mnistData.getImageMatrix();
+    int[][] red = cifar.getRedChannel();
 
     // paint the patches
-    JPanel mnistImagePanel = new MnistImagePanel(img, 10);
-    new MnistDigitViewer(mnistImagePanel, "Index = " + mnistData.getId() + " label = " + mnistData.getLabel());
+    JPanel cifarImagePanel = new CifarImagePanel(red, 1);
+    new CifarViewer(cifarImagePanel, "Index = " + cifar.getId() + " label = " + cifar.getLabelWord());
 
   }
 }

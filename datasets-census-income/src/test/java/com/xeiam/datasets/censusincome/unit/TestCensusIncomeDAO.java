@@ -24,13 +24,10 @@ package com.xeiam.datasets.censusincome.unit;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
 
-import java.util.List;
-
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import com.xeiam.datasets.censusincome.CensusIncome;
 import com.xeiam.datasets.censusincome.CensusIncomeDAO;
 
 /**
@@ -48,30 +45,14 @@ public class TestCensusIncomeDAO {
   @AfterClass
   public static void tearDownDB() {
 
-    CensusIncomeDAO.testRelease();
+    CensusIncomeDAO.release();
   }
 
   @Test
-  public void testSelectAll() {
+  public void testSelectCount() {
 
-    List<CensusIncome> allData = CensusIncomeDAO.selectAll();
-    assertThat(allData.size(), equalTo(48842));
-  }
-
-  @Test
-  public void testTrainData() {
-
-    List<CensusIncome> data = CensusIncomeDAO.selectTrainData();
-    assertThat(data.size(), equalTo(32561));
-
-  }
-
-  @Test
-  public void testTestData() {
-
-    List<CensusIncome> data = CensusIncomeDAO.selectTestData();
-    assertThat(data.size(), equalTo(16281));
-
+    long count = CensusIncomeDAO.selectCount();
+    assertThat(count, equalTo(48842L));
   }
 
 }

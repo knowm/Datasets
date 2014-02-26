@@ -19,15 +19,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package com.xeiam.datasets.mnist.unit;
-
-import static org.hamcrest.CoreMatchers.equalTo;
-import static org.hamcrest.CoreMatchers.not;
-import static org.hamcrest.MatcherAssert.assertThat;
-
-import org.junit.AfterClass;
-import org.junit.BeforeClass;
-import org.junit.Test;
+package com.xeiam.datasets.samples;
 
 import com.xeiam.datasets.mnist.Mnist;
 import com.xeiam.datasets.mnist.MnistDAO;
@@ -35,33 +27,38 @@ import com.xeiam.datasets.mnist.MnistDAO;
 /**
  * @author timmolter
  */
-// @Ignore
-public class TestMnistDAO {
+public class MNISTDemo {
 
-  @BeforeClass
-  public static void setUpDB() {
+  public static void main(String[] args) {
 
-    MnistDAO.initTest();
+    try {
+      MnistDAO.init("/Users/timmolter/Documents/Datasets"); // setup data
+      MNISTDemo demo = new MNISTDemo();
+      demo.go();
+    } catch (Exception e) {
+      e.printStackTrace();
+    } finally {
+      MnistDAO.release(); // release data resources
+    }
   }
 
-  @AfterClass
-  public static void tearDownDB() {
+  private void go() {
 
-    MnistDAO.release();
-  }
-
-  @Test
-  public void testSelectCount() {
-
+    // print number of objects
     long count = MnistDAO.selectCount();
-    assertThat(count, equalTo(70000L));
-  }
+    System.out.println("count= " + count);
 
-  @Test
-  public void testSelectSingle() {
+    // loop through test objects
+    for (int i = 0; i < MnistDAO.getTrainTestSplit(); i++) {
+      Mnist mnist = MnistDAO.selectSingle(i);
+      System.out.println(mnist.toString());
+    }
 
-    Mnist mnist = MnistDAO.selectSingle(2);
-    assertThat(mnist, not(equalTo(null)));
+    // loop through train objects
+    for (int i = MnistDAO.getTrainTestSplit(); i < count; i++) {
+      Mnist mnist = MnistDAO.selectSingle(i);
+      System.out.println(mnist.toString());
+    }
   }
 
 }

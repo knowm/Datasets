@@ -22,42 +22,42 @@
 package com.xeiam.datasets.censusincome;
 
 import java.io.File;
-import java.util.Collections;
-import java.util.List;
 
 import com.xeiam.datasets.common.business.DatasetsDAO;
-import com.xeiam.yank.DBConnectionManager;
 import com.xeiam.yank.DBProxy;
-import com.xeiam.yank.PropertiesUtils;
 
 /**
  * @author alexnugent
  */
 public class CensusIncomeDAO extends DatasetsDAO {
 
-  public static File init() {
+  public static File init(String dataFilesDir) {
 
-    return init("censusincomedatapool", "DB_CENSUS_INCOME");
-  }
+    String dataFileID = "0ByP7_A9vXm17NnpMLVlUX09lckU";
+    String propsFileID = "0ByP7_A9vXm17bC0tTDFFTUNwd2c";
+    String scriptFileID = "0ByP7_A9vXm17ck1IaHg2SzNiMVE";
 
-  public static void initTest() {
-
-    DBConnectionManager.INSTANCE.init(PropertiesUtils.getPropertiesFromClasspath("DB_TEST.properties"));
+    return init("censusincomeconnectionpool", "DB_CENSUS_INCOME", dataFilesDir, dataFileID, propsFileID, scriptFileID, true);
   }
 
   public static int dropTable() {
 
-    return DBProxy.executeSQL("censusincomedatapool", "DROP TABLE IF EXISTS CENSUS_INCOME", null);
+    return DBProxy.executeSQL("censusincomeconnectionpool", "DROP TABLE IF EXISTS CENSUS_INCOME", null);
+  }
+
+  public static int getTrainTestSplit() {
+
+    return 32561;
   }
 
   public static int createTable() {
 
     String CENSUS_INCOME_CREATE =
-        "CREATE CACHED TABLE CENSUS_INCOME (age INTEGER NOT NULL, workclass VARCHAR(256) NOT NULL, fnlwgt INTEGER NOT NULL,"
+        "CREATE CACHED TABLE CENSUS_INCOME (id INTEGER NOT NULL, age INTEGER NOT NULL, workclass VARCHAR(256) NOT NULL, fnlwgt INTEGER NOT NULL,"
             + " education VARCHAR(256) NOT NULL, educationNum INTEGER NOT NULL, maritalStatus VARCHAR(256) NOT NULL, occupation VARCHAR(256) NOT NULL,"
             + "relationship VARCHAR(256) NOT NULL, race VARCHAR(256) NOT NULL, sex VARCHAR(256) NOT NULL, capitalGain INTEGER NOT NULL, capitalLoss INTEGER NOT NULL,"
-            + " hoursPerWeek INTEGER NOT NULL, nativeCountry VARCHAR(256) NOT NULL, incomeLessThan50k TINYINT NOT NULL)";
-    return DBProxy.executeSQL("censusincomedatapool", CENSUS_INCOME_CREATE, null);
+            + " hoursPerWeek INTEGER NOT NULL, nativeCountry VARCHAR(256) NOT NULL, incomeLessThan50k TINYINT NOT NULL, PRIMARY KEY (id))";
+    return DBProxy.executeSQL("censusincomeconnectionpool", CENSUS_INCOME_CREATE, null);
   }
 
   public static int insert(CensusIncome censusIncome) {
@@ -65,6 +65,7 @@ public class CensusIncomeDAO extends DatasetsDAO {
     Object[] params = new Object[] {
 
         // @formatter:off
+        censusIncome.getId(),
         censusIncome.getAge(),
         censusIncome.getWorkclass(),
         censusIncome.getFnlwgt(),
@@ -83,47 +84,25 @@ public class CensusIncomeDAO extends DatasetsDAO {
         // @formatter:on
         };
     String CENSUS_INCOME_INSERT =
-        "INSERT INTO CENSUS_INCOME (age, workclass, fnlwgt, education, educationNum, maritalStatus, occupation, relationship, race, sex, capitalGain, capitalLoss, hoursPerWeek, nativeCountry, incomeLessThan50k"
-            + ") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-    return DBProxy.executeSQL("censusincomedatapool", CENSUS_INCOME_INSERT, params);
+        "INSERT INTO CENSUS_INCOME (id, age, workclass, fnlwgt, education, educationNum, maritalStatus, occupation, relationship, race, sex, capitalGain, capitalLoss, hoursPerWeek, nativeCountry, incomeLessThan50k"
+            + ") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+    return DBProxy.executeSQL("censusincomeconnectionpool", CENSUS_INCOME_INSERT, params);
 
   }
 
-  public static List<CensusIncome> selectAll() {
+  public static long selectCount() {
 
-    String SELECT_ALL = "SELECT * FROM CENSUS_INCOME";
+    String SELECT_COUNT = "SELECT COUNT(*) FROM CENSUS_INCOME";
 
-    return DBProxy.queryObjectListSQL("censusincomedatapool", SELECT_ALL, CensusIncome.class, null);
+    return DBProxy.querySingleScalarSQL("censusincomeconnectionpool", SELECT_COUNT, Long.class, null);
   }
 
-  public static List<CensusIncome> selectTrainData() {
+  public static CensusIncome selectSingle(int id) {
 
-    String SELECT_TRAIN = "SELECT * FROM CENSUS_INCOME LIMIT 0, 32561";
+    Object[] params = new Object[] { id };
 
-    return DBProxy.queryObjectListSQL("censusincomedatapool", SELECT_TRAIN, CensusIncome.class, null);
+    String SELECT_SINGLE = "SELECT * FROM CENSUS_INCOME WHERE id = ?";
+
+    return DBProxy.querySingleObjectSQL("censusincomeconnectionpool", SELECT_SINGLE, CensusIncome.class, params);
   }
-
-  public static List<CensusIncome> selectTestData() {
-
-    String SELECT_TRAIN = "SELECT * FROM CENSUS_INCOME LIMIT 32561, 48842";
-
-    return DBProxy.queryObjectListSQL("censusincomedatapool", SELECT_TRAIN, CensusIncome.class, null);
-  }
-
-  public static List<CensusIncome> getShuffledTrainData() {
-
-    List<CensusIncome> shuffledList = selectTrainData();
-    Collections.shuffle(shuffledList);
-
-    return shuffledList;
-  }
-
-  public static List<CensusIncome> getShuffledTestData() {
-
-    List<CensusIncome> shuffledList = selectTestData();
-    Collections.shuffle(shuffledList);
-
-    return shuffledList;
-  }
-
 }

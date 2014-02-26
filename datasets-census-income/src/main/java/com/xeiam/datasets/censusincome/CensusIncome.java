@@ -26,6 +26,7 @@ package com.xeiam.datasets.censusincome;
  */
 public class CensusIncome {
 
+  private int id;
   private int age;
   private String workclass;
   private int fnlwgt;
@@ -41,6 +42,16 @@ public class CensusIncome {
   private int hoursPerWeek;
   private String nativeCountry;
   private boolean incomeLessThan50k;
+
+  public int getId() {
+
+    return id;
+  }
+
+  public void setId(int id) {
+
+    this.id = id;
+  }
 
   public int getAge() {
 
@@ -195,9 +206,9 @@ public class CensusIncome {
   @Override
   public String toString() {
 
-    return "CensusIncome [age=" + age + ", workclass=" + workclass + ", fnlwgt=" + fnlwgt + ", education=" + education + ", educationNum=" + educationNum + ", maritalStatus=" + maritalStatus
-        + ", occupation=" + occupation + ", relationship=" + relationship + ", race=" + race + ", sex=" + sex + ", capitalGain=" + capitalGain + ", capitalLoss=" + capitalLoss + ", hoursPerWeek="
-        + hoursPerWeek + ", nativeCountry=" + nativeCountry + ", incomeLessThan50k=" + incomeLessThan50k + "]";
+    return "CensusIncome [id=" + id + ", age=" + age + ", workclass=" + workclass + ", fnlwgt=" + fnlwgt + ", education=" + education + ", educationNum=" + educationNum + ", maritalStatus="
+        + maritalStatus + ", occupation=" + occupation + ", relationship=" + relationship + ", race=" + race + ", sex=" + sex + ", capitalGain=" + capitalGain + ", capitalLoss=" + capitalLoss
+        + ", hoursPerWeek=" + hoursPerWeek + ", nativeCountry=" + nativeCountry + ", incomeLessThan50k=" + incomeLessThan50k + "]";
   }
 
 }

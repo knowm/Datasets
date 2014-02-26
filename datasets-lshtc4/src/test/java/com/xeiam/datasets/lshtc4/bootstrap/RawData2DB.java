@@ -64,7 +64,7 @@ public class RawData2DB {
 
     System.out.println("done.");
 
-    LSHTC4DAO.testRelease();
+    LSHTC4DAO.release();
   }
 
   private void go(String dataFile) throws IOException {

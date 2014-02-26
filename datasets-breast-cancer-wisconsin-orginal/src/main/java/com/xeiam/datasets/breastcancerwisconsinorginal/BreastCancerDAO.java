@@ -22,40 +22,36 @@
 package com.xeiam.datasets.breastcancerwisconsinorginal;
 
 import java.io.File;
-import java.util.List;
 
 import com.xeiam.datasets.common.business.DatasetsDAO;
-import com.xeiam.yank.DBConnectionManager;
 import com.xeiam.yank.DBProxy;
-import com.xeiam.yank.PropertiesUtils;
 
 /**
  * @author alexnugent
  */
 public class BreastCancerDAO extends DatasetsDAO {
 
-  public static File init() {
+  public static File init(String dataFilesDir) {
 
-    return init("breastcancerdatapool", "DB_BREAST_CANCER");
-  }
+    String dataFileID = "0ByP7_A9vXm17TmRYcmNScnYzS1E";
+    String propsFileID = "0ByP7_A9vXm17X3hFNFA3NGViWlE";
+    String scriptFileID = "0ByP7_A9vXm17NEQycTM1Q0Y3QXM";
 
-  public static void initTest() {
-
-    DBConnectionManager.INSTANCE.init(PropertiesUtils.getPropertiesFromClasspath("DB_TEST.properties"));
+    return init("breastcancerconnectionpool", "DB_BREAST_CANCER", dataFilesDir, dataFileID, propsFileID, scriptFileID, false);
   }
 
   public static int dropTable() {
 
-    return DBProxy.executeSQL("breastcancerdatapool", "DROP TABLE IF EXISTS BREAST_CANCER", null);
+    return DBProxy.executeSQL("breastcancerconnectionpool", "DROP TABLE IF EXISTS " + "BREAST_CANCER", null);
   }
 
   public static int createTable() {
 
     String BREAST_CANCER_CREATE =
-        "CREATE CACHED TABLE BREAST_CANCER (SAMPLECODENUMBER INTEGER NOT NULL, CLUMPTHICKNESS INTEGER NOT NULL, UNIFORMITYOFCELLSIZE INTEGER NOT NULL,"
+        "CREATE CACHED TABLE BREAST_CANCER (id INTEGER NOT NULL, SAMPLECODENUMBER INTEGER NOT NULL, CLUMPTHICKNESS INTEGER NOT NULL, UNIFORMITYOFCELLSIZE INTEGER NOT NULL,"
             + " UNIFORMITYOFCELLSHAPE INTEGER NOT NULL, MARGINALADHESION INTEGER NOT NULL, SINGLEEPITHELIALCELLSIZE INTEGER NOT NULL, BARENUCLEI INTEGER NOT NULL, BLANDCHROMATIN INTEGER NOT NULL,"
-            + "NORMALNUCLEOLI INTEGER NOT NULL, MITOSES INTEGER NOT NULL, CELLCLASS INTEGER NOT NULL)";
-    return DBProxy.executeSQL("breastcancerdatapool", BREAST_CANCER_CREATE, null);
+            + "NORMALNUCLEOLI INTEGER NOT NULL, MITOSES INTEGER NOT NULL, CELLCLASS INTEGER NOT NULL, PRIMARY KEY (id))";
+    return DBProxy.executeSQL("breastcancerconnectionpool", BREAST_CANCER_CREATE, null);
   }
 
   public static int insert(BreastCancer breastCancer) {
@@ -63,6 +59,7 @@ public class BreastCancerDAO extends DatasetsDAO {
     Object[] params = new Object[] { 
         
         // @formatter:off
+        breastCancer.getId(),
         breastCancer.getSampleCodeNumber(),
         breastCancer.getClumpThickness(),
         breastCancer.getUniformityOfCellSize(),
@@ -77,41 +74,31 @@ public class BreastCancerDAO extends DatasetsDAO {
         // @formatter:on
         };
     String BREAST_CANCER_INSERT =
-        "INSERT INTO BREAST_CANCER (SAMPLECODENUMBER, CLUMPTHICKNESS, UNIFORMITYOFCELLSIZE, UNIFORMITYOFCELLSHAPE, MARGINALADHESION, SINGLEEPITHELIALCELLSIZE, BARENUCLEI, BLANDCHROMATIN,"
-            + " NORMALNUCLEOLI, MITOSES, CELLCLASS) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-    return DBProxy.executeSQL("breastcancerdatapool", BREAST_CANCER_INSERT, params);
+        "INSERT INTO BREAST_CANCER (ID, SAMPLECODENUMBER, CLUMPTHICKNESS, UNIFORMITYOFCELLSIZE, UNIFORMITYOFCELLSHAPE, MARGINALADHESION, SINGLEEPITHELIALCELLSIZE, BARENUCLEI, BLANDCHROMATIN,"
+            + " NORMALNUCLEOLI, MITOSES, CELLCLASS) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+    return DBProxy.executeSQL("breastcancerconnectionpool", BREAST_CANCER_INSERT, params);
 
   }
 
-  public static List<BreastCancer> selectAll() {
+  public static int getTrainTestSplit() {
 
-    String SELECT_ALL = "SELECT * FROM BREAST_CANCER";
-
-    return DBProxy.queryObjectListSQL("breastcancerdatapool", SELECT_ALL, BreastCancer.class, null);
+    return 500;
   }
 
-  /**
-   * Selects the first 500 data entries
-   * 
-   * @return
-   */
-  public static List<BreastCancer> selectTrainData() {
+  public static long selectCount() {
 
-    String SELECT_TRAIN = "SELECT * FROM BREAST_CANCER LIMIT 0, 500";
+    String SELECT_COUNT = "SELECT COUNT(*) FROM BREAST_CANCER";
 
-    return DBProxy.queryObjectListSQL("breastcancerdatapool", SELECT_TRAIN, BreastCancer.class, null);
+    return DBProxy.querySingleScalarSQL("breastcancerconnectionpool", SELECT_COUNT, Long.class, null);
   }
 
-  /**
-   * Selects the last 182 data entries
-   * 
-   * @return
-   */
-  public static List<BreastCancer> selectTestData() {
+  public static BreastCancer selectSingle(int id) {
 
-    String SELECT_TEST = "SELECT * FROM BREAST_CANCER LIMIT 500, 683";
+    Object[] params = new Object[] { id };
 
-    return DBProxy.queryObjectListSQL("breastcancerdatapool", SELECT_TEST, BreastCancer.class, null);
+    String SELECT_SINGLE = "SELECT * FROM BREAST_CANCER WHERE id = ?";
+
+    return DBProxy.querySingleObjectSQL("breastcancerconnectionpool", SELECT_SINGLE, BreastCancer.class, params);
   }
 
 }

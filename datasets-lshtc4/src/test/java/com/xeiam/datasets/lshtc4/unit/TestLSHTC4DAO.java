@@ -47,7 +47,7 @@ public class TestLSHTC4DAO {
   @AfterClass
   public static void tearDownDB() {
 
-    LSHTC4DAO.testRelease();
+    LSHTC4DAO.release();
   }
 
   @Test

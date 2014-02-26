@@ -48,7 +48,7 @@ public class Data2DB {
     dp.go("./raw/t10k-images-idx3-ubyte", "./raw/t10k-labels-idx1-ubyte", 1, 10000);
     System.out.println("done.");
 
-    MnistDAO.testRelease();
+    MnistDAO.release();
   }
 
   private void go(String imageDataFile, String labelDataFile, int startIdx, int endIdx) throws IOException {

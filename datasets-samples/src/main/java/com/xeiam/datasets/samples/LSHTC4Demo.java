@@ -21,8 +21,6 @@
  */
 package com.xeiam.datasets.samples;
 
-import java.util.Arrays;
-
 import com.xeiam.datasets.lshtc4.LSHTC4;
 import com.xeiam.datasets.lshtc4.LSHTC4DAO;
 import com.xeiam.datasets.lshtc4.LSHTC4HierarchyDAO;
@@ -32,15 +30,12 @@ import com.xeiam.datasets.lshtc4.LSHTC4HierarchyDAO;
  */
 public class LSHTC4Demo {
 
-  private static final int NUM_TEST_OBJECTS = 452167;
-  private static final int NUM_TOTAL_OBJECTS = 2817603;
-
   public static void main(String[] args) {
 
     try {
       LSHTC4DAO.init("/Users/timmolter/Documents/Datasets"); // setup data
-      LSHTC4Demo lSHTC4Demo = new LSHTC4Demo();
-      lSHTC4Demo.go();
+      LSHTC4Demo demo = new LSHTC4Demo();
+      demo.go();
     } catch (Exception e) {
       e.printStackTrace();
     } finally {
@@ -50,7 +45,7 @@ public class LSHTC4Demo {
 
   private void go() {
 
-    // print number of LSHTC4 objects
+    // print number of objects
     long count = LSHTC4DAO.selectCount();
     System.out.println("count= " + count);
 
@@ -58,27 +53,17 @@ public class LSHTC4Demo {
     long hierarchyCount = LSHTC4HierarchyDAO.selectCount();
     System.out.println("hierarchyCount= " + hierarchyCount);
 
-    // loop through first 10 LSHTC4 objects
-    for (int i = 1; i <= 10; i++) {
-
+    // loop through test objects
+    for (int i = 0; i < LSHTC4DAO.getTrainTestSplit(); i++) {
       LSHTC4 lSHTC4 = LSHTC4DAO.selectSingle(i);
-      System.out.println(lSHTC4.toString());
+      System.out.println(lSHTC4);
     }
 
-    // get last test object
-    LSHTC4 lSHTC4 = LSHTC4DAO.selectSingle(NUM_TEST_OBJECTS);
-    System.out.println(lSHTC4.toString());
-
-    // get first train object
-    lSHTC4 = LSHTC4DAO.selectSingle(NUM_TEST_OBJECTS + 1);
-    System.out.println(lSHTC4.toString());
-
-    // get first train object
-    lSHTC4 = LSHTC4DAO.selectSingle(NUM_TOTAL_OBJECTS);
-    System.out.println(lSHTC4.toString());
-
-    System.out.println("labels: " + Arrays.toString(lSHTC4.getLabelsAsArray()));
-    System.out.println("features: " + Arrays.toString(lSHTC4.getFeaturesAsArray()));
+    // loop through train objects
+    for (int i = LSHTC4DAO.getTrainTestSplit(); i < count; i++) {
+      LSHTC4 lSHTC4 = LSHTC4DAO.selectSingle(i);
+      System.out.println(lSHTC4);
+    }
 
   }
 
