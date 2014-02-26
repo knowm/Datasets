@@ -33,9 +33,9 @@ public class CensusIncomeDAO extends DatasetsDAO {
 
   public static File init(String dataFilesDir) {
 
-    String dataFileID = "0ByP7_A9vXm17NnpMLVlUX09lckU";
-    String propsFileID = "0ByP7_A9vXm17bC0tTDFFTUNwd2c";
-    String scriptFileID = "0ByP7_A9vXm17ck1IaHg2SzNiMVE";
+    String dataFileID = "0ByP7_A9vXm17cU5QYzExY2dEeXc";
+    String propsFileID = "0ByP7_A9vXm17THlaaXBoSzMzc3M";
+    String scriptFileID = "0ByP7_A9vXm17QUprZUN6Q3pGZ2c";
 
     return init("censusincomeconnectionpool", "DB_CENSUS_INCOME", dataFilesDir, dataFileID, propsFileID, scriptFileID, true);
   }

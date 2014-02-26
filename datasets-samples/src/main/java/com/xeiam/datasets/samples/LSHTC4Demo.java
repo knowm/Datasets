@@ -33,7 +33,7 @@ public class LSHTC4Demo {
   public static void main(String[] args) {
 
     try {
-      LSHTC4DAO.init("/Users/timmolter/Documents/Datasets"); // setup data
+      LSHTC4DAO.init("/usr/local/Datasets"); // setup data
       LSHTC4Demo demo = new LSHTC4Demo();
       demo.go();
     } catch (Exception e) {
@@ -56,13 +56,13 @@ public class LSHTC4Demo {
     // loop through test objects
     for (int i = 0; i < LSHTC4DAO.getTrainTestSplit(); i++) {
       LSHTC4 lSHTC4 = LSHTC4DAO.selectSingle(i);
-      System.out.println(lSHTC4);
+      System.out.println(lSHTC4.toString());
     }
 
     // loop through train objects
     for (int i = LSHTC4DAO.getTrainTestSplit(); i < count; i++) {
       LSHTC4 lSHTC4 = LSHTC4DAO.selectSingle(i);
-      System.out.println(lSHTC4);
+      System.out.println(lSHTC4.toString());
     }
 
   }

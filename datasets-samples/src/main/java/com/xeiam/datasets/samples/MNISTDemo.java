@@ -32,7 +32,7 @@ public class MNISTDemo {
   public static void main(String[] args) {
 
     try {
-      MnistDAO.init("/Users/timmolter/Documents/Datasets"); // setup data
+      MnistDAO.init("/usr/local/Datasets"); // setup data
       MNISTDemo demo = new MNISTDemo();
       demo.go();
     } catch (Exception e) {
@@ -48,13 +48,13 @@ public class MNISTDemo {
     long count = MnistDAO.selectCount();
     System.out.println("count= " + count);
 
-    // loop through test objects
+    // loop through train objects
     for (int i = 0; i < MnistDAO.getTrainTestSplit(); i++) {
       Mnist mnist = MnistDAO.selectSingle(i);
       System.out.println(mnist.toString());
     }
 
-    // loop through train objects
+    // loop through test objects
     for (int i = MnistDAO.getTrainTestSplit(); i < count; i++) {
       Mnist mnist = MnistDAO.selectSingle(i);
       System.out.println(mnist.toString());

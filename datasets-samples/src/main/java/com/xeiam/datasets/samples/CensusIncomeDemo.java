@@ -32,7 +32,7 @@ public class CensusIncomeDemo {
   public static void main(String[] args) {
 
     try {
-      CensusIncomeDAO.init("/Users/timmolter/Documents/Datasets"); // setup data
+      CensusIncomeDAO.init("/usr/local/Datasets"); // setup data
       CensusIncomeDemo demo = new CensusIncomeDemo();
       demo.go();
     } catch (Exception e) {
@@ -57,7 +57,7 @@ public class CensusIncomeDemo {
     // loop through test objects
     for (int i = CensusIncomeDAO.getTrainTestSplit(); i < count; i++) {
       CensusIncome censusIncome = CensusIncomeDAO.selectSingle(i);
-      System.out.println(censusIncome);
+      System.out.println(censusIncome.toString());
     }
 
   }

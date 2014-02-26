@@ -32,7 +32,7 @@ public class BreastCancerDemo {
   public static void main(String[] args) {
 
     try {
-      BreastCancerDAO.init("/Users/timmolter/Documents/Datasets/"); // setup data
+      BreastCancerDAO.init("/usr/local/Datasets/"); // setup data
       BreastCancerDemo demo = new BreastCancerDemo();
       demo.go();
     } catch (Exception e) {

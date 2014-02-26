@@ -34,7 +34,7 @@ public class Reuters21578Demo {
   public static void main(String[] args) {
 
     try {
-      Reuters21578DAO.init("/Users/timmolter/Documents/Datasets"); // setup data
+      Reuters21578DAO.init("/usr/local/Datasets"); // setup data
       Reuters21578Demo demo = new Reuters21578Demo();
       demo.go();
     } catch (Exception e) {

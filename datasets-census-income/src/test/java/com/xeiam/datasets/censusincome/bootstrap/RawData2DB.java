@@ -62,7 +62,7 @@ public class RawData2DB {
         String[] entry = lines[i].split(",");
         CensusIncome censusIncome = new CensusIncome();
 
-        censusIncome.setId(idx++);
+        censusIncome.setId(idx);
         censusIncome.setAge(Integer.parseInt(entry[0].trim()));
         censusIncome.setWorkclass(entry[1].trim());
         censusIncome.setFnlwgt(Integer.parseInt(entry[2].trim()));
@@ -88,6 +88,7 @@ public class RawData2DB {
         // System.out.println(censusIncome.isIncomeLessThan50k());
         CensusIncomeDAO.insert(censusIncome);
         System.out.println(censusIncome.getId());
+        idx++;
 
       } catch (Exception e) {
         // eat it. Will throw exception on the first line of the test dataset.

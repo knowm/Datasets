@@ -32,7 +32,7 @@ public class Cifar10Demo {
   public static void main(String[] args) {
 
     try {
-      CifarDAO.init("/Users/timmolter/Documents/Datasets"); // setup data
+      CifarDAO.init("/usr/local/Datasets"); // setup data
       Cifar10Demo demo = new Cifar10Demo();
       demo.go();
     } catch (Exception e) {
