@@ -21,6 +21,9 @@
  */
 package com.xeiam.datasets.reuters21578.bootstrap;
 
+import java.io.File;
+import java.io.FileFilter;
+import java.io.IOException;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -28,8 +31,10 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import org.apache.commons.io.FileUtils;
+import org.apache.commons.io.filefilter.WildcardFileFilter;
+
 import com.google.common.base.Joiner;
-import com.xeiam.datasets.common.utils.FileUtils;
 import com.xeiam.datasets.reuters21578.Reuters21578;
 import com.xeiam.datasets.reuters21578.Reuters21578DAO;
 
@@ -42,7 +47,7 @@ public class Reuters21578Data2DB {
 
   int maxBodyLength = 0;
 
-  public static void main(String[] args) {
+  public static void main(String[] args) throws IOException {
 
     Reuters21578DAO.initTest();
 
@@ -55,21 +60,22 @@ public class Reuters21578Data2DB {
     Reuters21578DAO.release();
   }
 
-  private void go() {
+  private void go() throws IOException {
 
-    String[] fileNames = FileUtils.getAllFileNames("./raw/", ".*.sgm");
-    // System.out.println("files.length: " + fileNames.length);
+    File dir = new File("./raw/");
+    FileFilter fileFilter = new WildcardFileFilter("*.sgm");
+    File[] files = dir.listFiles(fileFilter);
 
     int errors = 0;
 
     // 1. Parse each file
-    for (int f = 0; f < fileNames.length; f++) {
+    for (int f = 0; f < files.length; f++) {
 
-      // System.out.println("file " + f + " of " + fileNames.length);
-      // System.out.println("fileNames[f]: " + fileNames[f]);
+      System.out.println("file " + f + " of " + files.length);
+      System.out.println("fileNames[f]: " + files[f]);
 
       // 2. Get a list of Reuters21578Story Beans from a file
-      List<Reuters21578> stories = getReuters21578StoriesFromFile("./raw/" + fileNames[f]);
+      List<Reuters21578> stories = getReuters21578StoriesFromFile(files[f]);
 
       // 3. put the Reuters21578Story Beans in the DB
       for (Reuters21578 reuters21578Story : stories) {
@@ -89,13 +95,15 @@ public class Reuters21578Data2DB {
    * 
    * @param fileName
    * @return
+   * @throws IOException
    */
-  private List<Reuters21578> getReuters21578StoriesFromFile(String fileName) {
+  private List<Reuters21578> getReuters21578StoriesFromFile(File file) throws IOException {
 
     List<Reuters21578> stories = new ArrayList<Reuters21578>();
 
     // 1. Get String from the file
-    String s = FileUtils.readFileToString(fileName);
+    // String s = FileUtils.readFileToString(fileName);
+    String s = FileUtils.readFileToString(file, "UTF-8");
 
     // 2. Get a list of stories as Strings, the contecnt between the REUTERS tags
     List<String> storiesAsString = extractElementAsLines(s, "REUTERS");

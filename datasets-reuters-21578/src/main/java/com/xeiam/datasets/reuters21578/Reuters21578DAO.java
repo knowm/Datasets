@@ -21,7 +21,6 @@
  */
 package com.xeiam.datasets.reuters21578;
 
-import java.io.File;
 import java.util.List;
 
 import com.xeiam.datasets.common.business.DatasetsDAO;
@@ -32,13 +31,13 @@ import com.xeiam.yank.DBProxy;
  */
 public class Reuters21578DAO extends DatasetsDAO {
 
-  public static File init(String dataFilesDir) {
+  public static void init(String dataFilesDir) {
 
     String dataFileID = "0ByP7_A9vXm17aTU1VzdCNFhRVEk";
     String propsFileID = "0ByP7_A9vXm17c1hwbTNFdVBwX0k";
     String scriptFileID = "0ByP7_A9vXm17Q3Q5ejFrNFlGOTA";
 
-    return init("reuters21578connectionpool", "DB_REUTERS_21578", dataFilesDir, dataFileID, propsFileID, scriptFileID, true);
+    init("reuters21578connectionpool", "DB_REUTERS_21578", dataFilesDir, dataFileID, propsFileID, scriptFileID, true);
   }
 
   public static int dropTable() {

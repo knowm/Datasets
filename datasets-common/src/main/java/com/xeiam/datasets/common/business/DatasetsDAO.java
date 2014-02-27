@@ -25,10 +25,10 @@ import java.io.File;
 import java.net.URL;
 import java.util.Properties;
 
+import org.apache.commons.io.FileUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.xeiam.datasets.common.utils.FileUtils;
 import com.xeiam.yank.DBConnectionManager;
 import com.xeiam.yank.PropertiesUtils;
 
@@ -51,32 +51,30 @@ public abstract class DatasetsDAO {
     DBConnectionManager.INSTANCE.release();
   }
 
-  public static File init(String poolName, String dbName, String dataFilesDir, String dataFileURL, String propsFileURL, String scriptFileURL, boolean requiresManualDownload) {
+  public static void init(String poolName, String dbName, String dataFilesDir, String dataFileURL, String propsFileURL, String scriptFileURL, boolean requiresManualDownload) {
 
     // 1. create data dir
-    File file = FileUtils.mkDirIfNotExists(dataFilesDir);
 
     // 1b. Clean up any stragglers
-    FileUtils.deleteDirectoryRecursively(file.getPath() + "/" + dbName + ".tmp");
-    FileUtils.deleteFile(file.getPath() + "/" + dbName + ".lck");
-    FileUtils.deleteFile(file.getPath() + "/" + dbName + ".log");
+    FileUtils.deleteQuietly(new File(dataFilesDir + "/" + dbName + ".tmp"));
+    FileUtils.deleteQuietly(new File(dataFilesDir + "/" + dbName + ".lck"));
+    FileUtils.deleteQuietly(new File(dataFilesDir + "/" + dbName + ".log"));
 
     // 2. check if files are already available
-    String dataPath = file.getPath() + "/" + dbName + ".data";
-    String propsPath = file.getPath() + "/" + dbName + ".properties";
-    String scriptPath = file.getPath() + "/" + dbName + ".script";
+    File dataFile = new File(dataFilesDir + "/" + dbName + ".data");
+    File propsFile = new File(dataFilesDir + "/" + dbName + ".properties");
+    File scriptFile = new File(dataFilesDir + "/" + dbName + ".script");
 
     // if the files don't yet exist, then download them
-    if (!FileUtils.fileExists(dataPath) || !FileUtils.fileExists(propsPath) || !FileUtils.fileExists(scriptPath)) {
+    if (!dataFile.exists() || !propsFile.exists() || !scriptFile.exists()) {
 
-      logger.info("Saving DB files in: " + file.getPath());
+      logger.info("Saving DB files in: " + dataFilesDir);
       URL url;
       try {
 
         // props
         logger.info("Downloading props file...");
         url = new URL(GoogleDriveURLPart1 + propsFileURL);
-        File propsFile = new File(propsPath);
         org.apache.commons.io.FileUtils.copyURLToFile(url, propsFile, 5000, 10000);
       } catch (Exception e) {
         throw new RuntimeException(
@@ -87,7 +85,6 @@ public abstract class DatasetsDAO {
         // script
         logger.info("Downloading script file...");
         url = new URL(GoogleDriveURLPart1 + scriptFileURL);
-        File scriptFile = new File(scriptPath);
         org.apache.commons.io.FileUtils.copyURLToFile(url, scriptFile, 5000, 10000);
       } catch (Exception e) {
         throw new RuntimeException(
@@ -99,7 +96,6 @@ public abstract class DatasetsDAO {
         try {
           logger.info("Downloading data file... (this could take a while so be patient!)");
           url = new URL(GoogleDriveURLPart1 + dataFileURL);
-          File dataFile = new File(dataPath);
           org.apache.commons.io.FileUtils.copyURLToFile(url, dataFile, 5000, 10000);
         } catch (Exception e) {
           throw new RuntimeException(
@@ -108,8 +104,7 @@ public abstract class DatasetsDAO {
         }
       }
       else {
-        throw new RuntimeException("The data file is too big to download automatically! Please manually download it from: " + (GoogleDriveURLPart1 + dataFileURL) + " and place it in: "
-            + file.getPath());
+        throw new RuntimeException("The data file is too big to download automatically! Please manually download it from: " + (GoogleDriveURLPart1 + dataFileURL) + " and place it in: " + dataFilesDir);
       }
 
     }
@@ -120,14 +115,13 @@ public abstract class DatasetsDAO {
     // 3. setup HSQLDB
     Properties dbProps = new Properties();
     dbProps.setProperty("driverclassname", "org.hsqldb.jdbcDriver");
-    dbProps.setProperty(poolName + ".url", "jdbc:hsqldb:file:" + file.getPath() + File.separatorChar + dbName + ";shutdown=true;readonly=true");
+    dbProps.setProperty(poolName + ".url", "jdbc:hsqldb:file:" + dataFilesDir + File.separatorChar + dbName + ";shutdown=true;readonly=true");
     dbProps.setProperty(poolName + ".user", "sa");
     dbProps.setProperty(poolName + ".password", "");
     dbProps.setProperty(poolName + ".maxconn", "10");
 
     DBConnectionManager.INSTANCE.init(dbProps);
 
-    return file;
   }
 
 }

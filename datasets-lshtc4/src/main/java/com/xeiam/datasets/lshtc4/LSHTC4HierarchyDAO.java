@@ -21,7 +21,6 @@
  */
 package com.xeiam.datasets.lshtc4;
 
-import java.io.File;
 import java.util.List;
 
 import com.xeiam.datasets.common.business.DatasetsDAO;
@@ -32,13 +31,13 @@ import com.xeiam.yank.DBProxy;
  */
 public class LSHTC4HierarchyDAO extends DatasetsDAO {
 
-  public static File init(String dataFilesDir) {
+  public static void init(String dataFilesDir) {
 
     String dataFileID = "0ByP7_A9vXm17UUdES3N6YjJsS3M";
     String propsFileID = "0ByP7_A9vXm17bFE3VmxGTEVTeEU";
     String scriptFileID = "0ByP7_A9vXm17TDRUMEhvWi1fbUk";
 
-    return init("lshtc4connectionpool", "DB_LSHTC4", dataFilesDir, dataFileID, propsFileID, scriptFileID, false);
+    init("lshtc4connectionpool", "DB_LSHTC4", dataFilesDir, dataFileID, propsFileID, scriptFileID, false);
   }
 
   public static int dropTable() {

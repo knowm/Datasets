@@ -21,7 +21,6 @@
  */
 package com.xeiam.datasets.mnist;
 
-import java.io.File;
 import java.util.List;
 
 import com.xeiam.datasets.common.business.DatasetsDAO;
@@ -32,13 +31,13 @@ import com.xeiam.yank.DBProxy;
  */
 public class MnistDAO extends DatasetsDAO {
 
-  public static File init(String dataFilesDir) {
+  public static void init(String dataFilesDir) {
 
     String dataFileID = "0ByP7_A9vXm17ZGEyOFNjVzdVdlU";
     String propsFileID = "0ByP7_A9vXm17SV96TE5jdnY0UDQ";
     String scriptFileID = "0ByP7_A9vXm17U2s1d0FzdHlILUE";
 
-    return init("mnistconnectionpool", "DB_MNIST", dataFilesDir, dataFileID, propsFileID, scriptFileID, true);
+    init("mnistconnectionpool", "DB_MNIST", dataFilesDir, dataFileID, propsFileID, scriptFileID, true);
   }
 
   public static int dropTable() {

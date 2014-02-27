@@ -21,8 +21,6 @@
  */
 package com.xeiam.datasets.cifar10;
 
-import java.io.File;
-
 import com.xeiam.datasets.common.business.DatasetsDAO;
 import com.xeiam.yank.DBProxy;
 
@@ -31,13 +29,13 @@ import com.xeiam.yank.DBProxy;
  */
 public class CifarDAO extends DatasetsDAO {
 
-  public static File init(String dataFilesDir) {
+  public static void init(String dataFilesDir) {
 
     String dataFileID = "0ByP7_A9vXm17VERJam9EMm5sTkU";
     String propsFileID = "0ByP7_A9vXm17VHIzd1hSNW4zUXc";
     String scriptFileID = "0ByP7_A9vXm17eHlzcDJfalNoYkk";
 
-    return init("cifarconnectionpool", "DB_CIFAR", dataFilesDir, dataFileID, propsFileID, scriptFileID, true);
+    init("cifarconnectionpool", "DB_CIFAR", dataFilesDir, dataFileID, propsFileID, scriptFileID, true);
   }
 
   public static int dropTable() {

@@ -21,11 +21,14 @@
  */
 package com.xeiam.datasets.breastcancerwisconsinorginal.bootstrap;
 
+import java.io.File;
+import java.io.IOException;
+
+import org.apache.commons.io.FileUtils;
 import org.junit.Ignore;
 
 import com.xeiam.datasets.breastcancerwisconsinorginal.BreastCancer;
 import com.xeiam.datasets.breastcancerwisconsinorginal.BreastCancerDAO;
-import com.xeiam.datasets.common.utils.FileUtils;
 
 /**
  * Parses Breast Cancer text files and put the data in a database
@@ -38,7 +41,7 @@ public class RawData2DB {
   int maxBodyLength = 0;
   int idx = 0;
 
-  public static void main(String[] args) {
+  public static void main(String[] args) throws IOException {
 
     BreastCancerDAO.initTest();
 
@@ -52,9 +55,9 @@ public class RawData2DB {
 
   }
 
-  private void go(String file) {
+  private void go(String file) throws IOException {
 
-    String data = FileUtils.readFileToString(file);
+    String data = FileUtils.readFileToString(new File(file), "UTF-8");
 
     System.out.println("loading data from " + file);
 

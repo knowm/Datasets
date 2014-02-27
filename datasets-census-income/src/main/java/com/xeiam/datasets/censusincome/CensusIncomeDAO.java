@@ -21,8 +21,6 @@
  */
 package com.xeiam.datasets.censusincome;
 
-import java.io.File;
-
 import com.xeiam.datasets.common.business.DatasetsDAO;
 import com.xeiam.yank.DBProxy;
 
@@ -31,13 +29,13 @@ import com.xeiam.yank.DBProxy;
  */
 public class CensusIncomeDAO extends DatasetsDAO {
 
-  public static File init(String dataFilesDir) {
+  public static void init(String dataFilesDir) {
 
     String dataFileID = "0ByP7_A9vXm17cU5QYzExY2dEeXc";
     String propsFileID = "0ByP7_A9vXm17THlaaXBoSzMzc3M";
     String scriptFileID = "0ByP7_A9vXm17QUprZUN6Q3pGZ2c";
 
-    return init("censusincomeconnectionpool", "DB_CENSUS_INCOME", dataFilesDir, dataFileID, propsFileID, scriptFileID, true);
+    init("censusincomeconnectionpool", "DB_CENSUS_INCOME", dataFilesDir, dataFileID, propsFileID, scriptFileID, true);
   }
 
   public static int dropTable() {

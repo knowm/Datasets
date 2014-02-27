@@ -21,9 +21,13 @@
  */
 package com.xeiam.datasets.censusincome.bootstrap;
 
+import java.io.File;
+import java.io.IOException;
+
+import org.apache.commons.io.FileUtils;
+
 import com.xeiam.datasets.censusincome.CensusIncome;
 import com.xeiam.datasets.censusincome.CensusIncomeDAO;
-import com.xeiam.datasets.common.utils.FileUtils;
 
 /**
  * Parses Census Income text files and put the data in a database
@@ -35,7 +39,7 @@ public class RawData2DB {
   int maxBodyLength = 0;
   int idx = 0;
 
-  public static void main(String[] args) {
+  public static void main(String[] args) throws IOException {
 
     CensusIncomeDAO.initTest();
 
@@ -49,9 +53,9 @@ public class RawData2DB {
     CensusIncomeDAO.release();
   }
 
-  private void go(String file) {
+  private void go(String file) throws IOException {
 
-    String data = FileUtils.readFileToString(file);
+    String data = FileUtils.readFileToString(new File(file), "UTF-8");
     System.out.println("loading data from " + file);
 
     String[] lines = data.split("\\r?\\n");

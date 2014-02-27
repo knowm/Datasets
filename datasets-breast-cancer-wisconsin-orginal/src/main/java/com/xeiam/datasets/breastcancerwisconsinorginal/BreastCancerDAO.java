@@ -21,8 +21,6 @@
  */
 package com.xeiam.datasets.breastcancerwisconsinorginal;
 
-import java.io.File;
-
 import com.xeiam.datasets.common.business.DatasetsDAO;
 import com.xeiam.yank.DBProxy;
 
@@ -31,13 +29,13 @@ import com.xeiam.yank.DBProxy;
  */
 public class BreastCancerDAO extends DatasetsDAO {
 
-  public static File init(String dataFilesDir) {
+  public static void init(String dataFilesDir) {
 
     String dataFileID = "0ByP7_A9vXm17TmRYcmNScnYzS1E";
     String propsFileID = "0ByP7_A9vXm17X3hFNFA3NGViWlE";
     String scriptFileID = "0ByP7_A9vXm17NEQycTM1Q0Y3QXM";
 
-    return init("breastcancerconnectionpool", "DB_BREAST_CANCER", dataFilesDir, dataFileID, propsFileID, scriptFileID, false);
+    init("breastcancerconnectionpool", "DB_BREAST_CANCER", dataFilesDir, dataFileID, propsFileID, scriptFileID, false);
   }
 
   public static int dropTable() {
