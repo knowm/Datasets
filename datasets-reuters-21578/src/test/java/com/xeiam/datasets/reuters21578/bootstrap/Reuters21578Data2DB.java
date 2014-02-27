@@ -21,14 +21,15 @@
  */
 package com.xeiam.datasets.reuters21578.bootstrap;
 
+import java.text.DateFormat;
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import com.xeiam.datasets.common.utils.DateUtils;
+import com.google.common.base.Joiner;
 import com.xeiam.datasets.common.utils.FileUtils;
-import com.xeiam.datasets.common.utils.StringUtils;
 import com.xeiam.datasets.reuters21578.Reuters21578;
 import com.xeiam.datasets.reuters21578.Reuters21578DAO;
 
@@ -136,7 +137,8 @@ public class Reuters21578Data2DB {
     // System.out.println("date=" + dateString);
     Date date = null;
     try {
-      date = DateUtils.getDateFromString(dateString, "dd-MMM-yyyy HH:mm:ss.SS");
+      DateFormat sdf = new SimpleDateFormat("dd-MMM-yyyy HH:mm:ss.SS");
+      date = sdf.parse(dateString);
     } catch (ParseException e) {
       e.printStackTrace();
     }
@@ -144,27 +146,27 @@ public class Reuters21578Data2DB {
     // TOPICS /////////////////////////
     String topicsText = extractTextBetweenTags(storyText, "TOPICS");
     List<String> topicsArray = extractElementAsLines(topicsText, "D");
-    String topicsCSV = StringUtils.join(topicsArray, ",");
+    String topicsCSV = Joiner.on(", ").join(topicsArray);
     // PLACES /////////////////////////
     String placesText = extractTextBetweenTags(storyText, "PLACES");
     List<String> placesArray = extractElementAsLines(placesText, "D");
-    String placesCSV = StringUtils.join(placesArray, ",");
+    String placesCSV = Joiner.on(", ").join(placesArray);
     // PEOPLE /////////////////////////
     String peopleText = extractTextBetweenTags(storyText, "PEOPLE");
     List<String> peopleArray = extractElementAsLines(peopleText, "D");
-    String peopleCSV = StringUtils.join(peopleArray, ",");
+    String peopleCSV = Joiner.on(", ").join(peopleArray);
     // ORGS /////////////////////////
     String orgsText = extractTextBetweenTags(storyText, "ORGS");
     List<String> orgsArray = extractElementAsLines(orgsText, "D");
-    String orgsCSV = StringUtils.join(orgsArray, ",");
+    String orgsCSV = Joiner.on(", ").join(orgsArray);
     // EXCHANGES /////////////////////////
     String exchangesText = extractTextBetweenTags(storyText, "EXCHANGES");
     List<String> exchangesArray = extractElementAsLines(exchangesText, "D");
-    String exchangesCSV = StringUtils.join(exchangesArray, ",");
+    String exchangesCSV = Joiner.on(", ").join(exchangesArray);
     // COMPANIES /////////////////////////
     String companiesText = extractTextBetweenTags(storyText, "COMPANIES");
     List<String> companiesArray = extractElementAsLines(companiesText, "D");
-    String companiesCSV = StringUtils.join(companiesArray, ",");
+    String companiesCSV = Joiner.on(", ").join(companiesArray);
 
     // TITLE /////////////////////////
     String titleText = extractTextBetweenTags(storyText, "TITLE");
