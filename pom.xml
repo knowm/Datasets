@@ -45,6 +45,7 @@
 		<module>datasets-cifar10</module>
 		<module>datasets-lshtc4</module>
 		<module>datasets-samples</module>
+		<module>datasets-hja-birdsong</module>
 	</modules>
 
 	<distributionManagement>
