@@ -29,15 +29,6 @@ import com.xeiam.yank.DBProxy;
  */
 public class TenFoldDAO extends DatasetsDAO {
 
-  public static void init(String dataFilesDir) {
-
-    String dataFileID = "0ByP7_A9vXm17bFdZVzEyMWhsVFk";
-    String propsFileID = "0ByP7_A9vXm17Zkl0ajF6LXlrYUE";
-    String scriptFileID = "0ByP7_A9vXm17ZnljLU1ybS16c2c";
-
-    init("hjabirdsongconnectionpool", "DB_HJA_BIRDSONG", dataFilesDir, dataFileID, propsFileID, scriptFileID, true);
-  }
-
   public static int dropTable() {
 
     return DBProxy.executeSQL("hjabirdsongconnectionpool", "DROP TABLE IF EXISTS TEN_FOLD", null);

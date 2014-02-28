@@ -21,22 +21,12 @@
  */
 package com.xeiam.datasets.lshtc4;
 
-import com.xeiam.datasets.common.business.DatasetsDAO;
 import com.xeiam.yank.DBProxy;
 
 /**
  * @author timmolter
  */
-public class LSHTC4DAO extends DatasetsDAO {
-
-  public static void init(String dataFilesDir) {
-
-    String dataFileID = "0ByP7_A9vXm17bFdZVzEyMWhsVFk";
-    String propsFileID = "0ByP7_A9vXm17Zkl0ajF6LXlrYUE";
-    String scriptFileID = "0ByP7_A9vXm17ZnljLU1ybS16c2c";
-
-    init("lshtc4connectionpool", "DB_LSHTC4", dataFilesDir, dataFileID, propsFileID, scriptFileID, true);
-  }
+public class LSHTC4DAO extends LSHTC4ParentDAO {
 
   public static int dropTable() {
 

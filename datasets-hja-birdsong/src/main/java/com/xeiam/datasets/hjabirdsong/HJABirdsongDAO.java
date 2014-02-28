@@ -19,62 +19,53 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package com.xeiam.datasets.lshtc4;
-
-import java.util.List;
+package com.xeiam.datasets.hjabirdsong;
 
 import com.xeiam.yank.DBProxy;
 
 /**
  * @author timmolter
  */
-public class LSHTC4HierarchyDAO extends LSHTC4ParentDAO {
+public class HJABirdsongDAO extends HJABirdsongParentDAO {
 
   public static int dropTable() {
 
-    return DBProxy.executeSQL("lshtc4connectionpool", "DROP TABLE IF EXISTS LSHTC4Hierarchy", null);
+    return DBProxy.executeSQL("hjabirdsongconnectionpool", "DROP TABLE IF EXISTS BAG_LABELS", null);
   }
 
   public static int createTable() {
 
-    String LSHTC4Hierarchy_CREATE = "CREATE CACHED TABLE LSHTC4Hierarchy (parentid INTEGER NOT NULL, nodeid INTEGER NOT NULL)";
-    return DBProxy.executeSQL("lshtc4connectionpool", LSHTC4Hierarchy_CREATE, null);
+    String BagLabels_CREATE = "CREATE CACHED TABLE BAG_LABELS (bagid INTEGER NOT NULL, labels VARCHAR(256) NOT NULL, wavfilename VARCHAR(256) NOT NULL, PRIMARY KEY (bagid))";
+    return DBProxy.executeSQL("hjabirdsongconnectionpool", BagLabels_CREATE, null);
   }
 
-  public static int insert(LSHTC4Hierarchy lSHTC4Hierarchy) {
+  public static int insert(HJABirdSong bagLabels) {
 
     Object[] params = new Object[] {
 
     // @formatter:off
-        lSHTC4Hierarchy.getParentid(),
-        lSHTC4Hierarchy.getNodeid()
+        bagLabels.getBagid(),
+        bagLabels.getLabels(),
+        bagLabels.getWavfilename()
     // @formatter:on
         };
-    String LSHTC4Hierarchy_INSERT = "INSERT INTO LSHTC4Hierarchy (parentid, nodeid) VALUES (?, ?)";
-    return DBProxy.executeSQL("lshtc4connectionpool", LSHTC4Hierarchy_INSERT, params);
-
+    String BAG_LABELS_INSERT = "INSERT INTO BAG_LABELS (bagid, labels, wavfilename) VALUES (?, ?, ?)";
+    return DBProxy.executeSQL("hjabirdsongconnectionpool", BAG_LABELS_INSERT, params);
   }
 
-  public static List<LSHTC4Hierarchy> selectAll() {
+  public static HJABirdSong selectSingle(int bagid) {
 
-    String SELECT_ALL = "SELECT * FROM LSHTC4Hierarchy";
+    Object[] params = new Object[] { bagid };
 
-    return DBProxy.queryObjectListSQL("lshtc4connectionpool", SELECT_ALL, LSHTC4Hierarchy.class, null);
-  }
+    String SELECT_SINGLE = "SELECT * FROM BAG_LABELS WHERE bagid = ?";
 
-  public static LSHTC4Hierarchy selectSingle(int id) {
-
-    Object[] params = new Object[] { id };
-
-    String SELECT_SINGLE = "SELECT * FROM LSHTC4Hierarchy WHERE nodeid = ?";
-
-    return DBProxy.querySingleObjectSQL("lshtc4connectionpool", SELECT_SINGLE, LSHTC4Hierarchy.class, params);
+    return DBProxy.querySingleObjectSQL("hjabirdsongconnectionpool", SELECT_SINGLE, HJABirdSong.class, params);
   }
 
   public static long selectCount() {
 
-    String SELECT_COUNT = "SELECT COUNT(*) FROM LSHTC4Hierarchy";
+    String SELECT_COUNT = "SELECT COUNT(*) FROM BAG_LABELS";
 
-    return DBProxy.querySingleScalarSQL("lshtc4connectionpool", SELECT_COUNT, Long.class, null);
+    return DBProxy.querySingleScalarSQL("hjabirdsongconnectionpool", SELECT_COUNT, Long.class, null);
   }
 }

@@ -24,58 +24,64 @@ package com.xeiam.datasets.hjabirdsong.bootstrap;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.Iterator;
 import java.util.List;
 
 import org.apache.commons.io.FileUtils;
 
-import com.google.common.base.Splitter;
-import com.xeiam.datasets.hjabirdsong.TenFold;
-import com.xeiam.datasets.hjabirdsong.TenFoldDAO;
+import com.xeiam.datasets.hjabirdsong.HJABirdSong;
+import com.xeiam.datasets.hjabirdsong.HJABirdsongDAO;
 
 /**
  * @author timmolter
  */
-public class RawData2DBTenFold {
+public class RawData2DB {
 
   int idx = 0;
 
   public static void main(String[] args) throws IOException {
 
-    TenFoldDAO.initTest();
+    HJABirdsongDAO.initTest();
 
-    TenFoldDAO.dropTable();
-    TenFoldDAO.createTable();
+    HJABirdsongDAO.dropTable();
+    HJABirdsongDAO.createTable();
 
-    RawData2DBTenFold dp = new RawData2DBTenFold();
-    System.out.println("processing TenFold data...");
-    dp.go("./raw/hja_birdsong_10_fold.txt");
+    RawData2DB dp = new RawData2DB();
+    System.out.println("processing BagLabels data...");
+    dp.go("./raw/hja_birdsong_bag_labels.txt", "./raw/id2filename.txt");
 
     System.out.println("done.");
 
-    TenFoldDAO.release();
+    HJABirdsongDAO.release();
   }
 
-  private void go(String dataFile) throws IOException {
+  private void go(String labelsFile, String wavNameFile) throws IOException {
 
-    List<String> lines = FileUtils.readLines(new File(dataFile), "UTF-8");
+    List<String> labelsLines = FileUtils.readLines(new File(labelsFile), "UTF-8");
+    List<String> wavNameLines = FileUtils.readLines(new File(wavNameFile), "UTF-8");
 
-    for (String line : lines) {
+    for (int i = 0; i < labelsLines.size(); i++) {
 
-      System.out.println(line);
-      Iterable<String> splitLine = Splitter.on(",").split(line);
-      Iterator<String> itr = splitLine.iterator();
-      String bagid = itr.next();
-      String fold = itr.next();
+      String labelLine = labelsLines.get(i);
+      String wavNameLine = wavNameLines.get(i);
+
+      System.out.println(labelLine);
+      System.out.println(wavNameLine);
+
+      String bagIDString = labelLine.substring(0, labelLine.indexOf(","));
+      String labelsCSV = labelLine.substring(labelLine.indexOf(",") + 1, labelLine.length());
+
+      String wavFileName = wavNameLine.substring(wavNameLine.indexOf(",") + 1, wavNameLine.length()) + ".wav";
+
       try {
-        TenFold tenFold = new TenFold();
-        tenFold.setBagid(Integer.parseInt(bagid));
-        tenFold.setFold(Integer.parseInt(fold));
-        TenFoldDAO.insert(tenFold);
-        System.out.println(tenFold.toString());
+        HJABirdSong bagLabels = new HJABirdSong();
+        bagLabels.setBagid(Integer.parseInt(bagIDString));
+        bagLabels.setLabels(labelsCSV);
+        bagLabels.setWavfilename(wavFileName);
+        HJABirdsongDAO.insert(bagLabels);
+        System.out.println(bagLabels.toString());
         idx++;
       } catch (Exception e) {
-        // e.printStackTrace();
+        e.printStackTrace();
         // eat it. skip first line in file.
       }
 

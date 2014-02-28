@@ -28,41 +28,43 @@ import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import com.xeiam.datasets.hjabirdsong.TenFold;
-import com.xeiam.datasets.hjabirdsong.TenFoldDAO;
+import com.xeiam.datasets.hjabirdsong.HJABirdSong;
+import com.xeiam.datasets.hjabirdsong.HJABirdsongDAO;
 
 /**
  * @author timmolter
  */
 // @Ignore
-public class TestTenFoldDAO {
+public class TestHJABirdsongDAO {
 
   @BeforeClass
   public static void setUpDB() {
 
-    TenFoldDAO.initTest();
+    HJABirdsongDAO.initTest();
 
   }
 
   @AfterClass
   public static void tearDownDB() {
 
-    TenFoldDAO.release();
+    HJABirdsongDAO.release();
   }
 
   @Test
   public void testSelectCount() {
 
-    long count = TenFoldDAO.selectCount();
+    long count = HJABirdsongDAO.selectCount();
     assertThat(count, equalTo(548L));
   }
 
   @Test
   public void testSelect() {
 
-    TenFold tenFold = TenFoldDAO.selectSingle(3);
-    assertThat(tenFold.getBagid(), equalTo(3));
-    assertThat(tenFold.getFold(), equalTo(7));
+    HJABirdSong hJABirdSong = HJABirdsongDAO.selectSingle(3);
+    assertThat(hJABirdSong.getBagid(), equalTo(3));
+    assertThat(hJABirdSong.getLabels(), equalTo("1,3"));
+    assertThat(hJABirdSong.getLabelsAsArray().get(0), equalTo(1));
+    assertThat(hJABirdSong.getLabelsAsArray().get(1), equalTo(3));
+    assertThat(hJABirdSong.getWavfilename(), equalTo("PC13_20090531_050000_10.wav"));
   }
-
 }
