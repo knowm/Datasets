@@ -30,11 +30,12 @@ public class HJABirdsongParentDAO extends DatasetsDAO {
 
   public static void init(String dataFilesDir) {
 
-    String dataFileID = "TODO";
-    String propsFileID = "TODO";
-    String scriptFileID = "TODO";
+    String dataFileID = "0ByP7_A9vXm17SWZJa09fWnFxbGM";
+    String propsFileID = "0ByP7_A9vXm17RS1NMllKelJ0MlE";
+    String scriptFileID = "0ByP7_A9vXm17YXlZelRxV01ZdDg";
+    String lobsFileID = "0ByP7_A9vXm17WDBoS25pMHZmR0E";
 
-    init("hjabirdsongconnectionpool", "DB_HJA_BIRDSONG", dataFilesDir, dataFileID, propsFileID, scriptFileID, true);
+    init("hjabirdsongconnectionpool", "DB_HJA_BIRDSONG", dataFilesDir, dataFileID, propsFileID, scriptFileID, lobsFileID, true);
   }
 
 }

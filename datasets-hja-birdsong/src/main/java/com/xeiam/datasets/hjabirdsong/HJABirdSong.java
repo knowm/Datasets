@@ -1,5 +1,6 @@
 package com.xeiam.datasets.hjabirdsong;
 
+import java.sql.Blob;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -37,6 +38,7 @@ public class HJABirdSong {
   private int bagid;
   private String labels;
   private String wavfilename;
+  private Blob wavbytes;
 
   private static final Map<Integer, String> label2WordMap = new HashMap<Integer, String>();
 
@@ -94,6 +96,16 @@ public class HJABirdSong {
   public void setWavfilename(String wavfilename) {
 
     this.wavfilename = wavfilename;
+  }
+
+  public Blob getWavbytes() {
+
+    return wavbytes;
+  }
+
+  public void setWavbytes(Blob wavbytes) {
+
+    this.wavbytes = wavbytes;
   }
 
   @Override

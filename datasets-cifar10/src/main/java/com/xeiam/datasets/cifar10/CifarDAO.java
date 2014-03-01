@@ -35,7 +35,7 @@ public class CifarDAO extends DatasetsDAO {
     String propsFileID = "0ByP7_A9vXm17VHIzd1hSNW4zUXc";
     String scriptFileID = "0ByP7_A9vXm17eHlzcDJfalNoYkk";
 
-    init("cifarconnectionpool", "DB_CIFAR", dataFilesDir, dataFileID, propsFileID, scriptFileID, true);
+    init("cifarconnectionpool", "DB_CIFAR", dataFilesDir, dataFileID, propsFileID, scriptFileID, null, true);
   }
 
   public static int dropTable() {

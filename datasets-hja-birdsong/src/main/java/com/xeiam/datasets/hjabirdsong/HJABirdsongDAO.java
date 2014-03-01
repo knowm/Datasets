@@ -30,41 +30,42 @@ public class HJABirdsongDAO extends HJABirdsongParentDAO {
 
   public static int dropTable() {
 
-    return DBProxy.executeSQL("hjabirdsongconnectionpool", "DROP TABLE IF EXISTS BAG_LABELS", null);
+    return DBProxy.executeSQL("hjabirdsongconnectionpool", "DROP TABLE IF EXISTS BIRD_SONGS", null);
   }
 
   public static int createTable() {
 
-    String BagLabels_CREATE = "CREATE CACHED TABLE BAG_LABELS (bagid INTEGER NOT NULL, labels VARCHAR(256) NOT NULL, wavfilename VARCHAR(256) NOT NULL, PRIMARY KEY (bagid))";
+    String BagLabels_CREATE = "CREATE CACHED TABLE BIRD_SONGS (bagid INTEGER NOT NULL, labels VARCHAR(256) NOT NULL, wavfilename VARCHAR(256) NOT NULL, wavbytes blob NOT NULL, PRIMARY KEY (bagid))";
     return DBProxy.executeSQL("hjabirdsongconnectionpool", BagLabels_CREATE, null);
   }
 
-  public static int insert(HJABirdSong bagLabels) {
+  public static int insert(HJABirdSong hJABirdSong) {
 
     Object[] params = new Object[] {
 
     // @formatter:off
-        bagLabels.getBagid(),
-        bagLabels.getLabels(),
-        bagLabels.getWavfilename()
+        hJABirdSong.getBagid(),
+        hJABirdSong.getLabels(),
+        hJABirdSong.getWavfilename(),
+        hJABirdSong.getWavbytes()
     // @formatter:on
         };
-    String BAG_LABELS_INSERT = "INSERT INTO BAG_LABELS (bagid, labels, wavfilename) VALUES (?, ?, ?)";
-    return DBProxy.executeSQL("hjabirdsongconnectionpool", BAG_LABELS_INSERT, params);
+    String BIRD_SONGS_INSERT = "INSERT INTO BIRD_SONGS (bagid, labels, wavfilename, wavbytes) VALUES (?, ?, ?, ?)";
+    return DBProxy.executeSQL("hjabirdsongconnectionpool", BIRD_SONGS_INSERT, params);
   }
 
   public static HJABirdSong selectSingle(int bagid) {
 
     Object[] params = new Object[] { bagid };
 
-    String SELECT_SINGLE = "SELECT * FROM BAG_LABELS WHERE bagid = ?";
+    String SELECT_SINGLE = "SELECT * FROM BIRD_SONGS WHERE bagid = ?";
 
     return DBProxy.querySingleObjectSQL("hjabirdsongconnectionpool", SELECT_SINGLE, HJABirdSong.class, params);
   }
 
   public static long selectCount() {
 
-    String SELECT_COUNT = "SELECT COUNT(*) FROM BAG_LABELS";
+    String SELECT_COUNT = "SELECT COUNT(*) FROM BIRD_SONGS";
 
     return DBProxy.querySingleScalarSQL("hjabirdsongconnectionpool", SELECT_COUNT, Long.class, null);
   }

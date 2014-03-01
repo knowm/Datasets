@@ -37,7 +37,7 @@ public class MnistDAO extends DatasetsDAO {
     String propsFileID = "0ByP7_A9vXm17SV96TE5jdnY0UDQ";
     String scriptFileID = "0ByP7_A9vXm17U2s1d0FzdHlILUE";
 
-    init("mnistconnectionpool", "DB_MNIST", dataFilesDir, dataFileID, propsFileID, scriptFileID, true);
+    init("mnistconnectionpool", "DB_MNIST", dataFilesDir, dataFileID, propsFileID, scriptFileID, null, true);
   }
 
   public static int dropTable() {

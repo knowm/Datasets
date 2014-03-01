@@ -35,7 +35,7 @@ public class BreastCancerDAO extends DatasetsDAO {
     String propsFileID = "0ByP7_A9vXm17X3hFNFA3NGViWlE";
     String scriptFileID = "0ByP7_A9vXm17NEQycTM1Q0Y3QXM";
 
-    init("breastcancerconnectionpool", "DB_BREAST_CANCER", dataFilesDir, dataFileID, propsFileID, scriptFileID, false);
+    init("breastcancerconnectionpool", "DB_BREAST_CANCER", dataFilesDir, dataFileID, propsFileID, scriptFileID, null, false);
   }
 
   public static int dropTable() {

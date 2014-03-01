@@ -24,6 +24,9 @@ package com.xeiam.datasets.hjabirdsong.bootstrap;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.util.List;
+
+import org.apache.commons.io.FileUtils;
 
 /**
  * @author timmolter
@@ -40,21 +43,16 @@ public class DownloadWavFiles {
 
     String baseURL = "http://web.engr.oregonstate.edu/~briggsf/kdd2012datasets/hja_birdsong/src_wavs/";
 
-    String baseWavFileName = "_20090531_050000_";
+    List<String> wavNameLines = FileUtils.readLines(new File("./raw/id2filename.txt"), "UTF-8");
 
-    String[] prefixes = new String[] { "PC1", "PC4", "PC7", "PC8", "PC13", "PC15", };
-    int numFilePerPrefix = 120;
-    for (int i = 0; i < prefixes.length; i++) {
-      String prefix = prefixes[i];
-      for (int j = 0; j < numFilePerPrefix; j++) {
+    for (int i = 0; i < wavNameLines.size(); i++) {
 
-        String wavFileName = prefix + baseWavFileName + j + ".wav";
-        System.out.println("downloading: " + wavFileName);
-        URL url = new URL(baseURL + wavFileName);
-        File wavDir = new File("./raw/wav/" + wavFileName);
-        org.apache.commons.io.FileUtils.copyURLToFile(url, wavDir, 5000, 10000);
-      }
-
+      String wavNameLine = wavNameLines.get(i);
+      String wavFileName = wavNameLine.substring(wavNameLine.indexOf(",") + 1, wavNameLine.length()) + ".wav";
+      System.out.println("downloading: " + wavFileName);
+      URL url = new URL(baseURL + wavFileName);
+      File wavDir = new File("./raw/wav/" + wavFileName);
+      org.apache.commons.io.FileUtils.copyURLToFile(url, wavDir, 5000, 10000);
     }
 
   }

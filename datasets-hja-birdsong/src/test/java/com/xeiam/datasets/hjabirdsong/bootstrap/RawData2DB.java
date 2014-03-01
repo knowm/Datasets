@@ -23,8 +23,12 @@ package com.xeiam.datasets.hjabirdsong.bootstrap;
  */
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.List;
+
+import javax.sql.rowset.serial.SerialBlob;
 
 import org.apache.commons.io.FileUtils;
 
@@ -64,29 +68,40 @@ public class RawData2DB {
       String labelLine = labelsLines.get(i);
       String wavNameLine = wavNameLines.get(i);
 
-      System.out.println(labelLine);
-      System.out.println(wavNameLine);
+      // System.out.println(labelLine);
+      // System.out.println(wavNameLine);
 
       String bagIDString = labelLine.substring(0, labelLine.indexOf(","));
       String labelsCSV = labelLine.substring(labelLine.indexOf(",") + 1, labelLine.length());
 
       String wavFileName = wavNameLine.substring(wavNameLine.indexOf(",") + 1, wavNameLine.length()) + ".wav";
 
+      InputStream fis = null;
       try {
-        HJABirdSong bagLabels = new HJABirdSong();
-        bagLabels.setBagid(Integer.parseInt(bagIDString));
-        bagLabels.setLabels(labelsCSV);
-        bagLabels.setWavfilename(wavFileName);
-        HJABirdsongDAO.insert(bagLabels);
-        System.out.println(bagLabels.toString());
+        // the Wav file Bytes
+        File srcFile = new File("./raw/wav/" + wavFileName);
+        fis = new FileInputStream(srcFile);
+        byte[] buffer = new byte[(int) srcFile.length()];
+        fis.read(buffer, 0, buffer.length);
+
+        HJABirdSong hJABirdSong = new HJABirdSong();
+        hJABirdSong.setBagid(Integer.parseInt(bagIDString));
+        hJABirdSong.setLabels(labelsCSV);
+        hJABirdSong.setWavfilename(wavFileName);
+        hJABirdSong.setWavbytes(new SerialBlob(buffer));
+        HJABirdsongDAO.insert(hJABirdSong);
+        // System.out.println(hJABirdSong.toString());
         idx++;
       } catch (Exception e) {
         e.printStackTrace();
         // eat it. skip first line in file.
+      } finally {
+        if (fis != null) {
+          fis.close();
+        }
       }
 
     }
-
     System.out.println("Number parsed: " + idx);
 
   }

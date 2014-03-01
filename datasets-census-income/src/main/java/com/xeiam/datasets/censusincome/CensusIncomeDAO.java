@@ -35,7 +35,7 @@ public class CensusIncomeDAO extends DatasetsDAO {
     String propsFileID = "0ByP7_A9vXm17THlaaXBoSzMzc3M";
     String scriptFileID = "0ByP7_A9vXm17QUprZUN6Q3pGZ2c";
 
-    init("censusincomeconnectionpool", "DB_CENSUS_INCOME", dataFilesDir, dataFileID, propsFileID, scriptFileID, true);
+    init("censusincomeconnectionpool", "DB_CENSUS_INCOME", dataFilesDir, dataFileID, propsFileID, scriptFileID, null, true);
   }
 
   public static int dropTable() {

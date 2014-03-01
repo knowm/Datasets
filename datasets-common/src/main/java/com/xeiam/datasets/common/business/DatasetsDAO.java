@@ -51,7 +51,7 @@ public abstract class DatasetsDAO {
     DBConnectionManager.INSTANCE.release();
   }
 
-  public static void init(String poolName, String dbName, String dataFilesDir, String dataFileURL, String propsFileURL, String scriptFileURL, boolean requiresManualDownload) {
+  public static void init(String poolName, String dbName, String dataFilesDir, String dataFileURL, String propsFileURL, String scriptFileURL, String lobsFileURL, boolean requiresManualDownload) {
 
     // 1. create data dir
 
@@ -64,6 +64,7 @@ public abstract class DatasetsDAO {
     File dataFile = new File(dataFilesDir + "/" + dbName + ".data");
     File propsFile = new File(dataFilesDir + "/" + dbName + ".properties");
     File scriptFile = new File(dataFilesDir + "/" + dbName + ".script");
+    File lobsFile = new File(dataFilesDir + "/" + dbName + ".lobs");
 
     // if the files don't yet exist, then download them
     if (!dataFile.exists() || !propsFile.exists() || !scriptFile.exists()) {
@@ -110,6 +111,9 @@ public abstract class DatasetsDAO {
     }
     else {
       logger.info("Database files already exist in local directory. Skipping download.");
+    }
+    if (lobsFileURL != null && !lobsFile.exists()) {
+      throw new RuntimeException("The data file is too big to download automatically! Please manually download it from: " + (GoogleDriveURLPart1 + lobsFileURL) + " and place it in: " + dataFilesDir);
     }
 
     // 3. setup HSQLDB

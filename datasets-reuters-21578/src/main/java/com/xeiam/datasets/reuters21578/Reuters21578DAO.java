@@ -37,7 +37,7 @@ public class Reuters21578DAO extends DatasetsDAO {
     String propsFileID = "0ByP7_A9vXm17c1hwbTNFdVBwX0k";
     String scriptFileID = "0ByP7_A9vXm17Q3Q5ejFrNFlGOTA";
 
-    init("reuters21578connectionpool", "DB_REUTERS_21578", dataFilesDir, dataFileID, propsFileID, scriptFileID, true);
+    init("reuters21578connectionpool", "DB_REUTERS_21578", dataFilesDir, dataFileID, propsFileID, scriptFileID, null, true);
   }
 
   public static int dropTable() {
