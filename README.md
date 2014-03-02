@@ -60,6 +60,7 @@ projects has its own README file with instructions on where to get the data and 
 * [Reuters-21578](http://archive.ics.uci.edu/ml/support/Reuters-21578+Text+Categorization+Collection)
 * [CIFAR-10](http://www.cs.toronto.edu/~kriz/cifar.html)
 * [LSHTC4](http://www.kaggle.com/c/lshtc/data)
+* [HJA Birdsong](http://web.engr.oregonstate.edu/~briggsf/kdd2012datasets/hja_birdsong/)
 
 ## Example Usage
 
