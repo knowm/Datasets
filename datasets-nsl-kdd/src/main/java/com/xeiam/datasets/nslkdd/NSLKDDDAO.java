@@ -33,9 +33,9 @@ public class NSLKDDDAO extends DatasetsDAO {
 
   public static void init(String dataFilesDir) {
 
-    String dataFileID = "XXX";
-    String propsFileID = "XXX";
-    String scriptFileID = "XXX";
+    String dataFileID = "0ByP7_A9vXm17Q2w5LTFCb3ZEVFE";
+    String propsFileID = "0ByP7_A9vXm17Nl9PRGJQeVp0NGc";
+    String scriptFileID = "0ByP7_A9vXm17eWhldXZiNWxRSnc";
 
     init("nslkddconnectionpool", "DB_NSL_KDD", dataFilesDir, dataFileID, propsFileID, scriptFileID, null, true);
   }
