@@ -110,6 +110,11 @@
 				<artifactId>commons-math3</artifactId>
 				<version>3.2</version>
 			</dependency>
+			<dependency>
+				<groupId>org.apache.opennlp</groupId>
+				<artifactId>opennlp-tools</artifactId>
+				<version>1.5.3</version>
+			</dependency>
 		</dependencies>
 	</dependencyManagement>
 

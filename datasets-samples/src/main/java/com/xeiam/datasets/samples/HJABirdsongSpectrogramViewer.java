@@ -39,10 +39,10 @@ import javax.swing.event.TreeSelectionListener;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.TreeSelectionModel;
 
-import com.xeiam.datasets.common.musicg.wave.Spectrogram;
-import com.xeiam.datasets.common.musicg.wave.SpectrogramRender;
-import com.xeiam.datasets.common.musicg.wave.Wave;
-import com.xeiam.datasets.common.musicg.wave.WaveformRender;
+import com.musicg.wave.Spectrogram;
+import com.musicg.wave.SpectrogramRender;
+import com.musicg.wave.Wave;
+import com.musicg.wave.WaveformRender;
 import com.xeiam.datasets.hjabirdsong.HJABirdSong;
 import com.xeiam.datasets.hjabirdsong.HJABirdsongDAO;
 

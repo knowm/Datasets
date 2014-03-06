@@ -55,7 +55,8 @@ projects has its own README file with instructions on where to get the data and 
 Source code from other open source projects has been bundled with this project either directly or in modified form. 
 The original copyright and license notices have been preserved in their original forms in the following source code files:
 
-datasets-common/com.xeiam.datasets.common/musicg (apache-2.0)
+[musicg](https://code.google.com/p/musicg/) datasets-common/com/musicg (apache-2.0)
+[snowball](http://snowball.tartarus.org/license.php) datasets-common/org/taratrus/snowball (BSD)
 
 ## Included Datasets
 
