@@ -61,6 +61,7 @@ projects has its own README file with instructions on where to get the data and 
 * [CIFAR-10](http://www.cs.toronto.edu/~kriz/cifar.html)
 * [LSHTC4](http://www.kaggle.com/c/lshtc/data)
 * [HJA Birdsong](http://web.engr.oregonstate.edu/~briggsf/kdd2012datasets/hja_birdsong/)
+* [NSL-KDD](http://nsl.cs.unb.ca/NSL-KDD/)
 
 ## Example Usage
 
