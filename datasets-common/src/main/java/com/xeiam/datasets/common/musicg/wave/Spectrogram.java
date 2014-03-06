@@ -16,7 +16,7 @@
  */
 package com.xeiam.datasets.common.musicg.wave;
 
-import com.xeiam.datasets.common.musicg.dsp.FastFourierTransform;
+import com.xeiam.datasets.common.FastFourierTransform;
 import com.xeiam.datasets.common.musicg.dsp.WindowFunction;
 import com.xeiam.datasets.common.musicg.dsp.WindowFunction.WindowType;
 
