@@ -42,7 +42,7 @@ public class CifarImageDisplayApp {
    */
   public static void main(String[] args) {
 
-    CifarDAO.initTest();// setup data
+    CifarDAO.init("/usr/local/Datasets"); // setup data
     try {
       CifarImageDisplayApp cifarImageDisplayApp = new CifarImageDisplayApp();
       cifarImageDisplayApp.go(args);
@@ -69,7 +69,7 @@ public class CifarImageDisplayApp {
     int[][] red = cifar.getRedChannel();
 
     // paint the patches
-    JPanel cifarImagePanel = new CifarImagePanel(red, 1);
+    JPanel cifarImagePanel = new CifarImagePanel(red, 4);
     new CifarViewer(cifarImagePanel, "Index = " + cifar.getId() + " label = " + cifar.getLabelWord());
 
   }

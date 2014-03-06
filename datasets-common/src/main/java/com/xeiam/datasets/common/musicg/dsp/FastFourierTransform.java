@@ -21,7 +21,7 @@ public class FastFourierTransform {
 
     Complex[] result = fft.transform(amplitudes, TransformType.FORWARD);
 
-    // convert from complex to magnitude and only keep the positive frequences as the FTT creates a symmetric result
+    // convert from complex to magnitude and only keep the positive frequencies as the FTT creates a symmetric result
     int positiveSize = result.length / 2;
     double[] magnitude = new double[positiveSize];
     for (int i = positiveSize; i < result.length; i++) {

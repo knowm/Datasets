@@ -126,7 +126,7 @@ public class HJABirdsongSpectrogramViewer extends JPanel implements TreeSelectio
       e1.printStackTrace();
     }
 
-    // System.out.println(wave.toString());
+    System.out.println(wave.toString());
 
     JPanel soundPanel = new JPanel();
     soundPanel.setLayout(new BorderLayout());
