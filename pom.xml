@@ -233,7 +233,7 @@
 						<include>**/*.java</include>
 					</includes>
 					<excludes>
-						<exclude>com.xeiam.datasets.common/musicg/**</exclude>
+						<exclude>**/com/xeiam/datasets/common/musicg/**</exclude>
 					</excludes>
 				</configuration>
 			</plugin>
