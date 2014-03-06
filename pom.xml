@@ -32,7 +32,7 @@
 			<name>MIT</name>
 			<url>http://www.opensource.org/licenses/mit-license.php</url>
 			<distribution>repo</distribution>
-			<comments>All source code is under the MIT license.</comments>
+			<comments>All source code is under the MIT license. Other open source has been integrated into this project and the copyrights of the original authors are attributed in the respective source code files.</comments>
 		</license>
 	</licenses>
 
@@ -85,11 +85,6 @@
 	<dependencyManagement>
 		<dependencies>
 
-			<dependency>
-				<groupId>commons-io</groupId>
-				<artifactId>commons-io</artifactId>
-				<version>2.4</version>
-			</dependency>
 			<dependency>
 				<groupId>com.xeiam</groupId>
 				<artifactId>yank</artifactId>
@@ -237,6 +232,9 @@
 					<includes>
 						<include>**/*.java</include>
 					</includes>
+					<excludes>
+						<exclude>com.xeiam.datasets.common/musicg/**</exclude>
+					</excludes>
 				</configuration>
 			</plugin>
 
