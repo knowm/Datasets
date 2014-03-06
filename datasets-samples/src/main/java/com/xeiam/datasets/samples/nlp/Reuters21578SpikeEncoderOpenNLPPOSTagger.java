@@ -1,22 +1,15 @@
 /**
- * Copyright (c) 2013 M. Alexander Nugent Consulting <i@alexnugent.name>
+ * Copyright (C) 2013-2014 Xeiam LLC http://xeiam.com
  *
- * M. Alexander Nugent Consulting Research License Agreement
- * Non-Commercial Academic Use Only
+ * Permission is hereby granted, free of charge, to any person obtaining a copy of
+ * this software and associated documentation files (the "Software"), to deal in
+ * the Software without restriction, including without limitation the rights to
+ * use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies
+ * of the Software, and to permit persons to whom the Software is furnished to do
+ * so, subject to the following conditions:
  *
- * This Software is proprietary. By installing, copying, or otherwise using this
- * Software, you agree to be bound by the terms of this license. If you do not agree,
- * do not install, copy, or use the Software. The Software is protected by copyright
- * and other intellectual property laws.
- *
- * You may use the Software for non-commercial academic purpose, subject to the following
- * restrictions. You may copy and use the Software for peer-review and methods verification
- * only. You may not create derivative works of the Software. You may not use or distribute
- * the Software or any derivative works in any form for commercial or non-commercial purposes.
- *
- * Violators will be prosecuted to the full extent of the law.
- *
- * All rights reserved. No warranty, explicit or implicit, provided.
+ * The above copyright notice and this permission notice shall be included in all
+ * copies or substantial portions of the Software.
  *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,

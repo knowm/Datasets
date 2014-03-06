@@ -238,7 +238,9 @@
 						<include>**/*.java</include>
 					</includes>
 					<excludes>
-						<exclude>**/com/xeiam/datasets/common/musicg/**</exclude>
+                        <exclude>**/com/musicg/**</exclude>
+                        <exclude>**/org/tartarus/snowball/**</exclude>
+                        <exclude>**/mnist/tools/**</exclude>
 					</excludes>
 				</configuration>
 			</plugin>
