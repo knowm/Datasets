@@ -43,7 +43,7 @@ public class MnistImageDisplayApp {
   public static void main(String[] args) {
 
     try {
-      MnistDAO.initTest(); // setup data
+      MnistDAO.init("/usr/local/Datasets"); // setup data
       MnistImageDisplayApp mnistImageDisplayApp = new MnistImageDisplayApp();
       mnistImageDisplayApp.go(args);
     } catch (Exception e) {

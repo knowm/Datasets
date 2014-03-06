@@ -23,9 +23,10 @@ package com.xeiam.datasets.mnist.bootstrap;
 
 import java.io.IOException;
 
+import mnist.tools.MnistManager;
+
 import com.xeiam.datasets.mnist.Mnist;
 import com.xeiam.datasets.mnist.MnistDAO;
-import com.xeiam.datasets.mnist.tools.MnistManager;
 
 /**
  * @author timmolter

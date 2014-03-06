@@ -19,7 +19,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package com.xeiam.datasets.mnist.tools;
+package mnist.tools;
 
 import java.io.IOException;
 
@@ -45,36 +45,6 @@ public class MnistManager {
 
   private MnistImageFile images;
   private MnistLabelFile labels;
-
-  // /**
-  // * Writes the given image in the given file using the PPM data format.
-  // *
-  // * @param image
-  // * @param ppmFileName
-  // * @throws IOException
-  // */
-  // public static void writeImageToPpm(int[][] image, String ppmFileName) throws IOException {
-  //
-  // BufferedWriter ppmOut = null;
-  // try {
-  // ppmOut = new BufferedWriter(new FileWriter(ppmFileName));
-  //
-  // int rows = image.length;
-  // int cols = image[0].length;
-  // ppmOut.write("P3\n");
-  // ppmOut.write("" + rows + " " + cols + " 255\n");
-  // for (int i = 0; i < rows; i++) {
-  // StringBuffer s = new StringBuffer();
-  // for (int j = 0; j < cols; j++) {
-  // s.append(image[i][j] + " " + image[i][j] + " " + image[i][j] + "  ");
-  // }
-  // ppmOut.write(s.toString());
-  // }
-  // } finally {
-  // ppmOut.close();
-  // }
-  //
-  // }
 
   /**
    * Constructs an instance managing the two given data files. Supports <code>NULL</code> value for one of the arguments in case reading only one of
