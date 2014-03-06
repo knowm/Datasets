@@ -116,4 +116,7 @@ Xeiam Datasets is built with Maven.
 
     mvn javadoc:aggregate 
 
+ ## Continuous Integration
+[![Build Status](https://travis-ci.org/timmolter/Datasets.png?branch=develop)](https://travis-ci.org/timmolter/Datasets.png)  
+[Build History](https://travis-ci.org/timmolter/Datasets/builds)  
  
