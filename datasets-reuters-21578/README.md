@@ -8,7 +8,7 @@
 
 1. put all files in `raw` folder in project root
 
-1. Run `Reuters21578Data2DB.java`. 
+1. Run `Data2DB.java`. 
 
 1. The database containing the data will appear in `db`.
 

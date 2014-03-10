@@ -43,7 +43,7 @@ import com.xeiam.datasets.reuters21578.Reuters21578DAO;
  * 
  * @author timmolter
  */
-public class Reuters21578Data2DB {
+public class Data2DB {
 
   int maxBodyLength = 0;
 
@@ -54,7 +54,7 @@ public class Reuters21578Data2DB {
     Reuters21578DAO.dropTable();
     Reuters21578DAO.createTable();
 
-    Reuters21578Data2DB dp = new Reuters21578Data2DB();
+    Data2DB dp = new Data2DB();
     dp.go();
 
     Reuters21578DAO.release();
