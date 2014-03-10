@@ -47,8 +47,6 @@ import com.xeiam.datasets.hjabirdsong.HJABirdSong;
 import com.xeiam.datasets.hjabirdsong.HJABirdsongDAO;
 
 /**
- * Class containing all XChart example charts
- * 
  * @author timmolter
  */
 public class HJABirdsongSpectrogramViewer extends JPanel implements TreeSelectionListener {
