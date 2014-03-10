@@ -47,6 +47,7 @@
 		<module>datasets-samples</module>
 		<module>datasets-hja-birdsong</module>
 		<module>datasets-nsl-kdd</module>
+		<module>datasets-ucsd-anomaly</module>
 	</modules>
 
 	<distributionManagement>
