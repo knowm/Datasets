@@ -43,6 +43,11 @@ public class OpenNLPTreeParserUtils {
   private static Parser parser = null;
   static {
     InputStream parseIS = Thread.currentThread().getContextClassLoader().getResourceAsStream("apacheOpenNLP/en-parser-chunking.bin");
+    if (parseIS == null) {
+      throw new RuntimeException(
+          "No model file found on classpath! You must manually download the following file from http://opennlp.sourceforge.net/models-1.5/ and place it on the classpath in a folder called \"apacheOpenNLP\": "
+              + "en-parser-chunking.bin");
+    }
     try {
       ParserModel parserModel = new ParserModel(parseIS);
       parser = ParserFactory.create(parserModel);

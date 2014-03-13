@@ -48,13 +48,47 @@ public class OpenNLPNameFinderUtils {
 
   static {
     InputStream personIS = Thread.currentThread().getContextClassLoader().getResourceAsStream("apacheOpenNLP/en-ner-person.bin");
+    if (personIS == null) {
+      throw new RuntimeException(
+          "No model file found on classpath! You must manually download the following file from http://opennlp.sourceforge.net/models-1.5/ and place it on the classpath in a folder called \"apacheOpenNLP\": "
+              + "en-ner-person.bin");
+    }
     InputStream dateIS = Thread.currentThread().getContextClassLoader().getResourceAsStream("apacheOpenNLP/en-ner-date.bin");
+    if (dateIS == null) {
+      throw new RuntimeException(
+          "No model file found on classpath! You must manually download the following file from http://opennlp.sourceforge.net/models-1.5/ and place it on the classpath in a folder called \"apacheOpenNLP\": "
+              + "en-ner-date.bin");
+    }
     InputStream locationIS = Thread.currentThread().getContextClassLoader().getResourceAsStream("apacheOpenNLP/en-ner-location.bin");
+    if (locationIS == null) {
+      throw new RuntimeException(
+          "No model file found on classpath! You must manually download the following file from http://opennlp.sourceforge.net/models-1.5/ and place it on the classpath in a folder called \"apacheOpenNLP\": "
+              + "en-ner-location.bin");
+    }
     InputStream moneyIS = Thread.currentThread().getContextClassLoader().getResourceAsStream("apacheOpenNLP/en-ner-money.bin");
+    if (moneyIS == null) {
+      throw new RuntimeException(
+          "No model file found on classpath! You must manually download the following file from http://opennlp.sourceforge.net/models-1.5/ and place it on the classpath in a folder called \"apacheOpenNLP\": "
+              + "en-ner-money.bin");
+    }
     InputStream organizationIS = Thread.currentThread().getContextClassLoader().getResourceAsStream("apacheOpenNLP/en-ner-organization.bin");
+    if (organizationIS == null) {
+      throw new RuntimeException(
+          "No model file found on classpath! You must manually download the following file from http://opennlp.sourceforge.net/models-1.5/ and place it on the classpath in a folder called \"apacheOpenNLP\": "
+              + "en-ner-organization.bin");
+    }
     InputStream percentageIS = Thread.currentThread().getContextClassLoader().getResourceAsStream("apacheOpenNLP/en-ner-percentage.bin");
+    if (percentageIS == null) {
+      throw new RuntimeException(
+          "No model file found on classpath! You must manually download the following file from http://opennlp.sourceforge.net/models-1.5/ and place it on the classpath in a folder called \"apacheOpenNLP\": "
+              + "en-ner-percentage.bin");
+    }
     InputStream timeIS = Thread.currentThread().getContextClassLoader().getResourceAsStream("apacheOpenNLP/en-ner-time.bin");
-
+    if (timeIS == null) {
+      throw new RuntimeException(
+          "No model file found on classpath! You must manually download the following file from http://opennlp.sourceforge.net/models-1.5/ and place it on the classpath in a folder called \"apacheOpenNLP\": "
+              + "en-ner-time.bin");
+    }
     try {
       TokenNameFinderModel personFinderModel = new TokenNameFinderModel(personIS);
       personFinder = new NameFinderME(personFinderModel);

@@ -41,6 +41,11 @@ public class OpenNLPChunkerUtils {
   private static ChunkerME chunkerME = null;
   static {
     InputStream chunkerIS = Thread.currentThread().getContextClassLoader().getResourceAsStream("apacheOpenNLP/en-chunker.bin");
+    if (chunkerIS == null) {
+      throw new RuntimeException(
+          "No model file found on classpath! You must manually download the following file from http://opennlp.sourceforge.net/models-1.5/ and place it on the classpath in a folder called \"apacheOpenNLP\": "
+              + "en-chunker.bin");
+    }
     try {
 
       ChunkerModel chunkerModel = new ChunkerModel(chunkerIS);

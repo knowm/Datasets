@@ -49,6 +49,21 @@ public class OpenNLPBasicUtils {
     InputStream tokenizerIS = Thread.currentThread().getContextClassLoader().getResourceAsStream("apacheOpenNLP/en-token.bin");
     InputStream sentenceDetectorIS = Thread.currentThread().getContextClassLoader().getResourceAsStream("apacheOpenNLP/en-sent.bin");
     InputStream posIS = Thread.currentThread().getContextClassLoader().getResourceAsStream("apacheOpenNLP/en-pos-maxent.bin");
+    if (tokenizerIS == null) {
+      throw new RuntimeException(
+          "No model file found on classpath! You must manually download the following file from http://opennlp.sourceforge.net/models-1.5/ and place it on the classpath in a folder called \"apacheOpenNLP\": "
+              + "en-token.bin");
+    }
+    if (sentenceDetectorIS == null) {
+      throw new RuntimeException(
+          "No model file found on classpath! You must manually download the following file from http://opennlp.sourceforge.net/models-1.5/ and place it on the classpath in a folder called \"apacheOpenNLP\": "
+              + "en-sent.bin");
+    }
+    if (posIS == null) {
+      throw new RuntimeException(
+          "No model file found on classpath! You must manually download the following file from http://opennlp.sourceforge.net/models-1.5/ and place it on the classpath in a folder called \"apacheOpenNLP\": "
+              + "en-pos-maxent.bin");
+    }
     try {
       TokenizerModel tokenizerModel = new TokenizerModel(tokenizerIS);
       tokenizer = new TokenizerME(tokenizerModel);
