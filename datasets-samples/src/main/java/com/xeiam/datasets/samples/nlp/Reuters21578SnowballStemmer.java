@@ -31,7 +31,7 @@ import com.xeiam.datasets.reuters21578.Reuters21578DAO;
 /**
  * @author timmolter
  */
-public class Reuters21578SpikeEncoderSnowballStemmer {
+public class Reuters21578SnowballStemmer {
 
   public static void main(String[] args) {
 

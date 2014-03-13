@@ -31,7 +31,7 @@ import com.xeiam.datasets.reuters21578.Reuters21578DAO;
 /**
  * @author timmolter
  */
-public class Reuters21578SpikeEncoderOpenNLPTokenizer {
+public class Reuters21578OpenNLPTokenizer {
 
   public static void main(String[] args) {
 

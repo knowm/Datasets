@@ -24,21 +24,21 @@ package com.xeiam.datasets.samples.nlp;
 import java.util.Arrays;
 import java.util.List;
 
-import com.xeiam.datasets.common.nlp.OpenNLPBasicUtils;
+import com.xeiam.datasets.common.nlp.OpenNLPTreeParserUtils;
 import com.xeiam.datasets.reuters21578.Reuters21578;
 import com.xeiam.datasets.reuters21578.Reuters21578DAO;
 
 /**
  * @author timmolter
  */
-public class Reuters21578SpikeEncoderOpenNLPPOSTagger {
+public class Reuters21578OpenNLPTreeParser {
 
   public static void main(String[] args) {
 
     try {
       Reuters21578DAO.init("/usr/local/Datasets"); // setup data
       List<Reuters21578> reuters21578List = Reuters21578DAO.selectRandomList(1);
-      String[] chunks = OpenNLPBasicUtils.getPOSTags(reuters21578List.get(0).getBody(), true);
+      String[] chunks = OpenNLPTreeParserUtils.getTreePhrases(reuters21578List.get(0).getBody());
       System.out.println(Arrays.toString(chunks));
     } catch (Exception e) {
       e.printStackTrace();
@@ -47,4 +47,5 @@ public class Reuters21578SpikeEncoderOpenNLPPOSTagger {
     }
 
   }
+
 }
