@@ -124,4 +124,13 @@ public class Reuters21578DAO extends DatasetsDAO {
 
     return DBProxy.querySingleScalarSQL("reuters21578connectionpool", SELECT_COUNT, Long.class, null);
   }
+
+  public static Reuters21578 selectSingle(int newID) {
+
+    String SELECT = "SELECT * FROM REUTERS_21578 WHERE newid = ?";
+
+    Object[] params = new Object[] { newID };
+
+    return DBProxy.querySingleObjectSQL("reuters21578connectionpool", SELECT, Reuters21578.class, params);
+  }
 }

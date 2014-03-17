@@ -29,7 +29,6 @@ import java.util.List;
 
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
-import org.junit.Ignore;
 import org.junit.Test;
 
 import com.xeiam.datasets.reuters21578.Reuters21578;
@@ -38,7 +37,7 @@ import com.xeiam.datasets.reuters21578.Reuters21578DAO;
 /**
  * @author timmolter
  */
-@Ignore
+// @Ignore
 public class TestReuters21578DAO {
 
   @BeforeClass
@@ -53,21 +52,21 @@ public class TestReuters21578DAO {
     Reuters21578DAO.release();
   }
 
-  @Test
+  // @Test
   public void testSelectAll() {
 
     List<Reuters21578> allData = Reuters21578DAO.selectAll();
     assertThat(allData.size(), equalTo(21578));
   }
 
-  @Test
+  // @Test
   public void testSelectRange() {
 
     List<Reuters21578> data = Reuters21578DAO.selectRange(10, 100);
     assertThat(data.size(), equalTo(100));
   }
 
-  @Test
+  // @Test
   public void testSelectRandom() {
 
     List<Reuters21578> data1 = Reuters21578DAO.selectRandomList(10);
@@ -80,7 +79,7 @@ public class TestReuters21578DAO {
 
   }
 
-  @Test
+  // @Test
   public void testSelectModApte() {
 
     List<Reuters21578> data = Reuters21578DAO.selectModApte("TRAIN", true);
@@ -94,5 +93,15 @@ public class TestReuters21578DAO {
 
     data = Reuters21578DAO.selectModApte("TEST", false);
     assertThat(data.size(), equalTo(2889));
+  }
+
+  @Test
+  public void testSelectSingle() {
+
+    Reuters21578 reuters21578 = Reuters21578DAO.selectSingle(1);
+    assertThat(reuters21578.getNewid(), equalTo(1));
+    assertThat(reuters21578.getTopics(), equalTo("cocoa"));
+    assertThat(reuters21578.getPlaces(), equalTo("el-salvador,usa,uruguay"));
+
   }
 }
