@@ -28,6 +28,7 @@ import java.sql.SQLException;
 
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import com.xeiam.datasets.hjabirdsong.HJABirdSong;
@@ -36,7 +37,7 @@ import com.xeiam.datasets.hjabirdsong.HJABirdsongDAO;
 /**
  * @author timmolter
  */
-// @Ignore
+@Ignore
 public class TestHJABirdsongDAO {
 
   @BeforeClass

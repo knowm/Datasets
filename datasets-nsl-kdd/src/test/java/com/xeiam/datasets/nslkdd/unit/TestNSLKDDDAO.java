@@ -26,6 +26,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
 
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import com.xeiam.datasets.nslkdd.NSLKDD;
@@ -34,7 +35,7 @@ import com.xeiam.datasets.nslkdd.NSLKDDDAO;
 /**
  * @author timmolter
  */
-// @Ignore
+@Ignore
 public class TestNSLKDDDAO {
 
   @BeforeClass

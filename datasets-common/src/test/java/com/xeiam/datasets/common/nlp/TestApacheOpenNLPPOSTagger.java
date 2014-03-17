@@ -28,6 +28,7 @@ import java.io.IOException;
 
 import opennlp.tools.util.InvalidFormatException;
 
+import org.junit.Ignore;
 import org.junit.Test;
 
 /**
@@ -35,6 +36,7 @@ import org.junit.Test;
  * 
  * @author timmolter
  */
+@Ignore
 public class TestApacheOpenNLPPOSTagger {
 
   public static void main(String[] args) throws InvalidFormatException, IOException {
@@ -54,7 +56,8 @@ public class TestApacheOpenNLPPOSTagger {
   @Test
   public void test() {
 
-    String paragraph = "The black and white cow jumped over the moon. Even though Bitcoin has been through two price spikes and dips, it seems yet again we have people flocking to this subreddit circlejerking over the price. ";
+    String paragraph =
+        "The black and white cow jumped over the moon. Even though Bitcoin has been through two price spikes and dips, it seems yet again we have people flocking to this subreddit circlejerking over the price. ";
 
     String[] posTags = OpenNLPBasicUtils.getPOSTags(paragraph, true);
     for (String a : posTags) {

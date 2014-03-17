@@ -27,9 +27,12 @@ import java.io.InputStream;
 import opennlp.tools.postag.POSModel;
 import opennlp.tools.postag.POSTaggerME;
 
+import org.junit.Ignore;
+
 /**
  * @author timmolter
  */
+@Ignore
 public class TestApacheNLP {
 
   private POSModel model;

@@ -154,27 +154,29 @@ public class Data2DB {
     // TOPICS /////////////////////////
     String topicsText = extractTextBetweenTags(storyText, "TOPICS");
     List<String> topicsArray = extractElementAsLines(topicsText, "D");
-    String topicsCSV = Joiner.on(", ").join(topicsArray);
+    // System.out.println(topicsArray);
+    String topicsCSV = Joiner.on(",").join(topicsArray);
+    // System.out.println("topicsCSV: " + topicsCSV);
     // PLACES /////////////////////////
     String placesText = extractTextBetweenTags(storyText, "PLACES");
     List<String> placesArray = extractElementAsLines(placesText, "D");
-    String placesCSV = Joiner.on(", ").join(placesArray);
+    String placesCSV = Joiner.on(",").join(placesArray);
     // PEOPLE /////////////////////////
     String peopleText = extractTextBetweenTags(storyText, "PEOPLE");
     List<String> peopleArray = extractElementAsLines(peopleText, "D");
-    String peopleCSV = Joiner.on(", ").join(peopleArray);
+    String peopleCSV = Joiner.on(",").join(peopleArray);
     // ORGS /////////////////////////
     String orgsText = extractTextBetweenTags(storyText, "ORGS");
     List<String> orgsArray = extractElementAsLines(orgsText, "D");
-    String orgsCSV = Joiner.on(", ").join(orgsArray);
+    String orgsCSV = Joiner.on(",").join(orgsArray);
     // EXCHANGES /////////////////////////
     String exchangesText = extractTextBetweenTags(storyText, "EXCHANGES");
     List<String> exchangesArray = extractElementAsLines(exchangesText, "D");
-    String exchangesCSV = Joiner.on(", ").join(exchangesArray);
+    String exchangesCSV = Joiner.on(",").join(exchangesArray);
     // COMPANIES /////////////////////////
     String companiesText = extractTextBetweenTags(storyText, "COMPANIES");
     List<String> companiesArray = extractElementAsLines(companiesText, "D");
-    String companiesCSV = Joiner.on(", ").join(companiesArray);
+    String companiesCSV = Joiner.on(",").join(companiesArray);
 
     // TITLE /////////////////////////
     String titleText = extractTextBetweenTags(storyText, "TITLE");
@@ -203,6 +205,7 @@ public class Data2DB {
     reuters21578.setTitle(titleText);
     reuters21578.setDateline(datelineText);
     reuters21578.setBody(body);
+    // System.out.println(reuters21578.toString());
 
     return reuters21578;
 
@@ -267,7 +270,7 @@ public class Data2DB {
 
     }
 
-    return buf.toString();
+    return buf.toString().trim();
   }
 
   /**

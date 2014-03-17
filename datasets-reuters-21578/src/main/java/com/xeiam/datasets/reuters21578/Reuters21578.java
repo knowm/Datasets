@@ -290,7 +290,7 @@ public class Reuters21578 {
   public String toString() {
 
     return "Reuters21578 [newid=" + newid + ", oldid=" + oldid + ", date=" + date + ", topics=" + topics + ", places=" + places + ", people=" + people + ", orgs=" + orgs + ", exchanges=" + exchanges
-        + ", companies=" + companies + ", title=" + title + ", dateline=" + dateline + ", body=" + body + "]";
+        + ", companies=" + companies + ", title=" + title + ", dateline=" + dateline + "]";
   }
 
 }

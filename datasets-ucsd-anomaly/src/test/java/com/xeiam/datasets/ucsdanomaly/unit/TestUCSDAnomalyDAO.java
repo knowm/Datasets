@@ -32,6 +32,7 @@ import javax.imageio.ImageIO;
 
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import com.xeiam.datasets.ucsdanomaly.UCSDAnomaly;
@@ -40,7 +41,7 @@ import com.xeiam.datasets.ucsdanomaly.UCSDAnomalyDAO;
 /**
  * @author timmolter
  */
-// @Ignore
+@Ignore
 public class TestUCSDAnomalyDAO {
 
   @BeforeClass

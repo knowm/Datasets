@@ -25,9 +25,12 @@ import java.io.IOException;
 
 import opennlp.tools.util.InvalidFormatException;
 
+import org.junit.Ignore;
+
 /**
  * @author timmolter
  */
+@Ignore
 public class TestApacheOpenNLPNameFinder {
 
   public static void main(String[] args) throws InvalidFormatException, IOException {
@@ -37,7 +40,8 @@ public class TestApacheOpenNLPNameFinder {
 
   public static void go() throws InvalidFormatException, IOException {
 
-    String paragraph = "How are you, Tim? This is Mike Smith from the United Nations. That car costs $19900? I wasn't born Dec 3, 2009 in San Franciso. The black and white cow jumped over the moon in 2013. I am Greg and I own 44% of Attolight. At 6:00 pm on Wednesday, the ship left the harbor towards Port Washington, WI";
+    String paragraph =
+        "How are you, Tim? This is Mike Smith from the United Nations. That car costs $19900? I wasn't born Dec 3, 2009 in San Franciso. The black and white cow jumped over the moon in 2013. I am Greg and I own 44% of Attolight. At 6:00 pm on Wednesday, the ship left the harbor towards Port Washington, WI";
 
     String[] persons = OpenNLPNameFinderUtils.findPersons(paragraph);
     printResults(persons, "persons");

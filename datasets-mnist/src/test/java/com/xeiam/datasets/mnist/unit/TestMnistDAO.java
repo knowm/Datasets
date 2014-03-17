@@ -27,6 +27,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
 
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import com.xeiam.datasets.mnist.Mnist;
@@ -35,7 +36,7 @@ import com.xeiam.datasets.mnist.MnistDAO;
 /**
  * @author timmolter
  */
-// @Ignore
+@Ignore
 public class TestMnistDAO {
 
   @BeforeClass

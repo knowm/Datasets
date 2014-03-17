@@ -33,9 +33,9 @@ public class Reuters21578DAO extends DatasetsDAO {
 
   public static void init(String dataFilesDir) {
 
-    String dataFileID = "0ByP7_A9vXm17aTU1VzdCNFhRVEk";
-    String propsFileID = "0ByP7_A9vXm17c1hwbTNFdVBwX0k";
-    String scriptFileID = "0ByP7_A9vXm17Q3Q5ejFrNFlGOTA";
+    String dataFileID = "0ByP7_A9vXm17Smt5ZDdydk1JTWs";
+    String propsFileID = "0ByP7_A9vXm17TnRPb1d5ak9Pc28";
+    String scriptFileID = "0ByP7_A9vXm17ZEpQQ25oOGhWSHc";
 
     init("reuters21578connectionpool", "DB_REUTERS_21578", dataFilesDir, dataFileID, propsFileID, scriptFileID, null, true);
   }

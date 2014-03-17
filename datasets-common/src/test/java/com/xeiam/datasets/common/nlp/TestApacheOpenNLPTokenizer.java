@@ -28,11 +28,13 @@ import java.io.IOException;
 
 import opennlp.tools.util.InvalidFormatException;
 
+import org.junit.Ignore;
 import org.junit.Test;
 
 /**
  * @author timmolter
  */
+@Ignore
 public class TestApacheOpenNLPTokenizer {
 
   public static void main(String[] args) throws InvalidFormatException, IOException {

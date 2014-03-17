@@ -26,6 +26,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
 
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import com.xeiam.datasets.breastcancerwisconsinorginal.BreastCancerDAO;
@@ -33,7 +34,7 @@ import com.xeiam.datasets.breastcancerwisconsinorginal.BreastCancerDAO;
 /**
  * @author timmolter
  */
-// @Ignore
+@Ignore
 public class TestBreastCancerDAO {
 
   @BeforeClass

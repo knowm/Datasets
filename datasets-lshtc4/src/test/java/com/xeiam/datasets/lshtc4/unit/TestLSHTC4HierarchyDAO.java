@@ -28,6 +28,7 @@ import java.util.List;
 
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import com.xeiam.datasets.lshtc4.LSHTC4Hierarchy;
@@ -36,7 +37,7 @@ import com.xeiam.datasets.lshtc4.LSHTC4HierarchyDAO;
 /**
  * @author timmolter
  */
-// @Ignore
+@Ignore
 public class TestLSHTC4HierarchyDAO {
 
   @BeforeClass

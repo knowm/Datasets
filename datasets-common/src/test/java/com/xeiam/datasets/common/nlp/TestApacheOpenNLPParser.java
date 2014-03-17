@@ -25,9 +25,12 @@ import java.io.IOException;
 
 import opennlp.tools.util.InvalidFormatException;
 
+import org.junit.Ignore;
+
 /**
  * @author timmolter
  */
+@Ignore
 public class TestApacheOpenNLPParser {
 
   public static void main(String[] args) throws InvalidFormatException, IOException {

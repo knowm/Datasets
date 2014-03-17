@@ -6,7 +6,7 @@
 
 1. Download raw data from here: http://nsl.cs.unb.ca/NSL-KDD/
 
-1. put all files `KDDTrain+.txt` and `KDDTest+.txt` in `raw` folder in project root
+1. put all files (`KDDTrain+.txt` and `KDDTest+.txt`) in `raw` folder in project root
 
 1. Run `RawData2DB.java`.
 

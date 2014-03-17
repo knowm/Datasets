@@ -25,11 +25,14 @@ import java.io.IOException;
 
 import opennlp.tools.util.InvalidFormatException;
 
+import org.junit.Ignore;
+
 /**
  * POS = Part of Sentence
  * 
  * @author timmolter
  */
+@Ignore
 public class TestSnowballStemmer {
 
   public static void main(String[] args) throws InvalidFormatException, IOException {

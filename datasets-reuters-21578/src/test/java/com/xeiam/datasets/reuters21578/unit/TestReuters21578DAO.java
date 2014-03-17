@@ -29,6 +29,7 @@ import java.util.List;
 
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import com.xeiam.datasets.reuters21578.Reuters21578;
@@ -37,7 +38,7 @@ import com.xeiam.datasets.reuters21578.Reuters21578DAO;
 /**
  * @author timmolter
  */
-// @Ignore
+@Ignore
 public class TestReuters21578DAO {
 
   @BeforeClass
