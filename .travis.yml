@@ -1,7 +1,7 @@
 language: java
 
 before_install: "git clone -b travis `git config --get remote.origin.url` target/travis"
-script: "if [ ${TRAVIS_PULL_REQUEST} = 'false' ]; then mvn -Dmaven.test.skip=true clean deploy --settings target/travis/settings.xml else mvn clean verify --settings target/travis/settings.xml fi"
+script: "[ ${TRAVIS_PULL_REQUEST} = 'false' ] && mvn -Dmaven.test.skip=true clean deploy --settings target/travis/settings.xml || mvn clean verify --settings target/travis/settings.xml"
 
 # whitelist
 branches:
