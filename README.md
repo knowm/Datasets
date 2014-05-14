@@ -69,6 +69,7 @@ The original copyright and license notices have been preserved in their original
 * [LSHTC4](http://www.kaggle.com/c/lshtc/data)
 * [HJA Birdsong](http://web.engr.oregonstate.edu/~briggsf/kdd2012datasets/hja_birdsong/)
 * [NSL-KDD](http://nsl.cs.unb.ca/NSL-KDD/)
+* [Higgs-Boson](https://www.kaggle.com/c/higgs-boson)
 
 ## Example Usage
 
