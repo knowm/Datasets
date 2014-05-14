@@ -48,6 +48,7 @@
 		<module>datasets-hja-birdsong</module>
 		<module>datasets-nsl-kdd</module>
 		<module>datasets-ucsd-anomaly</module>
+		<module>datasets-higgs-boson</module>
 	</modules>
 
 	<distributionManagement>
@@ -115,6 +116,16 @@
 				<groupId>org.apache.opennlp</groupId>
 				<artifactId>opennlp-tools</artifactId>
 				<version>1.5.3</version>
+			</dependency>
+			<dependency>
+				<groupId>commons-beanutils</groupId>
+				<artifactId>commons-beanutils</artifactId>
+				<version>1.9.1</version>
+			</dependency>
+			<dependency>
+				<groupId>com.xeiam.xchart</groupId>
+				<artifactId>xchart</artifactId>
+				<version>2.3.3-SNAPSHOT</version>
 			</dependency>
 		</dependencies>
 	</dependencyManagement>
@@ -239,9 +250,9 @@
 						<include>**/*.java</include>
 					</includes>
 					<excludes>
-                        <exclude>**/com/musicg/**</exclude>
-                        <exclude>**/org/tartarus/snowball/**</exclude>
-                        <exclude>**/mnist/tools/**</exclude>
+						<exclude>**/com/musicg/**</exclude>
+						<exclude>**/org/tartarus/snowball/**</exclude>
+						<exclude>**/mnist/tools/**</exclude>
 					</excludes>
 				</configuration>
 			</plugin>

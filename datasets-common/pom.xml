@@ -46,6 +46,14 @@
 			<groupId>org.apache.opennlp</groupId>
 			<artifactId>opennlp-tools</artifactId>
 		</dependency>
+		<dependency>
+			<groupId>commons-beanutils</groupId>
+			<artifactId>commons-beanutils</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.xeiam.xchart</groupId>
+			<artifactId>xchart</artifactId>
+		</dependency>
 	</dependencies>
 
 </project>
