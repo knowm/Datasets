@@ -79,15 +79,19 @@ public class Mnist {
 
   public BufferedImage getImageAsBufferedImage() {
 
-    int[][] img = getImageMatrix();
-    BufferedImage bufferedImage = new BufferedImage(img.length, img[0].length, BufferedImage.TYPE_INT_RGB);
+    BufferedImage bufferedImage = new BufferedImage(28, 28, BufferedImage.TYPE_INT_RGB);
 
-    for (int y = 0; y < img.length; y++) {
-      for (int x = 0; x < img[0].length; x++) {
-        int value = img[y][x] << 16 | img[y][x] << 8 | img[y][x];
-        bufferedImage.setRGB(x, y, value);
+    String[] nonZeroPixels = imagedata.split(",");
+    for (int i = 0; i < nonZeroPixels.length; i++) {
+      String[] info = nonZeroPixels[i].split(":");
+      int x = Integer.parseInt(info[0]);
+      int y = Integer.parseInt(info[1]);
+      int z = Integer.parseInt(info[2]);
+      if (z > 10) {
+        bufferedImage.setRGB(y, x, 0xffffffff); // white
       }
     }
+
     return bufferedImage;
   }
 

@@ -26,12 +26,12 @@ import javax.swing.JPanel;
 import com.xeiam.datasets.mnist.Mnist;
 import com.xeiam.datasets.mnist.MnistDAO;
 import com.xeiam.datasets.mnist.tools.MnistDigitViewer;
-import com.xeiam.datasets.mnist.tools.MnistImagePanel;
+import com.xeiam.datasets.mnist.tools.MnistImagePanel2;
 
 /**
  * @author alexnugent
  */
-public class MnistImageDisplayApp {
+public class MnistImageDisplayApp2 {
 
   /**
    * This app takes the following arguments:
@@ -44,7 +44,7 @@ public class MnistImageDisplayApp {
 
     try {
       MnistDAO.init("/usr/local/Datasets"); // setup data
-      MnistImageDisplayApp mnistImageDisplayApp = new MnistImageDisplayApp();
+      MnistImageDisplayApp2 mnistImageDisplayApp = new MnistImageDisplayApp2();
       mnistImageDisplayApp.go(args);
     } catch (Exception e) {
       // eat it.
@@ -67,10 +67,8 @@ public class MnistImageDisplayApp {
 
     Mnist mnistData = MnistDAO.selectSingle(imageIndex);
 
-    int[][] img = mnistData.getImageMatrix();
-
     // paint the patches
-    JPanel mnistImagePanel = new MnistImagePanel(img, 8);
+    JPanel mnistImagePanel = new MnistImagePanel2(mnistData);
     new MnistDigitViewer(mnistImagePanel, "Index = " + mnistData.getId() + " label = " + mnistData.getLabel());
 
   }

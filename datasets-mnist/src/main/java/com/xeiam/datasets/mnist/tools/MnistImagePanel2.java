@@ -19,59 +19,50 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package com.xeiam.datasets.samples;
+package com.xeiam.datasets.mnist.tools;
+
+import java.awt.Dimension;
+import java.awt.Graphics;
+import java.awt.geom.AffineTransform;
+import java.awt.image.AffineTransformOp;
+import java.awt.image.BufferedImage;
 
 import javax.swing.JPanel;
 
 import com.xeiam.datasets.mnist.Mnist;
-import com.xeiam.datasets.mnist.MnistDAO;
-import com.xeiam.datasets.mnist.tools.MnistDigitViewer;
-import com.xeiam.datasets.mnist.tools.MnistImagePanel;
 
 /**
  * @author alexnugent
  */
-public class MnistImageDisplayApp {
+public class MnistImagePanel2 extends JPanel {
 
-  /**
-   * This app takes the following arguments:
-   * <ul>
-   * <li>int image index (0): Image index [0-69,999]
-   * 
-   * @param args
-   */
-  public static void main(String[] args) {
+  private BufferedImage image;
 
-    try {
-      MnistDAO.init("/usr/local/Datasets"); // setup data
-      MnistImageDisplayApp mnistImageDisplayApp = new MnistImageDisplayApp();
-      mnistImageDisplayApp.go(args);
-    } catch (Exception e) {
-      // eat it.
-    } finally {
-      MnistDAO.release(); // release data resources
-    }
+  public MnistImagePanel2(Mnist mnistData) {
 
+    image = mnistData.getImageAsBufferedImage();
+
+    setPreferredSize(new Dimension(image.getWidth(), image.getHeight()));
   }
 
-  public void go(String[] args) {
+  private void scale(int scale) {
 
-    int imageIndex = 0;
+    int w = image.getWidth();
+    int h = image.getHeight();
+    BufferedImage after = new BufferedImage(w, h, BufferedImage.TYPE_INT_ARGB);
+    AffineTransform at = new AffineTransform();
+    at.scale(scale, scale);
+    AffineTransformOp scaleOp = new AffineTransformOp(at, AffineTransformOp.TYPE_BILINEAR);
+    after = scaleOp.filter(image, after);
 
-    try {
-      imageIndex = Integer.parseInt(args[0]);
-
-    } catch (java.lang.ArrayIndexOutOfBoundsException e) {
-      // just ignore
-    }
-
-    Mnist mnistData = MnistDAO.selectSingle(imageIndex);
-
-    int[][] img = mnistData.getImageMatrix();
-
-    // paint the patches
-    JPanel mnistImagePanel = new MnistImagePanel(img, 8);
-    new MnistDigitViewer(mnistImagePanel, "Index = " + mnistData.getId() + " label = " + mnistData.getLabel());
-
+    this.image = after;
   }
+
+  @Override
+  public void paintComponent(Graphics g) {
+
+    super.paintComponent(g);
+    g.drawImage(image, 0, 0, null); // see javadoc for more info on the parameters
+  }
+
 }
