@@ -62,7 +62,6 @@ public class MnistImagePanel extends JPanel {
     after = scaleOp.filter(image, after);
 
     this.image = after;
-
   }
 
   @Override

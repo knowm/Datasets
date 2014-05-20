@@ -21,6 +21,8 @@
  */
 package com.xeiam.datasets.mnist;
 
+import java.awt.image.BufferedImage;
+
 /**
  * @author timmolter
  */
@@ -73,6 +75,39 @@ public class Mnist {
     }
 
     return imageMatrix;
+  }
+
+  public BufferedImage getImageAsBufferedImage() {
+
+    int[][] img = getImageMatrix();
+    BufferedImage bufferedImage = new BufferedImage(img.length, img[0].length, BufferedImage.TYPE_INT_RGB);
+
+    for (int y = 0; y < img.length; y++) {
+      for (int x = 0; x < img[0].length; x++) {
+        int value = img[y][x] << 16 | img[y][x] << 8 | img[y][x];
+        bufferedImage.setRGB(x, y, value);
+      }
+    }
+    return bufferedImage;
+  }
+
+  public String toASCIIImageString() {
+
+    int[][] img = getImageMatrix();
+
+    StringBuilder sb = new StringBuilder();
+    for (int i = 0; i < img.length; i++) {
+      for (int j = 0; j < img.length; j++) {
+        if (img[i][j] > 10) {
+          sb.append("**");
+        }
+        else {
+          sb.append("  ");
+        }
+      }
+    }
+    return sb.toString();
+
   }
 
 }
