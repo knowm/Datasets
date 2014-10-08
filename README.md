@@ -63,13 +63,14 @@ The original copyright and license notices have been preserved in their original
 
 * [Breast Cancer Wisconsin (Original)](http://archive.ics.uci.edu/ml/datasets/Breast+Cancer+Wisconsin+%28Original%29)
 * [Census Income](http://archive.ics.uci.edu/ml/datasets/Census+Income)
-* [MNIST](http://yann.lecun.com/exdb/mnist/)
-* [Reuters-21578](http://archive.ics.uci.edu/ml/support/Reuters-21578+Text+Categorization+Collection)
 * [CIFAR-10](http://www.cs.toronto.edu/~kriz/cifar.html)
-* [LSHTC4](http://www.kaggle.com/c/lshtc/data)
-* [HJA Birdsong](http://web.engr.oregonstate.edu/~briggsf/kdd2012datasets/hja_birdsong/)
-* [NSL-KDD](http://nsl.cs.unb.ca/NSL-KDD/)
 * [Higgs-Boson](https://www.kaggle.com/c/higgs-boson)
+* [HJA Birdsong](http://web.engr.oregonstate.edu/~briggsf/kdd2012datasets/hja_birdsong/)
+* [LSHTC4](http://www.kaggle.com/c/lshtc/data)
+* [MNIST](http://yann.lecun.com/exdb/mnist/)
+* [NSL-KDD](http://nsl.cs.unb.ca/NSL-KDD/)
+* [Reuters-21578](http://archive.ics.uci.edu/ml/support/Reuters-21578+Text+Categorization+Collection)
+* [UCSD Anomaly](http://www.svcl.ucsd.edu/projects/anomaly/dataset.html)
 
 ## Example Usage
 
