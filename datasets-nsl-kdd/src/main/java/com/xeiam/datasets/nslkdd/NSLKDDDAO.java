@@ -22,7 +22,7 @@
 package com.xeiam.datasets.nslkdd;
 
 import com.xeiam.datasets.common.business.DatasetsDAO;
-import com.xeiam.yank.DBProxy;
+import com.xeiam.yank.Yank;
 
 /**
  * An explanation of the fields can be found here: https://archive.ics.uci.edu/ml/machine-learning-databases/kddcup99-mld/task.html
@@ -37,12 +37,12 @@ public class NSLKDDDAO extends DatasetsDAO {
     String propsFileID = "0ByP7_A9vXm17Nl9PRGJQeVp0NGc";
     String scriptFileID = "0ByP7_A9vXm17eWhldXZiNWxRSnc";
 
-    init("nslkddconnectionpool", "DB_NSL_KDD", dataFilesDir, dataFileID, propsFileID, scriptFileID, null, true);
+    init( "DB_NSL_KDD", dataFilesDir, dataFileID, propsFileID, scriptFileID, null, true);
   }
 
   public static int dropTable() {
 
-    return DBProxy.executeSQL("nslkddconnectionpool", "DROP TABLE IF EXISTS NSL_KDD", null);
+    return Yank.execute( "DROP TABLE IF EXISTS NSL_KDD", null);
   }
 
   public static int getTrainTestSplit() {
@@ -75,7 +75,7 @@ public class NSLKDDDAO extends DatasetsDAO {
 
             + "PRIMARY KEY (id))";
 
-    return DBProxy.executeSQL("nslkddconnectionpool", BagLabels_CREATE, null);
+    return Yank.execute( BagLabels_CREATE, null);
   }
 
   public static int insert(NSLKDD nSLKDD) {
@@ -139,7 +139,7 @@ public class NSLKDDDAO extends DatasetsDAO {
 
             + ") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
-    return DBProxy.executeSQL("nslkddconnectionpool", NSL_KDD_INSERT, params);
+    return Yank.execute( NSL_KDD_INSERT, params);
   }
 
   public static NSLKDD selectSingle(int id) {
@@ -148,13 +148,13 @@ public class NSLKDDDAO extends DatasetsDAO {
 
     String SELECT_SINGLE = "SELECT * FROM NSL_KDD WHERE id = ?";
 
-    return DBProxy.querySingleObjectSQL("nslkddconnectionpool", SELECT_SINGLE, NSLKDD.class, params);
+    return Yank.queryBean( SELECT_SINGLE, NSLKDD.class, params);
   }
 
   public static long selectCount() {
 
     String SELECT_COUNT = "SELECT COUNT(*) FROM NSL_KDD";
 
-    return DBProxy.querySingleScalarSQL("nslkddconnectionpool", SELECT_COUNT, Long.class, null);
+    return Yank.queryScalar( SELECT_COUNT, Long.class, null);
   }
 }

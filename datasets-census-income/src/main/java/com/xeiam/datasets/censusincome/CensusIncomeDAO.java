@@ -22,7 +22,7 @@
 package com.xeiam.datasets.censusincome;
 
 import com.xeiam.datasets.common.business.DatasetsDAO;
-import com.xeiam.yank.DBProxy;
+import com.xeiam.yank.Yank;
 
 /**
  * @author alexnugent
@@ -35,12 +35,12 @@ public class CensusIncomeDAO extends DatasetsDAO {
     String propsFileID = "0ByP7_A9vXm17THlaaXBoSzMzc3M";
     String scriptFileID = "0ByP7_A9vXm17QUprZUN6Q3pGZ2c";
 
-    init("censusincomeconnectionpool", "DB_CENSUS_INCOME", dataFilesDir, dataFileID, propsFileID, scriptFileID, null, true);
+    init("DB_CENSUS_INCOME", dataFilesDir, dataFileID, propsFileID, scriptFileID, null, true);
   }
 
   public static int dropTable() {
 
-    return DBProxy.executeSQL("censusincomeconnectionpool", "DROP TABLE IF EXISTS CENSUS_INCOME", null);
+    return Yank.execute( "DROP TABLE IF EXISTS CENSUS_INCOME", null);
   }
 
   public static int getTrainTestSplit() {
@@ -50,12 +50,11 @@ public class CensusIncomeDAO extends DatasetsDAO {
 
   public static int createTable() {
 
-    String CENSUS_INCOME_CREATE =
-        "CREATE CACHED TABLE CENSUS_INCOME (id INTEGER NOT NULL, age INTEGER NOT NULL, workclass VARCHAR(256) NOT NULL, fnlwgt INTEGER NOT NULL,"
-            + " education VARCHAR(256) NOT NULL, educationNum INTEGER NOT NULL, maritalStatus VARCHAR(256) NOT NULL, occupation VARCHAR(256) NOT NULL,"
-            + "relationship VARCHAR(256) NOT NULL, race VARCHAR(256) NOT NULL, sex VARCHAR(256) NOT NULL, capitalGain INTEGER NOT NULL, capitalLoss INTEGER NOT NULL,"
-            + " hoursPerWeek INTEGER NOT NULL, nativeCountry VARCHAR(256) NOT NULL, incomeLessThan50k TINYINT NOT NULL, PRIMARY KEY (id))";
-    return DBProxy.executeSQL("censusincomeconnectionpool", CENSUS_INCOME_CREATE, null);
+    String CENSUS_INCOME_CREATE = "CREATE CACHED TABLE CENSUS_INCOME (id INTEGER NOT NULL, age INTEGER NOT NULL, workclass VARCHAR(256) NOT NULL, fnlwgt INTEGER NOT NULL,"
+        + " education VARCHAR(256) NOT NULL, educationNum INTEGER NOT NULL, maritalStatus VARCHAR(256) NOT NULL, occupation VARCHAR(256) NOT NULL,"
+        + "relationship VARCHAR(256) NOT NULL, race VARCHAR(256) NOT NULL, sex VARCHAR(256) NOT NULL, capitalGain INTEGER NOT NULL, capitalLoss INTEGER NOT NULL,"
+        + " hoursPerWeek INTEGER NOT NULL, nativeCountry VARCHAR(256) NOT NULL, incomeLessThan50k TINYINT NOT NULL, PRIMARY KEY (id))";
+    return Yank.execute( CENSUS_INCOME_CREATE, null);
   }
 
   public static int insert(CensusIncome censusIncome) {
@@ -63,28 +62,15 @@ public class CensusIncomeDAO extends DatasetsDAO {
     Object[] params = new Object[] {
 
         // @formatter:off
-        censusIncome.getId(),
-        censusIncome.getAge(),
-        censusIncome.getWorkclass(),
-        censusIncome.getFnlwgt(),
-        censusIncome.getEducation(),
-        censusIncome.getEducationNum(),
-        censusIncome.getMaritalStatus(),
-        censusIncome.getOccupation(),
-        censusIncome.getRelationship(),
-        censusIncome.getRace(),
-        censusIncome.getSex(),
-        censusIncome.getCapitalGain(),
-        censusIncome.getCapitalLoss(),
-        censusIncome.getHoursPerWeek(),
-        censusIncome.getNativeCountry(),
-        censusIncome.isIncomeLessThan50k()
+        censusIncome.getId(), censusIncome.getAge(), censusIncome.getWorkclass(), censusIncome.getFnlwgt(), censusIncome.getEducation(),
+        censusIncome.getEducationNum(), censusIncome.getMaritalStatus(), censusIncome.getOccupation(), censusIncome.getRelationship(),
+        censusIncome.getRace(), censusIncome.getSex(), censusIncome.getCapitalGain(), censusIncome.getCapitalLoss(), censusIncome.getHoursPerWeek(),
+        censusIncome.getNativeCountry(), censusIncome.isIncomeLessThan50k()
         // @formatter:on
-        };
-    String CENSUS_INCOME_INSERT =
-        "INSERT INTO CENSUS_INCOME (id, age, workclass, fnlwgt, education, educationNum, maritalStatus, occupation, relationship, race, sex, capitalGain, capitalLoss, hoursPerWeek, nativeCountry, incomeLessThan50k"
-            + ") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-    return DBProxy.executeSQL("censusincomeconnectionpool", CENSUS_INCOME_INSERT, params);
+    };
+    String CENSUS_INCOME_INSERT = "INSERT INTO CENSUS_INCOME (id, age, workclass, fnlwgt, education, educationNum, maritalStatus, occupation, relationship, race, sex, capitalGain, capitalLoss, hoursPerWeek, nativeCountry, incomeLessThan50k"
+        + ") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+    return Yank.execute( CENSUS_INCOME_INSERT, params);
 
   }
 
@@ -92,7 +78,7 @@ public class CensusIncomeDAO extends DatasetsDAO {
 
     String SELECT_COUNT = "SELECT COUNT(*) FROM CENSUS_INCOME";
 
-    return DBProxy.querySingleScalarSQL("censusincomeconnectionpool", SELECT_COUNT, Long.class, null);
+    return Yank.queryScalar( SELECT_COUNT, Long.class, null);
   }
 
   public static CensusIncome selectSingle(int id) {
@@ -101,6 +87,6 @@ public class CensusIncomeDAO extends DatasetsDAO {
 
     String SELECT_SINGLE = "SELECT * FROM CENSUS_INCOME WHERE id = ?";
 
-    return DBProxy.querySingleObjectSQL("censusincomeconnectionpool", SELECT_SINGLE, CensusIncome.class, params);
+    return Yank.queryBean( SELECT_SINGLE, CensusIncome.class, params);
   }
 }

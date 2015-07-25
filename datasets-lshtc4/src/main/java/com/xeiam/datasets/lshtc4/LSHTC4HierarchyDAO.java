@@ -23,7 +23,7 @@ package com.xeiam.datasets.lshtc4;
 
 import java.util.List;
 
-import com.xeiam.yank.DBProxy;
+import com.xeiam.yank.Yank;
 
 /**
  * @author timmolter
@@ -32,13 +32,13 @@ public class LSHTC4HierarchyDAO extends LSHTC4ParentDAO {
 
   public static int dropTable() {
 
-    return DBProxy.executeSQL("lshtc4connectionpool", "DROP TABLE IF EXISTS LSHTC4Hierarchy", null);
+    return Yank.execute(  "DROP TABLE IF EXISTS LSHTC4Hierarchy", null);
   }
 
   public static int createTable() {
 
     String LSHTC4Hierarchy_CREATE = "CREATE CACHED TABLE LSHTC4Hierarchy (parentid INTEGER NOT NULL, nodeid INTEGER NOT NULL)";
-    return DBProxy.executeSQL("lshtc4connectionpool", LSHTC4Hierarchy_CREATE, null);
+    return Yank.execute(  LSHTC4Hierarchy_CREATE, null);
   }
 
   public static int insert(LSHTC4Hierarchy lSHTC4Hierarchy) {
@@ -51,7 +51,7 @@ public class LSHTC4HierarchyDAO extends LSHTC4ParentDAO {
     // @formatter:on
         };
     String LSHTC4Hierarchy_INSERT = "INSERT INTO LSHTC4Hierarchy (parentid, nodeid) VALUES (?, ?)";
-    return DBProxy.executeSQL("lshtc4connectionpool", LSHTC4Hierarchy_INSERT, params);
+    return Yank.execute(  LSHTC4Hierarchy_INSERT, params);
 
   }
 
@@ -59,7 +59,7 @@ public class LSHTC4HierarchyDAO extends LSHTC4ParentDAO {
 
     String SELECT_ALL = "SELECT * FROM LSHTC4Hierarchy";
 
-    return DBProxy.queryObjectListSQL("lshtc4connectionpool", SELECT_ALL, LSHTC4Hierarchy.class, null);
+    return Yank.queryBeanList(  SELECT_ALL, LSHTC4Hierarchy.class, null);
   }
 
   public static LSHTC4Hierarchy selectSingle(int id) {
@@ -68,13 +68,13 @@ public class LSHTC4HierarchyDAO extends LSHTC4ParentDAO {
 
     String SELECT_SINGLE = "SELECT * FROM LSHTC4Hierarchy WHERE nodeid = ?";
 
-    return DBProxy.querySingleObjectSQL("lshtc4connectionpool", SELECT_SINGLE, LSHTC4Hierarchy.class, params);
+    return Yank.queryBean(  SELECT_SINGLE, LSHTC4Hierarchy.class, params);
   }
 
   public static long selectCount() {
 
     String SELECT_COUNT = "SELECT COUNT(*) FROM LSHTC4Hierarchy";
 
-    return DBProxy.querySingleScalarSQL("lshtc4connectionpool", SELECT_COUNT, Long.class, null);
+    return Yank.queryScalar(  SELECT_COUNT, Long.class, null);
   }
 }

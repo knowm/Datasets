@@ -24,7 +24,7 @@ package com.xeiam.datasets.mnist;
 import java.util.List;
 
 import com.xeiam.datasets.common.business.DatasetsDAO;
-import com.xeiam.yank.DBProxy;
+import com.xeiam.yank.Yank;
 
 /**
  * @author timmolter
@@ -37,12 +37,12 @@ public class MnistDAO extends DatasetsDAO {
     String propsFileID = "0ByP7_A9vXm17SV96TE5jdnY0UDQ";
     String scriptFileID = "0ByP7_A9vXm17U2s1d0FzdHlILUE";
 
-    init("mnistconnectionpool", "DB_MNIST", dataFilesDir, dataFileID, propsFileID, scriptFileID, null, true);
+    init("DB_MNIST", dataFilesDir, dataFileID, propsFileID, scriptFileID, null, true);
   }
 
   public static int dropTable() {
 
-    return DBProxy.executeSQL("mnistconnectionpool", "DROP TABLE IF EXISTS MNIST", null);
+    return Yank.execute("DROP TABLE IF EXISTS MNIST", null);
   }
 
   public static int getTrainTestSplit() {
@@ -53,21 +53,19 @@ public class MnistDAO extends DatasetsDAO {
   public static int createTable() {
 
     String CENSUS_INCOME_CREATE = "CREATE CACHED TABLE MNIST (id INTEGER NOT NULL, label INTEGER NOT NULL, imagedata VARCHAR(3333) NOT NULL, PRIMARY KEY (id))";
-    return DBProxy.executeSQL("mnistconnectionpool", CENSUS_INCOME_CREATE, null);
+    return Yank.execute(CENSUS_INCOME_CREATE, null);
   }
 
   public static int insert(Mnist mnist) {
 
     Object[] params = new Object[] {
 
-    // @formatter:off
-        mnist.getId(),
-        mnist.getLabel(),
-        mnist.getImagedata()
-    // @formatter:on
-        };
+        // @formatter:off
+        mnist.getId(), mnist.getLabel(), mnist.getImagedata()
+        // @formatter:on
+    };
     String CENSUS_INCOME_INSERT = "INSERT INTO MNIST (id, label, imagedata) VALUES (?, ?, ?)";
-    return DBProxy.executeSQL("mnistconnectionpool", CENSUS_INCOME_INSERT, params);
+    return Yank.execute(CENSUS_INCOME_INSERT, params);
 
   }
 
@@ -75,7 +73,7 @@ public class MnistDAO extends DatasetsDAO {
 
     String SELECT_ALL = "SELECT * FROM MNIST";
 
-    return DBProxy.queryObjectListSQL("mnistconnectionpool", SELECT_ALL, Mnist.class, null);
+    return Yank.queryBeanList(SELECT_ALL, Mnist.class, null);
   }
 
   public static Mnist selectSingle(int id) {
@@ -84,28 +82,28 @@ public class MnistDAO extends DatasetsDAO {
 
     String SELECT_SINGLE = "SELECT * FROM MNIST WHERE id = ?";
 
-    return DBProxy.querySingleObjectSQL("mnistconnectionpool", SELECT_SINGLE, Mnist.class, params);
+    return Yank.queryBean(SELECT_SINGLE, Mnist.class, params);
   }
 
   // public static List<Mnist> selectTrainData() {
   //
   // String SELECT_TRAIN = "SELECT * FROM MNIST LIMIT 1, 60000";
   //
-  // return DBProxy.queryObjectListSQL("mnistconnectionpool", SELECT_TRAIN, Mnist.class, null);
+  // return Yank.queryBeanList(  SELECT_TRAIN, Mnist.class, null);
   // }
   //
   // public static List<Mnist> selectTestData() {
   //
   // String SELECT_TRAIN = "SELECT * FROM MNIST LIMIT 60000, 70000";
   //
-  // return DBProxy.queryObjectListSQL("mnistconnectionpool", SELECT_TRAIN, Mnist.class, null);
+  // return Yank.queryBeanList(  SELECT_TRAIN, Mnist.class, null);
   // }
 
   public static long selectCount() {
 
     String SELECT_COUNT = "SELECT COUNT(*) FROM MNIST";
 
-    return DBProxy.querySingleScalarSQL("mnistconnectionpool", SELECT_COUNT, Long.class, null);
+    return Yank.queryScalar(SELECT_COUNT, Long.class, null);
   }
 
 }

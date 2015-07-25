@@ -22,7 +22,7 @@
 package com.xeiam.datasets.breastcancerwisconsinorginal;
 
 import com.xeiam.datasets.common.business.DatasetsDAO;
-import com.xeiam.yank.DBProxy;
+import com.xeiam.yank.Yank;
 
 /**
  * @author alexnugent
@@ -35,46 +35,36 @@ public class BreastCancerDAO extends DatasetsDAO {
     String propsFileID = "0ByP7_A9vXm17X3hFNFA3NGViWlE";
     String scriptFileID = "0ByP7_A9vXm17NEQycTM1Q0Y3QXM";
 
-    init("breastcancerconnectionpool", "DB_BREAST_CANCER", dataFilesDir, dataFileID, propsFileID, scriptFileID, null, false);
+    init("DB_BREAST_CANCER", dataFilesDir, dataFileID, propsFileID, scriptFileID, null, false);
   }
 
   public static int dropTable() {
 
-    return DBProxy.executeSQL("breastcancerconnectionpool", "DROP TABLE IF EXISTS " + "BREAST_CANCER", null);
+    return Yank.execute("DROP TABLE IF EXISTS " + "BREAST_CANCER", null);
   }
 
   public static int createTable() {
 
-    String BREAST_CANCER_CREATE =
-        "CREATE CACHED TABLE BREAST_CANCER (id INTEGER NOT NULL, SAMPLECODENUMBER INTEGER NOT NULL, CLUMPTHICKNESS INTEGER NOT NULL, UNIFORMITYOFCELLSIZE INTEGER NOT NULL,"
-            + " UNIFORMITYOFCELLSHAPE INTEGER NOT NULL, MARGINALADHESION INTEGER NOT NULL, SINGLEEPITHELIALCELLSIZE INTEGER NOT NULL, BARENUCLEI INTEGER NOT NULL, BLANDCHROMATIN INTEGER NOT NULL,"
-            + "NORMALNUCLEOLI INTEGER NOT NULL, MITOSES INTEGER NOT NULL, CELLCLASS INTEGER NOT NULL, PRIMARY KEY (id))";
-    return DBProxy.executeSQL("breastcancerconnectionpool", BREAST_CANCER_CREATE, null);
+    String BREAST_CANCER_CREATE = "CREATE CACHED TABLE BREAST_CANCER (id INTEGER NOT NULL, SAMPLECODENUMBER INTEGER NOT NULL, CLUMPTHICKNESS INTEGER NOT NULL, UNIFORMITYOFCELLSIZE INTEGER NOT NULL,"
+        + " UNIFORMITYOFCELLSHAPE INTEGER NOT NULL, MARGINALADHESION INTEGER NOT NULL, SINGLEEPITHELIALCELLSIZE INTEGER NOT NULL, BARENUCLEI INTEGER NOT NULL, BLANDCHROMATIN INTEGER NOT NULL,"
+        + "NORMALNUCLEOLI INTEGER NOT NULL, MITOSES INTEGER NOT NULL, CELLCLASS INTEGER NOT NULL, PRIMARY KEY (id))";
+    return Yank.execute(BREAST_CANCER_CREATE, null);
   }
 
   public static int insert(BreastCancer breastCancer) {
 
-    Object[] params = new Object[] { 
-        
+    Object[] params = new Object[] {
+
         // @formatter:off
-        breastCancer.getId(),
-        breastCancer.getSampleCodeNumber(),
-        breastCancer.getClumpThickness(),
-        breastCancer.getUniformityOfCellSize(),
-        breastCancer.getUniformityOfCellShape(),
-        breastCancer.getMarginalAdhesion(),
-        breastCancer.getSingleEpithelialCellSize(),
-        breastCancer.getBareNuclei(),
-        breastCancer.getBlandChromatin(),
-        breastCancer.getNormalNucleoli(),
-        breastCancer.getMitoses(),
+        breastCancer.getId(), breastCancer.getSampleCodeNumber(), breastCancer.getClumpThickness(), breastCancer.getUniformityOfCellSize(),
+        breastCancer.getUniformityOfCellShape(), breastCancer.getMarginalAdhesion(), breastCancer.getSingleEpithelialCellSize(),
+        breastCancer.getBareNuclei(), breastCancer.getBlandChromatin(), breastCancer.getNormalNucleoli(), breastCancer.getMitoses(),
         breastCancer.getCellClass()
         // @formatter:on
-        };
-    String BREAST_CANCER_INSERT =
-        "INSERT INTO BREAST_CANCER (ID, SAMPLECODENUMBER, CLUMPTHICKNESS, UNIFORMITYOFCELLSIZE, UNIFORMITYOFCELLSHAPE, MARGINALADHESION, SINGLEEPITHELIALCELLSIZE, BARENUCLEI, BLANDCHROMATIN,"
-            + " NORMALNUCLEOLI, MITOSES, CELLCLASS) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-    return DBProxy.executeSQL("breastcancerconnectionpool", BREAST_CANCER_INSERT, params);
+    };
+    String BREAST_CANCER_INSERT = "INSERT INTO BREAST_CANCER (ID, SAMPLECODENUMBER, CLUMPTHICKNESS, UNIFORMITYOFCELLSIZE, UNIFORMITYOFCELLSHAPE, MARGINALADHESION, SINGLEEPITHELIALCELLSIZE, BARENUCLEI, BLANDCHROMATIN,"
+        + " NORMALNUCLEOLI, MITOSES, CELLCLASS) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+    return Yank.execute(BREAST_CANCER_INSERT, params);
 
   }
 
@@ -87,7 +77,7 @@ public class BreastCancerDAO extends DatasetsDAO {
 
     String SELECT_COUNT = "SELECT COUNT(*) FROM BREAST_CANCER";
 
-    return DBProxy.querySingleScalarSQL("breastcancerconnectionpool", SELECT_COUNT, Long.class, null);
+    return Yank.queryScalar(SELECT_COUNT, Long.class, null);
   }
 
   public static BreastCancer selectSingle(int id) {
@@ -96,7 +86,7 @@ public class BreastCancerDAO extends DatasetsDAO {
 
     String SELECT_SINGLE = "SELECT * FROM BREAST_CANCER WHERE id = ?";
 
-    return DBProxy.querySingleObjectSQL("breastcancerconnectionpool", SELECT_SINGLE, BreastCancer.class, params);
+    return Yank.queryBean(SELECT_SINGLE, BreastCancer.class, params);
   }
 
 }

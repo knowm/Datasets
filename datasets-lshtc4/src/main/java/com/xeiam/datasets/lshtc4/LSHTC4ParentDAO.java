@@ -34,7 +34,7 @@ public class LSHTC4ParentDAO extends DatasetsDAO {
     String propsFileID = "0ByP7_A9vXm17Zkl0ajF6LXlrYUE";
     String scriptFileID = "0ByP7_A9vXm17ZnljLU1ybS16c2c";
 
-    init("lshtc4connectionpool", "DB_LSHTC4", dataFilesDir, dataFileID, propsFileID, scriptFileID, null, true);
+    init(  "DB_LSHTC4", dataFilesDir, dataFileID, propsFileID, scriptFileID, null, true);
   }
 
 }

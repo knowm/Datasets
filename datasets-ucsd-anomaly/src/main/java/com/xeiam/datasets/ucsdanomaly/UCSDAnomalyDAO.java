@@ -24,7 +24,7 @@ package com.xeiam.datasets.ucsdanomaly;
 import java.util.List;
 
 import com.xeiam.datasets.common.business.DatasetsDAO;
-import com.xeiam.yank.DBProxy;
+import com.xeiam.yank.Yank;
 
 /**
  * @author timmolter
@@ -38,18 +38,18 @@ public class UCSDAnomalyDAO extends DatasetsDAO {
     String scriptFileID = "0ByP7_A9vXm17OXZvU3RyM0ZVODA";
     String lobsFileID = "0ByP7_A9vXm17N0VCUE5OQUtxY2s";
 
-    init("ucsdanonmalyconnectionpool", "DB_UCSD_ANOMALY", dataFilesDir, dataFileID, propsFileID, scriptFileID, lobsFileID, false);
+    init( "DB_UCSD_ANOMALY", dataFilesDir, dataFileID, propsFileID, scriptFileID, lobsFileID, false);
   }
 
   public static int dropTable() {
 
-    return DBProxy.executeSQL("ucsdanonmalyconnectionpool", "DROP TABLE IF EXISTS UCSD_ANONMALIES", null);
+    return Yank.execute( "DROP TABLE IF EXISTS UCSD_ANONMALIES", null);
   }
 
   public static int createTable() {
 
     String BagLabels_CREATE = "CREATE CACHED TABLE UCSD_ANONMALIES (id INTEGER NOT NULL, tifid INTEGER NOT NULL, tifbytes blob NOT NULL, isanomaly TINYINT NOT NULL, PRIMARY KEY (id, tifid))";
-    return DBProxy.executeSQL("ucsdanonmalyconnectionpool", BagLabels_CREATE, null);
+    return Yank.execute( BagLabels_CREATE, null);
   }
 
   public static int getTrainTestSplit() {
@@ -69,7 +69,7 @@ public class UCSDAnomalyDAO extends DatasetsDAO {
     // @formatter:on
         };
     String INSERT = "INSERT INTO UCSD_ANONMALIES (id, tifid, tifbytes, isanomaly) VALUES (?, ?, ?, ?)";
-    return DBProxy.executeSQL("ucsdanonmalyconnectionpool", INSERT, params);
+    return Yank.execute( INSERT, params);
   }
 
   public static UCSDAnomaly selectSingle(int id, int tifid) {
@@ -78,7 +78,7 @@ public class UCSDAnomalyDAO extends DatasetsDAO {
 
     String SELECT_SINGLE = "SELECT * FROM UCSD_ANONMALIES WHERE id = ? and tifid = ?";
 
-    return DBProxy.querySingleObjectSQL("ucsdanonmalyconnectionpool", SELECT_SINGLE, UCSDAnomaly.class, params);
+    return Yank.queryBean( SELECT_SINGLE, UCSDAnomaly.class, params);
   }
 
   public static List<UCSDAnomaly> selectClip(int id) {
@@ -87,13 +87,13 @@ public class UCSDAnomalyDAO extends DatasetsDAO {
 
     String SELECT_CLIP = "SELECT * FROM UCSD_ANONMALIES WHERE id = ?";
 
-    return DBProxy.queryObjectListSQL("ucsdanonmalyconnectionpool", SELECT_CLIP, UCSDAnomaly.class, params);
+    return Yank.queryBeanList( SELECT_CLIP, UCSDAnomaly.class, params);
   }
 
   public static long selectCount() {
 
     String SELECT_COUNT = "SELECT COUNT(*) FROM UCSD_ANONMALIES";
 
-    return DBProxy.querySingleScalarSQL("ucsdanonmalyconnectionpool", SELECT_COUNT, Long.class, null);
+    return Yank.queryScalar( SELECT_COUNT, Long.class, null);
   }
 }

@@ -22,7 +22,7 @@
 package com.xeiam.datasets.cifar10;
 
 import com.xeiam.datasets.common.business.DatasetsDAO;
-import com.xeiam.yank.DBProxy;
+import com.xeiam.yank.Yank;
 
 /**
  * @author timmolter
@@ -35,12 +35,12 @@ public class CifarDAO extends DatasetsDAO {
     String propsFileID = "0ByP7_A9vXm17VHIzd1hSNW4zUXc";
     String scriptFileID = "0ByP7_A9vXm17eHlzcDJfalNoYkk";
 
-    init("cifarconnectionpool", "DB_CIFAR", dataFilesDir, dataFileID, propsFileID, scriptFileID, null, true);
+    init( "DB_CIFAR", dataFilesDir, dataFileID, propsFileID, scriptFileID, null, true);
   }
 
   public static int dropTable() {
 
-    return DBProxy.executeSQL("cifarconnectionpool", "DROP TABLE IF EXISTS CIFAR", null);
+    return Yank.execute( "DROP TABLE IF EXISTS CIFAR", null);
   }
 
   public static int getTrainTestSplit() {
@@ -51,7 +51,7 @@ public class CifarDAO extends DatasetsDAO {
   public static int createTable() {
 
     String CIFAR_CREATE = "CREATE CACHED TABLE CIFAR (id INTEGER NOT NULL, label INTEGER NOT NULL, imagedata VARCHAR(30000) NOT NULL, PRIMARY KEY (id))";
-    return DBProxy.executeSQL("cifarconnectionpool", CIFAR_CREATE, null);
+    return Yank.execute( CIFAR_CREATE, null);
   }
 
   public static int insert(Cifar CIFAR) {
@@ -65,7 +65,7 @@ public class CifarDAO extends DatasetsDAO {
     // @formatter:on
         };
     String CIFAR_INSERT = "INSERT INTO CIFAR (id, label, imagedata) VALUES (?, ?, ?)";
-    return DBProxy.executeSQL("cifarconnectionpool", CIFAR_INSERT, params);
+    return Yank.execute( CIFAR_INSERT, params);
 
   }
 
@@ -75,13 +75,13 @@ public class CifarDAO extends DatasetsDAO {
 
     String SELECT_SINGLE = "SELECT * FROM CIFAR WHERE id = ?";
 
-    return DBProxy.querySingleObjectSQL("cifarconnectionpool", SELECT_SINGLE, Cifar.class, params);
+    return Yank.queryBean( SELECT_SINGLE, Cifar.class, params);
   }
 
   public static long selectCount() {
 
     String SELECT_COUNT = "SELECT COUNT(*) FROM CIFAR";
 
-    return DBProxy.querySingleScalarSQL("cifarconnectionpool", SELECT_COUNT, Long.class, null);
+    return Yank.queryScalar( SELECT_COUNT, Long.class, null);
   }
 }

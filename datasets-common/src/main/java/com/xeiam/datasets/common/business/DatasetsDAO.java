@@ -29,8 +29,8 @@ import org.apache.commons.io.FileUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.xeiam.yank.DBConnectionManager;
 import com.xeiam.yank.PropertiesUtils;
+import com.xeiam.yank.Yank;
 
 /**
  * @author timmolter
@@ -43,15 +43,16 @@ public abstract class DatasetsDAO {
 
   public static void initTest() {
 
-    DBConnectionManager.INSTANCE.init(PropertiesUtils.getPropertiesFromClasspath("DB_TEST.properties"));
+    Yank.setupDataSource(PropertiesUtils.getPropertiesFromClasspath("DB_TEST.properties"));
   }
 
   public static void release() {
 
-    DBConnectionManager.INSTANCE.release();
+    Yank.releaseDataSource();
   }
 
-  public static void init(String poolName, String dbName, String dataFilesDir, String dataFileURL, String propsFileURL, String scriptFileURL, String lobsFileURL, boolean requiresManualDownload) {
+  public static void init(String dbName, String dataFilesDir, String dataFileURL, String propsFileURL, String scriptFileURL, String lobsFileURL,
+      boolean requiresManualDownload) {
 
     // 1. create data dir
 
@@ -103,28 +104,27 @@ public abstract class DatasetsDAO {
               "Something went wrong while downloading the database files. Perhaps try again and if all else fails, download the files manually (https://drive.google.com/folderview?id=0ByP7_A9vXm17VXhuZzBrcnNubEE&usp=sharing) and place in the directory you specified.",
               e);
         }
-      }
-      else {
-        throw new RuntimeException("The data file is too big to download automatically! Please manually download it from: " + (GoogleDriveURLPart1 + dataFileURL) + " and place it in: " + dataFilesDir);
+      } else {
+        throw new RuntimeException("The data file is too big to download automatically! Please manually download it from: "
+            + (GoogleDriveURLPart1 + dataFileURL) + " and place it in: " + dataFilesDir);
       }
 
-    }
-    else {
+    } else {
       logger.info("Database files already exist in local directory. Skipping download.");
     }
     if (lobsFileURL != null && !lobsFile.exists()) {
-      throw new RuntimeException("The data file is too big to download automatically! Please manually download it from: " + (GoogleDriveURLPart1 + lobsFileURL) + " and place it in: " + dataFilesDir);
+      throw new RuntimeException("The data file is too big to download automatically! Please manually download it from: "
+          + (GoogleDriveURLPart1 + lobsFileURL) + " and place it in: " + dataFilesDir);
     }
 
     // 3. setup HSQLDB
     Properties dbProps = new Properties();
-    dbProps.setProperty("driverclassname", "org.hsqldb.jdbcDriver");
-    dbProps.setProperty(poolName + ".url", "jdbc:hsqldb:file:" + dataFilesDir + File.separatorChar + dbName + ";shutdown=true;readonly=true");
-    dbProps.setProperty(poolName + ".user", "sa");
-    dbProps.setProperty(poolName + ".password", "");
-    dbProps.setProperty(poolName + ".maxconn", "10");
+    //    dbProps.setProperty("driverclassname", "org.hsqldb.jdbcDriver");
+    dbProps.setProperty("jdbcUrl", "jdbc:hsqldb:file:" + dataFilesDir + File.separatorChar + dbName + ";shutdown=true;readonly=true");
+    dbProps.setProperty("username", "sa");
+    dbProps.setProperty("password", "");
 
-    DBConnectionManager.INSTANCE.init(dbProps);
+    Yank.setupDataSource(dbProps);
 
   }
 
