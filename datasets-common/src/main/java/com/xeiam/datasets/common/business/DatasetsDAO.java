@@ -123,6 +123,7 @@ public abstract class DatasetsDAO {
     dbProps.setProperty("jdbcUrl", "jdbc:hsqldb:file:" + dataFilesDir + File.separatorChar + dbName + ";shutdown=true;readonly=true");
     dbProps.setProperty("username", "sa");
     dbProps.setProperty("password", "");
+    dbProps.setProperty("readOnly", "true");
 
     Yank.setupDataSource(dbProps);
 
