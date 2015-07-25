@@ -76,7 +76,7 @@ The original copyright and license notices have been preserved in their original
 
 ### Include Jar in Your Project
 
-for example: `datasets-breast-cancer-wisconsin-orginal-2.0.0-SNAPSHOT.jar`
+for example: `datasets-breast-cancer-wisconsin-orginal-2.1.0-SNAPSHOT.jar`
 
 ### Via Maven
 
@@ -98,7 +98,7 @@ Add to your pom file:
     <dependency>
         <groupId>com.xeiam.datasets</groupId>
         <artifactId>datasets-breast-cancer-wisconsin-orginal</artifactId>
-        <version>2.0.0-SNAPSHOT</version>
+        <version>2.1.0-SNAPSHOT</version>
     </dependency>
     
 ### Manual Download
