@@ -8,7 +8,7 @@
 		<version>2.0.0-SNAPSHOT</version>
 	</parent>
 
-	<artifactId>datasets-breast-cancer-wisconsin-orginal</artifactId>
+	<artifactId>datasets-breast-cancer-wisconsin-original</artifactId>
 
 	<description>Xeiam Datasets for machine learning applications</description>
 	<url>http://xeiam.com</url>

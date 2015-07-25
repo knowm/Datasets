@@ -76,7 +76,7 @@ The original copyright and license notices have been preserved in their original
 
 ### Include Jar in Your Project
 
-for example: `datasets-breast-cancer-wisconsin-orginal-2.1.0-SNAPSHOT.jar`
+for example: `datasets-breast-cancer-wisconsin-original-2.1.0-SNAPSHOT.jar`
 
 ### Via Maven
 
