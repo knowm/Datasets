@@ -151,7 +151,7 @@ public class HJABirdsongSpectrogramViewer extends JPanel implements TreeSelectio
 
   /**
    * Create the tree
-   * 
+   *
    * @param top
    */
   private void createNodes(DefaultMutableTreeNode top) {
@@ -172,7 +172,6 @@ public class HJABirdsongSpectrogramViewer extends JPanel implements TreeSelectio
       defaultMutableTreeNode = new DefaultMutableTreeNode(hJABirdsong);
       category.add(defaultMutableTreeNode);
     }
-
   }
 
   /**

@@ -30,28 +30,25 @@ public class HJABirdsongDAO extends HJABirdsongParentDAO {
 
   public static int dropTable() {
 
-    return Yank.execute(  "DROP TABLE IF EXISTS BIRD_SONGS", null);
+    return Yank.execute("DROP TABLE IF EXISTS BIRD_SONGS", null);
   }
 
   public static int createTable() {
 
     String BagLabels_CREATE = "CREATE CACHED TABLE BIRD_SONGS (bagid INTEGER NOT NULL, labels VARCHAR(256) NOT NULL, wavfilename VARCHAR(256) NOT NULL, wavbytes blob NOT NULL, PRIMARY KEY (bagid))";
-    return Yank.execute(  BagLabels_CREATE, null);
+    return Yank.execute(BagLabels_CREATE, null);
   }
 
   public static int insert(HJABirdSong hJABirdSong) {
 
     Object[] params = new Object[] {
 
-    // @formatter:off
-        hJABirdSong.getBagid(),
-        hJABirdSong.getLabels(),
-        hJABirdSong.getWavfilename(),
-        hJABirdSong.getWavbytes()
-    // @formatter:on
-        };
+        // @formatter:off
+        hJABirdSong.getBagid(), hJABirdSong.getLabels(), hJABirdSong.getWavfilename(), hJABirdSong.getWavbytes()
+        // @formatter:on
+    };
     String BIRD_SONGS_INSERT = "INSERT INTO BIRD_SONGS (bagid, labels, wavfilename, wavbytes) VALUES (?, ?, ?, ?)";
-    return Yank.execute(  BIRD_SONGS_INSERT, params);
+    return Yank.execute(BIRD_SONGS_INSERT, params);
   }
 
   public static HJABirdSong selectSingle(int bagid) {
@@ -60,13 +57,13 @@ public class HJABirdsongDAO extends HJABirdsongParentDAO {
 
     String SELECT_SINGLE = "SELECT * FROM BIRD_SONGS WHERE bagid = ?";
 
-    return Yank.queryBean(  SELECT_SINGLE, HJABirdSong.class, params);
+    return Yank.queryBean(SELECT_SINGLE, HJABirdSong.class, params);
   }
 
   public static long selectCount() {
 
     String SELECT_COUNT = "SELECT COUNT(*) FROM BIRD_SONGS";
 
-    return Yank.queryScalar(  SELECT_COUNT, Long.class, null);
+    return Yank.queryScalar(SELECT_COUNT, Long.class, null);
   }
 }
