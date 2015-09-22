@@ -1,12 +1,12 @@
-## Xeiam Datasets
+## Knowm Datasets
 
-Xeiam Datasets is a Java library for conveniently working with machine learning datasets.  
+Knowm Datasets is a Java library for conveniently working with machine learning datasets.  
 
 ## Description 
 
 The philosophy of this open source project is simple - take several diverse datasets, which all have their own custom formats, and convert them all into a unified 
 format with a unified API for accessing the data. Each module has a `RawData2DB` class, which parses the raw data and puts each data object into a file-based HSQLDB database. 
-No separate database installation is necessary. The generated database files have been uploaded to Xeiam's Google Drive account [here](https://drive.google.com/folderview?id=0ByP7_A9vXm17VXhuZzBrcnNubEE&usp=sharing#list).
+No separate database installation is necessary. The generated database files have been uploaded to Knowm's Google Drive account [here](https://drive.google.com/folderview?id=0ByP7_A9vXm17VXhuZzBrcnNubEE&usp=sharing#list).
 The data is accessed for client apps through a DAO class, with methods so easy, even a child could understand:
 
 Sample code:
