@@ -31,9 +31,6 @@ import org.junit.BeforeClass;
 import org.junit.Ignore;
 import org.junit.Test;
 
-import com.xeiam.datasets.hjabirdsong.HJABirdSong;
-import com.xeiam.datasets.hjabirdsong.HJABirdsongDAO;
-
 /**
  * @author timmolter
  */
@@ -43,7 +40,7 @@ public class TestHJABirdsongDAO {
   @BeforeClass
   public static void setUpDB() {
 
-    HJABirdsongDAO.initTest();
+    HJABirdsongDAO.init(new String[0]);
 
   }
 

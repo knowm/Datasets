@@ -29,8 +29,6 @@ import org.junit.BeforeClass;
 import org.junit.Ignore;
 import org.junit.Test;
 
-import com.xeiam.datasets.cifar10.CifarDAO;
-
 /**
  * @author timmolter
  */
@@ -40,7 +38,7 @@ public class TestCifarDAO {
   @BeforeClass
   public static void setUpDB() {
 
-    CifarDAO.initTest();
+    CifarDAO.init(new String[0]);
   }
 
   @AfterClass

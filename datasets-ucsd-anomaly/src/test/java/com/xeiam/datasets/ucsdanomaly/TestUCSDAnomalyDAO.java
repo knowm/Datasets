@@ -35,9 +35,6 @@ import org.junit.BeforeClass;
 import org.junit.Ignore;
 import org.junit.Test;
 
-import com.xeiam.datasets.ucsdanomaly.UCSDAnomaly;
-import com.xeiam.datasets.ucsdanomaly.UCSDAnomalyDAO;
-
 /**
  * @author timmolter
  */
@@ -47,7 +44,7 @@ public class TestUCSDAnomalyDAO {
   @BeforeClass
   public static void setUpDB() {
 
-    UCSDAnomalyDAO.initTest();
+    UCSDAnomalyDAO.init(new String[0]);
 
   }
 

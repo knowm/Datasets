@@ -39,7 +39,7 @@ public class RawData2DBHierarchy {
 
   public static void main(String[] args) throws IOException {
 
-    LSHTC4HierarchyDAO.initTest();
+    LSHTC4HierarchyDAO.init(args);
 
     LSHTC4HierarchyDAO.dropTable();
     LSHTC4HierarchyDAO.createTable();

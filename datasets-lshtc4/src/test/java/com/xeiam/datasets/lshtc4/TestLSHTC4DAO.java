@@ -29,9 +29,6 @@ import org.junit.BeforeClass;
 import org.junit.Ignore;
 import org.junit.Test;
 
-import com.xeiam.datasets.lshtc4.LSHTC4;
-import com.xeiam.datasets.lshtc4.LSHTC4DAO;
-
 /**
  * @author timmolter
  */
@@ -41,7 +38,7 @@ public class TestLSHTC4DAO {
   @BeforeClass
   public static void setUpDB() {
 
-    LSHTC4DAO.initTest();
+    LSHTC4DAO.init(new String[0]);
 
   }
 

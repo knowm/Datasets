@@ -29,8 +29,6 @@ import org.junit.BeforeClass;
 import org.junit.Ignore;
 import org.junit.Test;
 
-import com.xeiam.datasets.breastcancerwisconsinorginal.BreastCancerDAO;
-
 /**
  * @author timmolter
  */
@@ -40,7 +38,7 @@ public class TestBreastCancerDAO {
   @BeforeClass
   public static void setUpDB() {
 
-    BreastCancerDAO.initTest();
+    BreastCancerDAO.init(new String[0]);
 
   }
 

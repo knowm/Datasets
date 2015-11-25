@@ -41,7 +41,7 @@ public class RawData2DB {
 
   public static void main(String[] args) throws IOException {
 
-    HJABirdsongDAO.initTest();
+    HJABirdsongDAO.init(args);
 
     HJABirdsongDAO.dropTable();
     HJABirdsongDAO.createTable();

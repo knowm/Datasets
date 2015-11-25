@@ -34,7 +34,7 @@ public class RawData2DB {
 
   public static void main(String[] args) throws IOException {
 
-    CifarDAO.initTest();
+    CifarDAO.init(args);
 
     CifarDAO.dropTable();
     CifarDAO.createTable();

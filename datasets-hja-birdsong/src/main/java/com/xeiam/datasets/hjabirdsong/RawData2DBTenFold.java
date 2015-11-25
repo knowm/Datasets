@@ -40,7 +40,7 @@ public class RawData2DBTenFold {
 
   public static void main(String[] args) throws IOException {
 
-    TenFoldDAO.initTest();
+    TenFoldDAO.init(args);
 
     TenFoldDAO.dropTable();
     TenFoldDAO.createTable();

@@ -31,9 +31,6 @@ import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import com.xeiam.datasets.reuters21578.Reuters21578;
-import com.xeiam.datasets.reuters21578.Reuters21578DAO;
-
 /**
  * @author timmolter
  */
@@ -43,7 +40,7 @@ public class TestReuters21578DAO {
   @BeforeClass
   public static void setUpDB() {
 
-    Reuters21578DAO.initTest();
+    Reuters21578DAO.init(new String[0]);
   }
 
   @AfterClass

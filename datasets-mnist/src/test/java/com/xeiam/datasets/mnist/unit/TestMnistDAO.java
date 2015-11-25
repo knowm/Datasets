@@ -42,7 +42,7 @@ public class TestMnistDAO {
   @BeforeClass
   public static void setUpDB() {
 
-    MnistDAO.initTest();
+    MnistDAO.init(new String[0]);
   }
 
   @AfterClass

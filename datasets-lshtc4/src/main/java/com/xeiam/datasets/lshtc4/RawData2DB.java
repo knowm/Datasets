@@ -45,7 +45,7 @@ public class RawData2DB {
 
   public static void main(String[] args) throws IOException {
 
-    LSHTC4DAO.initTest();
+    LSHTC4DAO.init(args);
 
     LSHTC4DAO.dropTable();
     LSHTC4DAO.createTable();

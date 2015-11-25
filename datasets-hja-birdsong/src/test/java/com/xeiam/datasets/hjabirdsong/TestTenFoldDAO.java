@@ -29,9 +29,6 @@ import org.junit.BeforeClass;
 import org.junit.Ignore;
 import org.junit.Test;
 
-import com.xeiam.datasets.hjabirdsong.TenFold;
-import com.xeiam.datasets.hjabirdsong.TenFoldDAO;
-
 /**
  * @author timmolter
  */
@@ -41,7 +38,7 @@ public class TestTenFoldDAO {
   @BeforeClass
   public static void setUpDB() {
 
-    TenFoldDAO.initTest();
+    TenFoldDAO.init(new String[0]);
 
   }
 

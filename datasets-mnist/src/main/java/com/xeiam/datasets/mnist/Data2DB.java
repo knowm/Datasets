@@ -34,7 +34,7 @@ public class Data2DB {
 
   public static void main(String[] args) throws IOException {
 
-    MnistDAO.initTest();
+    MnistDAO.init(new String[0]);
 
     MnistDAO.dropTable();
     MnistDAO.createTable();

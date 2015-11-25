@@ -42,7 +42,7 @@ public class RawData2DB {
 
   public static void main(String[] args) throws IOException, SerialException, SQLException {
 
-    UCSDAnomalyDAO.initTest();
+    UCSDAnomalyDAO.init(args);
 
     UCSDAnomalyDAO.dropTable();
     UCSDAnomalyDAO.createTable();

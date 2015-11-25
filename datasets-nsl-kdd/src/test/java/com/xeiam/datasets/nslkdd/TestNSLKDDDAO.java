@@ -29,9 +29,6 @@ import org.junit.BeforeClass;
 import org.junit.Ignore;
 import org.junit.Test;
 
-import com.xeiam.datasets.nslkdd.NSLKDD;
-import com.xeiam.datasets.nslkdd.NSLKDDDAO;
-
 /**
  * @author timmolter
  */
@@ -41,7 +38,7 @@ public class TestNSLKDDDAO {
   @BeforeClass
   public static void setUpDB() {
 
-    NSLKDDDAO.initTest();
+    NSLKDDDAO.init(new String[0]);
 
   }
 

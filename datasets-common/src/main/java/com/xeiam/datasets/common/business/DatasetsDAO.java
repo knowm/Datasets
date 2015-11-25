@@ -41,9 +41,21 @@ public abstract class DatasetsDAO {
 
   private final static String GoogleDriveURLPart1 = "https://docs.google.com/uc?export=download&id=";
 
-  public static void initTest() {
+  public static void init(String[] args) {
 
-    Yank.setupDataSource(PropertiesUtils.getPropertiesFromClasspath("DB_HSQLDB_FILE.properties"));
+    // allow for setting other SQL data sources
+    if (args[0] != null) {
+      Yank.setupDataSource(PropertiesUtils.getPropertiesFromClasspath(args[0]));
+    } else {
+      Yank.setupDataSource(PropertiesUtils.getPropertiesFromClasspath("DB_HSQLDB_FILE.properties"));
+    }
+
+    // allow for setting other SQL statements
+    if (args[1] != null) {
+      Yank.addSQLStatements(PropertiesUtils.getPropertiesFromClasspath(args[1]));
+    } else {
+      Yank.addSQLStatements(PropertiesUtils.getPropertiesFromClasspath("SQL_HSQLDB.properties"));
+    }
 
   }
 

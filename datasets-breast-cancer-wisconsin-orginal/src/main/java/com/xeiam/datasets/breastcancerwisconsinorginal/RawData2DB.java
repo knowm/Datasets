@@ -29,7 +29,7 @@ import org.junit.Ignore;
 
 /**
  * Parses Breast Cancer text files and put the data in a database
- * 
+ *
  * @author timmolter
  */
 @Ignore
@@ -40,7 +40,7 @@ public class RawData2DB {
 
   public static void main(String[] args) throws IOException {
 
-    BreastCancerDAO.initTest();
+    BreastCancerDAO.init(args);
 
     BreastCancerDAO.dropTable();
     BreastCancerDAO.createTable();

@@ -12,7 +12,7 @@
 
     find . -iname "*.tif" -type f -exec sh -c 'sips -s format png "$0" --out "${0%.tif}.png"' {} \;
 
-1. Run `RawData2DB.java` with program argument `DB_HSQLDB_FILE.properties`. 
+1. Run `RawData2DB.java`. 
 
 1. The database containing the data will appear in `db`.
 

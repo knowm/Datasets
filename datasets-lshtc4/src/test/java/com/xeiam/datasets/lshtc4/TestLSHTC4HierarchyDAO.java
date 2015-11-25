@@ -31,9 +31,6 @@ import org.junit.BeforeClass;
 import org.junit.Ignore;
 import org.junit.Test;
 
-import com.xeiam.datasets.lshtc4.LSHTC4Hierarchy;
-import com.xeiam.datasets.lshtc4.LSHTC4HierarchyDAO;
-
 /**
  * @author timmolter
  */
@@ -43,7 +40,7 @@ public class TestLSHTC4HierarchyDAO {
   @BeforeClass
   public static void setUpDB() {
 
-    LSHTC4HierarchyDAO.initTest();
+    LSHTC4HierarchyDAO.init(new String[0]);
 
   }
 

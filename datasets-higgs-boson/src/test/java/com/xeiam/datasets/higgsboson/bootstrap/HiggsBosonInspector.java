@@ -39,7 +39,7 @@ public class HiggsBosonInspector extends HistogramDataInspector<HiggsBoson> {
 
     try {
       // HiggsBosonDAO.init("/usr/local/Datasets"); // setup data
-      HiggsBosonDAO.initTest(); // setup data
+      HiggsBosonDAO.init(args); // setup data
 
       HiggsBosonInspector higgsBosonInspector = new HiggsBosonInspector();
       higgsBosonInspector.go();

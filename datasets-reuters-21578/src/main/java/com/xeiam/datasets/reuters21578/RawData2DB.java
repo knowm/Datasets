@@ -41,18 +41,18 @@ import com.google.common.base.Joiner;
  * 
  * @author timmolter
  */
-public class Data2DB {
+public class RawData2DB {
 
   int maxBodyLength = 0;
 
   public static void main(String[] args) throws IOException {
 
-    Reuters21578DAO.initTest();
+    Reuters21578DAO.init(args);
 
     Reuters21578DAO.dropTable();
     Reuters21578DAO.createTable();
 
-    Data2DB dp = new Data2DB();
+    RawData2DB dp = new RawData2DB();
     dp.go();
 
     Reuters21578DAO.release();

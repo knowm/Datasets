@@ -26,9 +26,6 @@ import java.io.IOException;
 
 import org.apache.commons.io.FileUtils;
 
-import com.xeiam.yank.PropertiesUtils;
-import com.xeiam.yank.Yank;
-
 /**
  * Parses Census Income text files and put the data in a database
  *
@@ -41,15 +38,7 @@ public class RawData2DB {
 
   public static void main(String[] args) throws IOException {
 
-    //  DB_HSQLDB_FILE.properties
-    Yank.setupDataSource(PropertiesUtils.getPropertiesFromClasspath(args[0]));
-
-    // allow for setting other SQL statements
-    if (args[1] != null) {
-      Yank.addSQLStatements(PropertiesUtils.getPropertiesFromClasspath(args[1]));
-    } else {
-      Yank.addSQLStatements(PropertiesUtils.getPropertiesFromClasspath("SQL_HSQLDB.properties"));
-    }
+    CensusIncomeDAO.init(args);
 
     CensusIncomeDAO.dropTable();
     CensusIncomeDAO.createTable();

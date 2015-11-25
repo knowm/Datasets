@@ -39,7 +39,7 @@ public class RawData2DB {
 
   public static void main(String[] args) throws IOException {
 
-    NSLKDDDAO.initTest();
+    NSLKDDDAO.init(args);
 
     NSLKDDDAO.dropTable();
     NSLKDDDAO.createTable();

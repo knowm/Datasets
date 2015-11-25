@@ -34,7 +34,7 @@ public class Data2DB {
 
   public static void main(String[] args) throws IOException {
 
-    HiggsBosonDAO.initTest();
+    HiggsBosonDAO.init(args);
 
     HiggsBosonDAO.dropTable();
     HiggsBosonDAO.createTable();
