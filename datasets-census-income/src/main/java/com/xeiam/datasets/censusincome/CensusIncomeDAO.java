@@ -50,11 +50,7 @@ public class CensusIncomeDAO extends DatasetsDAO {
 
   public static int createTable() {
 
-    String CENSUS_INCOME_CREATE = "CREATE CACHED TABLE CENSUS_INCOME (id INTEGER NOT NULL, age INTEGER NOT NULL, workclass VARCHAR(256) NOT NULL, fnlwgt INTEGER NOT NULL,"
-        + " education VARCHAR(256) NOT NULL, educationNum INTEGER NOT NULL, maritalStatus VARCHAR(256) NOT NULL, occupation VARCHAR(256) NOT NULL,"
-        + "relationship VARCHAR(256) NOT NULL, race VARCHAR(256) NOT NULL, sex VARCHAR(256) NOT NULL, capitalGain INTEGER NOT NULL, capitalLoss INTEGER NOT NULL,"
-        + " hoursPerWeek INTEGER NOT NULL, nativeCountry VARCHAR(256) NOT NULL, incomeLessThan50k TINYINT NOT NULL, PRIMARY KEY (id))";
-    return Yank.execute(CENSUS_INCOME_CREATE, null);
+    return Yank.executeSQLKey("KEY_CREATE_TABLE", null);
   }
 
   public static int insert(CensusIncome censusIncome) {

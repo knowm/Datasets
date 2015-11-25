@@ -44,6 +44,13 @@ public class RawData2DB {
     //  DB_HSQLDB_FILE.properties
     Yank.setupDataSource(PropertiesUtils.getPropertiesFromClasspath(args[0]));
 
+    // allow for setting other SQL statements
+    if (args[1] != null) {
+      Yank.addSQLStatements(PropertiesUtils.getPropertiesFromClasspath(args[1]));
+    } else {
+      Yank.addSQLStatements(PropertiesUtils.getPropertiesFromClasspath("SQL_HSQLDB.properties"));
+    }
+
     CensusIncomeDAO.dropTable();
     CensusIncomeDAO.createTable();
 
