@@ -43,7 +43,8 @@ public abstract class DatasetsDAO {
 
   public static void initTest() {
 
-    Yank.setupDataSource(PropertiesUtils.getPropertiesFromClasspath("DB_TEST.properties"));
+    Yank.setupDataSource(PropertiesUtils.getPropertiesFromClasspath("DB_HSQLDB_FILE.properties"));
+
   }
 
   public static void release() {
@@ -119,7 +120,6 @@ public abstract class DatasetsDAO {
 
     // 3. setup HSQLDB
     Properties dbProps = new Properties();
-    //    dbProps.setProperty("driverclassname", "org.hsqldb.jdbcDriver");
     dbProps.setProperty("jdbcUrl", "jdbc:hsqldb:file:" + dataFilesDir + File.separatorChar + dbName + ";shutdown=true;readonly=true");
     dbProps.setProperty("username", "sa");
     dbProps.setProperty("password", "");

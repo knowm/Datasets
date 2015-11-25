@@ -25,7 +25,7 @@ import com.xeiam.datasets.common.business.DatasetsDAO;
 import com.xeiam.yank.Yank;
 
 /**
- * @author alexnugent
+ * @author timmolter
  */
 public class CensusIncomeDAO extends DatasetsDAO {
 
@@ -89,4 +89,5 @@ public class CensusIncomeDAO extends DatasetsDAO {
 
     return Yank.queryBean(SELECT_SINGLE, CensusIncome.class, params);
   }
+
 }

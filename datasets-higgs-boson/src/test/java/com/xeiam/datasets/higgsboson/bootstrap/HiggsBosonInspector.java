@@ -27,8 +27,8 @@ import java.util.Map;
 import java.util.Map.Entry;
 
 import com.xeiam.datasets.common.data.HistogramDataInspector;
-import com.xeiam.datasets.higgsboson.business.HiggsBoson;
-import com.xeiam.datasets.higgsboson.business.HiggsBosonDAO;
+import com.xeiam.datasets.higgsboson.HiggsBoson;
+import com.xeiam.datasets.higgsboson.HiggsBosonDAO;
 
 /**
  * @author timmolter

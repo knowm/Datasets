@@ -8,7 +8,7 @@
 
 1. put all files (hierarchy.zip, test-remapped and train-remapped) in `raw` folder in project root
 
-1. Run `RawData2DB.java` and `RawData2DBHierarchy.java`.
+1. Run `RawData2DB.java` and `RawData2DBHierarchy.java` with program argument `DB_HSQLDB_FILE.properties`. 
 
 1. The database containing the data will appear in `db`.
 
@@ -16,7 +16,7 @@
 
 ## Build jar containing Data
 
-1. using Maven, run `mvn clean install`
+1. Using Maven, run `mvn clean install`.
 
 ## Data Information
 
