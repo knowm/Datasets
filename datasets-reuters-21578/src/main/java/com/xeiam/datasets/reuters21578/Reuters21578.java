@@ -289,8 +289,8 @@ public class Reuters21578 {
   @Override
   public String toString() {
 
-    return "Reuters21578 [newid=" + newid + ", oldid=" + oldid + ", date=" + date + ", topics=" + topics + ", places=" + places + ", people=" + people + ", orgs=" + orgs + ", exchanges=" + exchanges
-        + ", companies=" + companies + ", title=" + title + ", dateline=" + dateline + "]";
+    return "Reuters21578 [newid=" + newid + ", oldid=" + oldid + ", date=" + date + ", topics=" + topics + ", places=" + places + ", people=" + people
+        + ", orgs=" + orgs + ", exchanges=" + exchanges + ", companies=" + companies + ", title=" + title + ", dateline=" + dateline + "]";
   }
 
 }

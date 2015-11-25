@@ -116,8 +116,7 @@ public class RawData2DB {
 
     if (anomalyFileName == null) {
       return false;
-    }
-    else {
+    } else {
       File anomalyFile = new File(dirpath + anomalyFileName);
       List<String> labelsLines = FileUtils.readLines(anomalyFile, "UTF-8");
       String line = labelsLines.get(idx - UCSDAnomalyDAO.getTrainTestSplit());

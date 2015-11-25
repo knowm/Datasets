@@ -66,8 +66,7 @@ public class WaveformRender {
         double a = nAmplitudes[startSample + j];
         if (a > middleLine) {
           sumPosAmplitude += (a - middleLine);
-        }
-        else {
+        } else {
           sumNegAmplitude += (a - middleLine);
         }
       }
@@ -92,8 +91,7 @@ public class WaveformRender {
         int y = height - j; // j from -ve to +ve, i.e. draw from top to bottom
         if (y < 0) {
           y = 0;
-        }
-        else if (y >= height) {
+        } else if (y >= height) {
           y = height - 1;
         }
         bufferedImage.setRGB(i, y, 0);

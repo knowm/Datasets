@@ -45,6 +45,7 @@ public class OpenNLPBasicUtils {
   private static Tokenizer tokenizer = null;
   private static SentenceDetectorME sentenceDetector = null;
   private static POSTaggerME POSTaggerModel = null;
+
   static {
     InputStream tokenizerIS = Thread.currentThread().getContextClassLoader().getResourceAsStream("apacheOpenNLP/en-token.bin");
     InputStream sentenceDetectorIS = Thread.currentThread().getContextClassLoader().getResourceAsStream("apacheOpenNLP/en-sent.bin");
@@ -133,8 +134,7 @@ public class OpenNLPBasicUtils {
       for (int i = 0; i < tags.length; i++) {
         if (prefixWithToaken) {
           posTagsList.add(tokens[i] + "_" + tags[i]);
-        }
-        else {
+        } else {
           posTagsList.add(tags[i]);
         }
       }

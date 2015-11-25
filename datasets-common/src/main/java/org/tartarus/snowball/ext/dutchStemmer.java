@@ -614,18 +614,18 @@ public class dutchStemmer extends org.tartarus.snowball.SnowballStemmer {
         if (!r_R2()) {
           break lab4;
         }
-        // not, line 133
-        {
-          v_8 = limit - cursor;
-          lab8: do {
-            // literal, line 133
-            if (!(eq_s_b(1, "e"))) {
-              break lab8;
-            }
-            break lab4;
-          } while (false);
-          cursor = limit - v_8;
-        }
+      // not, line 133
+      {
+        v_8 = limit - cursor;
+        lab8: do {
+          // literal, line 133
+          if (!(eq_s_b(1, "e"))) {
+            break lab8;
+          }
+          break lab4;
+        } while (false);
+        cursor = limit - v_8;
+      }
         // delete, line 133
         slice_del();
         break;

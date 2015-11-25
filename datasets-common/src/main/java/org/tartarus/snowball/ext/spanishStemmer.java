@@ -92,11 +92,11 @@ public class spanishStemmer extends org.tartarus.snowball.SnowballStemmer {
       new Among("er\u00EDamos", 74, 2, "", methodObject), new Among("ir\u00EDamos", 74, 2, "", methodObject),
       new Among("emos", -1, 1, "", methodObject), new Among("aremos", 78, 2, "", methodObject), new Among("eremos", 78, 2, "", methodObject),
       new Among("iremos", 78, 2, "", methodObject), new Among("\u00E1semos", 78, 2, "", methodObject),
-      new Among("i\u00E9semos", 78, 2, "", methodObject), new Among("imos", -1, 2, "", methodObject),
-      new Among("ar\u00E1s", -1, 2, "", methodObject), new Among("er\u00E1s", -1, 2, "", methodObject),
-      new Among("ir\u00E1s", -1, 2, "", methodObject), new Among("\u00EDs", -1, 2, "", methodObject), new Among("ar\u00E1", -1, 2, "", methodObject),
-      new Among("er\u00E1", -1, 2, "", methodObject), new Among("ir\u00E1", -1, 2, "", methodObject), new Among("ar\u00E9", -1, 2, "", methodObject),
-      new Among("er\u00E9", -1, 2, "", methodObject), new Among("ir\u00E9", -1, 2, "", methodObject), new Among("i\u00F3", -1, 2, "", methodObject) };
+      new Among("i\u00E9semos", 78, 2, "", methodObject), new Among("imos", -1, 2, "", methodObject), new Among("ar\u00E1s", -1, 2, "", methodObject),
+      new Among("er\u00E1s", -1, 2, "", methodObject), new Among("ir\u00E1s", -1, 2, "", methodObject), new Among("\u00EDs", -1, 2, "", methodObject),
+      new Among("ar\u00E1", -1, 2, "", methodObject), new Among("er\u00E1", -1, 2, "", methodObject), new Among("ir\u00E1", -1, 2, "", methodObject),
+      new Among("ar\u00E9", -1, 2, "", methodObject), new Among("er\u00E9", -1, 2, "", methodObject), new Among("ir\u00E9", -1, 2, "", methodObject),
+      new Among("i\u00F3", -1, 2, "", methodObject) };
 
   private final static Among a_9[] = { new Among("a", -1, 1, "", methodObject), new Among("e", -1, 2, "", methodObject),
       new Among("o", -1, 1, "", methodObject), new Among("os", -1, 1, "", methodObject), new Among("\u00E1", -1, 1, "", methodObject),

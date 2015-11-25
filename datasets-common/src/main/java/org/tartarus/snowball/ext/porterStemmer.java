@@ -32,7 +32,8 @@ public class porterStemmer extends org.tartarus.snowball.SnowballStemmer {
       new Among("biliti", -1, 14, "", methodObject), new Among("iviti", -1, 13, "", methodObject), new Among("tional", -1, 1, "", methodObject),
       new Among("ational", 10, 8, "", methodObject), new Among("alism", -1, 10, "", methodObject), new Among("ation", -1, 8, "", methodObject),
       new Among("ization", 13, 7, "", methodObject), new Among("izer", -1, 7, "", methodObject), new Among("ator", -1, 8, "", methodObject),
-      new Among("iveness", -1, 13, "", methodObject), new Among("fulness", -1, 11, "", methodObject), new Among("ousness", -1, 12, "", methodObject) };
+      new Among("iveness", -1, 13, "", methodObject), new Among("fulness", -1, 11, "", methodObject),
+      new Among("ousness", -1, 12, "", methodObject) };
 
   private final static Among a_4[] = { new Among("icate", -1, 2, "", methodObject), new Among("ative", -1, 3, "", methodObject),
       new Among("alize", -1, 1, "", methodObject), new Among("iciti", -1, 2, "", methodObject), new Among("ical", -1, 2, "", methodObject),
@@ -223,12 +224,12 @@ public class porterStemmer extends org.tartarus.snowball.SnowballStemmer {
           return false;
         }
         cursor = limit - v_4;
-        // <+, line 45
-        {
-          int c = cursor;
-          insert(cursor, cursor, "e");
-          cursor = c;
-        }
+      // <+, line 45
+      {
+        int c = cursor;
+        insert(cursor, cursor, "e");
+        cursor = c;
+      }
         break;
       }
       break;

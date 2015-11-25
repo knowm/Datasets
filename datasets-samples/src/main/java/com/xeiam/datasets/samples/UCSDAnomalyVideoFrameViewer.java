@@ -170,8 +170,7 @@ public class UCSDAnomalyVideoFrameViewer extends JPanel implements TreeSelection
       DefaultMutableTreeNode category = new DefaultMutableTreeNode(index);
       if (index <= trainTestSplit) {
         trainCategory.add(category);
-      }
-      else {
+      } else {
         testCategory.add(category);
       }
 

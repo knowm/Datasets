@@ -206,9 +206,10 @@ public class CensusIncome {
   @Override
   public String toString() {
 
-    return "CensusIncome [id=" + id + ", age=" + age + ", workclass=" + workclass + ", fnlwgt=" + fnlwgt + ", education=" + education + ", educationNum=" + educationNum + ", maritalStatus="
-        + maritalStatus + ", occupation=" + occupation + ", relationship=" + relationship + ", race=" + race + ", sex=" + sex + ", capitalGain=" + capitalGain + ", capitalLoss=" + capitalLoss
-        + ", hoursPerWeek=" + hoursPerWeek + ", nativeCountry=" + nativeCountry + ", incomeLessThan50k=" + incomeLessThan50k + "]";
+    return "CensusIncome [id=" + id + ", age=" + age + ", workclass=" + workclass + ", fnlwgt=" + fnlwgt + ", education=" + education
+        + ", educationNum=" + educationNum + ", maritalStatus=" + maritalStatus + ", occupation=" + occupation + ", relationship=" + relationship
+        + ", race=" + race + ", sex=" + sex + ", capitalGain=" + capitalGain + ", capitalLoss=" + capitalLoss + ", hoursPerWeek=" + hoursPerWeek
+        + ", nativeCountry=" + nativeCountry + ", incomeLessThan50k=" + incomeLessThan50k + "]";
   }
 
 }

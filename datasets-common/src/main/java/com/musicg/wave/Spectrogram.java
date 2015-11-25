@@ -64,8 +64,7 @@ public class Spectrogram {
 
     if (Integer.bitCount(fftSampleSize) == 1) {
       this.fftSampleSize = fftSampleSize;
-    }
-    else {
+    } else {
       System.err.print("The input number must be a power of 2");
       this.fftSampleSize = SPECTROGRAM_DEFAULT_FFT_SAMPLE_SIZE;
     }
@@ -144,8 +143,7 @@ public class Spectrogram {
         for (int j = 0; j < numFrequencyUnit; j++) {
           if (absoluteSpectrogram[i][j] > maxAmp) {
             maxAmp = absoluteSpectrogram[i][j];
-          }
-          else if (absoluteSpectrogram[i][j] < minAmp) {
+          } else if (absoluteSpectrogram[i][j] < minAmp) {
             minAmp = absoluteSpectrogram[i][j];
           }
         }
@@ -163,8 +161,7 @@ public class Spectrogram {
         for (int j = 0; j < numFrequencyUnit; j++) {
           if (absoluteSpectrogram[i][j] < minValidAmp) {
             spectrogram[i][j] = 0;
-          }
-          else {
+          } else {
             spectrogram[i][j] = (Math.log10(absoluteSpectrogram[i][j] / minAmp)) / diff;
             // System.out.println(spectrogram[i][j]);
           }

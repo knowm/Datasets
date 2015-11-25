@@ -84,8 +84,7 @@ public class RawData2DB {
           breastCancer.setCellClass(Integer.parseInt(entry[10]));
 
           BreastCancerDAO.insert(breastCancer);
-        }
-        else {
+        } else {
           System.out.println("Skipping: " + lines[i]);
         }
 

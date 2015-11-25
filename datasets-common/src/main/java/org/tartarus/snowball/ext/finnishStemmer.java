@@ -24,8 +24,8 @@ public class finnishStemmer extends org.tartarus.snowball.SnowballStemmer {
       new Among("sta", 3, -1, "", methodObject) };
 
   private final static Among a_2[] = { new Among("ll\u00E4", -1, -1, "", methodObject), new Among("n\u00E4", -1, -1, "", methodObject),
-      new Among("ss\u00E4", -1, -1, "", methodObject), new Among("t\u00E4", -1, -1, "", methodObject),
-      new Among("lt\u00E4", 3, -1, "", methodObject), new Among("st\u00E4", 3, -1, "", methodObject) };
+      new Among("ss\u00E4", -1, -1, "", methodObject), new Among("t\u00E4", -1, -1, "", methodObject), new Among("lt\u00E4", 3, -1, "", methodObject),
+      new Among("st\u00E4", 3, -1, "", methodObject) };
 
   private final static Among a_3[] = { new Among("lle", -1, -1, "", methodObject), new Among("ine", -1, -1, "", methodObject) };
 

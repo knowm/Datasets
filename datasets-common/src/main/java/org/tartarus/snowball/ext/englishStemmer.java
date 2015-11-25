@@ -511,12 +511,12 @@ public class englishStemmer extends org.tartarus.snowball.SnowballStemmer {
           return false;
         }
         cursor = limit - v_4;
-        // <+, line 87
-        {
-          int c = cursor;
-          insert(cursor, cursor, "e");
-          cursor = c;
-        }
+      // <+, line 87
+      {
+        int c = cursor;
+        insert(cursor, cursor, "e");
+        cursor = c;
+      }
         break;
       }
       break;

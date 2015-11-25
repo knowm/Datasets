@@ -430,14 +430,14 @@ public class germanStemmer extends org.tartarus.snowball.SnowballStemmer {
         if (!(in_grouping_b(g_st_ending, 98, 116))) {
           break lab2;
         }
-        // hop, line 99
-        {
-          int c = cursor - 3;
-          if (limit_backward > c || c > limit) {
-            break lab2;
-          }
-          cursor = c;
+      // hop, line 99
+      {
+        int c = cursor - 3;
+        if (limit_backward > c || c > limit) {
+          break lab2;
         }
+        cursor = c;
+      }
         // delete, line 99
         slice_del();
         break;

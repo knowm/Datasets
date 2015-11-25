@@ -40,7 +40,7 @@ public class CensusIncomeDAO extends DatasetsDAO {
 
   public static int dropTable() {
 
-    return Yank.execute( "DROP TABLE IF EXISTS CENSUS_INCOME", null);
+    return Yank.execute("DROP TABLE IF EXISTS CENSUS_INCOME", null);
   }
 
   public static int getTrainTestSplit() {
@@ -54,7 +54,7 @@ public class CensusIncomeDAO extends DatasetsDAO {
         + " education VARCHAR(256) NOT NULL, educationNum INTEGER NOT NULL, maritalStatus VARCHAR(256) NOT NULL, occupation VARCHAR(256) NOT NULL,"
         + "relationship VARCHAR(256) NOT NULL, race VARCHAR(256) NOT NULL, sex VARCHAR(256) NOT NULL, capitalGain INTEGER NOT NULL, capitalLoss INTEGER NOT NULL,"
         + " hoursPerWeek INTEGER NOT NULL, nativeCountry VARCHAR(256) NOT NULL, incomeLessThan50k TINYINT NOT NULL, PRIMARY KEY (id))";
-    return Yank.execute( CENSUS_INCOME_CREATE, null);
+    return Yank.execute(CENSUS_INCOME_CREATE, null);
   }
 
   public static int insert(CensusIncome censusIncome) {
@@ -70,7 +70,7 @@ public class CensusIncomeDAO extends DatasetsDAO {
     };
     String CENSUS_INCOME_INSERT = "INSERT INTO CENSUS_INCOME (id, age, workclass, fnlwgt, education, educationNum, maritalStatus, occupation, relationship, race, sex, capitalGain, capitalLoss, hoursPerWeek, nativeCountry, incomeLessThan50k"
         + ") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-    return Yank.execute( CENSUS_INCOME_INSERT, params);
+    return Yank.execute(CENSUS_INCOME_INSERT, params);
 
   }
 
@@ -78,7 +78,7 @@ public class CensusIncomeDAO extends DatasetsDAO {
 
     String SELECT_COUNT = "SELECT COUNT(*) FROM CENSUS_INCOME";
 
-    return Yank.queryScalar( SELECT_COUNT, Long.class, null);
+    return Yank.queryScalar(SELECT_COUNT, Long.class, null);
   }
 
   public static CensusIncome selectSingle(int id) {
@@ -87,6 +87,6 @@ public class CensusIncomeDAO extends DatasetsDAO {
 
     String SELECT_SINGLE = "SELECT * FROM CENSUS_INCOME WHERE id = ?";
 
-    return Yank.queryBean( SELECT_SINGLE, CensusIncome.class, params);
+    return Yank.queryBean(SELECT_SINGLE, CensusIncome.class, params);
   }
 }

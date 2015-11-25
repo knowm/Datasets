@@ -84,8 +84,7 @@ public class RawData2DB {
 
         if (entry[14].trim().equalsIgnoreCase("<=50K") | entry[14].trim().equalsIgnoreCase("<=50K.")) {
           censusIncome.setIncomeLessThan50k(true);
-        }
-        else if (entry[14].trim().equalsIgnoreCase(">50K") | entry[14].trim().equalsIgnoreCase(">50K.")) {
+        } else if (entry[14].trim().equalsIgnoreCase(">50K") | entry[14].trim().equalsIgnoreCase(">50K.")) {
           censusIncome.setIncomeLessThan50k(false);
         }
 

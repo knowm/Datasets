@@ -57,18 +57,23 @@ public class WaveHeader {
     int pointer = 0;
     chunkId = new String(new byte[] { headerBuffer[pointer++], headerBuffer[pointer++], headerBuffer[pointer++], headerBuffer[pointer++] });
     // little endian
-    chunkSize = headerBuffer[pointer++] & 0xff | (long) (headerBuffer[pointer++] & 0xff) << 8 | (long) (headerBuffer[pointer++] & 0xff) << 16 | headerBuffer[pointer++] & 0xff << 24;
+    chunkSize = headerBuffer[pointer++] & 0xff | (long) (headerBuffer[pointer++] & 0xff) << 8 | (long) (headerBuffer[pointer++] & 0xff) << 16
+        | headerBuffer[pointer++] & 0xff << 24;
     format = new String(new byte[] { headerBuffer[pointer++], headerBuffer[pointer++], headerBuffer[pointer++], headerBuffer[pointer++] });
     subChunk1Id = new String(new byte[] { headerBuffer[pointer++], headerBuffer[pointer++], headerBuffer[pointer++], headerBuffer[pointer++] });
-    subChunk1Size = headerBuffer[pointer++] & 0xff | (long) (headerBuffer[pointer++] & 0xff) << 8 | (long) (headerBuffer[pointer++] & 0xff) << 16 | (long) (headerBuffer[pointer++] & 0xff) << 24;
+    subChunk1Size = headerBuffer[pointer++] & 0xff | (long) (headerBuffer[pointer++] & 0xff) << 8 | (long) (headerBuffer[pointer++] & 0xff) << 16
+        | (long) (headerBuffer[pointer++] & 0xff) << 24;
     audioFormat = (headerBuffer[pointer++] & 0xff) | (headerBuffer[pointer++] & 0xff) << 8;
     channels = (headerBuffer[pointer++] & 0xff) | (headerBuffer[pointer++] & 0xff) << 8;
-    sampleRate = headerBuffer[pointer++] & 0xff | (long) (headerBuffer[pointer++] & 0xff) << 8 | (long) (headerBuffer[pointer++] & 0xff) << 16 | (long) (headerBuffer[pointer++] & 0xff) << 24;
-    byteRate = headerBuffer[pointer++] & 0xff | (long) (headerBuffer[pointer++] & 0xff) << 8 | (long) (headerBuffer[pointer++] & 0xff) << 16 | (long) (headerBuffer[pointer++] & 0xff) << 24;
+    sampleRate = headerBuffer[pointer++] & 0xff | (long) (headerBuffer[pointer++] & 0xff) << 8 | (long) (headerBuffer[pointer++] & 0xff) << 16
+        | (long) (headerBuffer[pointer++] & 0xff) << 24;
+    byteRate = headerBuffer[pointer++] & 0xff | (long) (headerBuffer[pointer++] & 0xff) << 8 | (long) (headerBuffer[pointer++] & 0xff) << 16
+        | (long) (headerBuffer[pointer++] & 0xff) << 24;
     blockAlign = (headerBuffer[pointer++] & 0xff) | (headerBuffer[pointer++] & 0xff) << 8;
     bitsPerSample = (headerBuffer[pointer++] & 0xff) | (headerBuffer[pointer++] & 0xff) << 8;
     subChunk2Id = new String(new byte[] { headerBuffer[pointer++], headerBuffer[pointer++], headerBuffer[pointer++], headerBuffer[pointer++] });
-    subChunk2Size = (headerBuffer[pointer++] & 0xff) | (long) (headerBuffer[pointer++] & 0xff) << 8 | (long) (headerBuffer[pointer++] & 0xff) << 16 | (long) (headerBuffer[pointer++] & 0xff) << 24;
+    subChunk2Size = (headerBuffer[pointer++] & 0xff) | (long) (headerBuffer[pointer++] & 0xff) << 8 | (long) (headerBuffer[pointer++] & 0xff) << 16
+        | (long) (headerBuffer[pointer++] & 0xff) << 24;
     // end read header
 
     if (bitsPerSample != 8 && bitsPerSample != 16) {

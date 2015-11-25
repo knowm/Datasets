@@ -30,17 +30,16 @@ import java.util.Map;
 import java.util.Map.Entry;
 
 import org.apache.commons.beanutils.BeanUtils;
-
-import com.xeiam.xchart.Chart;
-import com.xeiam.xchart.ChartBuilder;
-import com.xeiam.xchart.Histogram;
-import com.xeiam.xchart.StyleManager.ChartType;
-import com.xeiam.xchart.SwingWrapper;
+import org.knowm.xchart.Chart;
+import org.knowm.xchart.ChartBuilder;
+import org.knowm.xchart.Histogram;
+import org.knowm.xchart.StyleManager.ChartType;
+import org.knowm.xchart.SwingWrapper;
 
 /**
- * This class uses Java reflection to build histograms of float-type fields given two lists of DTOs. Extend the class, implement the methods, and you will get a grid of histograms - one for each DTO
- * field.
- * 
+ * This class uses Java reflection to build histograms of float-type fields given two lists of DTOs. Extend the class, implement the methods, and you
+ * will get a grid of histograms - one for each DTO field.
+ *
  * @author timmolter
  */
 public abstract class HistogramDataInspector<T> {
@@ -142,8 +141,7 @@ public abstract class HistogramDataInspector<T> {
     for (float f : value1) {
       if (f < minMax[0]) {
         minMax[0] = f;
-      }
-      else if (f > minMax[1]) {
+      } else if (f > minMax[1]) {
         minMax[1] = f;
       }
     }
@@ -151,8 +149,7 @@ public abstract class HistogramDataInspector<T> {
     for (float f : value2) {
       if (f < minMax[0]) {
         minMax[0] = f;
-      }
-      else if (f > minMax[1]) {
+      } else if (f > minMax[1]) {
         minMax[1] = f;
       }
     }

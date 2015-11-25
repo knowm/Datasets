@@ -39,6 +39,7 @@ import opennlp.tools.util.Span;
 public class OpenNLPChunkerUtils {
 
   private static ChunkerME chunkerME = null;
+
   static {
     InputStream chunkerIS = Thread.currentThread().getContextClassLoader().getResourceAsStream("apacheOpenNLP/en-chunker.bin");
     if (chunkerIS == null) {

@@ -162,9 +162,10 @@ public class BreastCancer {
   @Override
   public String toString() {
 
-    return "BreastCancer [id=" + id + ", sampleCodeNumber=" + sampleCodeNumber + ", clumpThickness=" + clumpThickness + ", uniformityOfCellSize=" + uniformityOfCellSize + ", uniformityOfCellShape="
-        + uniformityOfCellShape + ", marginalAdhesion=" + marginalAdhesion + ", singleEpithelialCellSize=" + singleEpithelialCellSize + ", bareNuclei=" + bareNuclei + ", blandChromatin="
-        + blandChromatin + ", normalNucleoli=" + normalNucleoli + ", mitoses=" + mitoses + ", cellClass=" + cellClass + "]";
+    return "BreastCancer [id=" + id + ", sampleCodeNumber=" + sampleCodeNumber + ", clumpThickness=" + clumpThickness + ", uniformityOfCellSize="
+        + uniformityOfCellSize + ", uniformityOfCellShape=" + uniformityOfCellShape + ", marginalAdhesion=" + marginalAdhesion
+        + ", singleEpithelialCellSize=" + singleEpithelialCellSize + ", bareNuclei=" + bareNuclei + ", blandChromatin=" + blandChromatin
+        + ", normalNucleoli=" + normalNucleoli + ", mitoses=" + mitoses + ", cellClass=" + cellClass + "]";
   }
 
 }

@@ -134,8 +134,8 @@ public class Cifar {
   @Override
   public String toString() {
 
-    return "Cifar [id=" + id + ", label=" + label + ", imagedata=" + imagedata + ", redChannel=" + Arrays.toString(redChannel) + ", greenChannel=" + Arrays.toString(greenChannel) + ", blueChannel="
-        + Arrays.toString(blueChannel) + "]";
+    return "Cifar [id=" + id + ", label=" + label + ", imagedata=" + imagedata + ", redChannel=" + Arrays.toString(redChannel) + ", greenChannel="
+        + Arrays.toString(greenChannel) + ", blueChannel=" + Arrays.toString(blueChannel) + "]";
   }
 
 }

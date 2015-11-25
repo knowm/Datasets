@@ -61,8 +61,7 @@ public class BreastCancerDataInspector extends HistogramDataInspector<BreastCanc
       BreastCancer breastCancer = BreastCancerDAO.selectSingle(i);
       if (breastCancer.getCellClass() == 4) {
         malignant.add(breastCancer);
-      }
-      else {
+      } else {
         benign.add(breastCancer);
       }
     }

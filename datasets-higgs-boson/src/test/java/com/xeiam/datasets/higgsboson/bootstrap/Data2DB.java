@@ -99,8 +99,7 @@ public class Data2DB {
         if (isTrain) {
           higgsBoson.setWeight(Float.parseFloat(entry[31]));
           higgsBoson.setLabel(entry[32]);
-        }
-        else {
+        } else {
           higgsBoson.setWeight(-999.0f);
         }
 

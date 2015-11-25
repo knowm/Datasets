@@ -100,8 +100,7 @@ public class Mnist {
       for (int j = 0; j < img.length; j++) {
         if (img[i][j] > 10) {
           sb.append("**");
-        }
-        else {
+        } else {
           sb.append("  ");
         }
       }

@@ -94,8 +94,7 @@ public class BeanGenerator2 {
       }
       if (names == null) {
         names = tokenize(line, delimiter);
-      }
-      else {
+      } else {
         types = inferTypes(line, delimiter);
         break;
       }

@@ -41,6 +41,7 @@ import opennlp.tools.util.InvalidFormatException;
 public class OpenNLPTreeParserUtils {
 
   private static Parser parser = null;
+
   static {
     InputStream parseIS = Thread.currentThread().getContextClassLoader().getResourceAsStream("apacheOpenNLP/en-parser-chunking.bin");
     if (parseIS == null) {

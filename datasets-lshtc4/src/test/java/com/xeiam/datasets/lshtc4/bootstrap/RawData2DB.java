@@ -101,8 +101,7 @@ public class RawData2DB {
             }
 
             insertLSHTC4(idx++, sb.toString(), "");
-          }
-          else { // train parsing
+          } else { // train parsing
 
             int counter = 0;
             String label = "";
