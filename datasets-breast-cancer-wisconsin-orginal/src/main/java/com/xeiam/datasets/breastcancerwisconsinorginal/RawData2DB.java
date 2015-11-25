@@ -25,14 +25,12 @@ import java.io.File;
 import java.io.IOException;
 
 import org.apache.commons.io.FileUtils;
-import org.junit.Ignore;
 
 /**
  * Parses Breast Cancer text files and put the data in a database
  *
  * @author timmolter
  */
-@Ignore
 public class RawData2DB {
 
   int maxBodyLength = 0;

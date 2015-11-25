@@ -35,8 +35,7 @@ public class HJABirdsongDAO extends HJABirdsongParentDAO {
 
   public static int createTable() {
 
-    String BagLabels_CREATE = "CREATE CACHED TABLE BIRD_SONGS (bagid INTEGER NOT NULL, labels VARCHAR(256) NOT NULL, wavfilename VARCHAR(256) NOT NULL, wavbytes blob NOT NULL, PRIMARY KEY (bagid))";
-    return Yank.execute(BagLabels_CREATE, null);
+    return Yank.executeSQLKey("KEY_CREATE_TABLE", null);
   }
 
   public static int insert(HJABirdSong hJABirdSong) {

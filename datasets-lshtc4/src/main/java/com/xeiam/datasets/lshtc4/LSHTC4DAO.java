@@ -40,8 +40,7 @@ public class LSHTC4DAO extends LSHTC4ParentDAO {
 
   public static int createTable() {
 
-    String LSHTC4_CREATE = "CREATE CACHED TABLE LSHTC4 (id INTEGER NOT NULL, labels VARCHAR(1344) NOT NULL, features VARCHAR(47449) NOT NULL, PRIMARY KEY (id))";
-    return Yank.execute(LSHTC4_CREATE, null);
+    return Yank.executeSQLKey("KEY_CREATE_TABLE", null);
   }
 
   public static int insert(LSHTC4 lSHTC4) {

@@ -44,14 +44,14 @@ public abstract class DatasetsDAO {
   public static void init(String[] args) {
 
     // allow for setting other SQL data sources
-    if (args[0] != null) {
+    if (args.length > 0 && args[0] != null) {
       Yank.setupDataSource(PropertiesUtils.getPropertiesFromClasspath(args[0]));
     } else {
       Yank.setupDataSource(PropertiesUtils.getPropertiesFromClasspath("DB_HSQLDB_FILE.properties"));
     }
 
     // allow for setting other SQL statements
-    if (args[1] != null) {
+    if (args.length > 1 && args[1] != null) {
       Yank.addSQLStatements(PropertiesUtils.getPropertiesFromClasspath(args[1]));
     } else {
       Yank.addSQLStatements(PropertiesUtils.getPropertiesFromClasspath("SQL_HSQLDB.properties"));

@@ -52,8 +52,7 @@ public class MnistDAO extends DatasetsDAO {
 
   public static int createTable() {
 
-    String CENSUS_INCOME_CREATE = "CREATE CACHED TABLE MNIST (id INTEGER NOT NULL, label INTEGER NOT NULL, imagedata VARCHAR(3333) NOT NULL, PRIMARY KEY (id))";
-    return Yank.execute(CENSUS_INCOME_CREATE, null);
+    return Yank.executeSQLKey("KEY_CREATE_TABLE", null);
   }
 
   public static int insert(Mnist mnist) {

@@ -36,8 +36,7 @@ public class TenFoldDAO extends DatasetsDAO {
 
   public static int createTable() {
 
-    String TenFold_CREATE = "CREATE CACHED TABLE TEN_FOLD (bagid INTEGER NOT NULL, fold INTEGER NOT NULL, PRIMARY KEY (bagid))";
-    return Yank.execute(TenFold_CREATE, null);
+    return Yank.executeSQLKey("KEY_CREATE_TABLE_TENFOLD", null);
   }
 
   public static int insert(TenFold tenFold) {

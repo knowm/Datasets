@@ -48,8 +48,7 @@ public class UCSDAnomalyDAO extends DatasetsDAO {
 
   public static int createTable() {
 
-    String BagLabels_CREATE = "CREATE CACHED TABLE UCSD_ANONMALIES (id INTEGER NOT NULL, tifid INTEGER NOT NULL, tifbytes blob NOT NULL, isanomaly TINYINT NOT NULL, PRIMARY KEY (id, tifid))";
-    return Yank.execute(BagLabels_CREATE, null);
+    return Yank.executeSQLKey("KEY_CREATE_TABLE", null);
   }
 
   public static int getTrainTestSplit() {

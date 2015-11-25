@@ -37,8 +37,7 @@ public class LSHTC4HierarchyDAO extends LSHTC4ParentDAO {
 
   public static int createTable() {
 
-    String LSHTC4Hierarchy_CREATE = "CREATE CACHED TABLE LSHTC4Hierarchy (parentid INTEGER NOT NULL, nodeid INTEGER NOT NULL)";
-    return Yank.execute(LSHTC4Hierarchy_CREATE, null);
+    return Yank.executeSQLKey("KEY_CREATE_TABLE_HIERARCHY", null);
   }
 
   public static int insert(LSHTC4Hierarchy lSHTC4Hierarchy) {

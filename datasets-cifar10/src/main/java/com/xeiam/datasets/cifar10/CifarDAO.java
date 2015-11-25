@@ -50,8 +50,7 @@ public class CifarDAO extends DatasetsDAO {
 
   public static int createTable() {
 
-    String CIFAR_CREATE = "CREATE CACHED TABLE CIFAR (id INTEGER NOT NULL, label INTEGER NOT NULL, imagedata VARCHAR(30000) NOT NULL, PRIMARY KEY (id))";
-    return Yank.execute(CIFAR_CREATE, null);
+    return Yank.executeSQLKey("KEY_CREATE_TABLE", null);
   }
 
   public static int insert(Cifar CIFAR) {
