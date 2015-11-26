@@ -12,7 +12,6 @@
 
 1. The database containing the data will appear in `db`.
 
-1. Manually move the `DB_MNIST.*` files into the `src/main/resources` folder. There should be three files. 
 
 ## How to build jar containing Data
 

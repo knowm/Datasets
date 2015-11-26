@@ -12,8 +12,6 @@
 
 1. The database containing the data will appear in `db`.
 
-1. Manually move the `DB_BREAST_CANCER.*` files into the `src/main/resources/data` folder. There should be three files. 
-
 ## How to build jar containing Data
 
 1. Using Maven, run `mvn clean install`.
