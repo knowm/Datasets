@@ -1,4 +1,4 @@
-## Xeiam Datasets Census Income
+## Knowm Datasets Census Income
 
 [raw data](http://archive.ics.uci.edu/ml/datasets/Census+Income) 
 

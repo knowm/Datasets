@@ -1,4 +1,4 @@
-## Xeiam Datasets MNIST
+## Knowm Datasets MNIST
 
 [raw data](http://yann.lecun.com/exdb/mnist/) 
 

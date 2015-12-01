@@ -107,7 +107,7 @@ Add to your pom file:
 
 ## Building
 
-Xeiam Datasets is built with Maven.
+Knowm Datasets is built with Maven.
 
     cd path/to/datasets-parent
     

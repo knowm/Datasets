@@ -1,4 +1,4 @@
-## Xeiam Datasets UCSD
+## Knowm Datasets UCSD
 
 [raw data](http://www.svcl.ucsd.edu/projects/anomaly/dataset.html) 
 

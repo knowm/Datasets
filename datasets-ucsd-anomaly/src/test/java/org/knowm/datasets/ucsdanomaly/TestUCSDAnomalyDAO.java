@@ -1,0 +1,79 @@
+package org.knowm.datasets.ucsdanomaly;
+
+import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.MatcherAssert.assertThat;
+
+import java.awt.image.BufferedImage;
+import java.io.InputStream;
+import java.sql.SQLException;
+
+import javax.imageio.ImageIO;
+
+import org.junit.AfterClass;
+import org.junit.BeforeClass;
+import org.junit.Ignore;
+import org.junit.Test;
+import org.knowm.datasets.ucsdanomaly.UCSDAnomaly;
+import org.knowm.datasets.ucsdanomaly.UCSDAnomalyDAO;
+
+/**
+ * @author timmolter
+ */
+@Ignore
+public class TestUCSDAnomalyDAO {
+
+  @BeforeClass
+  public static void setUpDB() {
+
+    UCSDAnomalyDAO.init(new String[0]);
+
+  }
+
+  @AfterClass
+  public static void tearDownDB() {
+
+    UCSDAnomalyDAO.release();
+  }
+
+  @Test
+  public void testSelectCount() {
+
+    long count = UCSDAnomalyDAO.selectCount();
+    assertThat(count, equalTo(14000L));
+  }
+
+  @Test
+  public void testSelect() throws SQLException {
+
+    UCSDAnomaly uCSDAnomaly = UCSDAnomalyDAO.selectSingle(3, 3);
+    assertThat(uCSDAnomaly.getId(), equalTo(3));
+    assertThat(uCSDAnomaly.getTifid(), equalTo(3));
+    assertThat(uCSDAnomaly.isIsanomaly(), equalTo(true));
+    // assertThat(new String(uCSDAnomaly.getTifbytes().getBytes(1, 4)), equalTo("test"));
+  }
+
+  // @Test
+  public void test() {
+
+    UCSDAnomaly uCSDAnomaly = UCSDAnomalyDAO.selectSingle(3, 3);
+    InputStream bytes;
+    try {
+      bytes = uCSDAnomaly.getTifbytes().getBinaryStream();
+      System.out.println();
+      // got an image file
+      // String filename = "./raw/001.png";
+      // File f = new File(filename);
+      // System.out.println(f.canRead());
+      // System.out.println(Arrays.toString(ImageIO.getReaderFileSuffixes()));
+      BufferedImage bufferedImage = ImageIO.read(bytes);
+      // bufferedImage is the RenderedImage to be written
+
+      // Graphics2D g2 = bufferedImage.createGraphics();
+      // g2.drawImage(image, null, null);
+
+      // tifPanel.add(new ImagePanel(bufferedImage), BorderLayout.PAGE_END);
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+  }
+}

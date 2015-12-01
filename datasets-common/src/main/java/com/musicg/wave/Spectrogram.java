@@ -16,9 +16,10 @@
  */
 package com.musicg.wave;
 
+import org.knowm.datasets.common.dsp.FastFourierTransform;
+
 import com.musicg.dsp.WindowFunction;
 import com.musicg.dsp.WindowFunction.WindowType;
-import com.xeiam.datasets.common.dsp.FastFourierTransform;
 
 /**
  * Handles the wave data in frequency-time domain.

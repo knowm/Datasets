@@ -1,4 +1,4 @@
-## Xeiam Datasets Reuters-21578
+## Knowm Datasets Reuters-21578
 
 [raw data](http://archive.ics.uci.edu/ml/support/Reuters-21578+Text+Categorization+Collection) 
 

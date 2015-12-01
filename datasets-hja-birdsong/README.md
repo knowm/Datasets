@@ -1,4 +1,4 @@
-## Xeiam Datasets HJA Birdsong
+## Knowm Datasets HJA Birdsong
 
 [raw data](http://web.engr.oregonstate.edu/~briggsf/kdd2012datasets/hja_birdsong/)
 

@@ -1,4 +1,4 @@
-## Xeiam Datasets LSHTC4
+## Knowm Datasets LSHTC4
 
 [raw data](http://www.kaggle.com/c/lshtc/data) 
 

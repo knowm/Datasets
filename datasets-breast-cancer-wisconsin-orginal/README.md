@@ -1,4 +1,4 @@
-## Xeiam Datasets Breast Cancer Wisconsin Original
+## Knowm Datasets Breast Cancer Wisconsin Original
 
 [raw data](http://archive.ics.uci.edu/ml/datasets/Breast+Cancer+Wisconsin+%28Original%29)
 
