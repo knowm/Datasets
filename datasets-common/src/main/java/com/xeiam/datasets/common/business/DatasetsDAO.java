@@ -26,11 +26,10 @@ import java.net.URL;
 import java.util.Properties;
 
 import org.apache.commons.io.FileUtils;
+import org.knowm.yank.PropertiesUtils;
+import org.knowm.yank.Yank;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import com.xeiam.yank.PropertiesUtils;
-import com.xeiam.yank.Yank;
 
 /**
  * @author timmolter

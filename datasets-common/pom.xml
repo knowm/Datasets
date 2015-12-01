@@ -26,7 +26,7 @@
 			<artifactId>commons-io</artifactId>
 		</dependency>
 		<dependency>
-			<groupId>com.xeiam</groupId>
+			<groupId>org.knowm</groupId>
 			<artifactId>yank</artifactId>
 		</dependency>
 		<dependency>

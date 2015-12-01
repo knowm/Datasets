@@ -38,7 +38,7 @@ import com.google.common.base.Joiner;
 
 /**
  * Parses Reuters-21578 text files and put the data in a database
- * 
+ *
  * @author timmolter
  */
 public class RawData2DB {
@@ -90,7 +90,7 @@ public class RawData2DB {
 
   /**
    * Get a List of the Reuters21578Story Beans
-   * 
+   *
    * @param fileName
    * @return
    * @throws IOException
@@ -118,7 +118,7 @@ public class RawData2DB {
 
   /**
    * Get a Reuters21578 object from a story String
-   * 
+   *
    * @param storyText
    * @return
    */
@@ -240,7 +240,7 @@ public class RawData2DB {
 
   /**
    * Given some stringContainingText, extracts the String between the tags
-   * 
+   *
    * @param stringContainingText
    * @param tagname
    * @return
@@ -273,7 +273,7 @@ public class RawData2DB {
 
   /**
    * Given a String containing XML-like attributes and a key, it extracts a value
-   * 
+   *
    * @param stringContainingAttributes
    * @param attributeName
    * @return

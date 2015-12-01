@@ -21,8 +21,9 @@
  */
 package com.xeiam.datasets.breastcancerwisconsinorginal;
 
+import org.knowm.yank.Yank;
+
 import com.xeiam.datasets.common.business.DatasetsDAO;
-import com.xeiam.yank.Yank;
 
 /**
  * @author alexnugent

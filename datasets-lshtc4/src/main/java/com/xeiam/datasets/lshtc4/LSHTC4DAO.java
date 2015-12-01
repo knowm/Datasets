@@ -21,7 +21,7 @@
  */
 package com.xeiam.datasets.lshtc4;
 
-import com.xeiam.yank.Yank;
+import org.knowm.yank.Yank;
 
 /**
  * @author timmolter

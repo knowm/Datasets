@@ -23,7 +23,7 @@ package com.xeiam.datasets.lshtc4;
 
 import java.util.List;
 
-import com.xeiam.yank.Yank;
+import org.knowm.yank.Yank;
 
 /**
  * @author timmolter

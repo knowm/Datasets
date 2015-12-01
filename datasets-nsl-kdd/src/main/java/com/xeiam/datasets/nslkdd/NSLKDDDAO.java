@@ -21,8 +21,9 @@
  */
 package com.xeiam.datasets.nslkdd;
 
+import org.knowm.yank.Yank;
+
 import com.xeiam.datasets.common.business.DatasetsDAO;
-import com.xeiam.yank.Yank;
 
 /**
  * An explanation of the fields can be found here: https://archive.ics.uci.edu/ml/machine-learning-databases/kddcup99-mld/task.html

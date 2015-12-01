@@ -28,9 +28,8 @@ import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Ignore;
 import org.junit.Test;
-
-import com.xeiam.yank.PropertiesUtils;
-import com.xeiam.yank.Yank;
+import org.knowm.yank.PropertiesUtils;
+import org.knowm.yank.Yank;
 
 /**
  * @author timmolter
