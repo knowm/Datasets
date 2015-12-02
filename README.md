@@ -76,9 +76,9 @@ The original copyright and license notices have been preserved in their original
 
 ### Include Jar in Your Project
 
-Download XChange Release Jars: http://search.maven.org/#search%7Cga%7C1%7Cknowm%20datasets
+Download Datasets Release Jars: http://search.maven.org/#search%7Cga%7C1%7Cknowm%20datasets
 
-Download XChange Snapshot Jars: https://oss.sonatype.org/content/groups/public/org/knowm/datasets
+Download Datasets Snapshot Jars: https://oss.sonatype.org/content/groups/public/org/knowm/datasets
 
 ### Via Maven
 
