@@ -4,7 +4,7 @@
 	<parent>
 		<groupId>org.knowm.datasets</groupId>
 		<artifactId>datasets-parent</artifactId>
-		<version>2.1.0</version>
+		<version>2.1.1-SNAPSHOT</version>
 	</parent>
 
 	<artifactId>datasets-samples</artifactId>
@@ -13,57 +13,57 @@
 		<dependency>
 			<groupId>org.knowm.datasets</groupId>
 			<artifactId>datasets-common</artifactId>
-			<version>2.1.0</version>
+			<version>2.1.1-SNAPSHOT</version>
 		</dependency>
 		<dependency>
 			<groupId>org.knowm.datasets</groupId>
 			<artifactId>datasets-breast-cancer-wisconsin-original</artifactId>
-			<version>2.1.0</version>
+			<version>2.1.1-SNAPSHOT</version>
 		</dependency>
 		<dependency>
 			<groupId>org.knowm.datasets</groupId>
 			<artifactId>datasets-hja-birdsong</artifactId>
-			<version>2.1.0</version>
+			<version>2.1.1-SNAPSHOT</version>
 		</dependency>
 		<dependency>
 			<groupId>org.knowm.datasets</groupId>
 			<artifactId>datasets-census-income</artifactId>
-			<version>2.1.0</version>
+			<version>2.1.1-SNAPSHOT</version>
 		</dependency>
 		<dependency>
 			<groupId>org.knowm.datasets</groupId>
 			<artifactId>datasets-cifar10</artifactId>
-			<version>2.1.0</version>
+			<version>2.1.1-SNAPSHOT</version>
 		</dependency>
 		<dependency>
 			<groupId>org.knowm.datasets</groupId>
 			<artifactId>datasets-lshtc4</artifactId>
-			<version>2.1.0</version>
+			<version>2.1.1-SNAPSHOT</version>
 		</dependency>
 		<dependency>
 			<groupId>org.knowm.datasets</groupId>
 			<artifactId>datasets-mnist</artifactId>
-			<version>2.1.0</version>
+			<version>2.1.1-SNAPSHOT</version>
 		</dependency>
 		<dependency>
 			<groupId>org.knowm.datasets</groupId>
 			<artifactId>datasets-reuters-21578</artifactId>
-			<version>2.1.0</version>
+			<version>2.1.1-SNAPSHOT</version>
 		</dependency>
 		<dependency>
 			<groupId>org.knowm.datasets</groupId>
 			<artifactId>datasets-nsl-kdd</artifactId>
-			<version>2.1.0</version>
+			<version>2.1.1-SNAPSHOT</version>
 		</dependency>
 		<dependency>
 			<groupId>org.knowm.datasets</groupId>
 			<artifactId>datasets-ucsd-anomaly</artifactId>
-			<version>2.1.0</version>
+			<version>2.1.1-SNAPSHOT</version>
 		</dependency>
 		<dependency>
 			<groupId>org.knowm.datasets</groupId>
 			<artifactId>datasets-higgs-boson</artifactId>
-			<version>2.1.0</version>
+			<version>2.1.1-SNAPSHOT</version>
 		</dependency>
 	</dependencies>
 
