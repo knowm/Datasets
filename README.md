@@ -76,34 +76,36 @@ The original copyright and license notices have been preserved in their original
 
 ### Include Jar in Your Project
 
-for example: `datasets-breast-cancer-wisconsin-original-2.1.0-SNAPSHOT.jar`
+Download XChange Release Jars: http://search.maven.org/#search%7Cga%7C1%7Cknowm%20datasets
+
+Download XChange Snapshot Jars: https://oss.sonatype.org/content/groups/public/org/knowm/datasets
 
 ### Via Maven
 
-Add to your pom file:
+The Datasets release artifacts are hosted on Maven Central.
 
-    <repositories>
-        <repository>
-            <id>sonatype-oss-public</id>
-            <url>https://oss.sonatype.org/content/groups/public/</url>
-            <releases>
-                <enabled>true</enabled>
-            </releases>
-            <snapshots>
-                <enabled>true</enabled>
-            </snapshots>
-        </repository>
-    </repositories>
+Add the Datasets library as a dependency to your pom.xml file:
 
     <dependency>
-        <groupId>com.xeiam.datasets</groupId>
+        <groupId>org.knowm.datasets</groupId>
         <artifactId>datasets-breast-cancer-wisconsin-orginal</artifactId>
-        <version>2.1.0-SNAPSHOT</version>
+        <version>2.1.0</version>
     </dependency>
     
-### Manual Download
+, adjusting the particular dataset you want, in this case `datasets-breast-cancer-wisconsin-orginal`.
 
-[Sonatype snapshots repo](https://oss.sonatype.org/content/groups/public/com/xeiam/datasets/)
+For snapshots, add the following to your pom.xml file:
+
+    <repository>
+      <id>sonatype-oss-snapshot</id>
+      <snapshots/>
+      <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+    </repository>
+
+The current snapshot version is:
+
+    2.1.1-SNAPSHOT
+    
 
 ## Building
 
