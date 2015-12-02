@@ -17,4 +17,4 @@
 
 ## Birdsong Spectrograph Viewer
 
-See: `com.xeiam.datasets.samples.HJABirdsongSpectrogramViewer`. Make sure you've placed the generated/downloaded DB data at the location specified at the line: `HJABirdsongDAO.init("/usr/local/Datasets/"); // setup data`.
+See: `org.knowm.datasets.samples.HJABirdsongSpectrogramViewer`. Make sure you've placed the generated/downloaded DB data at the location specified at the line: `HJABirdsongDAO.init("/usr/local/Datasets/"); // setup data`.
