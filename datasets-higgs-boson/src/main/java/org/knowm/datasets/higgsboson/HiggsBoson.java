@@ -24,10 +24,12 @@
  */
 package org.knowm.datasets.higgsboson;
 
+import java.io.Serializable;
+
 /**
  * @author timmolter
  */
-public class HiggsBoson {
+public class HiggsBoson implements Serializable {
 
   private int EventId;
   private float DER_mass_MMC;

@@ -24,10 +24,12 @@
  */
 package org.knowm.datasets.breastcancerwisconsinorginal;
 
+import java.io.Serializable;
+
 /**
  * @author alexnugent
  */
-public class BreastCancer {
+public class BreastCancer implements Serializable {
 
   private int id;
   private int sampleCodeNumber;

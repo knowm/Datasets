@@ -24,6 +24,7 @@
  */
 package org.knowm.datasets.hjabirdsong;
 
+import java.io.Serializable;
 import java.sql.Blob;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -57,7 +58,7 @@ import org.knowm.datasets.common.Splitter;
 /**
  * @author timmolter
  */
-public class HJABirdSong {
+public class HJABirdSong implements Serializable {
 
   private int bagid;
   private String labels;

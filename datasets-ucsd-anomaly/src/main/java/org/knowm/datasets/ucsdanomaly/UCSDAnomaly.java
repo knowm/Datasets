@@ -24,12 +24,13 @@
  */
 package org.knowm.datasets.ucsdanomaly;
 
+import java.io.Serializable;
 import java.sql.Blob;
 
 /**
  * @author timmolter
  */
-public class UCSDAnomaly {
+public class UCSDAnomaly implements Serializable {
 
   private int id;
   private int tifid;

@@ -24,10 +24,12 @@
  */
 package org.knowm.datasets.hjabirdsong;
 
+import java.io.Serializable;
+
 /**
  * @author timmolter
  */
-public class TenFold {
+public class TenFold implements Serializable {
 
   private int bagid;
   private int fold;

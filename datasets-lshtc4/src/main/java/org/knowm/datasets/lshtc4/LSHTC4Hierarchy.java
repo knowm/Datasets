@@ -24,10 +24,12 @@
  */
 package org.knowm.datasets.lshtc4;
 
+import java.io.Serializable;
+
 /**
  * @author timmolter
  */
-public class LSHTC4Hierarchy {
+public class LSHTC4Hierarchy implements Serializable {
 
   int parentid;
   int nodeid;

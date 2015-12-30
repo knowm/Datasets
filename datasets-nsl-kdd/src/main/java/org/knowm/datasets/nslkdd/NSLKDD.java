@@ -24,12 +24,14 @@
  */
 package org.knowm.datasets.nslkdd;
 
+import java.io.Serializable;
+
 /**
  * An explanation of the fields can be found here: https://archive.ics.uci.edu/ml/machine-learning-databases/kddcup99-mld/task.html
- * 
+ *
  * @author timmolter
  */
-public class NSLKDD {
+public class NSLKDD implements Serializable {
 
   private int id;
   private float duration;

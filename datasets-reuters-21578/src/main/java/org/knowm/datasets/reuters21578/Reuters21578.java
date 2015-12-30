@@ -24,14 +24,15 @@
  */
 package org.knowm.datasets.reuters21578;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
  * This is a POJO representing on Reuters21578 story
- * 
+ *
  * @author timmolter
  */
-public class Reuters21578 {
+public class Reuters21578 implements Serializable {
 
   private int newid;
   private int oldid;

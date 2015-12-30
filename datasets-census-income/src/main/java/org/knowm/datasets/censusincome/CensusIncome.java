@@ -24,10 +24,12 @@
  */
 package org.knowm.datasets.censusincome;
 
+import java.io.Serializable;
+
 /**
  * @author alexnugent
  */
-public class CensusIncome {
+public class CensusIncome implements Serializable {
 
   private int id;
   private int age;

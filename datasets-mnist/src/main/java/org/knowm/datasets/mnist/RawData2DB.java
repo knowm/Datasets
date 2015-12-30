@@ -31,7 +31,7 @@ import mnist.tools.MnistManager;
 /**
  * @author timmolter
  */
-public class Data2DB {
+public class RawData2DB {
 
   int idx = 0;
 
@@ -42,7 +42,7 @@ public class Data2DB {
     MnistDAO.dropTable();
     MnistDAO.createTable();
 
-    Data2DB dp = new Data2DB();
+    RawData2DB dp = new RawData2DB();
     System.out.println("processing MNIST training images...");
     dp.go("./raw/train-images-idx3-ubyte", "./raw/train-labels-idx1-ubyte", 1, 60000);
     System.out.println("processing MNIST test images...");

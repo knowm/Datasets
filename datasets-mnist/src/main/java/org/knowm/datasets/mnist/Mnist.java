@@ -25,11 +25,12 @@
 package org.knowm.datasets.mnist;
 
 import java.awt.image.BufferedImage;
+import java.io.Serializable;
 
 /**
  * @author timmolter
  */
-public class Mnist {
+public class Mnist implements Serializable {
 
   private int id;
   private int label;

@@ -24,10 +24,12 @@
  */
 package org.knowm.datasets.lshtc4;
 
+import java.io.Serializable;
+
 /**
  * @author timmolter
  */
-public class LSHTC4 {
+public class LSHTC4 implements Serializable {
 
   private int id;
   private String labels;

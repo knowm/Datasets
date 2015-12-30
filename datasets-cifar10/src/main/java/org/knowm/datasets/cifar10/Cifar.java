@@ -24,6 +24,7 @@
  */
 package org.knowm.datasets.cifar10;
 
+import java.io.Serializable;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
@@ -31,7 +32,7 @@ import java.util.Map;
 /**
  * @author timmolter
  */
-public class Cifar {
+public class Cifar implements Serializable {
 
   private int id;
   private int label;

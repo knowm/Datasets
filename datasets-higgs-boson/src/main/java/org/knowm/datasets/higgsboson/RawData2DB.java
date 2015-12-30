@@ -54,7 +54,7 @@ import org.apache.commons.io.FileUtils;
 /**
  * @author timmolter
  */
-public class Data2DB {
+public class RawData2DB {
 
   public static void main(String[] args) throws IOException {
 
@@ -63,7 +63,7 @@ public class Data2DB {
     HiggsBosonDAO.dropTable();
     HiggsBosonDAO.createTable();
 
-    Data2DB dp = new Data2DB();
+    RawData2DB dp = new RawData2DB();
     System.out.println("processing Higgs Boson training data...");
     dp.go("./raw/training.csv", true);
     System.out.println("processing Higgs Boson test data...");
