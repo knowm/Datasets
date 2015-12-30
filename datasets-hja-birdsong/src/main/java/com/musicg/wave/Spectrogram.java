@@ -16,14 +16,14 @@
  */
 package com.musicg.wave;
 
-import org.knowm.datasets.common.dsp.FastFourierTransform;
+import org.knowm.datasets.dsp.FastFourierTransform;
 
 import com.musicg.dsp.WindowFunction;
 import com.musicg.dsp.WindowFunction.WindowType;
 
 /**
  * Handles the wave data in frequency-time domain.
- * 
+ *
  * @author Jacquet Wong
  */
 public class Spectrogram {
@@ -44,7 +44,7 @@ public class Spectrogram {
 
   /**
    * Constructor
-   * 
+   *
    * @param wave
    */
   public Spectrogram(Wave wave) {
@@ -54,7 +54,7 @@ public class Spectrogram {
 
   /**
    * Constructor
-   * 
+   *
    * @param wave
    * @param fftSampleSize number of sample in fft, the value needed to be a number to power of 2
    * @param overlapFactor 1/overlapFactor overlapping, e.g. 1/4=25% overlapping, 0 for no overlapping
@@ -173,7 +173,7 @@ public class Spectrogram {
 
   /**
    * Get spectrogram: spectrogram[time][frequency]=intensity
-   * 
+   *
    * @return logarithm normalized spectrogram
    */
   public double[][] getNormalizedSpectrogramData() {
@@ -183,7 +183,7 @@ public class Spectrogram {
 
   /**
    * Get spectrogram: spectrogram[time][frequency]=intensity
-   * 
+   *
    * @return absolute spectrogram
    */
   public double[][] getAbsoluteSpectrogramData() {

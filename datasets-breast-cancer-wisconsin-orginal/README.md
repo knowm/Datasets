@@ -6,7 +6,7 @@
 
 1. Download raw data from here: http://archive.ics.uci.edu/ml/datasets/Breast+Cancer+Wisconsin+%28Original%29
 
-1. put all files in `raw` folder in project root
+1. put the `breast-cancer-wisconsin.data` file in a `raw` folder in project root
 
 1. Run `RawData2DB.java`. 
 

@@ -22,7 +22,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package org.knowm.datasets.common.dsp;
+package org.knowm.datasets.dsp;
 
 import org.apache.commons.math3.complex.Complex;
 import org.apache.commons.math3.transform.DftNormalization;
@@ -36,7 +36,7 @@ public class FastFourierTransform {
 
   /**
    * Get the frequency intensities
-   * 
+   *
    * @param amplitudes amplitudes of the signal
    */
   public double[] getMagnitudes(double[] amplitudes) {
