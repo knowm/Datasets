@@ -30,7 +30,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import com.google.common.base.Splitter;
+import org.knowm.datasets.common.Splitter;
 
 /**
  * Copyright (C) 2013-2014 Xeiam LLC http://xeiam.com
@@ -100,7 +100,7 @@ public class HJABirdSong {
   public List<Integer> getLabelsAsArray() {
 
     List<Integer> labelsAsInts = new ArrayList<Integer>();
-    Iterable<String> lables = Splitter.on(",").split(labels);
+    Iterable<String> lables = Splitter.split(",", labels);
     for (String label : lables) {
       labelsAsInts.add(Integer.parseInt(label));
     }

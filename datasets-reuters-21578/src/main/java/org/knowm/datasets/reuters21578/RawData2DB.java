@@ -36,8 +36,7 @@ import java.util.List;
 
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.filefilter.WildcardFileFilter;
-
-import com.google.common.base.Joiner;
+import org.knowm.datasets.common.Joiner;
 
 /**
  * Parses Reuters-21578 text files and put the data in a database
@@ -156,28 +155,28 @@ public class RawData2DB {
     String topicsText = extractTextBetweenTags(storyText, "TOPICS");
     List<String> topicsArray = extractElementAsLines(topicsText, "D");
     // System.out.println(topicsArray);
-    String topicsCSV = Joiner.on(",").join(topicsArray);
+    String topicsCSV = Joiner.join(",", topicsArray);
     // System.out.println("topicsCSV: " + topicsCSV);
     // PLACES /////////////////////////
     String placesText = extractTextBetweenTags(storyText, "PLACES");
     List<String> placesArray = extractElementAsLines(placesText, "D");
-    String placesCSV = Joiner.on(",").join(placesArray);
+    String placesCSV = Joiner.join(",", placesArray);
     // PEOPLE /////////////////////////
     String peopleText = extractTextBetweenTags(storyText, "PEOPLE");
     List<String> peopleArray = extractElementAsLines(peopleText, "D");
-    String peopleCSV = Joiner.on(",").join(peopleArray);
+    String peopleCSV = Joiner.join(",", peopleArray);
     // ORGS /////////////////////////
     String orgsText = extractTextBetweenTags(storyText, "ORGS");
     List<String> orgsArray = extractElementAsLines(orgsText, "D");
-    String orgsCSV = Joiner.on(",").join(orgsArray);
+    String orgsCSV = Joiner.join(",", orgsArray);
     // EXCHANGES /////////////////////////
     String exchangesText = extractTextBetweenTags(storyText, "EXCHANGES");
     List<String> exchangesArray = extractElementAsLines(exchangesText, "D");
-    String exchangesCSV = Joiner.on(",").join(exchangesArray);
+    String exchangesCSV = Joiner.join(",", exchangesArray);
     // COMPANIES /////////////////////////
     String companiesText = extractTextBetweenTags(storyText, "COMPANIES");
     List<String> companiesArray = extractElementAsLines(companiesText, "D");
-    String companiesCSV = Joiner.on(",").join(companiesArray);
+    String companiesCSV = Joiner.join(",", companiesArray);
 
     // TITLE /////////////////////////
     String titleText = extractTextBetweenTags(storyText, "TITLE");

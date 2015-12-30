@@ -30,8 +30,7 @@ import java.util.Iterator;
 import java.util.List;
 
 import org.apache.commons.io.FileUtils;
-
-import com.google.common.base.Splitter;
+import org.knowm.datasets.common.Splitter;
 
 /**
  * @author timmolter
@@ -67,7 +66,8 @@ public class RawData2DB {
 
       System.out.println(labelLine);
 
-      Iterable<String> labels = Splitter.on(",").split(labelLine);
+      Iterable<String> labels = Splitter.split(",", labelLine);
+
       Iterator<String> itr = labels.iterator();
 
       NSLKDD nSLKDD = new NSLKDD();
