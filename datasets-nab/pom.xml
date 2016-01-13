@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <modelVersion>4.0.0</modelVersion>
+  
+  <parent>
+    <groupId>com.xeiam.datasets</groupId>
+    <artifactId>datasets-parent</artifactId>
+    <version>2.1.0-SNAPSHOT</version>
+  </parent>
+  
+  <groupId>com.xeiam.datasets.nab</groupId>
+  <artifactId>datasets-nab</artifactId>
+  <version>1.0-SNAPSHOT</version>
+  <name>datasets-nab</name>
+  <url>http://maven.apache.org</url>
+  
+  <dependencies>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>3.8.1</version>
+      <scope>test</scope>
+    </dependency>
+    
+    <dependency>
+		<groupId>com.xeiam.datasets</groupId>
+			<artifactId>datasets-common</artifactId>
+			<version>2.1.0-SNAPSHOT</version>
+	</dependency>
+  </dependencies>
+  
+  
+</project>
