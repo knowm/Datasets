@@ -1,4 +1,4 @@
-package com.xeiam.datasets.numenta;
+package org.knowm.datasets.numenta;
 
 import java.util.List;
 

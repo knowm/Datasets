@@ -1,10 +1,11 @@
-package com.xeiam.datasets.numenta.unit;
+package org.knowm.datasets.numenta.unit;
 
 import java.util.ArrayList;
 import java.util.Properties;
 
-import com.xeiam.datasets.numenta.NumentaDAO;
-import com.xeiam.datasets.numenta.SeriesPoint;
+import org.knowm.datasets.numenta.NumentaDAO;
+import org.knowm.datasets.numenta.SeriesPoint;
+
 import com.xeiam.yank.Yank;
 
 public class TimeSeriesDAOTest {

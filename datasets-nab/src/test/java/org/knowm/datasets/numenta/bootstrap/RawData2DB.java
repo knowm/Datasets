@@ -19,7 +19,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package com.xeiam.datasets.numenta.bootstrap;
+package org.knowm.datasets.numenta.bootstrap;
 
 import java.io.File;
 import java.io.IOException;
@@ -37,9 +37,9 @@ import org.apache.commons.io.filefilter.FileFileFilter;
 import org.codehaus.jackson.JsonParseException;
 import org.codehaus.jackson.map.JsonMappingException;
 import org.codehaus.jackson.map.ObjectMapper;
+import org.knowm.datasets.numenta.NumentaDAO;
+import org.knowm.datasets.numenta.SeriesPoint;
 
-import com.xeiam.datasets.numenta.NumentaDAO;
-import com.xeiam.datasets.numenta.SeriesPoint;
 import com.xeiam.yank.Yank;
 
 /**

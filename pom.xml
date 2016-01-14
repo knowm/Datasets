@@ -39,6 +39,7 @@
 	<modules>
 		<module>datasets-breast-cancer-wisconsin-orginal</module>
 		<module>datasets-census-income</module>
+		<module>datasets-numenta</module>
 		<module>datasets-mnist</module>
 		<module>datasets-reuters-21578</module>
 		<module>datasets-common</module>
@@ -88,6 +89,11 @@
 		<dependencies>
 
 			<dependency>
+				<groupId>com.xeiam.datasets</groupId>
+				<artifactId>datasets-common</artifactId>
+				<version>2.1.0-SNAPSHOT</version>
+			</dependency>
+			<dependency>
 				<groupId>com.xeiam</groupId>
 				<artifactId>yank</artifactId>
 				<version>3.0.1</version>
@@ -96,6 +102,11 @@
 				<groupId>org.hsqldb</groupId>
 				<artifactId>hsqldb</artifactId>
 				<version>2.3.2</version>
+			</dependency>
+			<dependency>
+				<groupId>mysql</groupId>
+				<artifactId>mysql-connector-java</artifactId>
+				<version>5.1.37</version>
 			</dependency>
 			<dependency>
 				<groupId>com.google.guava</groupId>
@@ -116,6 +127,16 @@
 				<groupId>org.apache.opennlp</groupId>
 				<artifactId>opennlp-tools</artifactId>
 				<version>1.5.3</version>
+			</dependency>
+			<dependency>
+				<groupId>org.codehaus.jackson</groupId>
+				<artifactId>jackson-mapper-asl</artifactId>
+				<version>1.9.13</version>
+			</dependency>
+			<dependency>
+				<groupId>com.fasterxml.jackson.core</groupId>
+				<artifactId>jackson-core</artifactId>
+				<version>2.7.0</version>
 			</dependency>
 			<dependency>
 				<groupId>commons-beanutils</groupId>
