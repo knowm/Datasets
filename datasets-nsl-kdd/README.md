@@ -1,4 +1,4 @@
-## Xeiam Datasets HJA Birdsong
+## Knowm Datasets HJA Birdsong
 
 [raw data](http://nsl.cs.unb.ca/NSL-KDD/)
 
@@ -8,7 +8,7 @@
 
 1. put all files (`KDDTrain+.txt` and `KDDTest+.txt`) in `raw` folder in project root
 
-1. Run `RawData2DB.java`.
+1. Run `RawData2DB.java`. 
 
 1. The database containing the data will appear in `db`.
 
@@ -16,6 +16,6 @@
 
 ## Build jar containing Data
 
-1. using Maven, run `mvn clean install`
+1. Using Maven, run `mvn clean install`.
 
 ## Data Information

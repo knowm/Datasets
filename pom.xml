@@ -3,19 +3,19 @@
 
 	<modelVersion>4.0.0</modelVersion>
 
-	<name>Xeiam Datasets</name>
-	<groupId>com.xeiam.datasets</groupId>
+	<name>Knowm Datasets</name>
+	<groupId>org.knowm.datasets</groupId>
 	<artifactId>datasets-parent</artifactId>
-	<version>2.1.0-SNAPSHOT</version>
+	<version>2.1.1-SNAPSHOT</version>
 	<packaging>pom</packaging>
 
-	<description>Xeiam Datasets for machine learning applications</description>
-	<url>http://xeiam.com</url>
+	<description>Knowm Datasets for machine learning applications</description>
+	<url>http://knowm.org/open-source/</url>
 	<inceptionYear>2013</inceptionYear>
 
 	<organization>
-		<name>Xeiam, LLC</name>
-		<url>http://xeiam.com/</url>
+		<name>Knowm Inc.</name>
+		<url>http://knowm.org</url>
 	</organization>
 
 	<developers>
@@ -39,17 +39,16 @@
 	<modules>
 		<module>datasets-breast-cancer-wisconsin-orginal</module>
 		<module>datasets-census-income</module>
-		<module>datasets-numenta</module>
-		<module>datasets-mnist</module>
-		<module>datasets-reuters-21578</module>
-		<module>datasets-common</module>
 		<module>datasets-cifar10</module>
-		<module>datasets-lshtc4</module>
-		<module>datasets-samples</module>
-		<module>datasets-hja-birdsong</module>
-		<module>datasets-nsl-kdd</module>
-		<module>datasets-ucsd-anomaly</module>
+		<module>datasets-common</module>
 		<module>datasets-higgs-boson</module>
+		<module>datasets-hja-birdsong</module>
+		<module>datasets-lshtc4</module>
+		<module>datasets-mnist</module>
+		<module>datasets-nsl-kdd</module>
+		<module>datasets-reuters-21578</module>
+		<module>datasets-samples</module>
+		<module>datasets-ucsd-anomaly</module>
 	</modules>
 
 	<distributionManagement>
@@ -70,6 +69,7 @@
 		<connection>scm:git:git@github.com:timmolter/Datasets.git</connection>
 		<developerConnection>scm:git:git@github.com:timmolter/Datasets.git</developerConnection>
 		<url>git@github.com:timmolter/Datasets.git</url>
+		<tag>HEAD</tag>
 	</scm>
 
 	<repositories>
@@ -87,31 +87,16 @@
 
 	<dependencyManagement>
 		<dependencies>
-
 			<dependency>
-				<groupId>com.xeiam.datasets</groupId>
-				<artifactId>datasets-common</artifactId>
-				<version>2.1.0-SNAPSHOT</version>
-			</dependency>
-			<dependency>
-				<groupId>com.xeiam</groupId>
+				<groupId>org.knowm</groupId>
 				<artifactId>yank</artifactId>
-				<version>3.0.1</version>
+				<version>3.1.0</version>
 			</dependency>
 			<dependency>
 				<groupId>org.hsqldb</groupId>
 				<artifactId>hsqldb</artifactId>
 				<version>2.3.2</version>
-			</dependency>
-			<dependency>
-				<groupId>mysql</groupId>
-				<artifactId>mysql-connector-java</artifactId>
-				<version>5.1.37</version>
-			</dependency>
-			<dependency>
-				<groupId>com.google.guava</groupId>
-				<artifactId>guava</artifactId>
-				<version>18.0</version>
+				<scope>provided</scope>
 			</dependency>
 			<dependency>
 				<groupId>commons-io</groupId>
@@ -124,49 +109,41 @@
 				<version>3.5</version>
 			</dependency>
 			<dependency>
-				<groupId>org.apache.opennlp</groupId>
-				<artifactId>opennlp-tools</artifactId>
-				<version>1.5.3</version>
-			</dependency>
-			<dependency>
-				<groupId>org.codehaus.jackson</groupId>
-				<artifactId>jackson-mapper-asl</artifactId>
-				<version>1.9.13</version>
-			</dependency>
-			<dependency>
-				<groupId>com.fasterxml.jackson.core</groupId>
-				<artifactId>jackson-core</artifactId>
-				<version>2.7.0</version>
-			</dependency>
-			<dependency>
 				<groupId>commons-beanutils</groupId>
 				<artifactId>commons-beanutils</artifactId>
 				<version>1.9.2</version>
 			</dependency>
 			<dependency>
-				<groupId>com.xeiam.xchart</groupId>
+				<groupId>org.knowm.xchart</groupId>
 				<artifactId>xchart</artifactId>
-				<version>2.5.0</version>
+				<version>2.6.1</version>
 			</dependency>
 		</dependencies>
 	</dependencyManagement>
 
 	<dependencies>
+
 		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-api</artifactId>
-			<version>1.7.12</version>
+			<version>1.7.13</version>
 		</dependency>
 		<dependency>
-			<groupId>ch.qos.logback</groupId>
-			<artifactId>logback-classic</artifactId>
-			<version>1.1.3</version>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-simple</artifactId>
+			<version>1.7.13</version>
+			<scope>test</scope>
 		</dependency>
-		<!-- test -->
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
 			<version>4.12</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.easytesting</groupId>
+			<artifactId>fest-assert-core</artifactId>
+			<version>2.0M10</version>
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
@@ -185,7 +162,7 @@
 					<plugin>
 						<groupId>org.apache.maven.plugins</groupId>
 						<artifactId>maven-gpg-plugin</artifactId>
-						<version>1.4</version>
+						<version>1.6</version>
 						<executions>
 							<execution>
 								<id>sign-artifacts</id>
@@ -199,18 +176,53 @@
 				</plugins>
 			</build>
 		</profile>
-	</profiles>
 
+		<profile>
+			<id>doclint-java8-disable</id>
+			<activation>
+				<jdk>[1.8,)</jdk>
+			</activation>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-javadoc-plugin</artifactId>
+						<version>2.10.3</version>
+						<configuration>
+							<additionalparam>-Xdoclint:none</additionalparam>
+						</configuration>
+					</plugin>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-site-plugin</artifactId>
+						<version>3.4</version>
+						<configuration>
+							<reportPlugins>
+								<plugin>
+									<groupId>org.apache.maven.plugins</groupId>
+									<artifactId>maven-javadoc-plugin</artifactId>
+									<version>2.10.3</version>
+									<configuration>
+										<additionalparam>-Xdoclint:none</additionalparam>
+									</configuration>
+								</plugin>
+							</reportPlugins>
+						</configuration>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+	</profiles>
 	<build>
 		<plugins>
-			<!-- Ensure compilation is done under Java 6 in all environments -->
+			<!-- Ensure compilation is done under Java 7 in all environments -->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
-				<version>3.1</version>
+				<version>3.3</version>
 				<configuration>
-					<source>1.6</source>
-					<target>1.6</target>
+					<source>1.7</source>
+					<target>1.7</target>
 					<showDeprecation>true</showDeprecation>
 					<showWarnings>true</showWarnings>
 				</configuration>
@@ -220,7 +232,7 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-source-plugin</artifactId>
-				<version>2.2.1</version>
+				<version>2.4</version>
 				<executions>
 					<execution>
 						<id>attach-sources</id>
@@ -231,11 +243,12 @@
 				</executions>
 			</plugin>
 
+
 			<!-- Generates a Javadoc JAR during package -->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-javadoc-plugin</artifactId>
-				<version>2.9.1</version>
+				<version>2.10.1</version>
 				<executions>
 					<execution>
 						<id>attach-javadocs</id>
@@ -250,7 +263,7 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-surefire-plugin</artifactId>
-				<version>2.15</version>
+				<version>2.18.1</version>
 				<configuration>
 					<forkMode>pertest</forkMode>
 					<argLine>-Xms512m -Xmx2048m</argLine>
@@ -265,7 +278,7 @@
 				<artifactId>maven-license-plugin</artifactId>
 				<version>1.10.b1</version>
 				<configuration>
-					<header>etc/header.txt</header>
+					<header>LICENSE</header>
 					<aggregate>true</aggregate>
 					<includes>
 						<include>**/*.java</include>
@@ -282,7 +295,7 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-release-plugin</artifactId>
-				<version>2.5</version>
+				<version>2.5.1</version>
 				<configuration>
 					<autoVersionSubmodules>true</autoVersionSubmodules>
 				</configuration>

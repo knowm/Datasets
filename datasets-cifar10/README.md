@@ -1,4 +1,4 @@
-## Xeiam Datasets CIFAR-10
+## Knowm Datasets CIFAR-10
 
 [raw data](http://www.cs.toronto.edu/~kriz/cifar.html) 
 
@@ -16,4 +16,4 @@
 
 ## Build jar containing Data
 
-1. using Maven, run `mvn clean install`
+1. Using Maven, run `mvn clean install`.

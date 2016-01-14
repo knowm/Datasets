@@ -1,12 +1,12 @@
-## Xeiam Datasets
+## Knowm Datasets
 
-Xeiam Datasets is a Java library for conveniently working with machine learning datasets.  
+Knowm Datasets is a Java library for conveniently working with machine learning datasets.  
 
 ## Description 
 
 The philosophy of this open source project is simple - take several diverse datasets, which all have their own custom formats, and convert them all into a unified 
 format with a unified API for accessing the data. Each module has a `RawData2DB` class, which parses the raw data and puts each data object into a file-based HSQLDB database. 
-No separate database installation is necessary. The generated database files have been uploaded to Xeiam's Google Drive account [here](https://drive.google.com/folderview?id=0ByP7_A9vXm17VXhuZzBrcnNubEE&usp=sharing#list).
+No separate database installation is necessary. The generated database files have been uploaded to Knowm's Google Drive account [here](https://drive.google.com/folderview?id=0ByP7_A9vXm17VXhuZzBrcnNubEE&usp=sharing#list).
 The data is accessed for client apps through a DAO class, with methods so easy, even a child could understand:
 
 Sample code:
@@ -76,38 +76,40 @@ The original copyright and license notices have been preserved in their original
 
 ### Include Jar in Your Project
 
-for example: `datasets-breast-cancer-wisconsin-original-2.1.0-SNAPSHOT.jar`
+Download Datasets Release Jars: http://search.maven.org/#search%7Cga%7C1%7Cknowm%20datasets
+
+Download Datasets Snapshot Jars: https://oss.sonatype.org/content/groups/public/org/knowm/datasets
 
 ### Via Maven
 
-Add to your pom file:
+The Datasets release artifacts are hosted on Maven Central.
 
-    <repositories>
-        <repository>
-            <id>sonatype-oss-public</id>
-            <url>https://oss.sonatype.org/content/groups/public/</url>
-            <releases>
-                <enabled>true</enabled>
-            </releases>
-            <snapshots>
-                <enabled>true</enabled>
-            </snapshots>
-        </repository>
-    </repositories>
+Add the Datasets library as a dependency to your pom.xml file:
 
     <dependency>
-        <groupId>com.xeiam.datasets</groupId>
+        <groupId>org.knowm.datasets</groupId>
         <artifactId>datasets-breast-cancer-wisconsin-orginal</artifactId>
-        <version>2.1.0-SNAPSHOT</version>
+        <version>2.1.0</version>
     </dependency>
     
-### Manual Download
+, adjusting the particular dataset you want, in this case `datasets-breast-cancer-wisconsin-orginal`.
 
-[Sonatype snapshots repo](https://oss.sonatype.org/content/groups/public/com/xeiam/datasets/)
+For snapshots, add the following to your pom.xml file:
+
+    <repository>
+      <id>sonatype-oss-snapshot</id>
+      <snapshots/>
+      <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+    </repository>
+
+The current snapshot version is:
+
+    2.1.1-SNAPSHOT
+    
 
 ## Building
 
-Xeiam Datasets is built with Maven.
+Knowm Datasets is built with Maven.
 
     cd path/to/datasets-parent
     
