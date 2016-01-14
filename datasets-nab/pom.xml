@@ -15,20 +15,36 @@
   <name>datasets-nab</name>
   <url>http://maven.apache.org</url>
   
-  <dependencies>
-    <dependency>
-      <groupId>junit</groupId>
-      <artifactId>junit</artifactId>
-      <version>3.8.1</version>
-      <scope>test</scope>
-    </dependency>
-    
-    <dependency>
-		<groupId>com.xeiam.datasets</groupId>
+
+	<dependencies>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>3.8.1</version>
+		</dependency>
+	
+		<dependency>
+			<groupId>com.xeiam.datasets</groupId>
 			<artifactId>datasets-common</artifactId>
 			<version>2.1.0-SNAPSHOT</version>
-	</dependency>
-  </dependencies>
-  
-  
+		</dependency>
+	
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-core</artifactId>
+			<version>2.7.0</version>
+		</dependency>
+	
+		<dependency>
+			<groupId>org.codehaus.jackson</groupId>
+			<artifactId>jackson-mapper-asl</artifactId>
+			<version>1.9.13</version>
+		</dependency>
+	
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<version>5.1.37</version>
+		</dependency>
+	</dependencies>
 </project>
