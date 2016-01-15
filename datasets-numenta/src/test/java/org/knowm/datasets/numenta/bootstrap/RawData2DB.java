@@ -93,7 +93,6 @@ public class RawData2DB {
 
   }
 
-  //
   private static Map<String, ArrayList<ArrayList<Long>>> buildWindowMap(String file) throws JsonParseException, JsonMappingException, IOException, ParseException {
 
     Map<String, ArrayList<ArrayList<Long>>> windowMap = new HashMap<String, ArrayList<ArrayList<Long>>>();
