@@ -38,6 +38,7 @@
 
 	<modules>
 		<module>datasets-breast-cancer-wisconsin-orginal</module>
+		<module>datasets-numenta</module>
 		<module>datasets-census-income</module>
 		<module>datasets-cifar10</module>
 		<module>datasets-common</module>
@@ -87,6 +88,21 @@
 
 	<dependencyManagement>
 		<dependencies>
+			<dependency>
+				<groupId>com.xeiam.datasets</groupId>
+				<artifactId>datasets-common</artifactId>
+				<version>2.1.0-SNAPSHOT</version>
+			</dependency>
+			<dependency>
+				<groupId>com.fasterxml.jackson.core</groupId>
+				<artifactId>jackson-core</artifactId>
+				<version>2.7.0</version>
+				</dependency>
+			<dependency>
+				<groupId>org.codehaus.jackson</groupId>
+				<artifactId>jackson-mapper-asl</artifactId>
+				<version>1.9.13</version>
+			</dependency>	
 			<dependency>
 				<groupId>org.knowm</groupId>
 				<artifactId>yank</artifactId>
