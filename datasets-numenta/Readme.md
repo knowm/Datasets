@@ -1,4 +1,4 @@
-## Xeiam Datasets Numenta
+## Knowm Datasets Numenta
 
 [raw data](https://github.com/numenta/NAB) 
 
@@ -8,9 +8,9 @@
 
 1. put both directories in the `raw` folder in project root
 
-1. Run `RawData2DB.java` with args: [jdbcUrl, username, password] in that order.
+1. Run `RawData2DB.java` 
 
-1. The data tables for each benchmark will appear at the jdbcUrl specified
+1. The database containing the data will appear in `db`.
 
 ## How to build jar containing Data
 
