@@ -14,18 +14,6 @@ import org.knowm.yank.Yank;
 @Ignore
 public class TestNumentaDAO {
 
-  public static void main(String[] args) {
-
-    Yank.setupDataSource(PropertiesUtils.getPropertiesFromClasspath("DB_HSQLDB_FILE.properties"));
-    List<String> names = NumentaDAO.selectSeriesNames();
-    for (String name : names) {
-      List<SeriesPoint> points = NumentaDAO.selectSeries(name);
-      System.out.println(name + " " + points.size());
-    }
-    NumentaDAO.release();
-
-  }
-
   @BeforeClass
   public static void setUpDB() {
 

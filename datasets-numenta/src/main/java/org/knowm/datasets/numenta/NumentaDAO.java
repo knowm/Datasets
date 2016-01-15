@@ -8,24 +8,6 @@ import org.knowm.yank.Yank;
 
 public class NumentaDAO extends DatasetsDAO {
 
-  public static void init(String dataFilesDir) {
-
-    // / Needs to point to Google drive
-    String dataFileID = "0B5VXh50WzAw2dWYzdnI0NFFISGs";
-    String propsFileID = "0B5VXh50WzAw2T1gtV0dBWE1mLUE";
-    String scriptFileID = "0B5VXh50WzAw2TjBlZ1REUWprTmM";
-    init("DB_NUMENTA", dataFilesDir, dataFileID, propsFileID, scriptFileID, null, false);
-  }
-
-  //
-  // public static void createTable(String tableName) {
-  //
-  //    // @formatter:off
-  //    String CREATE_TABLE_SQL = "CREATE TABLE IF NOT EXISTS " + tableName + " (`series` VARCHAR(200) NOT NULL,`timestamp` BIGINT NOT NULL, `value` double NOT NULL, `label` TINYINT NOT NULL, PRIMARY KEY (series,timestamp)) ENGINE=MyISAM DEFAULT CHARSET=utf8;";
-  //    // @formatter:on
-  // Yank.execute(CREATE_TABLE_SQL, null);
-  // }
-
   public static int createTable() {
 
     return Yank.executeSQLKey("KEY_CREATE_TABLE", null);
@@ -41,14 +23,14 @@ public class NumentaDAO extends DatasetsDAO {
 
     Object[] params = new Object[] {
 
-    // @formatter:off
+        // @formatter:off
         point.getId(),
         point.getSeries(),
         point.getTimestamp(),
         point.getValue(),
         point.getLabel()
         // @formatter:on
-        };
+    };
     String INSERT = "INSERT INTO NUMENTA (id, series, timestamp, value, label) VALUES (?, ?, ?, ?, ?)";
     Yank.execute(INSERT, params);
   }
