@@ -1,6 +1,5 @@
 package org.knowm.datasets.numenta;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.knowm.datasets.common.business.DatasetsDAO;
@@ -39,17 +38,14 @@ public class NumentaDAO extends DatasetsDAO {
 
     Object[] params = new Object[] { series };
     String SELECT_ALL_SQL = "SELECT * FROM NUMENTA WHERE series = ? ORDER BY timestamp ASC";
+
     return Yank.queryBeanList(SELECT_ALL_SQL, SeriesPoint.class, params);
   }
 
   public static List<String> selectSeriesNames() {
 
-    String SELECT_ALL_SQL = "SELECT DISTINCT SERIES FROM NUMENTA";
-    List<SeriesPoint> uniqueSeries = Yank.queryBeanList(SELECT_ALL_SQL, SeriesPoint.class, null);
-    List<String> names = new ArrayList<String>();
-    for (SeriesPoint p : uniqueSeries) {
-      names.add(p.getSeries());
-    }
+    String SELECT_SERIES_NAMES_SQL = "SELECT DISTINCT series FROM NUMENTA";
+    List<String> names = Yank.queryColumn(SELECT_SERIES_NAMES_SQL, "series", String.class, null);
     return names;
   }
 
