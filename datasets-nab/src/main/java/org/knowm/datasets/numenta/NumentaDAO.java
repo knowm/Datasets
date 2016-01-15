@@ -2,23 +2,24 @@ package org.knowm.datasets.numenta;
 
 import java.util.List;
 
-import com.xeiam.yank.Yank;
+import org.knowm.datasets.common.business.DatasetsDAO;
+import org.knowm.yank.Yank;
 
-public class NumentaDAO {
+public class NumentaDAO extends DatasetsDAO {
+
+  public static void init(String dataFilesDir) {
+
+    String dataFileID = "0B5VXh50WzAw2dWYzdnI0NFFISGs";
+    String propsFileID = "0B5VXh50WzAw2T1gtV0dBWE1mLUE";
+    String scriptFileID = "0B5VXh50WzAw2TjBlZ1REUWprTmM";
+    init("DB_NUMENTA", dataFilesDir, dataFileID, propsFileID, scriptFileID, null, false);
+  }
 
   public static void createTable(String tableName) {
 
     // @formatter:off
-    //    String CREATE_TABLE_SQL = "CREATE TABLE IF NOT EXISTS "
-    //        + tableName
-    //        + "`(timestamp` DATE NOT NULL, "
-    //        + "`value` double NOT NULL, "
-    //        + "UNIQUE KEY `timestamp` (`timestamp`)) "
-    //        + "ENGINE=MyISAM DEFAULT CHARSET=utf8;";
-
     String CREATE_TABLE_SQL = "CREATE TABLE IF NOT EXISTS " + tableName + " (`timestamp` BIGINT NOT NULL, `value` double NOT NULL, `label` TINYINT NOT NULL, UNIQUE KEY `timestamp` (`timestamp`)) ENGINE=MyISAM DEFAULT CHARSET=utf8;";
     // @formatter:on
-
     Yank.execute(CREATE_TABLE_SQL, null);
   }
 
@@ -32,12 +33,12 @@ public class NumentaDAO {
 
     Object[] params = new Object[] {
 
-    // @formatter:off
+        // @formatter:off
         point.getTimestamp(),
         point.getValue(),
         point.getLabel()
         // @formatter:on
-        };
+    };
     String INSERT = "REPLACE INTO " + tableName + " (timestamp, value, label) VALUES (?, ?, ?)";
     Yank.execute(INSERT, params);
   }

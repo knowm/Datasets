@@ -1,37 +1,26 @@
 package org.knowm.datasets.numenta.unit;
 
 import java.util.ArrayList;
-import java.util.Properties;
 
 import org.knowm.datasets.numenta.NumentaDAO;
 import org.knowm.datasets.numenta.SeriesPoint;
-
-import com.xeiam.yank.Yank;
 
 public class TimeSeriesDAOTest {
 
   public static void main(String[] args) {
 
-    Properties dbProps = new Properties();
-    dbProps.setProperty("jdbcUrl", "jdbc:mysql://localhost:3306/yank");
-    dbProps.setProperty("username", "root");
-    dbProps.setProperty("password", "");
-    Yank.setupDataSource(dbProps);
-
-    NumentaDAO.dropTable("test");
-    NumentaDAO.createTable("test");
-
+    NumentaDAO.init("/usr/local/Datasets");
     SeriesPoint point1 = new SeriesPoint(10001, 11, 0);
     SeriesPoint point2 = new SeriesPoint(100002, 12, 1);
     SeriesPoint point3 = new SeriesPoint(1000003, 13, 1);
     SeriesPoint point4 = new SeriesPoint(10000004, 14, 0);
     SeriesPoint point5 = new SeriesPoint(100000005, 15, 1);
 
-    NumentaDAO.insertSeriesPoint("test", point1);
-    NumentaDAO.insertSeriesPoint("test", point2);
-    NumentaDAO.insertSeriesPoint("test", point3);
-    NumentaDAO.insertSeriesPoint("test", point4);
-    NumentaDAO.insertSeriesPoint("test", point5);
+    NumentaDAO.insertSeriesPoint("Twitter_volume_AAPL", point1);
+    NumentaDAO.insertSeriesPoint("Twitter_volume_AAPL", point2);
+    NumentaDAO.insertSeriesPoint("Twitter_volume_AAPL", point3);
+    NumentaDAO.insertSeriesPoint("Twitter_volume_AAPL", point4);
+    NumentaDAO.insertSeriesPoint("Twitter_volume_AAPL", point5);
 
     ArrayList<SeriesPoint> points = (ArrayList<SeriesPoint>) NumentaDAO.selectAll("test");
 

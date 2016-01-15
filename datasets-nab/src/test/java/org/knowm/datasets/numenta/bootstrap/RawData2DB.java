@@ -29,18 +29,16 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Properties;
 
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.filefilter.DirectoryFileFilter;
 import org.apache.commons.io.filefilter.FileFileFilter;
-import org.codehaus.jackson.JsonParseException;
 import org.codehaus.jackson.map.JsonMappingException;
 import org.codehaus.jackson.map.ObjectMapper;
 import org.knowm.datasets.numenta.NumentaDAO;
 import org.knowm.datasets.numenta.SeriesPoint;
 
-import com.xeiam.yank.Yank;
+import com.fasterxml.jackson.core.JsonParseException;
 
 /**
  * Parses Numenta csv files and put the data in a database
@@ -49,23 +47,14 @@ import com.xeiam.yank.Yank;
  */
 public class RawData2DB {
 
-  /**
-   * This method builds tables for each anomaly timeseries from the NAB benchmark dataset
-   */
   public static void main(String[] args) throws IOException, ParseException {
 
-    Properties dbProps = new Properties();
-    if (args.length < 3) {
-      dbProps.setProperty("jdbcUrl", "jdbc:mysql://localhost:3306/DB_CLASSIFIER_APPS");
-      dbProps.setProperty("username", "root");
-      dbProps.setProperty("password", "");
-    }
-    else {
-      dbProps.setProperty("jdbcUrl", args[0]);
-      dbProps.setProperty("username", args[1]);
-      dbProps.setProperty("password", args[2]);
-    }
-    Yank.setupDataSource(dbProps);
+    NumentaDAO.init(args[0]);
+    go();
+    NumentaDAO.release();
+  }
+
+  public static void go() throws JsonParseException, JsonMappingException, IOException, ParseException {
 
     System.out.println("Building Anomalie Windows from label files...");
     Map<String, ArrayList<ArrayList<Long>>> windowMap = buildWindowMap("./raw/labels/combined_windows.json");
@@ -73,7 +62,7 @@ public class RawData2DB {
     System.out.println("Building DB tables from data files ....");
     Collection<File> files = FileUtils.listFiles(new File("./raw/data/"), FileFileFilter.FILE, DirectoryFileFilter.DIRECTORY);
     for (File file : files) {
-      if (file.getName().toLowerCase().endsWith(".csv")) {
+      if (file.getName().toLowerCase().endsWith(".csv") && file.getName().contains("AAPL")) {
 
         String path = file.getAbsolutePath();
         String name = file.getName();
@@ -124,6 +113,7 @@ public class RawData2DB {
 
   }
 
+  //
   private static Map<String, ArrayList<ArrayList<Long>>> buildWindowMap(String file) throws JsonParseException, JsonMappingException, IOException, ParseException {
 
     Map<String, ArrayList<ArrayList<Long>>> windowMap = new HashMap<String, ArrayList<ArrayList<Long>>>();
