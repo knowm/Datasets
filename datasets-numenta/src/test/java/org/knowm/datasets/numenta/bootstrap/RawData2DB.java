@@ -47,9 +47,15 @@ import com.fasterxml.jackson.core.JsonParseException;
  */
 public class RawData2DB {
 
+  public static long idCount = 0;
+
   public static void main(String[] args) throws IOException, ParseException {
 
-    NumentaDAO.init(args[0]);
+    NumentaDAO.init(args);
+
+    NumentaDAO.dropTable();
+    NumentaDAO.createTable();
+
     go();
     NumentaDAO.release();
   }
@@ -62,30 +68,29 @@ public class RawData2DB {
     System.out.println("Building DB tables from data files ....");
     Collection<File> files = FileUtils.listFiles(new File("./raw/data/"), FileFileFilter.FILE, DirectoryFileFilter.DIRECTORY);
     for (File file : files) {
-      if (file.getName().toLowerCase().endsWith(".csv") && file.getName().contains("AAPL")) {
+      if (file.getName().toLowerCase().endsWith(".csv")) {
 
         String path = file.getAbsolutePath();
         String name = file.getName();
         name = name.substring(0, name.length() - 4);
         name = name.replaceAll("-", "_");
-        System.out.println(name);
         buildTable(path, name, windowMap.get(name));
       }
     }
 
   }
 
-  private static void buildTable(String file, String tableName, ArrayList<ArrayList<Long>> windows) throws IOException, ParseException {
+  private static void buildTable(String file, String series, ArrayList<ArrayList<Long>> windows) throws IOException, ParseException {
 
-    NumentaDAO.dropTable(tableName);
-    NumentaDAO.createTable(tableName);
     String data = FileUtils.readFileToString(new File(file), "UTF-8");
-    System.out.print("Creating " + tableName + " from " + file + "....");
+    System.out.print("Loading " + series + " data from " + file + "....");
     String[] lines = data.split("\\r?\\n");
 
     int tupleCount = 0;
     SimpleDateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
     for (int i = 0; i < lines.length; i++) {
+      // for (int i = 0; i < 1; i++) {
+
       try {
         String[] line = lines[i].split(",");
         long timestamp = dateFormatter.parse(line[0]).getTime();
@@ -99,8 +104,9 @@ public class RawData2DB {
           }
         }
 
-        SeriesPoint point = new SeriesPoint(timestamp, value, anomaly ? 1 : 0);
-        NumentaDAO.insertSeriesPoint(tableName, point);
+        SeriesPoint point = new SeriesPoint(idCount, series, timestamp, value, anomaly ? 1 : 0);
+        idCount++;
+        NumentaDAO.insertSeriesPoint(point);
 
       } catch (Exception e) {
         // eat it. Will throw exception on the first line of the test dataset.
