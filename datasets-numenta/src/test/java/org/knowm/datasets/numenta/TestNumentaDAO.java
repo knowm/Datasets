@@ -1,4 +1,4 @@
-package org.knowm.datasets.numenta.unit;
+package org.knowm.datasets.numenta;
 
 import java.util.List;
 
