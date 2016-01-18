@@ -1,4 +1,4 @@
-package org.knowm.datasets.numenta.bootstrap;
+package org.knowm.datasets.numenta;
 
 import java.io.File;
 import java.io.IOException;
