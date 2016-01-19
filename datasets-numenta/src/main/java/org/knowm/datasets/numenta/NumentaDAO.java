@@ -24,28 +24,29 @@ public class NumentaDAO extends DatasetsDAO {
 
     // @formatter:off
         point.getId(),
-        point.getSeries(),
+        point.getSeriesGroup(),
+        point.getSeriesName(),
         point.getTimestamp(),
         point.getValue(),
         point.getLabel()
         // @formatter:on
         };
-    String INSERT = "INSERT INTO NUMENTA (id, series, timestamp, value, label) VALUES (?, ?, ?, ?, ?)";
+    String INSERT = "INSERT INTO NUMENTA (id, seriesGroup, seriesName, timestamp, value, label) VALUES (?, ?, ?, ?, ?, ?)";
     Yank.execute(INSERT, params);
   }
 
   public static List<SeriesPoint> selectSeries(String series) {
 
     Object[] params = new Object[] { series };
-    String SELECT_ALL_SQL = "SELECT * FROM NUMENTA WHERE series = ? ORDER BY timestamp ASC";
+    String SELECT_ALL_SQL = "SELECT * FROM NUMENTA WHERE seriesName = ? ORDER BY timestamp ASC";
 
     return Yank.queryBeanList(SELECT_ALL_SQL, SeriesPoint.class, params);
   }
 
   public static List<String> selectSeriesNames() {
 
-    String SELECT_SERIES_NAMES_SQL = "SELECT DISTINCT series FROM NUMENTA";
-    List<String> names = Yank.queryColumn(SELECT_SERIES_NAMES_SQL, "series", String.class, null);
+    String SELECT_SERIES_NAMES_SQL = "SELECT DISTINCT seriesName FROM NUMENTA";
+    List<String> names = Yank.queryColumn(SELECT_SERIES_NAMES_SQL, "seriesName", String.class, null);
     return names;
   }
 

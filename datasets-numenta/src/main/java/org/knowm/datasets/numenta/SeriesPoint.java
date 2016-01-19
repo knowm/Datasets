@@ -5,7 +5,8 @@ import java.util.Date;
 public class SeriesPoint {
 
   private long id;
-  private String series;
+  private String seriesGroup;
+  private String seriesName;
   private long timestamp;
   private double value;
   private int label;
@@ -14,10 +15,11 @@ public class SeriesPoint {
 
   }
 
-  public SeriesPoint(long id, String series, long timestamp, double value, int label) {
+  public SeriesPoint(long id, String seriesGroup, String seriesName, long timestamp, double value, int label) {
 
     this.id = id;
-    this.series = series;
+    this.seriesGroup = seriesGroup;
+    this.seriesName = seriesName;
     this.value = value;
     this.timestamp = timestamp;
     this.label = label;
@@ -28,9 +30,14 @@ public class SeriesPoint {
     return id;
   }
 
-  public String getSeries() {
+  public String getSeriesGroup() {
 
-    return series;
+    return seriesGroup;
+  }
+
+  public String getSeriesName() {
+
+    return seriesName;
   }
 
   public long getTimestamp() {
@@ -53,9 +60,14 @@ public class SeriesPoint {
     this.id = id;
   }
 
-  public void setSeries(String series) {
+  public void setSeriesGroup(String seriesGroup) {
 
-    this.series = series;
+    this.seriesGroup = seriesGroup;
+  }
+
+  public void setSeriesName(String seriesName) {
+
+    this.seriesName = seriesName;
   }
 
   public void setTimestamp(long timestamp) {
@@ -86,7 +98,8 @@ public class SeriesPoint {
   @Override
   public String toString() {
 
-    return "SeriesPoint [id=" + id + " ," + "series=" + series + " ," + "timestamp=" + timestamp + " ," + "value=" + value + " ," + "label=" + label + "]";
+    return "SeriesPoint [id=" + id + " ," + "seriesGroup=" + seriesGroup + " ," + "seriesName=" + seriesName + " ," + "timestamp=" + timestamp + " ," + "value=" + value + " ," + "label=" + label
+        + "]";
   }
 
 }
