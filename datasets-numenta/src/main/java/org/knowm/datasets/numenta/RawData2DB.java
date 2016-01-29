@@ -60,7 +60,7 @@ public class RawData2DB {
     String[] lines = data.split("\\r?\\n");
 
     int tupleCount = 0;
-    SimpleDateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+    SimpleDateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
     for (int i = 0; i < lines.length; i++) {
       // for (int i = 0; i < 1; i++) {
 
@@ -68,6 +68,8 @@ public class RawData2DB {
 
         String[] line = lines[i].split(",");
         Date dte = dateFormatter.parse(line[0]);
+
+        // System.out.println(line[0] + " -> " + dateFormatter.format(dte) + " " + dte.getTime());
         long timestamp = dte.getTime();
         double value = Double.parseDouble(line[1]);
 
@@ -101,7 +103,7 @@ public class RawData2DB {
 
     Map<String, ArrayList<ArrayList<Long>>> windowMap = new HashMap<String, ArrayList<ArrayList<Long>>>();
 
-    SimpleDateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+    SimpleDateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
     ObjectMapper mapper = new ObjectMapper();
     Map<String, ArrayList<ArrayList<String>>> jWindows = mapper.readValue(new File(file), Map.class);
 
