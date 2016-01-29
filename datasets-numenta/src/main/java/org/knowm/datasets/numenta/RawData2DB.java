@@ -6,6 +6,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -14,8 +15,6 @@ import org.apache.commons.io.filefilter.DirectoryFileFilter;
 import org.apache.commons.io.filefilter.FileFileFilter;
 import org.codehaus.jackson.map.JsonMappingException;
 import org.codehaus.jackson.map.ObjectMapper;
-import org.knowm.datasets.numenta.NumentaDAO;
-import org.knowm.datasets.numenta.SeriesPoint;
 
 import com.fasterxml.jackson.core.JsonParseException;
 
@@ -45,29 +44,33 @@ public class RawData2DB {
       if (file.getName().toLowerCase().endsWith(".csv")) {
 
         String path = file.getAbsolutePath();
-        String name = file.getName();
-        name = name.substring(0, name.length() - 4);
-        name = name.replaceAll("-", "_");
-        buildTable(path, name, windowMap.get(name));
+        String seriesName = file.getName();
+        seriesName = seriesName.substring(0, seriesName.length() - 4); // remove CSV
+        String seriesGroup = file.getParentFile().getName();
+        buildTable(path, seriesGroup, seriesName, windowMap.get(seriesName));
       }
     }
 
   }
 
-  private static void buildTable(String file, String series, ArrayList<ArrayList<Long>> windows) throws IOException, ParseException {
+  private static void buildTable(String file, String seriesGroup, String seriesName, ArrayList<ArrayList<Long>> windows) throws IOException, ParseException {
 
     String data = FileUtils.readFileToString(new File(file), "UTF-8");
-    System.out.print("Loading " + series + " data from " + file + "....");
+    System.out.print("Loading " + seriesName + " data from " + file + "....");
     String[] lines = data.split("\\r?\\n");
 
     int tupleCount = 0;
-    SimpleDateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+    SimpleDateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
     for (int i = 0; i < lines.length; i++) {
       // for (int i = 0; i < 1; i++) {
 
       try {
+
         String[] line = lines[i].split(",");
-        long timestamp = dateFormatter.parse(line[0]).getTime();
+        Date dte = dateFormatter.parse(line[0]);
+
+        // System.out.println(line[0] + " -> " + dateFormatter.format(dte) + " " + dte.getTime());
+        long timestamp = dte.getTime();
         double value = Double.parseDouble(line[1]);
 
         boolean anomaly = false;
@@ -78,7 +81,10 @@ public class RawData2DB {
           }
         }
 
-        SeriesPoint point = new SeriesPoint(idCount, series, timestamp, value, anomaly ? 1 : 0);
+        SeriesPoint point = new SeriesPoint(idCount, seriesGroup, seriesName, timestamp, value, anomaly ? 1 : 0);
+
+        // System.out.println(line[0] + " -> " + dte.toString() + " -> " + point.getTimestampAsDate().toString());
+
         idCount++;
         NumentaDAO.insertSeriesPoint(point);
 
@@ -97,7 +103,7 @@ public class RawData2DB {
 
     Map<String, ArrayList<ArrayList<Long>>> windowMap = new HashMap<String, ArrayList<ArrayList<Long>>>();
 
-    SimpleDateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+    SimpleDateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
     ObjectMapper mapper = new ObjectMapper();
     Map<String, ArrayList<ArrayList<String>>> jWindows = mapper.readValue(new File(file), Map.class);
 
@@ -113,7 +119,6 @@ public class RawData2DB {
 
       key = key.substring(0, key.length() - 4);
       key = key.replaceFirst(".*/", "");
-      key = key.replaceAll("-", "_");
       windowMap.put(key, windows);
       System.out.println(key + " " + windowMap.get(key).toString());
     }

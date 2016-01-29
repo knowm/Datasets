@@ -6,8 +6,6 @@ import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Ignore;
 import org.junit.Test;
-import org.knowm.datasets.numenta.NumentaDAO;
-import org.knowm.datasets.numenta.SeriesPoint;
 import org.knowm.yank.PropertiesUtils;
 import org.knowm.yank.Yank;
 
