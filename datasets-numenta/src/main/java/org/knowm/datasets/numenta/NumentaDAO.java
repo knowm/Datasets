@@ -1,5 +1,6 @@
 package org.knowm.datasets.numenta;
 
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -24,7 +25,7 @@ public class NumentaDAO extends DatasetsDAO {
 
     Object[] params = new Object[] {
 
-    // @formatter:off
+        // @formatter:off
         point.getId(),
         point.getSeriesGroup(),
         point.getSeriesName(),
@@ -32,7 +33,7 @@ public class NumentaDAO extends DatasetsDAO {
         point.getValue(),
         point.getLabel()
         // @formatter:on
-        };
+    };
     String INSERT = "INSERT INTO NUMENTA (id, seriesGroup, seriesName, timestamp, value, label) VALUES (?, ?, ?, ?, ?, ?)";
     Yank.execute(INSERT, params);
   }
@@ -52,21 +53,25 @@ public class NumentaDAO extends DatasetsDAO {
     return names;
   }
 
+  public static String selectGroupForSeries(String series) {
+
+    Object[] params = new Object[] { series };
+    String SELECT_FIRST = "SELECT * FROM NUMENTA WHERE seriesName = ?";
+    return Yank.queryBean(SELECT_FIRST, SeriesPoint.class, params).getSeriesGroup();
+  }
+
   public static double selectMax(String series) {
 
-    return range.get(series)[1];
-    // Object[] params = new Object[] { series };
-    // String SELECT_MAX = "SELECT MAX(value) FROM NUMENTA WHERE seriesName = ?";
-    // return Yank.queryScalar(SELECT_MAX, Double.class, params);
+    Object[] params = new Object[] { series };
+    String SELECT_MAX = "SELECT MAX(value) FROM NUMENTA WHERE seriesName = ?";
+    return Yank.queryScalar(SELECT_MAX, Double.class, params);
   }
 
   public static double selectMin(String series) {
 
-    return range.get(series)[0];
-
-    // Object[] params = new Object[] { series };
-    // String SELECT_MIN = "SELECT MIN(value) FROM NUMENTA WHERE seriesName = ?";
-    // return Yank.queryScalar(SELECT_MIN, Double.class, params);
+    Object[] params = new Object[] { series };
+    String SELECT_MIN = "SELECT MIN(value) FROM NUMENTA WHERE seriesName = ?";
+    return Yank.queryScalar(SELECT_MIN, Double.class, params);
   }
 
   public static List<SeriesPoint> selectAll() {
@@ -75,8 +80,9 @@ public class NumentaDAO extends DatasetsDAO {
     return Yank.queryBeanList(SELECT_ALL_SQL, SeriesPoint.class, null);
   }
 
-  public static Map<String, double[]> range = new HashMap<String, double[]>();
+  public static final Map<String, double[]> staticRange;
   static {
+    Map<String, double[]> range = new HashMap<String, double[]>();
     range.put("art_daily_no_noise", new double[] { 20.0, 79.99997 });
     range.put("art_daily_perfect_square_wave", new double[] { 20.0, 80.0 });
     range.put("art_daily_small_noise", new double[] { 18.000963, 87.97613 });
@@ -135,5 +141,7 @@ public class NumentaDAO extends DatasetsDAO {
     range.put("Twitter_volume_KO ", new double[] { 0.0, 2241.0 });
     range.put("Twitter_volume_PFE", new double[] { 0.0, 36.0 });
     range.put("Twitter_volume_UPS ", new double[] { 0.0, 231.0 });
+    staticRange = Collections.unmodifiableMap(range);
+
   }
 }
