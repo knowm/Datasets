@@ -25,7 +25,7 @@ public class NumentaDAO extends DatasetsDAO {
 
     Object[] params = new Object[] {
 
-        // @formatter:off
+    // @formatter:off
         point.getId(),
         point.getSeriesGroup(),
         point.getSeriesName(),
@@ -33,7 +33,7 @@ public class NumentaDAO extends DatasetsDAO {
         point.getValue(),
         point.getLabel()
         // @formatter:on
-    };
+        };
     String INSERT = "INSERT INTO NUMENTA (id, seriesGroup, seriesName, timestamp, value, label) VALUES (?, ?, ?, ?, ?, ?)";
     Yank.execute(INSERT, params);
   }
@@ -78,6 +78,13 @@ public class NumentaDAO extends DatasetsDAO {
 
     String SELECT_ALL_SQL = "SELECT * FROM NUMENTA";
     return Yank.queryBeanList(SELECT_ALL_SQL, SeriesPoint.class, null);
+  }
+
+  public static Long selectCount(String series) {
+
+    Object[] params = new Object[] { series };
+    String SELECT_COUNT = "SELECT COUNT(*) FROM NUMENTA WHERE seriesName = ?";
+    return Yank.queryScalar(SELECT_COUNT, Long.class, params);
   }
 
   public static final Map<String, double[]> staticRange;
