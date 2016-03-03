@@ -45,6 +45,11 @@ public class SeriesPoint {
     return timestamp;
   }
 
+  public Date getDate() {
+
+    return new Date(timestamp);
+  }
+
   public double getValue() {
 
     return value;
