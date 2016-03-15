@@ -33,10 +33,9 @@ import java.util.Map;
 import java.util.Map.Entry;
 
 import org.apache.commons.beanutils.BeanUtils;
-import org.knowm.xchart.Chart;
-import org.knowm.xchart.ChartBuilder;
+import org.knowm.xchart.ChartBuilder_Category;
+import org.knowm.xchart.Chart_Category;
 import org.knowm.xchart.Histogram;
-import org.knowm.xchart.StyleManager.ChartType;
 import org.knowm.xchart.SwingWrapper;
 
 /**
@@ -97,7 +96,7 @@ public abstract class HistogramDataInspector<T> {
 
   private void plot() {
 
-    List<Chart> charts = new ArrayList<Chart>();
+    List<Chart_Category> charts = new ArrayList<Chart_Category>();
 
     for (Entry<String, List<Float>> entrySet : rawHistogramData1.entrySet()) {
 
@@ -109,8 +108,8 @@ public abstract class HistogramDataInspector<T> {
         List<Float> value2 = rawHistogramData2.get(key);
 
         // Create Chart
-        Chart chart = new ChartBuilder().chartType(ChartType.Bar).width(300).height(200).title(key).xAxisTitle("Value").yAxisTitle("Count").build();
-        chart.getStyleManager().setLegendVisible(false);
+        Chart_Category chart = new ChartBuilder_Category().width(300).height(200).title(key).xAxisTitle("Value").yAxisTitle("Count").build();
+        chart.getStyler().setLegendVisible(false);
 
         float[] minMax = getMinMax(value1, value2);
 
@@ -120,10 +119,10 @@ public abstract class HistogramDataInspector<T> {
         chart.addSeries(getSecondLabel(), histogram2.getxAxisData(), histogram2.getyAxisData());
 
         // Customize Chart
-        chart.getStyleManager().setBarWidthPercentage(.96);
-        chart.getStyleManager().setBarsOverlapped(true);
-        chart.getStyleManager().setXAxisTitleVisible(false);
-        chart.getStyleManager().setYAxisTitleVisible(false);
+        chart.getStyler().setAvailableSpaceFill(.96);
+        chart.getStyler().setOverlapped(true);
+        chart.getStyler().setXAxisTitleVisible(false);
+        chart.getStyler().setYAxisTitleVisible(false);
 
         charts.add(chart);
 

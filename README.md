@@ -71,6 +71,9 @@ The original copyright and license notices have been preserved in their original
 * [NSL-KDD](http://nsl.cs.unb.ca/NSL-KDD/)
 * [Reuters-21578](http://archive.ics.uci.edu/ml/support/Reuters-21578+Text+Categorization+Collection)
 * [UCSD Anomaly](http://www.svcl.ucsd.edu/projects/anomaly/dataset.html)
+* [Numenta Anomaly](https://github.com/numenta/NAB) 
+* [PCB](https://www.caa.tuwien.ac.at/cvl/research/cvl-databases/pcb-dslr-dataset/) 
+
 
 ## Example Usage
 

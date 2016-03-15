@@ -37,13 +37,13 @@ public class Cifar implements Serializable {
   private int id;
   private int label;
   private String imagedata;
-  private static final Map<Integer, String> label2WordMap = new HashMap<Integer, String>();
 
   /** generated */
   int[][] redChannel = null;
   int[][] greenChannel = null;
   int[][] blueChannel = null;
 
+  private static final Map<Integer, String> label2WordMap = new HashMap<Integer, String>();
   static {
     label2WordMap.put(0, "airplane");
     label2WordMap.put(1, "automobile");
