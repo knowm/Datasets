@@ -24,16 +24,24 @@
  */
 package org.knowm.datasets.samples;
 
-import java.awt.BorderLayout;
+import java.awt.BasicStroke;
+import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.GridLayout;
+import java.awt.Shape;
+import java.awt.font.FontRenderContext;
+import java.awt.font.TextLayout;
+import java.awt.geom.AffineTransform;
+import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
 import java.io.InputStream;
+import java.util.List;
 
 import javax.imageio.ImageIO;
-import javax.swing.ImageIcon;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JSplitPane;
@@ -44,6 +52,8 @@ import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.TreeSelectionModel;
 
 import org.knowm.datasets.pcb.PCB;
+import org.knowm.datasets.pcb.PCBAnnotation;
+import org.knowm.datasets.pcb.PCBAnnotationDAO;
 import org.knowm.datasets.pcb.PCBDAO;
 
 /**
@@ -57,8 +67,10 @@ public class PCBAnnotatedImageViewer extends JPanel implements TreeSelectionList
   /** The tree */
   private JTree tree;
 
-  /** The panel for chart */
-  private JPanel bottomPanel = new JPanel();
+  /** The panel for images */
+  private ImagePanel bottomPanel = new ImagePanel();
+  private JScrollPane bottomScrollPane;
+  private Font font = new Font(Font.SANS_SERIF, Font.BOLD, 20);
 
   /**
    * Constructor
@@ -79,19 +91,21 @@ public class PCBAnnotatedImageViewer extends JPanel implements TreeSelectionList
     tree.addTreeSelectionListener(this);
 
     // Create the scroll pane and add the tree to it.
-    JScrollPane treeView = new JScrollPane(tree);
+    JScrollPane treeScrollPane = new JScrollPane(tree);
 
-    // Create Chart Panel
-    PCB hJABirdsong = PCBDAO.selectSingle(1);
-    bottomPanel.add(getSoundPanel(hJABirdsong));
+    // Create Image Panel
+    PCB pcb = PCBDAO.selectSingle(1);
+    List<PCBAnnotation> pcbAnnotations = PCBAnnotationDAO.selectList(1);
+    bottomPanel.update(pcb, pcbAnnotations);
+    bottomScrollPane = new JScrollPane(bottomPanel);
 
     // Add the scroll panes to a split pane.
     splitPane = new JSplitPane(JSplitPane.VERTICAL_SPLIT);
-    splitPane.setTopComponent(treeView);
-    splitPane.setBottomComponent(bottomPanel);
+    splitPane.setTopComponent(treeScrollPane);
+    splitPane.setBottomComponent(bottomScrollPane);
 
     Dimension minimumSize = new Dimension(130, 160);
-    treeView.setMinimumSize(minimumSize);
+    treeScrollPane.setMinimumSize(minimumSize);
     splitPane.setPreferredSize(new Dimension(700, 700));
 
     // Add the split pane to this panel.
@@ -113,28 +127,12 @@ public class PCBAnnotatedImageViewer extends JPanel implements TreeSelectionList
     if (node.isLeaf()) {
 
       PCB pcb = (PCB) nodeInfo;
-      bottomPanel = new JPanel();
-      bottomPanel.add(getSoundPanel(pcb));
-      splitPane.setBottomComponent(bottomPanel);
+      List<PCBAnnotation> pcbAnnotations = PCBAnnotationDAO.selectList(pcb.getId());
+      bottomPanel.update(pcb, pcbAnnotations);
+      bottomScrollPane = new JScrollPane(bottomPanel);
+      splitPane.setBottomComponent(bottomScrollPane);
 
     }
-  }
-
-  private JPanel getSoundPanel(PCB pcb) {
-
-    JPanel imagePanel = new JPanel();
-    imagePanel.setLayout(new BorderLayout());
-
-    // image
-    try (InputStream bytes = pcb.getImgbytes().getBinaryStream();) {
-
-      BufferedImage bufferedImage = ImageIO.read(bytes);
-      imagePanel.add(new ImagePanel(bufferedImage), BorderLayout.CENTER);
-    } catch (Exception e) {
-      e.printStackTrace();
-    }
-
-    return imagePanel;
   }
 
   /**
@@ -210,16 +208,76 @@ public class PCBAnnotatedImageViewer extends JPanel implements TreeSelectionList
 
   public class ImagePanel extends JPanel {
 
-    public ImagePanel(BufferedImage bi) {
+    private BufferedImage bufferedImage;
+    private List<PCBAnnotation> pcbAnnotations;
 
-      setLayout(new BorderLayout());
-      ImageIcon icon = null;
-      try {
-        icon = new ImageIcon(bi);
+    @Override
+    public Dimension getPreferredSize() {
+
+      return new Dimension(bufferedImage.getWidth(), bufferedImage.getHeight());
+    }
+
+    @Override
+    protected void paintComponent(Graphics g) {
+
+      super.paintComponent(g);
+
+      Graphics2D g2 = (Graphics2D) g;
+
+      g.drawImage(bufferedImage, 0, 0, null); // see javadoc for more info on the parameters
+
+      // annotations
+      if (pcbAnnotations != null) {
+
+        for (PCBAnnotation pcbAnnotation : pcbAnnotations) {
+
+          AffineTransform orig = g2.getTransform();
+          AffineTransform at = new AffineTransform();
+
+          at.rotate(Math.toRadians(pcbAnnotation.getRotation()), pcbAnnotation.getX(), pcbAnnotation.getY());
+
+          Shape rect = new Rectangle2D.Double(pcbAnnotation.getX() - pcbAnnotation.getWidth() / 2,
+              pcbAnnotation.getY() - pcbAnnotation.getHeight() / 2, pcbAnnotation.getWidth(), pcbAnnotation.getHeight());
+
+          g2.transform(at);
+
+          g2.setStroke(new BasicStroke(12));
+          g2.setColor(Color.RED);
+          g2.draw(rect);
+
+          g2.setStroke(new BasicStroke(12, BasicStroke.CAP_BUTT, BasicStroke.JOIN_BEVEL, 0, new float[] { 12, 12 }, 0));
+          g2.setColor(Color.WHITE);
+          g2.draw(rect);
+
+          g2.setTransform(orig);
+
+          if (pcbAnnotation.getName() != null) {
+
+            FontRenderContext frc = g2.getFontRenderContext();
+            TextLayout textLayout = new TextLayout(pcbAnnotation.getName(), font, frc);
+            textLayout.draw(g2, pcbAnnotation.getX() - pcbAnnotation.getWidth() / 2 + 16, pcbAnnotation.getY() - pcbAnnotation.getHeight() / 2 + 22);
+
+          }
+
+        }
+
+      }
+
+    }
+
+    private void update(PCB pcb, List<PCBAnnotation> pcbAnnotations) {
+
+      // image
+      try (InputStream bytes = pcb.getImgbytes().getBinaryStream();) {
+
+        this.bufferedImage = ImageIO.read(bytes);
       } catch (Exception e) {
         e.printStackTrace();
       }
-      add(new JLabel(icon));
+
+      this.pcbAnnotations = pcbAnnotations;
+      repaint();
+
     }
 
   }

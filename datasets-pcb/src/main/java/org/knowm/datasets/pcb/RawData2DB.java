@@ -26,47 +26,49 @@ package org.knowm.datasets.pcb;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.IOException;
 import java.io.InputStream;
 
 import javax.sql.rowset.serial.SerialBlob;
+
+import org.apache.commons.io.FileUtils;
 
 /**
  * @author timmolter
  */
 public class RawData2DB {
 
-  private static final int NumEntriesPerFile = 10000;
-
-  int idx = 0;
-
-  public static void main(String[] args) {
+  public static void main(String[] args) throws IOException {
 
     PCBDAO.init(args);
-
     PCBDAO.dropTable();
     PCBDAO.createTable();
+    PCBAnnotationDAO.init(args);
+    PCBAnnotationDAO.dropTable();
+    PCBAnnotationDAO.createTable();
 
     RawData2DB dp = new RawData2DB();
     System.out.println("processing PCB images 1...");
     dp.go("./raw/cvl_pcb_dslr_1/");
-    //    System.out.println("processing PCB images 2...");
-    //    dp.go("./raw/cvl_pcb_dslr_2/");
-    //    System.out.println("processing PCB images 3...");
-    //    dp.go("./raw/cvl_pcb_dslr_3/");
-    //    System.out.println("processing PCB images 4...");
-    //    dp.go("./raw/cvl_pcb_dslr_4/");
-    //    System.out.println("processing PCB images 5...");
-    //    dp.go("./raw/cvl_pcb_dslr_5/");
-    //    System.out.println("processing PCB images 6...");
-    //    dp.go("./raw/cvl_pcb_dslr_6/");
-    //    System.out.println("processing PCB images 7...");
-    //    dp.go("./raw/cvl_pcb_dslr_7/");
-    //    System.out.println("done.");
+    System.out.println("processing PCB images 2...");
+    dp.go("./raw/cvl_pcb_dslr_2/");
+    System.out.println("processing PCB images 3...");
+    dp.go("./raw/cvl_pcb_dslr_3/");
+    System.out.println("processing PCB images 4...");
+    dp.go("./raw/cvl_pcb_dslr_4/");
+    System.out.println("processing PCB images 5...");
+    dp.go("./raw/cvl_pcb_dslr_5/");
+    System.out.println("processing PCB images 6...");
+    dp.go("./raw/cvl_pcb_dslr_6/");
+    System.out.println("processing PCB images 7...");
+    dp.go("./raw/cvl_pcb_dslr_7/");
+    System.out.println("done.");
 
     PCBDAO.release();
+    PCBAnnotationDAO.release();
   }
 
-  private void go(String imageDataFolder) {
+  private void go(String imageDataFolder) throws IOException {
 
     File root = new File(imageDataFolder);
     String[] directories = root.list();
@@ -76,6 +78,7 @@ public class RawData2DB {
       if (new File(imageDataFolder + directory).isDirectory()) {
 
         System.out.println(directory);
+
         String pcbID = directory.replace("pcb", "");
         Integer pcbIDAsInt = Integer.parseInt(pcbID);
 
@@ -88,30 +91,7 @@ public class RawData2DB {
         String jpgFileName = imageDataFolder + directory + "/rec" + counter + ".jpg";
         //                  BufferedImage pcbimage = ImageIO.read(new File(imageDataFolder + directory + "/rec" + counter + ".jpg"));
         //          BufferedImage pcbMaskimage = ImageIO.read(new File(imageDataFolder + directory + "/rec" + counter + "-mask.png"));
-        //          String data = FileUtils.readFileToString(new File(imageDataFolder + directory + "/rec" + counter + "-annot.txt"), "UTF-8");
-        //
-        //
-        //
-        //          String[] lines = data.split("\\r?\\n");
-        //
-        //          for (int i = 0; i < lines.length; i++) {
-        //            try {
-        //
-        //              System.out.println(lines[i]);
-        //
-        //            } catch (Exception e) {
-        //              System.out.println("error parsing one line.");
-        //              // eat it. Will throw exception on the first line of the test dataset.
-        //            }
-        //          }
-
-        //            counter++;
-        //          }
-
-        //        } catch (IOException e) {
-        //          System.out.println("end of image in this PCB folder.");
-        //          //          e.printStackTrace();
-        //        }
+        String annotationData = FileUtils.readFileToString(new File(imageDataFolder + directory + "/rec" + counter + "-annot.txt"), "UTF-8");
 
         // the png file Bytes
         File srcFile = new File(jpgFileName);
@@ -128,6 +108,30 @@ public class RawData2DB {
 
         } catch (Exception e) {
           e.printStackTrace();
+        }
+
+        String[] lines = annotationData.split("\\r?\\n");
+
+        for (int i = 0; i < lines.length; i++) {
+
+          if (lines[i].length() > 1) {
+
+            //          System.out.println(lines[i]);
+
+            String[] entries = lines[i].split(" ");
+
+            PCBAnnotation pcbAnnotation = new PCBAnnotation();
+            pcbAnnotation.setId(pcbIDAsInt);
+            pcbAnnotation.setX(Float.parseFloat(entries[0].trim()));
+            pcbAnnotation.setY(Float.parseFloat(entries[1].trim()));
+            pcbAnnotation.setWidth(Float.parseFloat(entries[2].trim()));
+            pcbAnnotation.setHeight(Float.parseFloat(entries[3].trim()));
+            pcbAnnotation.setRotation(Float.parseFloat(entries[4].trim()));
+            if (entries.length > 6) {
+              pcbAnnotation.setName(entries[5].trim());
+            }
+            PCBAnnotationDAO.insert(pcbAnnotation);
+          }
         }
 
       }

@@ -31,8 +31,6 @@ import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Ignore;
 import org.junit.Test;
-import org.knowm.datasets.hjabirdsong.TenFold;
-import org.knowm.datasets.hjabirdsong.TenFoldDAO;
 
 /**
  * @author timmolter
@@ -44,7 +42,6 @@ public class TestTenFoldDAO {
   public static void setUpDB() {
 
     TenFoldDAO.init(new String[0]);
-
   }
 
   @AfterClass

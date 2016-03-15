@@ -28,6 +28,7 @@ import static org.fest.assertions.api.Assertions.assertThat;
 
 import java.awt.image.BufferedImage;
 import java.io.InputStream;
+import java.util.List;
 
 import javax.imageio.ImageIO;
 
@@ -44,12 +45,14 @@ public class TestPCBDAO {
   public static void setUpDB() {
 
     PCBDAO.init(new String[0]);
+    PCBAnnotationDAO.init(new String[0]);
   }
 
   @AfterClass
   public static void tearDownDB() {
 
     PCBDAO.release();
+    PCBAnnotationDAO.release();
   }
 
   @Test
@@ -60,7 +63,7 @@ public class TestPCBDAO {
   }
 
   @Test
-  public void testimage() {
+  public void testImage() {
 
     PCB pcb = PCBDAO.selectSingle(1);
 
@@ -74,4 +77,19 @@ public class TestPCBDAO {
     }
   }
 
+  @Test
+  public void testAnnotations() {
+
+    long count = PCBAnnotationDAO.selectCount();
+    System.out.println("" + count);
+
+    List<PCBAnnotation> pcbAnnotations = PCBAnnotationDAO.selectList(1);
+
+    assertThat(pcbAnnotations).hasSize(23);
+
+    for (PCBAnnotation pcbAnnotation : pcbAnnotations) {
+
+      System.out.println(pcbAnnotation.toString());
+    }
+  }
 }

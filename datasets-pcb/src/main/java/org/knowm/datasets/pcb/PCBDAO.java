@@ -24,22 +24,12 @@
  */
 package org.knowm.datasets.pcb;
 
-import org.knowm.datasets.common.business.DatasetsDAO;
 import org.knowm.yank.Yank;
 
 /**
  * @author timmolter
  */
-public class PCBDAO extends DatasetsDAO {
-
-  public static void init(String dataFilesDir) {
-
-    String dataFileID = "0ByP7_A9vXm17VERJam9EMm5sTkU";
-    String propsFileID = "0ByP7_A9vXm17VHIzd1hSNW4zUXc";
-    String scriptFileID = "0ByP7_A9vXm17eHlzcDJfalNoYkk";
-
-    init("DB_PCB", dataFilesDir, dataFileID, propsFileID, scriptFileID, null, true);
-  }
+public class PCBDAO extends PCBParentDAO {
 
   public static int dropTable() {
 
