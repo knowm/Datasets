@@ -1,6 +1,4 @@
 language: java
-jdk:
-  - oraclejdk7
 sudo: false
 
 before_install: "git clone -b travis `git config --get remote.origin.url` target/travis"
@@ -11,6 +9,9 @@ then
 else 
     mvn clean verify --settings target/travis/settings.xml;
 fi" 
+
+jdk:
+  - oraclejdk8
 
 # whitelist
 branches:
