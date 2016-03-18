@@ -62,6 +62,8 @@ public class RawData2DB {
     dp.go("./raw/cvl_pcb_dslr_6/");
     System.out.println("processing PCB images 7...");
     dp.go("./raw/cvl_pcb_dslr_7/");
+    System.out.println("processing PCB images 8...");
+    dp.go("./raw/cvl_pcb_dslr_8/");
     System.out.println("done.");
 
     PCBDAO.release();

@@ -12,7 +12,7 @@
 
 1. The database containing the data will appear in `db`.
 
-1. Manually copy the `DB_PCB.*` files into the `src/main/resources` folder. There should be three files. 
+1. Manually copy the `DB_PCB.*` files into the `/usr/local/Datasets` folder. There should be four files. 
 
 ## Build jar containing Data
 
