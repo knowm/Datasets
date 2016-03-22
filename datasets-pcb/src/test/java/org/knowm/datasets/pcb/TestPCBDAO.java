@@ -59,7 +59,7 @@ public class TestPCBDAO {
   public void testSelectCount() {
 
     long count = PCBDAO.selectCount();
-    assertThat(count).isEqualTo(20L);
+    assertThat(count).isEqualTo(165L);
   }
 
   @Test
