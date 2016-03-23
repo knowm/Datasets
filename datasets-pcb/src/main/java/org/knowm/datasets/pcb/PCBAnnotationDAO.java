@@ -48,6 +48,7 @@ public class PCBAnnotationDAO extends PCBParentDAO {
     Object[] params = new Object[] {
 
         // @formatter:off
+        pcbAnnotation.getPcbid(),
         pcbAnnotation.getId(),
         pcbAnnotation.getX(),
         pcbAnnotation.getY(),
@@ -58,7 +59,7 @@ public class PCBAnnotationDAO extends PCBParentDAO {
         // @formatter:on
     };
 
-    String PCB_INSERT = "INSERT INTO PCB_ANNOTATIONS (id, x, y, width, height, rotation, name) VALUES (?, ?, ?, ?, ?, ?, ?)";
+    String PCB_INSERT = "INSERT INTO PCB_ANNOTATIONS (pcbid, id, x, y, width, height, rotation, name) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
     return Yank.execute(PCB_INSERT, params);
   }
 
@@ -66,7 +67,7 @@ public class PCBAnnotationDAO extends PCBParentDAO {
 
     Object[] params = new Object[] { id };
 
-    String SELECT = "SELECT * FROM PCB_ANNOTATIONS WHERE id = ?";
+    String SELECT = "SELECT * FROM PCB_ANNOTATIONS WHERE pcbid = ?";
 
     return Yank.queryBeanList(SELECT, PCBAnnotation.class, params);
   }

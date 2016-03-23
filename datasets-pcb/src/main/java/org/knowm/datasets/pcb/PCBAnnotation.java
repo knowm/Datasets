@@ -29,6 +29,7 @@ package org.knowm.datasets.pcb;
  */
 public class PCBAnnotation {
 
+  private int pcbid;
   private int id;
   private float x;
   private float y;
@@ -36,6 +37,14 @@ public class PCBAnnotation {
   private float height;
   private float rotation;
   private String name;
+
+  public int getPcbid() {
+    return pcbid;
+  }
+
+  public void setPcbid(int pcbid) {
+    this.pcbid = pcbid;
+  }
 
   public int getId() {
     return id;
@@ -95,8 +104,8 @@ public class PCBAnnotation {
 
   @Override
   public String toString() {
-    return "PCBAnnotation [id=" + id + ", x=" + x + ", y=" + y + ", width=" + width + ", height=" + height + ", rotation=" + rotation + ", name="
-        + name + "]";
+    return "PCBAnnotation [pcbid=" + pcbid + ", id=" + id + ", x=" + x + ", y=" + y + ", width=" + width + ", height=" + height + ", rotation="
+        + rotation + ", name=" + name + "]";
   }
 
 }

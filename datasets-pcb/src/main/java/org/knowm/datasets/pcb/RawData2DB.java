@@ -123,7 +123,8 @@ public class RawData2DB {
             String[] entries = lines[i].split(" ");
 
             PCBAnnotation pcbAnnotation = new PCBAnnotation();
-            pcbAnnotation.setId(pcbIDAsInt);
+            pcbAnnotation.setPcbid(pcbIDAsInt);
+            pcbAnnotation.setId(i);
             pcbAnnotation.setX(Float.parseFloat(entries[0].trim()));
             pcbAnnotation.setY(Float.parseFloat(entries[1].trim()));
             pcbAnnotation.setWidth(Float.parseFloat(entries[2].trim()));
