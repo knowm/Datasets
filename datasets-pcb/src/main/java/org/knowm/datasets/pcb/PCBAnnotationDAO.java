@@ -63,9 +63,9 @@ public class PCBAnnotationDAO extends PCBParentDAO {
     return Yank.execute(PCB_INSERT, params);
   }
 
-  public static List<PCBAnnotation> selectList(int id) {
+  public static List<PCBAnnotation> selectList(int pcbID) {
 
-    Object[] params = new Object[] { id };
+    Object[] params = new Object[] { pcbID };
 
     String SELECT = "SELECT * FROM PCB_ANNOTATIONS WHERE pcbid = ?";
 
@@ -78,4 +78,12 @@ public class PCBAnnotationDAO extends PCBParentDAO {
 
     return Yank.queryScalar(SELECT_COUNT, Long.class, null);
   }
+
+  public static long selectMaxID() {
+
+    String SELECT_MAX = "SELECT MAX(`id`) FROM PCB_ANNOTATIONS WHERE pcbid = ?";
+
+    return Yank.queryScalar(SELECT_MAX, Long.class, null);
+  }
+
 }

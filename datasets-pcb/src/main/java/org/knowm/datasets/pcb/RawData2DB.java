@@ -105,6 +105,7 @@ public class RawData2DB {
 
           PCB pcb = new PCB();
           pcb.setId(pcbIDAsInt);
+
           pcb.setImgbytes((new SerialBlob(buffer)));
           PCBDAO.insert(pcb);
 
