@@ -13,7 +13,7 @@
 1. put all files (`KDDTrain+.txt` and `KDDTest+.txt`) in `raw` folder in project root
 1. Run `RawData2DB.java`. 
 1. The database containing the data will appear in `db`.
-1. Manually copy the `NSL_KDD.*` files into the `src/main/resources` folder. There should be three files. 
+1. Manually copy the `NSL_KDD.*` files into the `/usr/local/Datasets` folder. There should be three files. 
 
 ## Build jar containing Data
 

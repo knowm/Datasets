@@ -17,7 +17,7 @@
 
 1. Run `RawData2DB.java`. 
 1. The database containing the data will appear in `db`.
-1. Manually copy the `DB_UCSD_ANOMALY.*` files into the `src/main/resources` folder. There should be four files. 
+1. Manually copy the `DB_UCSD_ANOMALY.*` files into the `/usr/local/Datasets` folder. There should be four files. 
 
 ## How to Use the Data in You App
 

@@ -13,7 +13,7 @@
 1. put all files (hierarchy.zip, test-remapped and train-remapped) in `raw` folder in project root
 1. Run `RawData2DB.java` and `RawData2DBHierarchy.java` with program argument `DB_HSQLDB_FILE.properties`. 
 1. The database containing the data will appear in `db`.
-1. Manually copy the `LSHTC4.*` files into the `src/main/resources` folder. There should be three files. 
+1. Manually copy the `LSHTC4.*` files into the `/usr/local/Datasets` folder. There should be three files. 
 
 ## How to Use the Data in You App
 
