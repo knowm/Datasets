@@ -33,8 +33,8 @@ import java.util.Map;
 import java.util.Map.Entry;
 
 import org.apache.commons.beanutils.BeanUtils;
-import org.knowm.xchart.ChartBuilder_Category;
-import org.knowm.xchart.Chart_Category;
+import org.knowm.xchart.CategoryChartBuilder;
+import org.knowm.xchart.CategoryChart;
 import org.knowm.xchart.Histogram;
 import org.knowm.xchart.SwingWrapper;
 
@@ -96,7 +96,7 @@ public abstract class HistogramDataInspector<T> {
 
   private void plot() {
 
-    List<Chart_Category> charts = new ArrayList<Chart_Category>();
+    List<CategoryChart> charts = new ArrayList<CategoryChart>();
 
     for (Entry<String, List<Float>> entrySet : rawHistogramData1.entrySet()) {
 
@@ -108,7 +108,7 @@ public abstract class HistogramDataInspector<T> {
         List<Float> value2 = rawHistogramData2.get(key);
 
         // Create Chart
-        Chart_Category chart = new ChartBuilder_Category().width(300).height(200).title(key).xAxisTitle("Value").yAxisTitle("Count").build();
+        CategoryChart chart = new CategoryChartBuilder().width(300).height(200).title(key).xAxisTitle("Value").yAxisTitle("Count").build();
         chart.getStyler().setLegendVisible(false);
 
         float[] minMax = getMinMax(value1, value2);
