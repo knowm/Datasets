@@ -47,9 +47,9 @@ public abstract class DatasetsDAO {
 
     // allow for setting other SQL data sources
     if (args.length > 0 && args[0] != null) {
-      Yank.setupDataSource(PropertiesUtils.getPropertiesFromClasspath(args[0]));
+      Yank.setupDefaultConnectionPool(PropertiesUtils.getPropertiesFromClasspath(args[0]));
     } else {
-      Yank.setupDataSource(PropertiesUtils.getPropertiesFromClasspath("DB_HSQLDB_FILE.properties"));
+      Yank.setupDefaultConnectionPool(PropertiesUtils.getPropertiesFromClasspath("DB_HSQLDB_FILE.properties"));
     }
 
     // allow for setting other SQL statements
@@ -63,7 +63,7 @@ public abstract class DatasetsDAO {
 
   public static void release() {
 
-    Yank.releaseDataSource();
+    Yank.releaseDefaultConnectionPool();
   }
 
   public static void init(String dbName, String dataFilesDir, String dataFileURL, String propsFileURL, String scriptFileURL, String lobsFileURL,
@@ -139,7 +139,7 @@ public abstract class DatasetsDAO {
     dbProps.setProperty("password", "");
     dbProps.setProperty("readOnly", "true");
 
-    Yank.setupDataSource(dbProps);
+    Yank.setupDefaultConnectionPool(dbProps);
 
   }
 
