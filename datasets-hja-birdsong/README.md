@@ -5,7 +5,7 @@
 ## How to Get the Data
 
 1. Manually download the database files that have been uploaded to Knowm's Google Drive account [here](https://drive.google.com/folderview?id=0ByP7_A9vXm17VXhuZzBrcnNubEE&usp=sharing#list).
-1. Manually copy the `DB_PCB.*` files into the `/usr/local/Datasets` folder. There should be four files. 
+1. Manually copy the `DB_HJA_BIRDSONG.*` files into the `/usr/local/Datasets` folder. There should be four files. 
 
 ## How to Generate Data
 

@@ -86,4 +86,28 @@ public class PCBAnnotationDAO extends PCBParentDAO {
     return Yank.queryScalar(SELECT_MAX, Long.class, null);
   }
 
+  public static void updateName(String name, int pcbID, int pcbAnnotationID) {
+
+    Object[] params = new Object[] {
+
+        // @formatter:off
+        name,
+        pcbID,
+         pcbAnnotationID
+          // @formatter:on
+    };
+
+    String UPDATE = "UPDATE PCB_ANNOTATIONS SET name = ? WHERE PCBID = ? and ID = ?";
+
+    Yank.execute(UPDATE, params);
+  }
+
+  public static PCBAnnotation select(int pcbID, int id) {
+
+    Object[] params = new Object[] { pcbID, id };
+
+    String SELECT = "SELECT * FROM PCB_ANNOTATIONS WHERE pcbid = ? and id = ?";
+
+    return Yank.queryBean(SELECT, PCBAnnotation.class, params);
+  }
 }
