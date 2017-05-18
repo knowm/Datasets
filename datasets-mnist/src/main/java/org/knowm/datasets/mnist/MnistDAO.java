@@ -1,7 +1,7 @@
 /**
  * (The MIT License)
  *
- * Copyright 2015-2016 Knowm Inc. (http://knowm.org) and contributors.
+ * Copyright 2015-2017 Knowm Inc. (http://knowm.org) and contributors.
  * Copyright 2013-2015 Xeiam LLC (http://xeiam.com) and contributors.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy of
@@ -22,6 +22,16 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
+/**
+ * This product currently only contains code developed by authors
+ * of specific components, as identified by the source code files.
+ *
+ * Since product implements StAX API, it has dependencies to StAX API
+ * classes.
+ *
+ * For additional credits (generally to people who reported problems)
+ * see CREDITS file.
+ */
 package org.knowm.datasets.mnist;
 
 import java.util.List;
@@ -36,10 +46,10 @@ public class MnistDAO extends DatasetsDAO {
 
   public static void init(String dataFilesDir) {
 
-    String dataFileID = "0ByP7_A9vXm17ZGEyOFNjVzdVdlU";
-    String propsFileID = "0ByP7_A9vXm17SV96TE5jdnY0UDQ";
-    String scriptFileID = "0ByP7_A9vXm17U2s1d0FzdHlILUE";
-    String lobsFileID = "0ByP7_A9vXm17WDBoS25pMHZmR0E";
+    String dataFileID = "0ByP7_A9vXm17V1NvVzdOY2dURUU";
+    String propsFileID = "0ByP7_A9vXm17cGRudjlMQXpTY1U";
+    String scriptFileID = "0ByP7_A9vXm17Qm5rMzlEa2VrUm8";
+    String lobsFileID = "0ByP7_A9vXm17Sml5dXdrSXozUjQ";
 
     init("DB_MNIST", dataFilesDir, dataFileID, propsFileID, scriptFileID, lobsFileID, true);
   }
@@ -64,10 +74,10 @@ public class MnistDAO extends DatasetsDAO {
     Object[] params = new Object[]{
 
         // @formatter:off
-        mnist.getId(), mnist.getLabel(), mnist.getImageData(), mnist.getImgbytes()
+        mnist.getId(), mnist.getLabel(), mnist.getImgbytes()
         // @formatter:on
     };
-    String CENSUS_INCOME_INSERT = "INSERT INTO MNIST (id, label, imagedata, imgbytes) VALUES (?, ?, ?, ?)";
+    String CENSUS_INCOME_INSERT = "INSERT INTO MNIST (id, label, imgbytes) VALUES (?, ?, ?)";
     return Yank.execute(CENSUS_INCOME_INSERT, params);
 
   }

@@ -107,7 +107,7 @@ For snapshots, add the following to your pom.xml file:
 
 The current snapshot version is:
 
-    2.1.1-SNAPSHOT
+    2.2.0-SNAPSHOT
     
 
 ## Building

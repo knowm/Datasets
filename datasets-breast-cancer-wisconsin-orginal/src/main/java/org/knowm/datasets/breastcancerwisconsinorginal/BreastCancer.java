@@ -1,7 +1,7 @@
 /**
  * (The MIT License)
  *
- * Copyright 2015-2016 Knowm Inc. (http://knowm.org) and contributors.
+ * Copyright 2015-2017 Knowm Inc. (http://knowm.org) and contributors.
  * Copyright 2013-2015 Xeiam LLC (http://xeiam.com) and contributors.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy of
@@ -22,16 +22,25 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
+/**
+ * This product currently only contains code developed by authors
+ * of specific components, as identified by the source code files.
+ *
+ * Since product implements StAX API, it has dependencies to StAX API
+ * classes.
+ *
+ * For additional credits (generally to people who reported problems)
+ * see CREDITS file.
+ */
 package org.knowm.datasets.breastcancerwisconsinorginal;
 
-import java.io.Serializable;
+import org.knowm.datasets.common.business.Bean;
 
 /**
  * @author alexnugent
  */
-public class BreastCancer implements Serializable {
+public class BreastCancer extends Bean {
 
-  private int id;
   private int sampleCodeNumber;
   private int clumpThickness;
   private int uniformityOfCellSize;
@@ -43,16 +52,6 @@ public class BreastCancer implements Serializable {
   private int normalNucleoli;
   private int mitoses;
   private int cellClass;
-
-  public int getId() {
-
-    return id;
-  }
-
-  public void setId(int id) {
-
-    this.id = id;
-  }
 
   public int getSampleCodeNumber() {
 
@@ -167,7 +166,7 @@ public class BreastCancer implements Serializable {
   @Override
   public String toString() {
 
-    return "BreastCancer [id=" + id + ", sampleCodeNumber=" + sampleCodeNumber + ", clumpThickness=" + clumpThickness + ", uniformityOfCellSize="
+    return "BreastCancer [id=" + getId() + ", sampleCodeNumber=" + sampleCodeNumber + ", clumpThickness=" + clumpThickness + ", uniformityOfCellSize="
         + uniformityOfCellSize + ", uniformityOfCellShape=" + uniformityOfCellShape + ", marginalAdhesion=" + marginalAdhesion
         + ", singleEpithelialCellSize=" + singleEpithelialCellSize + ", bareNuclei=" + bareNuclei + ", blandChromatin=" + blandChromatin
         + ", normalNucleoli=" + normalNucleoli + ", mitoses=" + mitoses + ", cellClass=" + cellClass + "]";

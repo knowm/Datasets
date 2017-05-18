@@ -32,40 +32,25 @@
  * For additional credits (generally to people who reported problems)
  * see CREDITS file.
  */
-package org.knowm.datasets.breastcancerwisconsinorginal;
+package org.knowm.datasets.common.business;
 
-import static org.hamcrest.CoreMatchers.equalTo;
-import static org.hamcrest.MatcherAssert.assertThat;
-
-import org.junit.AfterClass;
-import org.junit.BeforeClass;
-import org.junit.Ignore;
-import org.junit.Test;
+import java.io.Serializable;
 
 /**
- * @author timmolter
+ * Created by timmolter on 5/18/17.
  */
-@Ignore
-public class TestBreastCancerDAO {
+public class Bean implements Serializable {
 
-  @BeforeClass
-  public static void setUpDB() {
+  private int id;
 
-    BreastCancerDAO.init(new String[0]);
+  public int getId() {
 
+    return id;
   }
 
-  @AfterClass
-  public static void tearDownDB() {
+  public void setId(int id) {
 
-    BreastCancerDAO.release();
-  }
-
-  @Test
-  public void testSelectCount() {
-
-    long count = BreastCancerDAO.selectCount();
-    assertThat(count, equalTo(683L));
+    this.id = id;
   }
 
 }

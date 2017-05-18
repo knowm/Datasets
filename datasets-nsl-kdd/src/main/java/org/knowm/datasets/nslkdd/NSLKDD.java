@@ -1,7 +1,7 @@
 /**
  * (The MIT License)
  *
- * Copyright 2015-2016 Knowm Inc. (http://knowm.org) and contributors.
+ * Copyright 2015-2017 Knowm Inc. (http://knowm.org) and contributors.
  * Copyright 2013-2015 Xeiam LLC (http://xeiam.com) and contributors.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy of
@@ -22,25 +22,34 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
+/**
+ * This product currently only contains code developed by authors
+ * of specific components, as identified by the source code files.
+ *
+ * Since product implements StAX API, it has dependencies to StAX API
+ * classes.
+ *
+ * For additional credits (generally to people who reported problems)
+ * see CREDITS file.
+ */
 package org.knowm.datasets.nslkdd;
 
-import java.io.Serializable;
+import org.knowm.datasets.common.business.Bean;
 
 /**
  * An explanation of the fields can be found here: https://archive.ics.uci.edu/ml/machine-learning-databases/kddcup99-mld/task.html
  *
  * @author timmolter
  */
-public class NSLKDD implements Serializable {
+public class NSLKDD extends Bean {
 
-  private int id;
   private float duration;
   private String protocol_type; // {'tcp','udp', 'icmp'}
   private String service; // {'aol', 'auth', 'bgp', 'courier', 'csnet_ns', 'ctf', 'daytime', 'discard', 'domain', 'domain_u', 'echo', 'eco_i', 'ecr_i', 'efs', 'exec', 'finger', 'ftp', 'ftp_data',
-                          // 'gopher', 'harvest', 'hostnames', 'http', 'http_2784', 'http_443', 'http_8001', 'imap4', 'IRC', 'iso_tsap', 'klogin', 'kshell', 'ldap', 'link', 'login', 'mtp', 'name',
-                          // 'netbios_dgm', 'netbios_ns', 'netbios_ssn', 'netstat', 'nnsp', 'nntp', 'ntp_u', 'other', 'pm_dump', 'pop_2', 'pop_3', 'printer', 'private', 'red_i', 'remote_job', 'rje',
-                          // 'shell', 'smtp', 'sql_net', 'ssh', 'sunrpc', 'supdup', 'systat', 'telnet', 'tftp_u', 'tim_i', 'time', 'urh_i', 'urp_i', 'uucp', 'uucp_path', 'vmnet', 'whois', 'X11',
-                          // 'Z39_50'}
+  // 'gopher', 'harvest', 'hostnames', 'http', 'http_2784', 'http_443', 'http_8001', 'imap4', 'IRC', 'iso_tsap', 'klogin', 'kshell', 'ldap', 'link', 'login', 'mtp', 'name',
+  // 'netbios_dgm', 'netbios_ns', 'netbios_ssn', 'netstat', 'nnsp', 'nntp', 'ntp_u', 'other', 'pm_dump', 'pop_2', 'pop_3', 'printer', 'private', 'red_i', 'remote_job', 'rje',
+  // 'shell', 'smtp', 'sql_net', 'ssh', 'sunrpc', 'supdup', 'systat', 'telnet', 'tftp_u', 'tim_i', 'time', 'urh_i', 'urp_i', 'uucp', 'uucp_path', 'vmnet', 'whois', 'X11',
+  // 'Z39_50'}
   private String flag; // { 'OTH', 'REJ', 'RSTO', 'RSTOS0', 'RSTR', 'S0', 'S1', 'S2', 'S3', 'SF', 'SH' }
   private float src_bytes;
   private float dst_bytes;
@@ -80,16 +89,6 @@ public class NSLKDD implements Serializable {
   private float dst_host_rerror_rate;
   private float dst_host_srv_rerror_rate;
   private String truth; // {'normal', 'anomaly'}
-
-  public int getId() {
-
-    return id;
-  }
-
-  public void setId(int id) {
-
-    this.id = id;
-  }
 
   public float getDuration() {
 
@@ -514,7 +513,7 @@ public class NSLKDD implements Serializable {
   @Override
   public String toString() {
 
-    return "NSLKDD [id=" + id + ", duration=" + duration + ", protocol_type=" + protocol_type + ", service=" + service + ", flag=" + flag
+    return "NSLKDD [id=" + getId() + ", duration=" + duration + ", protocol_type=" + protocol_type + ", service=" + service + ", flag=" + flag
         + ", src_bytes=" + src_bytes + ", dst_bytes=" + dst_bytes + ", land=" + land + ", wrong_fragment=" + wrong_fragment + ", urgent=" + urgent
         + ", hot=" + hot + ", num_failed_logins=" + num_failed_logins + ", logged_in=" + logged_in + ", num_compromised=" + num_compromised
         + ", root_shell=" + root_shell + ", su_attempted=" + su_attempted + ", num_root=" + num_root + ", num_file_creations=" + num_file_creations

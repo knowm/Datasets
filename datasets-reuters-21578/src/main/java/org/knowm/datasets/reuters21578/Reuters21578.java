@@ -1,7 +1,7 @@
 /**
  * (The MIT License)
  *
- * Copyright 2015-2016 Knowm Inc. (http://knowm.org) and contributors.
+ * Copyright 2015-2017 Knowm Inc. (http://knowm.org) and contributors.
  * Copyright 2013-2015 Xeiam LLC (http://xeiam.com) and contributors.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy of
@@ -22,17 +22,28 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
+/**
+ * This product currently only contains code developed by authors
+ * of specific components, as identified by the source code files.
+ *
+ * Since product implements StAX API, it has dependencies to StAX API
+ * classes.
+ *
+ * For additional credits (generally to people who reported problems)
+ * see CREDITS file.
+ */
 package org.knowm.datasets.reuters21578;
 
-import java.io.Serializable;
 import java.util.Date;
+
+import org.knowm.datasets.common.business.Bean;
 
 /**
  * This is a POJO representing on Reuters21578 story
  *
  * @author timmolter
  */
-public class Reuters21578 implements Serializable {
+public class Reuters21578 extends Bean {
 
   private int newid;
   private int oldid;
@@ -50,243 +61,133 @@ public class Reuters21578 implements Serializable {
   private String dateline;
   private String body;
 
-  /**
-   * @return the newid
-   */
-  public int getNewid() {
+  public int getId() {
 
     return newid;
   }
 
-  /**
-   * @param newid the newid to set
-   */
-  public void setNewid(int newid) {
+  public void setId(int newid) {
 
     this.newid = newid;
   }
 
-  /**
-   * @return the oldid
-   */
-  public int getOldid() {
+  public int getNewid() {
+    return newid;
+  }
 
+  public void setNewid(int newid) {
+    this.newid = newid;
+  }
+
+  public int getOldid() {
     return oldid;
   }
 
-  /**
-   * @param oldid the oldid to set
-   */
   public void setOldid(int oldid) {
-
     this.oldid = oldid;
   }
 
-  /**
-   * @return the topicsbool
-   */
   public boolean isTopicsbool() {
-
     return topicsbool;
   }
 
-  /**
-   * @param topicsbool the topicsbool to set
-   */
   public void setTopicsbool(boolean topicsbool) {
-
     this.topicsbool = topicsbool;
   }
 
-  /**
-   * @return the lewissplit
-   */
   public String getLewissplit() {
-
     return lewissplit;
   }
 
-  /**
-   * @param lewissplit the lewissplit to set
-   */
   public void setLewissplit(String lewissplit) {
-
     this.lewissplit = lewissplit;
   }
 
-  /**
-   * @return the cgisplit
-   */
   public String getCgisplit() {
-
     return cgisplit;
   }
 
-  /**
-   * @param cgisplit the cgisplit to set
-   */
   public void setCgisplit(String cgisplit) {
-
     this.cgisplit = cgisplit;
   }
 
-  /**
-   * @return the date
-   */
   public Date getDate() {
-
     return date;
   }
 
-  /**
-   * @param date the date to set
-   */
   public void setDate(Date date) {
-
     this.date = date;
   }
 
-  /**
-   * @return the topics
-   */
   public String getTopics() {
-
     return topics;
   }
 
-  /**
-   * @param topics the topics to set
-   */
   public void setTopics(String topics) {
-
     this.topics = topics;
   }
 
-  /**
-   * @return the places
-   */
   public String getPlaces() {
-
     return places;
   }
 
-  /**
-   * @param places the places to set
-   */
   public void setPlaces(String places) {
-
     this.places = places;
   }
 
-  /**
-   * @return the people
-   */
   public String getPeople() {
-
     return people;
   }
 
-  /**
-   * @param people the people to set
-   */
   public void setPeople(String people) {
-
     this.people = people;
   }
 
-  /**
-   * @return the orgs
-   */
   public String getOrgs() {
-
     return orgs;
   }
 
-  /**
-   * @param orgs the orgs to set
-   */
   public void setOrgs(String orgs) {
-
     this.orgs = orgs;
   }
 
-  /**
-   * @return the exchanges
-   */
   public String getExchanges() {
-
     return exchanges;
   }
 
-  /**
-   * @param exchanges the exchanges to set
-   */
   public void setExchanges(String exchanges) {
-
     this.exchanges = exchanges;
   }
 
-  /**
-   * @return the companies
-   */
   public String getCompanies() {
-
     return companies;
   }
 
-  /**
-   * @param companies the companies to set
-   */
   public void setCompanies(String companies) {
-
     this.companies = companies;
   }
 
-  /**
-   * @return the title
-   */
   public String getTitle() {
-
     return title;
   }
 
-  /**
-   * @param title the title to set
-   */
   public void setTitle(String title) {
-
     this.title = title;
   }
 
-  /**
-   * @return the dateline
-   */
   public String getDateline() {
-
     return dateline;
   }
 
-  /**
-   * @param dateline the dateline to set
-   */
   public void setDateline(String dateline) {
-
     this.dateline = dateline;
   }
 
-  /**
-   * @return the body
-   */
   public String getBody() {
-
     return body;
   }
 
-  /**
-   * @param body the body to set
-   */
   public void setBody(String body) {
-
     this.body = body;
   }
 

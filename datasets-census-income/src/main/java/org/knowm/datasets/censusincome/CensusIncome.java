@@ -1,7 +1,7 @@
 /**
  * (The MIT License)
  *
- * Copyright 2015-2016 Knowm Inc. (http://knowm.org) and contributors.
+ * Copyright 2015-2017 Knowm Inc. (http://knowm.org) and contributors.
  * Copyright 2013-2015 Xeiam LLC (http://xeiam.com) and contributors.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy of
@@ -22,16 +22,25 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
+/**
+ * This product currently only contains code developed by authors
+ * of specific components, as identified by the source code files.
+ *
+ * Since product implements StAX API, it has dependencies to StAX API
+ * classes.
+ *
+ * For additional credits (generally to people who reported problems)
+ * see CREDITS file.
+ */
 package org.knowm.datasets.censusincome;
 
-import java.io.Serializable;
+import org.knowm.datasets.common.business.Bean;
 
 /**
  * @author alexnugent
  */
-public class CensusIncome implements Serializable {
+public class CensusIncome extends Bean {
 
-  private int id;
   private int age;
   private String workclass;
   private int fnlwgt;
@@ -47,16 +56,6 @@ public class CensusIncome implements Serializable {
   private int hoursPerWeek;
   private String nativeCountry;
   private boolean incomeLessThan50k;
-
-  public int getId() {
-
-    return id;
-  }
-
-  public void setId(int id) {
-
-    this.id = id;
-  }
 
   public int getAge() {
 
@@ -211,7 +210,7 @@ public class CensusIncome implements Serializable {
   @Override
   public String toString() {
 
-    return "CensusIncome [id=" + id + ", age=" + age + ", workclass=" + workclass + ", fnlwgt=" + fnlwgt + ", education=" + education
+    return "CensusIncome [id=" + getId() + ", age=" + age + ", workclass=" + workclass + ", fnlwgt=" + fnlwgt + ", education=" + education
         + ", educationNum=" + educationNum + ", maritalStatus=" + maritalStatus + ", occupation=" + occupation + ", relationship=" + relationship
         + ", race=" + race + ", sex=" + sex + ", capitalGain=" + capitalGain + ", capitalLoss=" + capitalLoss + ", hoursPerWeek=" + hoursPerWeek
         + ", nativeCountry=" + nativeCountry + ", incomeLessThan50k=" + incomeLessThan50k + "]";

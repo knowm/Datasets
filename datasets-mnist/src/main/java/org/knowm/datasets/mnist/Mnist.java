@@ -1,7 +1,7 @@
 /**
  * (The MIT License)
  *
- * Copyright 2015-2016 Knowm Inc. (http://knowm.org) and contributors.
+ * Copyright 2015-2017 Knowm Inc. (http://knowm.org) and contributors.
  * Copyright 2013-2015 Xeiam LLC (http://xeiam.com) and contributors.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy of
@@ -22,33 +22,32 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
+/**
+ * This product currently only contains code developed by authors
+ * of specific components, as identified by the source code files.
+ *
+ * Since product implements StAX API, it has dependencies to StAX API
+ * classes.
+ *
+ * For additional credits (generally to people who reported problems)
+ * see CREDITS file.
+ */
 package org.knowm.datasets.mnist;
 
 import java.awt.image.BufferedImage;
-import java.io.Serializable;
 import java.sql.Blob;
 import java.sql.SQLException;
+
+import org.knowm.datasets.common.business.Bean;
 
 /**
  * @author timmolter
  */
-public class Mnist implements Serializable {
+public class Mnist extends Bean {
 
-  private int id;
   private int label;
-  private String imageData;
   private Blob imgbytes;
-  byte[] imageAsByteArray;
-
-  public int getId() {
-
-    return id;
-  }
-
-  public void setId(int id) {
-
-    this.id = id;
-  }
+  private byte[] imageAsByteArray;
 
   public int getLabel() {
 
@@ -60,21 +59,13 @@ public class Mnist implements Serializable {
     this.label = label;
   }
 
-  public String getImageData() {
-
-    return imageData;
-  }
-
-  public void setImageData(String imagedata) {
-
-    this.imageData = imagedata;
-  }
-
   public Blob getImgbytes() {
+
     return imgbytes;
   }
 
   public void setImgbytes(Blob imgbytes) {
+
     this.imgbytes = imgbytes;
     try {
       this.imageAsByteArray = imgbytes.getBytes(1, (28 * 28));
@@ -83,28 +74,7 @@ public class Mnist implements Serializable {
     }
   }
 
-  public int[][] getImageMatrix() {
-
-    int[][] imageMatrix = new int[28][28];
-    String[] nonZeroPixels = imageData.split(",");
-    for (int i = 0; i < nonZeroPixels.length; i++) {
-      String[] info = nonZeroPixels[i].split(":");
-      int x = Integer.parseInt(info[0]);
-      int y = Integer.parseInt(info[1]);
-      int magnitude = Integer.parseInt(info[2]);
-      imageMatrix[x][y] = magnitude;
-    }
-
-    return imageMatrix;
-  }
-
-  public byte[][] getImageMatrix2() {
-
-    try {
-      byte[] imageAsByteArray = imgbytes.getBytes(1, (28 * 28));
-    } catch (SQLException e) {
-      e.printStackTrace();
-    }
+  public byte[][] getImageMatrix() {
 
     byte[][] imageMatrix = new byte[28][28];
     for (int y = 0; y < 28; y++) {
@@ -118,21 +88,7 @@ public class Mnist implements Serializable {
 
   public BufferedImage getImageAsBufferedImage() {
 
-    int[][] img = getImageMatrix();
-    BufferedImage bufferedImage = new BufferedImage(img.length, img[0].length, BufferedImage.TYPE_INT_RGB);
-
-    for (int y = 0; y < img.length; y++) {
-      for (int x = 0; x < img[0].length; x++) {
-        int value = img[y][x] << 16 | img[y][x] << 8 | img[y][x];
-        bufferedImage.setRGB(x, y, value);
-      }
-    }
-    return bufferedImage;
-  }
-
-  public BufferedImage getImageAsBufferedImage2() {
-
-    byte[][] img = getImageMatrix2();
+    byte[][] img = getImageMatrix();
     BufferedImage bufferedImage = new BufferedImage(28, 28, BufferedImage.TYPE_INT_RGB);
 
     for (int y = 0; y < img.length; y++) {
@@ -144,28 +100,9 @@ public class Mnist implements Serializable {
     return bufferedImage;
   }
 
-//  public BufferedImage getImageAsBufferedImage2() {
-//
-//    byte[] img = new byte[0];
-//    try {
-//      img = imgbytes.getBytes(0, (28 * 28));
-//    } catch (SQLException e) {
-//      e.printStackTrace();
-//    }
-//    BufferedImage bufferedImage = new BufferedImage(28, 28, BufferedImage.TYPE_INT_RGB);
-//
-//    for (int y = 0; y < 28; y++) {
-//      for (int x = 0; x < 28; x++) {
-//        int value = img[28 * y + x] << 16 | img[28 * y + x] << 8 | img[28 * y + x];
-//        bufferedImage.setRGB(x, y, value);
-//      }
-//    }
-//    return bufferedImage;
-//  }
-
   public String toASCIIImageString() {
 
-    int[][] img = getImageMatrix();
+    byte[][] img = getImageMatrix();
 
     StringBuilder sb = new StringBuilder();
     for (int i = 0; i < img.length; i++) {

@@ -1,7 +1,7 @@
 /**
  * (The MIT License)
  *
- * Copyright 2015-2016 Knowm Inc. (http://knowm.org) and contributors.
+ * Copyright 2015-2017 Knowm Inc. (http://knowm.org) and contributors.
  * Copyright 2013-2015 Xeiam LLC (http://xeiam.com) and contributors.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy of
@@ -22,17 +22,37 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
+/**
+ * This product currently only contains code developed by authors
+ * of specific components, as identified by the source code files.
+ *
+ * Since product implements StAX API, it has dependencies to StAX API
+ * classes.
+ *
+ * For additional credits (generally to people who reported problems)
+ * see CREDITS file.
+ */
 package org.knowm.datasets.hjabirdsong;
 
-import java.io.Serializable;
+import org.knowm.datasets.common.business.Bean;
 
 /**
  * @author timmolter
  */
-public class TenFold implements Serializable {
+public class TenFold extends Bean {
 
   private int bagid;
   private int fold;
+
+  public int getId() {
+
+    return bagid;
+  }
+
+  public void setId(int bagid) {
+
+    this.bagid = bagid;
+  }
 
   public int getBagid() {
 

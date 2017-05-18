@@ -1,7 +1,7 @@
 /**
  * (The MIT License)
  *
- * Copyright 2015-2016 Knowm Inc. (http://knowm.org) and contributors.
+ * Copyright 2015-2017 Knowm Inc. (http://knowm.org) and contributors.
  * Copyright 2013-2015 Xeiam LLC (http://xeiam.com) and contributors.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy of
@@ -22,112 +22,73 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
+/**
+ * This product currently only contains code developed by authors
+ * of specific components, as identified by the source code files.
+ *
+ * Since product implements StAX API, it has dependencies to StAX API
+ * classes.
+ *
+ * For additional credits (generally to people who reported problems)
+ * see CREDITS file.
+ */
 package org.knowm.datasets.numenta;
 
-import java.util.Date;
+import org.knowm.datasets.common.business.Bean;
 
-public class SeriesPoint {
+public class SeriesPoint extends Bean {
 
-  private long id;
   private String seriesGroup;
   private String seriesName;
   private long timestamp;
   private double value;
   private int label;
 
-  public SeriesPoint() {
-
-  }
-
-  public SeriesPoint(long id, String seriesGroup, String seriesName, long timestamp, double value, int label) {
-
-    this.id = id;
-    this.seriesGroup = seriesGroup;
-    this.seriesName = seriesName;
-    this.value = value;
-    this.timestamp = timestamp;
-    this.label = label;
-  }
-
-  public long getId() {
-
-    return id;
-  }
-
   public String getSeriesGroup() {
-
     return seriesGroup;
   }
 
-  public String getSeriesName() {
-
-    return seriesName;
-  }
-
-  public long getTimestamp() {
-
-    return timestamp;
-  }
-
-  public Date getDate() {
-
-    return new Date(timestamp);
-  }
-
-  public double getValue() {
-
-    return value;
-  }
-
-  public int getLabel() {
-
-    return label;
-  }
-
-  public void setId(long id) {
-
-    this.id = id;
-  }
-
   public void setSeriesGroup(String seriesGroup) {
-
     this.seriesGroup = seriesGroup;
   }
 
-  public void setSeriesName(String seriesName) {
+  public String getSeriesName() {
+    return seriesName;
+  }
 
+  public void setSeriesName(String seriesName) {
     this.seriesName = seriesName;
   }
 
-  public void setTimestamp(long timestamp) {
+  public long getTimestamp() {
+    return timestamp;
+  }
 
+  public void setTimestamp(long timestamp) {
     this.timestamp = timestamp;
   }
 
-  public void setValue(double value) {
+  public double getValue() {
+    return value;
+  }
 
+  public void setValue(double value) {
     this.value = value;
   }
 
+  public int getLabel() {
+    return label;
+  }
+
   public void setLabel(int label) {
-
     this.label = label;
-  }
-
-  public Date getTimestampAsDate() {
-
-    return new Date(this.timestamp);
-  }
-
-  public void setTimestampAsDate(Date timestamp) {
-
-    this.timestamp = timestamp.getTime();
   }
 
   @Override
   public String toString() {
 
-    return "SeriesPoint [id=" + id + " ," + "seriesGroup=" + seriesGroup + " ," + "seriesName=" + seriesName + " ," + "timestamp=" + timestamp + " ," + "value=" + value + " ," + "label=" + label
+    return "SeriesPoint [id=" + getId() + " ," + "seriesGroup=" + seriesGroup + " ," + "seriesName=" + seriesName + " ," + "timestamp=" + timestamp +
+        " ," + "value=" + value + " ," + "label=" + label
         + "]";
   }
 

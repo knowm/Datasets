@@ -1,7 +1,7 @@
 /**
  * (The MIT License)
  *
- * Copyright 2015-2016 Knowm Inc. (http://knowm.org) and contributors.
+ * Copyright 2015-2017 Knowm Inc. (http://knowm.org) and contributors.
  * Copyright 2013-2015 Xeiam LLC (http://xeiam.com) and contributors.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy of
@@ -21,6 +21,16 @@
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
+ */
+/**
+ * This product currently only contains code developed by authors
+ * of specific components, as identified by the source code files.
+ *
+ * Since product implements StAX API, it has dependencies to StAX API
+ * classes.
+ *
+ * For additional credits (generally to people who reported problems)
+ * see CREDITS file.
  */
 package org.knowm.datasets.mnist;
 
@@ -71,31 +81,20 @@ public class RawData2DB {
       mnistManager.setCurrent(n); // index of the image that we are interested in
 
       StringBuilder sb = new StringBuilder();
-      int[][] image = mnistManager.readImage();
-      for (int i = 0; i < image[0].length; i++) {
-        for (int j = 0; j < image.length; j++) {
-          if (image[i][j] > 0) {
-            sb.append(i);
-            sb.append(":");
-            sb.append(j);
-            sb.append(":");
-            sb.append(image[i][j]);
-            sb.append(",");
-          }
+      for (byte b : imageAsByteArray) {
+        sb.append(Byte.toUnsignedInt(b));
+        sb.append(",");
+
+        if (sb.length() > longestStringLength) {
+          longestStringLength = sb.length();
         }
-      }
-      String imagedata = sb.toString();
-      // System.out.println(imagedata);
-      if (imagedata.length() > longestStringLength) {
-        longestStringLength = imagedata.length();
       }
       Mnist mnist = new Mnist();
       mnist.setId(idx++);
       mnist.setLabel(mnistManager.readLabel());
-      mnist.setImageData(imagedata);
       mnist.setImgbytes(new SerialBlob(imageAsByteArray));
       MnistDAO.insert(mnist);
     }
-    // System.out.println("longestStringLength: " + longestStringLength);
+//     System.out.println("longestStringLength: " + longestStringLength);
   }
 }

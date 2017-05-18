@@ -29,6 +29,8 @@ import java.awt.image.BufferedImage;
 
 import javax.swing.JPanel;
 
+import org.knowm.datasets.mnist.Mnist;
+
 /**
  * @author alexnugent
  */
@@ -36,19 +38,11 @@ public class MnistImagePanel extends JPanel {
 
   private BufferedImage bufferedImage;
 
-  public MnistImagePanel(int[][] img, int scale) {
+  public MnistImagePanel(Mnist mnistData) {
 
-    bufferedImage = new BufferedImage(img.length * scale, img[0].length * scale, BufferedImage.TYPE_INT_RGB);
+    bufferedImage = mnistData.getImageAsBufferedImage();
 
-    for (int y = 0; y < img.length; y++) {
-      for (int x = 0; x < img[0].length; x++) {
-        int value = img[y][x] << 16 | img[y][x] << 8 | img[y][x];
-        bufferedImage.setRGB(x, y, value);
-      }
-    }
-    scale(scale);
-
-    setPreferredSize(new Dimension(img.length * scale, img[0].length * scale));
+    setPreferredSize(new Dimension(bufferedImage.getWidth(), bufferedImage.getHeight()));
   }
 
   private void scale(int scale) {

@@ -1,7 +1,7 @@
 /**
  * (The MIT License)
  *
- * Copyright 2015-2016 Knowm Inc. (http://knowm.org) and contributors.
+ * Copyright 2015-2017 Knowm Inc. (http://knowm.org) and contributors.
  * Copyright 2013-2015 Xeiam LLC (http://xeiam.com) and contributors.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy of
@@ -22,28 +22,27 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
+/**
+ * This product currently only contains code developed by authors
+ * of specific components, as identified by the source code files.
+ *
+ * Since product implements StAX API, it has dependencies to StAX API
+ * classes.
+ *
+ * For additional credits (generally to people who reported problems)
+ * see CREDITS file.
+ */
 package org.knowm.datasets.lshtc4;
 
-import java.io.Serializable;
+import org.knowm.datasets.common.business.Bean;
 
 /**
  * @author timmolter
  */
-public class LSHTC4 implements Serializable {
+public class LSHTC4 extends Bean {
 
-  private int id;
   private String labels;
   private String features;
-
-  public int getId() {
-
-    return id;
-  }
-
-  public void setId(int id) {
-
-    this.id = id;
-  }
 
   public String getLabels() {
 
@@ -78,7 +77,7 @@ public class LSHTC4 implements Serializable {
   @Override
   public String toString() {
 
-    return "LSHTC4 [id=" + id + ", labels=" + labels + ", features=" + features + "]";
+    return "LSHTC4 [id=" + getId() + ", labels=" + labels + ", features=" + features + "]";
   }
 
 }
