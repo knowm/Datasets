@@ -4,6 +4,9 @@ bin/
 .classpath
 .project
 .settings/
+.idea/
+*.iml
+*.iws
 .DS_Store
 raw/
 db/

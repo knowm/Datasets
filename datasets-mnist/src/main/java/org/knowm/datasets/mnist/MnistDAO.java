@@ -63,7 +63,7 @@ public class MnistDAO extends DatasetsDAO {
     Object[] params = new Object[] {
 
         // @formatter:off
-        mnist.getId(), mnist.getLabel(), mnist.getImagedata()
+        mnist.getId(), mnist.getLabel(), mnist.getImageData()
         // @formatter:on
     };
     String CENSUS_INCOME_INSERT = "INSERT INTO MNIST (id, label, imagedata) VALUES (?, ?, ?)";

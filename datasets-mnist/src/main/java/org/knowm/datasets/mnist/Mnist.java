@@ -34,7 +34,7 @@ public class Mnist implements Serializable {
 
   private int id;
   private int label;
-  private String imagedata;
+  private String imageData;
 
   public int getId() {
 
@@ -56,20 +56,20 @@ public class Mnist implements Serializable {
     this.label = label;
   }
 
-  public String getImagedata() {
+  public String getImageData() {
 
-    return imagedata;
+    return imageData;
   }
 
-  public void setImagedata(String imagedata) {
+  public void setImageData(String imagedata) {
 
-    this.imagedata = imagedata;
+    this.imageData = imagedata;
   }
 
   public int[][] getImageMatrix() {
 
     int[][] imageMatrix = new int[28][28];
-    String[] nonZeroPixels = imagedata.split(",");
+    String[] nonZeroPixels = imageData.split(",");
     for (int i = 0; i < nonZeroPixels.length; i++) {
       String[] info = nonZeroPixels[i].split(":");
       int x = Integer.parseInt(info[0]);

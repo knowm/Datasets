@@ -81,7 +81,7 @@ public class RawData2DB {
       Mnist mnist = new Mnist();
       mnist.setId(idx++);
       mnist.setLabel(mnistManager.readLabel());
-      mnist.setImagedata(imagedata);
+      mnist.setImageData(imagedata);
       MnistDAO.insert(mnist);
     }
     // System.out.println("longestStringLength: " + longestStringLength);
