@@ -1,43 +1,44 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-  	
-  	<modelVersion>4.0.0</modelVersion>
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
-	<parent>
-		<groupId>org.knowm.datasets</groupId>
-		<artifactId>datasets-parent</artifactId>
-		<version>2.2.0-SNAPSHOT</version>
-	</parent>
+    <modelVersion>4.0.0</modelVersion>
 
-	<artifactId>datasets-numenta</artifactId>
+    <parent>
+        <groupId>org.knowm.datasets</groupId>
+        <artifactId>datasets-parent</artifactId>
+        <version>2.2.0-SNAPSHOT</version>
+    </parent>
 
-	<description>Knowm Datasets for machine learning applications</description>
-	<url>http://knowm.org/open-source/</url>
-	<inceptionYear>2013</inceptionYear>
+    <artifactId>datasets-numenta</artifactId>
 
-	<organization>
-		<name>Knowm Inc.</name>
-		<url>http://knowm.org</url>
-	</organization>
+    <description>Knowm Datasets for machine learning applications</description>
+    <url>http://knowm.org/open-source/</url>
+    <inceptionYear>2013</inceptionYear>
 
-	<dependencies>
-		<dependency>
-			<groupId>org.knowm.datasets</groupId>
-			<artifactId>datasets-common</artifactId>
-			<version>2.2.0-SNAPSHOT</version>
-		</dependency>
-		<dependency>
-			<groupId>org.hsqldb</groupId>
-			<artifactId>hsqldb</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>com.fasterxml.jackson.core</groupId>
-			<artifactId>jackson-core</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.codehaus.jackson</groupId>
-			<artifactId>jackson-mapper-asl</artifactId>
-		</dependency>
-	</dependencies>
+    <organization>
+        <name>Knowm Inc.</name>
+        <url>http://knowm.org</url>
+    </organization>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.knowm.datasets</groupId>
+            <artifactId>datasets-common</artifactId>
+            <version>2.2.0-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>org.hsqldb</groupId>
+            <artifactId>hsqldb</artifactId>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-core</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.codehaus.jackson</groupId>
+            <artifactId>jackson-mapper-asl</artifactId>
+        </dependency>
+    </dependencies>
 
 </project>

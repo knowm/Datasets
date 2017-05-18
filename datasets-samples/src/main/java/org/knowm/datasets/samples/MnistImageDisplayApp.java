@@ -57,6 +57,7 @@ public class MnistImageDisplayApp {
 
     try {
       MnistDAO.init("/usr/local/Datasets"); // setup data
+    System.out.println("here");
       MnistImageDisplayApp mnistImageDisplayApp = new MnistImageDisplayApp();
       mnistImageDisplayApp.go(args);
     } catch (Exception e) {
@@ -79,7 +80,6 @@ public class MnistImageDisplayApp {
     }
 
     Mnist mnistData = MnistDAO.selectSingle(imageIndex);
-
     // paint the patches
     JPanel mnistImagePanel = new MnistImagePanel(mnistData);
     new MnistDigitViewer(mnistImagePanel, "Index = " + mnistData.getId() + " label = " + mnistData.getLabel());

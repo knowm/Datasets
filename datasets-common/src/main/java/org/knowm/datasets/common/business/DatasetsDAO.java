@@ -22,16 +22,6 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-/**
- * This product currently only contains code developed by authors
- * of specific components, as identified by the source code files.
- *
- * Since product implements StAX API, it has dependencies to StAX API
- * classes.
- *
- * For additional credits (generally to people who reported problems)
- * see CREDITS file.
- */
 package org.knowm.datasets.common.business;
 
 import java.io.File;
@@ -76,8 +66,7 @@ public abstract class DatasetsDAO {
     Yank.releaseDefaultConnectionPool();
   }
 
-  public static void init(String dbName, String dataFilesDir, String dataFileURL, String propsFileURL, String scriptFileURL, String lobsFileURL,
-      boolean requiresManualDownload) {
+  public static void init(String dbName, String dataFilesDir, String dataFileURL, String propsFileURL, String scriptFileURL, String lobsFileURL, boolean requiresManualDownload) {
 
     // 1. create data dir
 

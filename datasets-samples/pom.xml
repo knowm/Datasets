@@ -19,6 +19,7 @@
 		<dependency>
 			<groupId>org.hsqldb</groupId>
 			<artifactId>hsqldb</artifactId>
+            <scope>compile</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.knowm.datasets</groupId>

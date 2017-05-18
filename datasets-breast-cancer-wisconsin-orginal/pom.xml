@@ -1,35 +1,36 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
-	<modelVersion>4.0.0</modelVersion>
+    <modelVersion>4.0.0</modelVersion>
 
-	<parent>
-		<groupId>org.knowm.datasets</groupId>
-		<artifactId>datasets-parent</artifactId>
-		<version>2.2.0-SNAPSHOT</version>
-	</parent>
+    <parent>
+        <groupId>org.knowm.datasets</groupId>
+        <artifactId>datasets-parent</artifactId>
+        <version>2.2.0-SNAPSHOT</version>
+    </parent>
 
-	<artifactId>datasets-breast-cancer-wisconsin-original</artifactId>
+    <artifactId>datasets-breast-cancer-wisconsin-original</artifactId>
 
-	<description>Knowm Datasets for machine learning applications</description>
-	<url>http://knowm.org/open-source/</url>
-	<inceptionYear>2013</inceptionYear>
+    <description>Knowm Datasets for machine learning applications</description>
+    <url>http://knowm.org/open-source/</url>
+    <inceptionYear>2013</inceptionYear>
 
-	<organization>
-		<name>Knowm Inc.</name>
-		<url>http://knowm.org</url>
-	</organization>
+    <organization>
+        <name>Knowm Inc.</name>
+        <url>http://knowm.org</url>
+    </organization>
 
-	<dependencies>
-		<dependency>
-			<groupId>org.knowm.datasets</groupId>
-			<artifactId>datasets-common</artifactId>
-			<version>2.2.0-SNAPSHOT</version>
-		</dependency>
-		<dependency>
-			<groupId>org.hsqldb</groupId>
-			<artifactId>hsqldb</artifactId>
-		</dependency>
-	</dependencies>
+    <dependencies>
+        <dependency>
+            <groupId>org.knowm.datasets</groupId>
+            <artifactId>datasets-common</artifactId>
+            <version>2.2.0-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>org.hsqldb</groupId>
+            <artifactId>hsqldb</artifactId>
+            <scope>compile</scope>
+        </dependency>
+    </dependencies>
 
 </project>
