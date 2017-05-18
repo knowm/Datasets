@@ -25,6 +25,9 @@
 package org.knowm.datasets.mnist;
 
 import java.io.IOException;
+import java.sql.SQLException;
+
+import javax.sql.rowset.serial.SerialBlob;
 
 import mnist.tools.MnistManager;
 
@@ -35,7 +38,7 @@ public class RawData2DB {
 
   int idx = 0;
 
-  public static void main(String[] args) throws IOException {
+  public static void main(String[] args) throws IOException, SQLException {
 
     MnistDAO.init(new String[0]);
 
@@ -52,13 +55,21 @@ public class RawData2DB {
     MnistDAO.release();
   }
 
-  private void go(String imageDataFile, String labelDataFile, int startIdx, int endIdx) throws IOException {
+  private void go(String imageDataFile, String labelDataFile, int startIdx, int endIdx) throws IOException, SQLException {
 
     int longestStringLength = 0;
 
     MnistManager mnistManager = new MnistManager(imageDataFile, labelDataFile);
     for (int n = startIdx; n <= endIdx; n++) {
       mnistManager.setCurrent(n); // index of the image that we are interested in
+
+      byte[] imageAsByteArray = mnistManager.readImageAsByteArray();
+//      System.out.println("imageAsByteArray = " + imageAsByteArray);
+      for (byte b : imageAsByteArray) {
+//        System.out.println("b = " + Byte.toUnsignedInt(b));
+      }
+      mnistManager.setCurrent(n); // index of the image that we are interested in
+
       StringBuilder sb = new StringBuilder();
       int[][] image = mnistManager.readImage();
       for (int i = 0; i < image[0].length; i++) {
@@ -82,6 +93,7 @@ public class RawData2DB {
       mnist.setId(idx++);
       mnist.setLabel(mnistManager.readLabel());
       mnist.setImageData(imagedata);
+      mnist.setImgbytes(new SerialBlob(imageAsByteArray));
       MnistDAO.insert(mnist);
     }
     // System.out.println("longestStringLength: " + longestStringLength);

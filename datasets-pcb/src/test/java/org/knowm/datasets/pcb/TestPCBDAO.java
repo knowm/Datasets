@@ -34,11 +34,13 @@ import javax.imageio.ImageIO;
 
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
+import org.junit.Ignore;
 import org.junit.Test;
 
 /**
  * @author timmolter
  */
+@Ignore
 public class TestPCBDAO {
 
   @BeforeClass

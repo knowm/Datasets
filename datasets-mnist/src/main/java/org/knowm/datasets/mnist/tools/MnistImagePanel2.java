@@ -36,33 +36,33 @@ import org.knowm.datasets.mnist.Mnist;
  */
 public class MnistImagePanel2 extends JPanel {
 
-  private BufferedImage image;
+  private BufferedImage bufferedImage;
 
   public MnistImagePanel2(Mnist mnistData) {
 
-    image = mnistData.getImageAsBufferedImage();
+    bufferedImage = mnistData.getImageAsBufferedImage2();
 
-    setPreferredSize(new Dimension(image.getWidth(), image.getHeight()));
+    setPreferredSize(new Dimension(bufferedImage.getWidth(), bufferedImage.getHeight()));
   }
 
   private void scale(int scale) {
 
-    int w = image.getWidth();
-    int h = image.getHeight();
+    int w = bufferedImage.getWidth();
+    int h = bufferedImage.getHeight();
     BufferedImage after = new BufferedImage(w, h, BufferedImage.TYPE_INT_ARGB);
     AffineTransform at = new AffineTransform();
     at.scale(scale, scale);
     AffineTransformOp scaleOp = new AffineTransformOp(at, AffineTransformOp.TYPE_BILINEAR);
-    after = scaleOp.filter(image, after);
+    after = scaleOp.filter(bufferedImage, after);
 
-    this.image = after;
+    this.bufferedImage = after;
   }
 
   @Override
   public void paintComponent(Graphics g) {
 
     super.paintComponent(g);
-    g.drawImage(image, 0, 0, null); // see javadoc for more info on the parameters
+    g.drawImage(bufferedImage, 0, 0, null); // see javadoc for more info on the parameters
   }
 
 }

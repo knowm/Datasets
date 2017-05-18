@@ -26,6 +26,8 @@ package org.knowm.datasets.mnist;
 
 import java.awt.image.BufferedImage;
 import java.io.Serializable;
+import java.sql.Blob;
+import java.sql.SQLException;
 
 /**
  * @author timmolter
@@ -35,6 +37,8 @@ public class Mnist implements Serializable {
   private int id;
   private int label;
   private String imageData;
+  private Blob imgbytes;
+  byte[] imageAsByteArray;
 
   public int getId() {
 
@@ -66,6 +70,19 @@ public class Mnist implements Serializable {
     this.imageData = imagedata;
   }
 
+  public Blob getImgbytes() {
+    return imgbytes;
+  }
+
+  public void setImgbytes(Blob imgbytes) {
+    this.imgbytes = imgbytes;
+    try {
+      this.imageAsByteArray = imgbytes.getBytes(1, (28 * 28));
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
+  }
+
   public int[][] getImageMatrix() {
 
     int[][] imageMatrix = new int[28][28];
@@ -76,6 +93,24 @@ public class Mnist implements Serializable {
       int y = Integer.parseInt(info[1]);
       int magnitude = Integer.parseInt(info[2]);
       imageMatrix[x][y] = magnitude;
+    }
+
+    return imageMatrix;
+  }
+
+  public byte[][] getImageMatrix2() {
+
+    try {
+      byte[] imageAsByteArray = imgbytes.getBytes(1, (28 * 28));
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
+
+    byte[][] imageMatrix = new byte[28][28];
+    for (int y = 0; y < 28; y++) {
+      for (int x = 0; x < 28; x++) {
+        imageMatrix[y][x] = imageAsByteArray[28 * y + x];
+      }
     }
 
     return imageMatrix;
@@ -94,6 +129,39 @@ public class Mnist implements Serializable {
     }
     return bufferedImage;
   }
+
+  public BufferedImage getImageAsBufferedImage2() {
+
+    byte[][] img = getImageMatrix2();
+    BufferedImage bufferedImage = new BufferedImage(28, 28, BufferedImage.TYPE_INT_RGB);
+
+    for (int y = 0; y < img.length; y++) {
+      for (int x = 0; x < img[0].length; x++) {
+        int value = img[y][x] << 16 | img[y][x] << 8 | img[y][x];
+        bufferedImage.setRGB(x, y, value);
+      }
+    }
+    return bufferedImage;
+  }
+
+//  public BufferedImage getImageAsBufferedImage2() {
+//
+//    byte[] img = new byte[0];
+//    try {
+//      img = imgbytes.getBytes(0, (28 * 28));
+//    } catch (SQLException e) {
+//      e.printStackTrace();
+//    }
+//    BufferedImage bufferedImage = new BufferedImage(28, 28, BufferedImage.TYPE_INT_RGB);
+//
+//    for (int y = 0; y < 28; y++) {
+//      for (int x = 0; x < 28; x++) {
+//        int value = img[28 * y + x] << 16 | img[28 * y + x] << 8 | img[28 * y + x];
+//        bufferedImage.setRGB(x, y, value);
+//      }
+//    }
+//    return bufferedImage;
+//  }
 
   public String toASCIIImageString() {
 

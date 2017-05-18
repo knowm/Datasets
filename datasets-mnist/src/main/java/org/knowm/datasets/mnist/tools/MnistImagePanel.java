@@ -34,16 +34,16 @@ import javax.swing.JPanel;
  */
 public class MnistImagePanel extends JPanel {
 
-  private BufferedImage image;
+  private BufferedImage bufferedImage;
 
   public MnistImagePanel(int[][] img, int scale) {
 
-    image = new BufferedImage(img.length * scale, img[0].length * scale, BufferedImage.TYPE_INT_RGB);
+    bufferedImage = new BufferedImage(img.length * scale, img[0].length * scale, BufferedImage.TYPE_INT_RGB);
 
     for (int y = 0; y < img.length; y++) {
       for (int x = 0; x < img[0].length; x++) {
         int value = img[y][x] << 16 | img[y][x] << 8 | img[y][x];
-        image.setRGB(x, y, value);
+        bufferedImage.setRGB(x, y, value);
       }
     }
     scale(scale);
@@ -53,22 +53,22 @@ public class MnistImagePanel extends JPanel {
 
   private void scale(int scale) {
 
-    int w = image.getWidth();
-    int h = image.getHeight();
+    int w = bufferedImage.getWidth();
+    int h = bufferedImage.getHeight();
     BufferedImage after = new BufferedImage(w, h, BufferedImage.TYPE_INT_ARGB);
     AffineTransform at = new AffineTransform();
     at.scale(scale, scale);
     AffineTransformOp scaleOp = new AffineTransformOp(at, AffineTransformOp.TYPE_BILINEAR);
-    after = scaleOp.filter(image, after);
+    after = scaleOp.filter(bufferedImage, after);
 
-    this.image = after;
+    this.bufferedImage = after;
   }
 
   @Override
   public void paintComponent(Graphics g) {
 
     super.paintComponent(g);
-    g.drawImage(image, 0, 0, null); // see javadoc for more info on the parameters
+    g.drawImage(bufferedImage, 0, 0, null); // see javadoc for more info on the parameters
   }
 
 }

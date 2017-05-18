@@ -11,9 +11,10 @@
 
 1. Download raw data from here: http://yann.lecun.com/exdb/mnist/
 1. put all files in `raw` folder in project root
+1. Unzip all
 1. Run `RawData2DB.java`. 
 1. The database containing the data will appear in `db`.
-1. Manually copy the `DB_MNIST.*` files into the `/usr/local/Datasets` folder. There should be three files. 
+1. Manually copy the `DB_MNIST.*` files into the `/usr/local/Datasets` folder. There should be four files.
 
 ## How to Use the Data in You App
 

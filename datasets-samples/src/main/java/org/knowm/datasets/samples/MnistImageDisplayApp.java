@@ -68,13 +68,13 @@ public class MnistImageDisplayApp {
       // just ignore
     }
 
-    Mnist mnistData = MnistDAO.selectSingle(imageIndex);
+    Mnist mnist = MnistDAO.selectSingle(imageIndex);
 
-    int[][] img = mnistData.getImageMatrix();
+    int[][] img = mnist.getImageMatrix();
 
     // paint the patches
     JPanel mnistImagePanel = new MnistImagePanel(img, 8);
-    new MnistDigitViewer(mnistImagePanel, "Index = " + mnistData.getId() + " label = " + mnistData.getLabel());
+    new MnistDigitViewer(mnistImagePanel, "Index = " + mnist.getId() + " label = " + mnist.getLabel());
 
   }
 }

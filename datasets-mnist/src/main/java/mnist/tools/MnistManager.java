@@ -27,14 +27,14 @@ import java.io.IOException;
  * <p>
  * Utility class for working with the MNIST database.
  * <p>
- * Provides methods for traversing the images and labels data files separately, as well as simultaneously.
+ * Provides methods for traversing the mnistImageFile and mnistLabelFile data files separately, as well as simultaneously.
  * <p>
  * Provides also method for exporting an image by writing it as a PPM file.
  * <p>
  * Example usage:
  * 
  * <pre>
- * MnistManager m = new MnistManager(&quot;t10k-images.idx3-ubyte&quot;, &quot;t10k-labels.idx1-ubyte&quot;);
+ * MnistManager m = new MnistManager(&quot;t10k-mnistImageFile.idx3-ubyte&quot;, &quot;t10k-mnistLabelFile.idx1-ubyte&quot;);
  * m.setCurrent(10); // index of the image that we are interested in
  * int[][] image = m.readImage();
  * System.out.println(&quot;Label:&quot; + m.readLabel());
@@ -43,12 +43,12 @@ import java.io.IOException;
  */
 public class MnistManager {
 
-  private MnistImageFile images;
-  private MnistLabelFile labels;
+  private MnistImageFile mnistImageFile;
+  private MnistLabelFile mnistLabelFile;
 
   /**
    * Constructs an instance managing the two given data files. Supports <code>NULL</code> value for one of the arguments in case reading only one of
-   * the files (images and labels) is required.
+   * the files (mnistImageFile and mnistLabelFile) is required.
    * 
    * @param imagesFile Can be <code>NULL</code>. In that case all future operations using that file will fail.
    * @param labelsFile Can be <code>NULL</code>. In that case all future operations using that file will fail.
@@ -57,10 +57,10 @@ public class MnistManager {
   public MnistManager(String imagesFile, String labelsFile) throws IOException {
 
     if (imagesFile != null) {
-      images = new MnistImageFile(imagesFile, "r");
+      mnistImageFile = new MnistImageFile(imagesFile, "r");
     }
     if (labelsFile != null) {
-      labels = new MnistLabelFile(labelsFile, "r");
+      mnistLabelFile = new MnistLabelFile(labelsFile, "r");
     }
   }
 
@@ -72,10 +72,18 @@ public class MnistManager {
    */
   public int[][] readImage() throws IOException {
 
-    if (images == null) {
+    if (mnistImageFile == null) {
       throw new IllegalStateException("Images file not initialized.");
     }
-    return images.readImage();
+    return mnistImageFile.readImage();
+  }
+
+  public byte[] readImageAsByteArray() throws IOException {
+
+    if (mnistImageFile == null) {
+      throw new IllegalStateException("Images file not initialized.");
+    }
+    return mnistImageFile.readImageAsByteArray();
   }
 
   /**
@@ -85,8 +93,8 @@ public class MnistManager {
    */
   public void setCurrent(int index) {
 
-    images.setCurrentIndex(index);
-    labels.setCurrentIndex(index);
+    mnistImageFile.setCurrentIndex(index);
+    mnistLabelFile.setCurrentIndex(index);
   }
 
   /**
@@ -97,29 +105,29 @@ public class MnistManager {
    */
   public int readLabel() throws IOException {
 
-    if (labels == null) {
-      throw new IllegalStateException("labels file not initialized.");
+    if (mnistLabelFile == null) {
+      throw new IllegalStateException("mnistLabelFile file not initialized.");
     }
-    return labels.readLabel();
+    return mnistLabelFile.readLabel();
   }
 
   /**
-   * Get the underlying images file as {@link MnistImageFile}.
+   * Get the underlying mnistImageFile file as {@link MnistImageFile}.
    * 
    * @return {@link MnistImageFile}.
    */
-  public MnistImageFile getImages() {
+  public MnistImageFile getMnistImageFile() {
 
-    return images;
+    return mnistImageFile;
   }
 
   /**
-   * Get the underlying labels file as {@link MnistLabelFile}.
+   * Get the underlying mnistLabelFile file as {@link MnistLabelFile}.
    * 
    * @return {@link MnistLabelFile}.
    */
-  public MnistLabelFile getLabels() {
+  public MnistLabelFile getMnistLabelFile() {
 
-    return labels;
+    return mnistLabelFile;
   }
 }

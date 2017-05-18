@@ -39,8 +39,9 @@ public class MnistDAO extends DatasetsDAO {
     String dataFileID = "0ByP7_A9vXm17ZGEyOFNjVzdVdlU";
     String propsFileID = "0ByP7_A9vXm17SV96TE5jdnY0UDQ";
     String scriptFileID = "0ByP7_A9vXm17U2s1d0FzdHlILUE";
+    String lobsFileID = "0ByP7_A9vXm17WDBoS25pMHZmR0E";
 
-    init("DB_MNIST", dataFilesDir, dataFileID, propsFileID, scriptFileID, null, true);
+    init("DB_MNIST", dataFilesDir, dataFileID, propsFileID, scriptFileID, lobsFileID, true);
   }
 
   public static int dropTable() {
@@ -60,13 +61,13 @@ public class MnistDAO extends DatasetsDAO {
 
   public static int insert(Mnist mnist) {
 
-    Object[] params = new Object[] {
+    Object[] params = new Object[]{
 
         // @formatter:off
-        mnist.getId(), mnist.getLabel(), mnist.getImageData()
+        mnist.getId(), mnist.getLabel(), mnist.getImageData(), mnist.getImgbytes()
         // @formatter:on
     };
-    String CENSUS_INCOME_INSERT = "INSERT INTO MNIST (id, label, imagedata) VALUES (?, ?, ?)";
+    String CENSUS_INCOME_INSERT = "INSERT INTO MNIST (id, label, imagedata, imgbytes) VALUES (?, ?, ?, ?)";
     return Yank.execute(CENSUS_INCOME_INSERT, params);
 
   }
@@ -80,26 +81,12 @@ public class MnistDAO extends DatasetsDAO {
 
   public static Mnist selectSingle(int id) {
 
-    Object[] params = new Object[] { id };
+    Object[] params = new Object[]{id};
 
     String SELECT_SINGLE = "SELECT * FROM MNIST WHERE id = ?";
 
     return Yank.queryBean(SELECT_SINGLE, Mnist.class, params);
   }
-
-  // public static List<Mnist> selectTrainData() {
-  //
-  // String SELECT_TRAIN = "SELECT * FROM MNIST LIMIT 1, 60000";
-  //
-  // return Yank.queryBeanList(  SELECT_TRAIN, Mnist.class, null);
-  // }
-  //
-  // public static List<Mnist> selectTestData() {
-  //
-  // String SELECT_TRAIN = "SELECT * FROM MNIST LIMIT 60000, 70000";
-  //
-  // return Yank.queryBeanList(  SELECT_TRAIN, Mnist.class, null);
-  // }
 
   public static long selectCount() {
 
