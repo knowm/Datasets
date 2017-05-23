@@ -78,12 +78,12 @@ public class MnistManager {
     return mnistImageFile.readImage();
   }
 
-  public byte[] readImageAsByteArray() throws IOException {
+  public byte[] readImageAsSignedByteArray() throws IOException {
 
     if (mnistImageFile == null) {
       throw new IllegalStateException("Images file not initialized.");
     }
-    return mnistImageFile.readImageAsByteArray();
+    return mnistImageFile.readImageAsSignedByteArray();
   }
 
   /**

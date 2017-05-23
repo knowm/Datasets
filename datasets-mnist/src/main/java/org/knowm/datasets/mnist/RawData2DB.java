@@ -36,6 +36,7 @@ package org.knowm.datasets.mnist;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.Arrays;
 
 import javax.sql.rowset.serial.SerialBlob;
 
@@ -73,27 +74,14 @@ public class RawData2DB {
     for (int n = startIdx; n <= endIdx; n++) {
       mnistManager.setCurrent(n); // index of the image that we are interested in
 
-      byte[] imageAsByteArray = mnistManager.readImageAsByteArray();
-//      System.out.println("imageAsByteArray = " + imageAsByteArray);
-      for (byte b : imageAsByteArray) {
-//        System.out.println("b = " + Byte.toUnsignedInt(b));
-      }
-      mnistManager.setCurrent(n); // index of the image that we are interested in
+      byte[] imageAsSignedByteArray = mnistManager.readImageAsSignedByteArray();
+      System.out.println("imageAsByteArray = " + Arrays.toString(imageAsSignedByteArray));
 
-      StringBuilder sb = new StringBuilder();
-      for (byte b : imageAsByteArray) {
-        sb.append(Byte.toUnsignedInt(b));
-        sb.append(",");
-
-        if (sb.length() > longestStringLength) {
-          longestStringLength = sb.length();
-        }
-      }
       Mnist mnist = new Mnist();
       mnist.setId(idx++);
       mnist.setLabel(mnistManager.readLabel());
-      mnist.setImgbytes(new SerialBlob(imageAsByteArray));
-      MnistDAO.insert(mnist);
+      mnist.setImgbytes(new SerialBlob(imageAsSignedByteArray));
+//      MnistDAO.insert(mnist);
     }
 //     System.out.println("longestStringLength: " + longestStringLength);
   }

@@ -66,7 +66,7 @@ public class MnistImageFile extends MnistDbFile {
     return dat;
   }
 
-  public byte[] readImageAsByteArray() throws IOException {
+  public byte[] readImageAsSignedByteArray() throws IOException {
 
     byte[] dat = new byte[getRows()*getCols()];
     for (int i = 0; i < dat.length; i++) {
