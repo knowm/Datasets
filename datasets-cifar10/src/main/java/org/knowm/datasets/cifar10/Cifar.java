@@ -34,6 +34,7 @@
  */
 package org.knowm.datasets.cifar10;
 
+import java.awt.image.BufferedImage;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
@@ -49,9 +50,7 @@ public class Cifar extends Bean {
   private String imagedata;
 
   /** generated */
-  int[][] redChannel = null;
-  int[][] greenChannel = null;
-  int[][] blueChannel = null;
+  int[][][] rgbImage = null;
 
   private static final Map<Integer, String> label2WordMap = new HashMap<Integer, String>();
   static {
@@ -66,7 +65,18 @@ public class Cifar extends Bean {
     label2WordMap.put(8, "ship");
     label2WordMap.put(9, "truck");
   }
+  public BufferedImage getImageAsBufferedImage() {
 
+	    BufferedImage bufferedImage = new BufferedImage(rgbImage.length, rgbImage[0].length, BufferedImage.TYPE_INT_RGB);
+
+	    for (int y = 0; y < 32; y++) {
+	      for (int x = 0; x < 32; x++) {
+	        int value = rgbImage[y][x][0] << 16 | rgbImage[y][x][1] << 8 | rgbImage[y][x][2];
+	        bufferedImage.setRGB(x, y, value);
+	      }
+	    }
+	    return bufferedImage;
+	  }
   public int getLabel() {
 
     return label;
@@ -92,35 +102,17 @@ public class Cifar extends Bean {
     this.imagedata = imagedata;
   }
 
-  public int[][] getRedChannel() {
+  public int[][][] getRGBImage() {
 
-    if (redChannel == null) {
+    if (rgbImage == null) {
       generateChannelData();
     }
-    return redChannel;
-  }
-
-  public int[][] getGreenChannel() {
-
-    if (greenChannel == null) {
-      generateChannelData();
-    }
-    return greenChannel;
-  }
-
-  public int[][] getBlueChannel() {
-
-    if (blueChannel == null) {
-      generateChannelData();
-    }
-    return blueChannel;
+    return rgbImage;
   }
 
   private void generateChannelData() {
 
-    redChannel = new int[32][32];
-    greenChannel = new int[32][32];
-    blueChannel = new int[32][32];
+	rgbImage = new int[32][32][3];
 
     String[] nonZeroPixels = imagedata.split(",");
     for (int i = 0; i < nonZeroPixels.length; i++) {
@@ -128,9 +120,9 @@ public class Cifar extends Bean {
       int x = Integer.parseInt(info[0]);
       int y = Integer.parseInt(info[1]);
       String[] rgb = info[2].split("_");
-      redChannel[x][y] = Integer.parseInt(rgb[0]);
-      greenChannel[x][y] = Integer.parseInt(rgb[1]);
-      blueChannel[x][y] = Integer.parseInt(rgb[2]);
+      rgbImage[x][y][0] = Integer.parseInt(rgb[0]);
+      rgbImage[x][y][1] = Integer.parseInt(rgb[1]);
+      rgbImage[x][y][2] = Integer.parseInt(rgb[2]);
     }
 
   }
@@ -138,8 +130,7 @@ public class Cifar extends Bean {
   @Override
   public String toString() {
 
-    return "Cifar [id=" + getId() + ", label=" + label + ", imagedata=" + imagedata + ", redChannel=" + Arrays.toString(redChannel) + ", greenChannel="
-        + Arrays.toString(greenChannel) + ", blueChannel=" + Arrays.toString(blueChannel) + "]";
+    return "Cifar [id=" + getId() + ", label=" + label + "]";
   }
 
 }
