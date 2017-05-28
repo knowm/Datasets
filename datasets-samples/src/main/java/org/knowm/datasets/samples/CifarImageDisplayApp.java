@@ -79,7 +79,7 @@ public class CifarImageDisplayApp {
 
     Cifar cifar = CifarDAO.selectSingle(imageIndex);
 
-    int[][] red = cifar.getRedChannel();
+    int[][][] red = cifar.getRGBImage();
 
     // paint the patches
     JPanel cifarImagePanel = new CifarImagePanel(red, 4);

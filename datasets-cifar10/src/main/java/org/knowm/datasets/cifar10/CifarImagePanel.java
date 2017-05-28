@@ -64,19 +64,19 @@ public class CifarImagePanel extends JPanel {
     setPreferredSize(new Dimension(red.length * scale, red[0].length * scale));
   }
 
-  public CifarImagePanel(int[][] gray, int scale) {
+  public CifarImagePanel(int[][][] rgb, int scale) {
 
-    image = new BufferedImage(gray.length * scale, gray[0].length * scale, BufferedImage.TYPE_INT_RGB);
+    image = new BufferedImage(rgb.length * scale, rgb[0].length * scale, BufferedImage.TYPE_INT_RGB);
 
-    for (int y = 0; y < gray.length; y++) {
-      for (int x = 0; x < gray[0].length; x++) {
-        int value = gray[y][x] << 16 | gray[y][x] << 8 | gray[y][x];
+    for (int y = 0; y < rgb.length; y++) {
+      for (int x = 0; x < rgb[0].length; x++) {
+        int value = rgb[y][x][0] << 16 | rgb[y][x][1] << 8 | rgb[y][x][2];
         image.setRGB(x, y, value);
       }
     }
     scale(scale);
 
-    setPreferredSize(new Dimension(gray.length * scale, gray[0].length * scale));
+    setPreferredSize(new Dimension(rgb.length * scale, rgb[0].length * scale));
   }
 
   private void scale(int scale) {
