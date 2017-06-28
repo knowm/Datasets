@@ -69,9 +69,9 @@ public class Cifar extends Bean {
 
 	    BufferedImage bufferedImage = new BufferedImage(rgbImage.length, rgbImage[0].length, BufferedImage.TYPE_INT_RGB);
 
-	    for (int y = 0; y < 32; y++) {
-	      for (int x = 0; x < 32; x++) {
-	        int value = rgbImage[y][x][0] << 16 | rgbImage[y][x][1] << 8 | rgbImage[y][x][2];
+	    for (int x = 0; x < 32; x++) {
+	      for (int y = 0; y < 32; y++) {
+	        int value = rgbImage[x][y][0] << 16 | rgbImage[x][y][1] << 8 | rgbImage[x][y][2];
 	        bufferedImage.setRGB(x, y, value);
 	      }
 	    }
