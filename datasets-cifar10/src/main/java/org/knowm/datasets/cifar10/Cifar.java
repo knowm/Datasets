@@ -117,8 +117,8 @@ public class Cifar extends Bean {
     String[] nonZeroPixels = imagedata.split(",");
     for (int i = 0; i < nonZeroPixels.length; i++) {
       String[] info = nonZeroPixels[i].split(":");
-      int x = Integer.parseInt(info[0]);
-      int y = Integer.parseInt(info[1]);
+      int y = Integer.parseInt(info[0]);
+      int x = Integer.parseInt(info[1]);
       String[] rgb = info[2].split("_");
       rgbImage[x][y][0] = Integer.parseInt(rgb[0]);
       rgbImage[x][y][1] = Integer.parseInt(rgb[1]);
