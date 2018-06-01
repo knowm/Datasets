@@ -1,36 +1,31 @@
 /**
  * (The MIT License)
  *
- * Copyright 2015-2017 Knowm Inc. (http://knowm.org) and contributors.
- * Copyright 2013-2015 Xeiam LLC (http://xeiam.com) and contributors.
+ * <p>Copyright 2015-2017 Knowm Inc. (http://knowm.org) and contributors. Copyright 2013-2015 Xeiam
+ * LLC (http://xeiam.com) and contributors.
  *
- * Permission is hereby granted, free of charge, to any person obtaining a copy of
- * this software and associated documentation files (the "Software"), to deal in
- * the Software without restriction, including without limitation the rights to
- * use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies
- * of the Software, and to permit persons to whom the Software is furnished to do
- * so, subject to the following conditions:
+ * <p>Permission is hereby granted, free of charge, to any person obtaining a copy of this software
+ * and associated documentation files (the "Software"), to deal in the Software without restriction,
+ * including without limitation the rights to use, copy, modify, merge, publish, distribute,
+ * sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
  *
- * The above copyright notice and this permission notice shall be included in all
- * copies or substantial portions of the Software.
+ * <p>The above copyright notice and this permission notice shall be included in all copies or
+ * substantial portions of the Software.
  *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
- * SOFTWARE.
+ * <p>THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING
+ * BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+ * NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
+ * DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 /**
- * This product currently only contains code developed by authors
- * of specific components, as identified by the source code files.
+ * This product currently only contains code developed by authors of specific components, as
+ * identified by the source code files.
  *
- * Since product implements StAX API, it has dependencies to StAX API
- * classes.
+ * <p>Since product implements StAX API, it has dependencies to StAX API classes.
  *
- * For additional credits (generally to people who reported problems)
- * see CREDITS file.
+ * <p>For additional credits (generally to people who reported problems) see CREDITS file.
  */
 package org.knowm.datasets.ucsdanomaly;
 
@@ -47,12 +42,8 @@ import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Ignore;
 import org.junit.Test;
-import org.knowm.datasets.ucsdanomaly.UCSDAnomaly;
-import org.knowm.datasets.ucsdanomaly.UCSDAnomalyDAO;
 
-/**
- * @author timmolter
- */
+/** @author timmolter */
 @Ignore
 public class TestUCSDAnomalyDAO {
 
@@ -60,7 +51,6 @@ public class TestUCSDAnomalyDAO {
   public static void setUpDB() {
 
     UCSDAnomalyDAO.init(new String[0]);
-
   }
 
   @AfterClass
@@ -69,14 +59,14 @@ public class TestUCSDAnomalyDAO {
     UCSDAnomalyDAO.release();
   }
 
-  @Test
+  // @Test
   public void testSelectCount() {
 
     long count = UCSDAnomalyDAO.selectCount();
     assertThat(count, equalTo(14000L));
   }
 
-  @Test
+  // @Test
   public void testSelect() throws SQLException {
 
     UCSDAnomaly uCSDAnomaly = UCSDAnomalyDAO.selectSingle(3, 3);
@@ -86,7 +76,7 @@ public class TestUCSDAnomalyDAO {
     // assertThat(new String(uCSDAnomaly.getTifbytes().getBytes(1, 4)), equalTo("test"));
   }
 
-  // @Test
+  @Test
   public void test() {
 
     UCSDAnomaly uCSDAnomaly = UCSDAnomalyDAO.selectSingle(3, 3);
@@ -101,6 +91,9 @@ public class TestUCSDAnomalyDAO {
       // System.out.println(Arrays.toString(ImageIO.getReaderFileSuffixes()));
       BufferedImage bufferedImage = ImageIO.read(bytes);
       // bufferedImage is the RenderedImage to be written
+
+      System.out.println(
+          "image size=" + bufferedImage.getHeight() + "x" + bufferedImage.getWidth());
 
       // Graphics2D g2 = bufferedImage.createGraphics();
       // g2.drawImage(image, null, null);
