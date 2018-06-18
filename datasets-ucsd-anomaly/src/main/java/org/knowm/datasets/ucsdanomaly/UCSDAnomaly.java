@@ -79,6 +79,7 @@ public class UCSDAnomaly extends Bean {
     InputStream bytes;
     try {
       bytes = getTifbytes().getBinaryStream();
+      ImageIO.setUseCache(false);
       return ImageIO.read(bytes);
     } catch (Exception e) {
       // TODO Auto-generated catch block
