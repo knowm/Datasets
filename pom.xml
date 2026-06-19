@@ -114,7 +114,7 @@
 			<dependency>
 				<groupId>org.knowm</groupId>
 				<artifactId>yank</artifactId>
-				<version>3.3.3</version>
+				<version>3.4.0</version>
 			</dependency>
 			<dependency>
 				<groupId>org.hsqldb</groupId>
@@ -140,7 +140,7 @@
 			<dependency>
 				<groupId>org.knowm.xchart</groupId>
 				<artifactId>xchart</artifactId>
-				<version>3.5.2</version>
+				<version>3.6.0</version>
 			</dependency>
 		</dependencies>
 	</dependencyManagement>
@@ -149,12 +149,12 @@
 		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-api</artifactId>
-			<version>1.7.25</version>
+			<version>1.7.30</version>
 		</dependency>
 		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-simple</artifactId>
-			<version>1.7.25</version>
+			<version>1.7.30</version>
 		</dependency>
 		<dependency>
 			<groupId>junit</groupId>
